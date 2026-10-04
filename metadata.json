@@ -1,0 +1,6 @@
+{
+  "name": "Atlas Engineering",
+  "description": "Manufacturers of Road & Civil Construction Machinery since 1997. Premium bitumen modification, road construction, and cement concrete equipment.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

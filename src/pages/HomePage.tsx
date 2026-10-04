@@ -1,0 +1,704 @@
+import React, { useState, useEffect } from 'react';
+import { useRouter } from '../context/RouterContext';
+import { TrustStrip } from '../components/TrustStrip';
+import { CategoryCard } from '../components/CategoryCard';
+import { ProductCard } from '../components/ProductCard';
+import { PRODUCT_CATEGORIES, ALL_PRODUCTS, COMPANY_INFO } from '../data/products';
+import aboutAtlasImg from '../assets/images/about_atlas_engineering.jpg';
+import heroSlide2 from '../assets/images/hero_slide_2.jpg';
+import heroSlide3 from '../assets/images/hero_slide_3.jpg';
+import catBitumenImg from '../assets/images/category_bitumen_equipment.jpg';
+import {
+  ArrowRight,
+  Shield,
+  Cog,
+  Wrench,
+  Globe,
+  Headphones,
+  CheckCircle,
+  ExternalLink,
+  ChevronLeft,
+  ChevronRight,
+  Send,
+  Sparkles,
+  Cpu,
+  Layers,
+  PhoneCall,
+  MapPin,
+  CheckCircle2,
+} from 'lucide-react';
+
+export const HomePage: React.FC = () => {
+  const { navigate, openQuoteModal } = useRouter();
+
+  // Hero Carousel State & Slides (1 original + 2 from Google Drive)
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const heroSlides = [
+    {
+      image: '/src/assets/images/hero_machinery_road_1791042882943.jpg',
+      alt: 'Atlas Engineering Road Machinery & Bitumen Plant',
+      tag: 'Bitumen & Asphalt Machinery',
+    },
+    {
+      image: heroSlide2,
+      alt: 'Heavy Road Construction Machinery Site Deployment',
+      tag: 'Road Construction Equipment',
+    },
+    {
+      image: heroSlide3,
+      alt: 'Civil Infrastructure & Concrete Equipment',
+      tag: 'Civil Construction Engineering',
+    },
+  ];
+
+  // Auto-rotate slides every 5 seconds ("fartu banner")
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [heroSlides.length]);
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  };
+
+  // Selected featured products (2 from bitumen, 1 from road, 1 from cement)
+  const featuredProducts = ALL_PRODUCTS.filter((p) => p.featured);
+
+  // Quick Inline Lead Form state
+  const [leadForm, setLeadForm] = useState({
+    name: '',
+    company: '',
+    phone: '',
+    email: '',
+    product: 'Bitumen Modify Equipment',
+    message: '',
+  });
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const handleLeadSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+  };
+
+  const whyChooseIcons = [Shield, Cog, Wrench, Globe, Headphones];
+
+  return (
+    <div className="bg-white">
+      
+      {/* ==================================================
+          SECTION 1 — HERO (ROTATING SLIDER / FARTU BANNER)
+          Full-bleed natural machinery images (no text card / no dark overlay)
+          ================================================== */}
+      <section className="relative w-full h-[380px] sm:h-[480px] md:h-[560px] lg:h-[640px] overflow-hidden border-b border-slate-200 bg-slate-900">
+        
+        {/* Sliding Background Images (Smooth Cross-Fade Transition) */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          {heroSlides.map((slide, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105 pointer-events-none'
+              }`}
+            >
+              <img
+                src={slide.image}
+                alt={slide.alt}
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Carousel Navigation Bar (Left/Right Arrows & Dots) */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full border border-slate-200 shadow-lg">
+          <button
+            onClick={prevSlide}
+            aria-label="Previous Slide"
+            className="p-1 rounded-full text-slate-700 hover:text-red-600 hover:bg-slate-100 transition-colors cursor-pointer"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          
+          <div className="flex items-center gap-1.5">
+            {heroSlides.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentSlide(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+                className={`transition-all duration-300 rounded-full cursor-pointer ${
+                  currentSlide === idx
+                    ? 'w-6 h-2 bg-[#DE1F27]'
+                    : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
+                }`}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={nextSlide}
+            aria-label="Next Slide"
+            className="p-1 rounded-full text-slate-700 hover:text-red-600 hover:bg-slate-100 transition-colors cursor-pointer"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+
+      </section>
+
+      {/* ==================================================
+          SECTION 2 — TRUST / EXPERIENCE STRIP
+          ================================================== */}
+      <TrustStrip />
+
+      {/* ==================================================
+          SECTION 3 — ABOUT PREVIEW ON HOME
+          ================================================== */}
+      <section className="py-16 sm:py-20 bg-slate-50/60 border-b border-slate-200 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Visual Column */}
+            <div className="lg:col-span-5 order-2 lg:order-1 relative">
+              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-white">
+                <img
+                  src={aboutAtlasImg}
+                  alt="About Atlas Engineering road machinery and equipment"
+                  referrerPolicy="no-referrer"
+                  className="w-full aspect-[4/3] object-cover"
+                />
+                
+                {/* Floating Experience Badge */}
+                <div className="absolute -bottom-0 -right-0 bg-white/95 backdrop-blur-md p-4 rounded-tl-xl border-t border-l border-slate-200 shadow-md">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-red-50 text-red-600 flex items-center justify-center font-bold text-lg font-display">
+                      28+
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-slate-900 leading-tight">
+                        Years of Excellence
+                      </div>
+                      <div className="text-[11px] text-slate-500">
+                        Established 1997 in Ahmedabad
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Content Column */}
+            <div className="lg:col-span-7 order-1 lg:order-2 space-y-4">
+              <span className="text-xs font-bold text-red-600 uppercase tracking-widest block">
+                ABOUT ATLAS ENGINEERING
+              </span>
+              
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+                Nearly Three Decades of Road Machinery Innovation
+              </h2>
+
+              <p className="text-base text-slate-700 leading-relaxed font-medium">
+                Since 1997, Atlas Engineering has been a trusted pioneer in manufacturing high-performance bitumen modification and road construction equipment. Driven by nearly three decades of industry expertise, we design and build cutting-edge machinery that powers critical infrastructure projects across India and around the globe.
+              </p>
+
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Operating from our manufacturing facility in Kathwada GIDC, Ahmedabad, our engineering focus encompasses complete bitumen modification plants, heavy-duty asphalt solutions, and precision concrete machinery crafted with seasoned engineering supervision.
+              </p>
+
+              <div className="pt-2">
+                <button
+                  onClick={() => navigate('/about')}
+                  className="inline-flex items-center gap-2 text-sm font-bold text-red-600 hover:text-red-700 group cursor-pointer"
+                >
+                  <span>Read More About Our Heritage</span>
+                  <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ==================================================
+          SECTION 4 — WHY CHOOSE ATLAS ENGINEERING
+          5 Feature Cards with Clean Editorial Style
+          ================================================== */}
+      <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="max-w-2xl mb-12">
+            <span className="text-xs font-bold text-red-600 uppercase tracking-wider block mb-1">
+              THE ATLAS ADVANTAGE
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
+              Why Choose Atlas Engineering
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-slate-600">
+              Built on strong client relationships, verified engineering rigour, and dedicated after-sales commitment across every deployment.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {COMPANY_INFO.whyChooseUs.map((item, idx) => {
+              const Icon = whyChooseIcons[idx] || Shield;
+              return (
+                <div
+                  key={item.index}
+                  className="group p-6 rounded-xl border border-slate-200 bg-white hover:border-red-300 hover:shadow-md transition-all duration-200 flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-xs font-mono font-bold text-slate-400 group-hover:text-red-600 transition-colors">
+                        {item.index}
+                      </span>
+                      <div className="w-9 h-9 rounded-lg bg-slate-50 group-hover:bg-red-50 text-slate-700 group-hover:text-red-600 transition-colors flex items-center justify-center">
+                        <Icon className="w-4 h-4" />
+                      </div>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center text-[11px] font-bold text-slate-400 group-hover:text-red-600 transition-colors">
+                    <span>Engineering Principle</span>
+                  </div>
+                </div>
+              );
+            })}
+
+            {/* 6th Card: Quote / Engineering Support Callout */}
+            <div className="p-6 rounded-xl border border-red-200 bg-gradient-to-br from-red-50/60 to-white flex flex-col justify-between">
+              <div>
+                <span className="text-[11px] font-bold text-red-600 uppercase tracking-wider block mb-1">
+                  Custom Engineering
+                </span>
+                <h3 className="text-base font-bold text-slate-900 mb-2">
+                  Tailored Project Solutions
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Have unique highway specifications or site footprint constraints? Consult directly with Sunil L. Mistry and our engineering team in Ahmedabad.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-red-100">
+                <button
+                  onClick={() => openQuoteModal()}
+                  className="w-full py-2.5 px-4 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-xs font-bold rounded-lg shadow-xs transition-colors flex items-center justify-center gap-1.5"
+                >
+                  <span>Talk to an Engineer</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ==================================================
+          SECTION 5 — PRODUCT CATEGORIES
+          ================================================== */}
+      <section className="py-16 sm:py-20 bg-slate-50/50 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+            <div className="max-w-2xl">
+              <span className="text-xs font-bold text-red-600 uppercase tracking-wider block mb-1">
+                EQUIPMENT ARCHITECTURE
+              </span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
+                Engineered Solutions for Modern Infrastructure
+              </h2>
+              <p className="mt-2 text-sm sm:text-base text-slate-600">
+                Explore our three dedicated machinery categories covering bitumen modification, road construction, and concrete engineering.
+              </p>
+            </div>
+            <button
+              onClick={() => navigate('/products')}
+              className="text-xs font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-1 py-1"
+            >
+              View Full Machinery Portfolio <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {PRODUCT_CATEGORIES.map((cat, idx) => (
+              <CategoryCard key={cat.id} category={cat} index={idx} />
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ==================================================
+          SECTION 6 — FEATURED PRODUCTS SHOWCASE
+          ================================================== */}
+      <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+            <div>
+              <span className="text-xs font-bold text-red-600 uppercase tracking-wider block mb-1">
+                MACHINERY SPOTLIGHT
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                Featured Equipment
+              </h2>
+              <p className="mt-1 text-sm text-slate-600">
+                High-efficiency equipment ready for customization and project-specific commissioning.
+              </p>
+            </div>
+            <button
+              onClick={() => navigate('/products')}
+              className="text-xs font-bold text-slate-800 hover:text-red-600 inline-flex items-center gap-1"
+            >
+              Browse All Equipment <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {featuredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ==================================================
+          SECTION 7 — BITUMEN MODIFY EQUIPMENT FEATURE SECTION
+          Primary Focus: Full-width Industrial Composition
+          ================================================== */}
+      <section className="py-16 sm:py-20 bg-slate-900 text-white relative overflow-hidden">
+        {/* Darker contrast for this focal section only, with light inner cards */}
+        <div className="absolute inset-0 opacity-15">
+          <img
+            src={catBitumenImg}
+            alt="Bitumen modification background"
+            referrerPolicy="no-referrer"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <div className="lg:col-span-7 space-y-5">
+              <span className="text-xs font-bold tracking-widest uppercase text-red-400 block">
+                FLAGSHIP ENGINEERING FOCUS
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight">
+                Advanced Bitumen Modification Solutions
+              </h2>
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                As pioneers in bitumen engineering, Atlas Engineering manufactures specialized equipment for polymer modified bitumen (PMB), crumb rubber modified bitumen (CRMB), bitumen decanting, and high-shear emulsion processing.
+              </p>
+
+              {/* 5 Core Principles Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div className="p-3.5 rounded-lg bg-white/10 backdrop-blur-xs border border-white/10">
+                  <div className="text-xs font-bold text-red-400 mb-1">Precision Engineering</div>
+                  <div className="text-xs text-slate-300">Continuous blending accuracy for required polymer dispersion.</div>
+                </div>
+                <div className="p-3.5 rounded-lg bg-white/10 backdrop-blur-xs border border-white/10">
+                  <div className="text-xs font-bold text-red-400 mb-1">Consistent Performance</div>
+                  <div className="text-xs text-slate-300">Uniform heating profiles preventing thermal degradation.</div>
+                </div>
+                <div className="p-3.5 rounded-lg bg-white/10 backdrop-blur-xs border border-white/10">
+                  <div className="text-xs font-bold text-red-400 mb-1">Industrial Durability</div>
+                  <div className="text-xs text-slate-300">Heavy-gauge steel construction designed for non-stop processing.</div>
+                </div>
+                <div className="p-3.5 rounded-lg bg-white/10 backdrop-blur-xs border border-white/10">
+                  <div className="text-xs font-bold text-red-400 mb-1">Application-Focused Design</div>
+                  <div className="text-xs text-slate-300">Customized drum decanters, storage agitators, and dosing lines.</div>
+                </div>
+              </div>
+
+              <div className="pt-3 flex flex-wrap items-center gap-4">
+                <button
+                  onClick={() => navigate('/products/bitumen-modify-equipment')}
+                  className="px-6 py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold rounded-lg shadow-md transition-all flex items-center gap-2"
+                >
+                  <span>Explore Bitumen Equipment (10 Models)</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => openQuoteModal('Bitumen Modification Plant')}
+                  className="px-5 py-3 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold rounded-lg border border-white/20 transition-colors"
+                >
+                  Request Technical Proposal
+                </button>
+              </div>
+            </div>
+
+            {/* Visual Machinery Card */}
+            <div className="lg:col-span-5">
+              <div className="rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-white text-slate-900 p-6 space-y-4">
+                <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+                  <div>
+                    <span className="text-[11px] font-bold text-red-600 uppercase tracking-wider block">
+                      Category Overview
+                    </span>
+                    <h4 className="text-base font-bold text-slate-900">
+                      Bitumen Modify Equipment
+                    </h4>
+                  </div>
+                  <span className="text-xs font-mono font-bold text-slate-700 bg-slate-100 px-2 py-1 rounded">
+                    10 Products
+                  </span>
+                </div>
+                
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Atlas Engineering offers a comprehensive lineup of bitumen plants configured for rapid site installation, high thermal efficiency, and zero operational downtime.
+                </p>
+
+                <div className="space-y-2 text-xs">
+                  <div className="flex items-center justify-between py-1.5 border-b border-slate-100 text-slate-700">
+                    <span className="font-medium">Decanting Efficiency</span>
+                    <span className="font-bold text-slate-900">High Thermal Recovery</span>
+                  </div>
+                  <div className="flex items-center justify-between py-1.5 border-b border-slate-100 text-slate-700">
+                    <span className="font-medium">Modification Capability</span>
+                    <span className="font-bold text-slate-900">SBS, EVA, CRMB & Emulsions</span>
+                  </div>
+                  <div className="flex items-center justify-between py-1.5 text-slate-700">
+                    <span className="font-medium">Fabrication Location</span>
+                    <span className="font-bold text-slate-900">Ahmedabad, Gujarat</span>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => navigate('/products/bitumen-modify-equipment')}
+                  className="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-lg transition-colors"
+                >
+                  View All 9 Bitumen Equipment Models
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ==================================================
+          SECTION 8 — APPLICATIONS SECTION
+          "Built for Critical Infrastructure"
+          ================================================== */}
+      <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="max-w-2xl mb-12">
+            <span className="text-xs font-bold text-red-600 uppercase tracking-wider block mb-1">
+              FIELD TESTED & SITE PROVEN
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
+              Built for Critical Infrastructure
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-slate-600">
+              Atlas machinery operates in the most demanding civil engineering conditions, providing continuous uptime on high-stakes infrastructure corridors.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {COMPANY_INFO.applications.map((app, idx) => (
+              <div
+                key={idx}
+                className="group p-5 rounded-xl border border-slate-200 hover:border-red-300 hover:shadow-md bg-slate-50/50 hover:bg-white transition-all duration-200"
+              >
+                <div className="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center font-mono font-bold text-xs mb-3 group-hover:bg-[#DE1F27] group-hover:text-white transition-colors">
+                  {(idx + 1).toString().padStart(2, '0')}
+                </div>
+                <h3 className="text-sm font-bold text-slate-900 group-hover:text-red-600 transition-colors mb-1">
+                  {app.title}
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  {app.desc}
+                </p>
+              </div>
+            ))}
+
+            {/* Custom Engineering Application Block */}
+            <div className="p-5 rounded-xl border border-red-200 bg-red-50/40 flex flex-col justify-between">
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-red-600 block mb-1">
+                  Custom Applications
+                </span>
+                <h3 className="text-sm font-bold text-slate-900 mb-1">
+                  Project Specific Needs
+                </h3>
+                <p className="text-xs text-slate-600">
+                  Custom engineering configurations built to exact site requirements and aggregate properties.
+                </p>
+              </div>
+              <button
+                onClick={() => openQuoteModal()}
+                className="mt-3 text-xs font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-1"
+              >
+                Consult Our Team <ArrowRight className="w-3 h-3" />
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+
+      {/* ==================================================
+          SECTION 10 — INQUIRY & QUOTE FORM
+          ================================================== */}
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-8 sm:p-12">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+              
+              <div className="lg:col-span-5 space-y-4">
+                <span className="text-xs font-bold text-red-600 uppercase tracking-wider block">
+                  FAST MACHINERY INQUIRY
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                  Request Equipment Pricing & Technical Proposal
+                </h2>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Submit your site requirements and our engineering department will provide technical specifications, layout drawings, and transparent pricing.
+                </p>
+
+                <div className="space-y-3 pt-3 text-xs text-slate-700">
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-red-600 shrink-0" />
+                    <span>Plot No. 397-398, Road No. 9, Kathwada GIDC, Ahmedabad</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <PhoneCall className="w-4 h-4 text-red-600 shrink-0" />
+                    <span className="font-mono tabular-nums">+91 98250 73095 / +91 91736 72311</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="lg:col-span-7 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
+                {formSubmitted ? (
+                  <div className="py-10 text-center space-y-3">
+                    <div className="w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto">
+                      <CheckCircle2 className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-900">Enquiry Received</h3>
+                    <p className="text-xs text-slate-600 max-w-sm mx-auto">
+                      Thank you. We will contact you with equipment specifications and pricing shortly.
+                    </p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleLeadSubmit} className="space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Full Name *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          value={leadForm.name}
+                          onChange={(e) => setLeadForm({ ...leadForm, name: e.target.value })}
+                          placeholder="Your name"
+                          className="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Company Name *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          value={leadForm.company}
+                          onChange={(e) => setLeadForm({ ...leadForm, company: e.target.value })}
+                          placeholder="Company name"
+                          className="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Phone Number *
+                        </label>
+                        <input
+                          type="tel"
+                          required
+                          value={leadForm.phone}
+                          onChange={(e) => setLeadForm({ ...leadForm, phone: e.target.value })}
+                          placeholder="+91..."
+                          className="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          Email Address *
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          value={leadForm.email}
+                          onChange={(e) => setLeadForm({ ...leadForm, email: e.target.value })}
+                          placeholder="name@company.com"
+                          className="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">
+                        Equipment / Category Needed
+                      </label>
+                      <select
+                        value={leadForm.product}
+                        onChange={(e) => setLeadForm({ ...leadForm, product: e.target.value })}
+                        className="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none bg-white"
+                      >
+                        <option value="Bitumen Modify Equipment">Bitumen Modify Equipment (10 Models)</option>
+                        <option value="Road Construction Equipment">Road Construction Equipment (6 Models)</option>
+                        <option value="Cement & Concrete Equipment">Cement & Concrete Equipment (2 Models)</option>
+                        <option value="General Machinery Consultation">General Machinery Consultation</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">
+                        Project / Capacity Requirements
+                      </label>
+                      <textarea
+                        rows={2}
+                        value={leadForm.message}
+                        onChange={(e) => setLeadForm({ ...leadForm, message: e.target.value })}
+                        placeholder="State your required capacity, site location or timeline..."
+                        className="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none resize-none"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-2.5 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-xs font-bold rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2"
+                    >
+                      <Send className="w-3.5 h-3.5" /> Submit Technical Enquiry
+                    </button>
+                  </form>
+                )}
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  );
+};

@@ -2,6 +2,7 @@ import React from 'react';
 import { useRouter } from '../context/RouterContext';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { COMPANY_INFO, PRODUCT_CATEGORIES } from '../data/products';
+import factoryFacilityImg from '../assets/images/factory_engineering_facility_1791042931571.jpg';
 import {
   ShieldCheck,
   Award,
@@ -57,7 +58,7 @@ export const AboutPage: React.FC = () => {
             <div className="lg:col-span-6 relative">
               <div className="rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-slate-100">
                 <img
-                  src="/src/assets/images/factory_engineering_facility_1791042931571.jpg"
+                  src={factoryFacilityImg}
                   alt="Atlas Engineering assembly bay in Kathwada GIDC"
                   referrerPolicy="no-referrer"
                   className="w-full aspect-[4/3] object-cover"

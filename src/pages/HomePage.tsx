@@ -5,6 +5,7 @@ import { CategoryCard } from '../components/CategoryCard';
 import { ProductCard } from '../components/ProductCard';
 import { PRODUCT_CATEGORIES, ALL_PRODUCTS, COMPANY_INFO } from '../data/products';
 import aboutAtlasImg from '../assets/images/about_atlas_engineering.jpg';
+import heroSlide1 from '../assets/images/hero_machinery_road_1791042882943.jpg';
 import heroSlide2 from '../assets/images/hero_slide_2.jpg';
 import heroSlide3 from '../assets/images/hero_slide_3.jpg';
 import catBitumenImg from '../assets/images/category_bitumen_equipment.jpg';
@@ -35,7 +36,7 @@ export const HomePage: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const heroSlides = [
     {
-      image: '/src/assets/images/hero_machinery_road_1791042882943.jpg',
+      image: heroSlide1,
       alt: 'Atlas Engineering Road Machinery & Bitumen Plant',
       tag: 'Bitumen & Asphalt Machinery',
     },

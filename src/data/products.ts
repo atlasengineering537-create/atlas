@@ -13,6 +13,191 @@ export interface FeatureItem {
   description: string;
 }
 
+export interface GradeTableRow {
+  grade: string;
+  application: string;
+}
+
+export interface EmulsionGradeSection {
+  number: string;
+  title: string;
+  description?: string;
+  table?: GradeTableRow[];
+  bestApplications?: string[];
+  note?: string;
+  examples?: string[];
+}
+
+export interface QuickSelectionRow {
+  application: string;
+  recommended: string;
+}
+
+export interface EmulsionGuideData {
+  intro: string;
+  sections: EmulsionGradeSection[];
+  selectionGuide: QuickSelectionRow[];
+  importantNotice: string;
+  commercialNote: string;
+}
+
+export interface PmbEquipmentRow {
+  equipment: string;
+  function: string;
+}
+
+export interface PmbGradeRow {
+  grade: string;
+  tempBasis: string;
+  application: string;
+}
+
+export interface PmbGradeLogic {
+  grade: string;
+  points: string[];
+}
+
+export interface CrmbGradeRow {
+  grade: string;
+  softeningPoint: string;
+  application: string;
+}
+
+export interface CrmbGradeDetail {
+  grade: string;
+  heading: string;
+  points: string[];
+}
+
+export interface PmbCrmbCompareRow {
+  parameter: string;
+  pmb: string;
+  crmb: string;
+}
+
+export interface CapacityRow {
+  capacity: string;
+  production: string;
+}
+
+export interface PmbCrmbGuideData {
+  intro: string;
+  standardsNote: string;
+  pmbPlant: {
+    title: string;
+    processFlow: string;
+    polymersNote: string;
+    shearNote: string;
+    equipmentTable: PmbEquipmentRow[];
+  };
+  pmbGrades: {
+    title: string;
+    intro: string;
+    table: PmbGradeRow[];
+    designationNote: string;
+    ircNote: string;
+    applicationLogic: PmbGradeLogic[];
+    selectionNote: string;
+  };
+  crmbPlant: {
+    title: string;
+    intro: string;
+    standardNote: string;
+    processFlow: string;
+    dispersionNote: string;
+  };
+  crmbGrades: {
+    title: string;
+    intro: string;
+    table: CrmbGradeRow[];
+    classificationNote: string;
+    gradesDetail: CrmbGradeDetail[];
+  };
+  comparison: {
+    title: string;
+    matrix: PmbCrmbCompareRow[];
+  };
+  configuration: {
+    title: string;
+    recommendation: string;
+    diagramText: string;
+    processNote: string;
+  };
+  capacities: {
+    title: string;
+    intro: string;
+    capacityTable: CapacityRow[];
+    tenTphNote: string;
+    equipmentListTitle: string;
+    equipmentList: string[];
+    designPoint: string;
+    commercialNote: string;
+  };
+}
+
+export interface OxidizationEquipmentRow {
+  equipment: string;
+  function: string;
+}
+
+export interface OxidizationGradeRow {
+  grade: string;
+  characteristics: string;
+  applications: string;
+}
+
+export interface OxidizationAppCategory {
+  title: string;
+  points: string[];
+  citation?: string;
+}
+
+export interface OxidizationGuideData {
+  intro: string;
+  processFlow: string;
+  equipmentTable: OxidizationEquipmentRow[];
+  operatingPrinciples: string[];
+  gradesIntro: string;
+  gradesTable: OxidizationGradeRow[];
+  gradesCitation: string;
+  majorApplications: OxidizationAppCategory[];
+  plantConceptDiagram: string;
+  importantNote: string;
+  summaryNote: string;
+}
+
+export interface ColdMixEquipmentRow {
+  equipment: string;
+  function: string;
+}
+
+export interface ColdMixTypeRow {
+  type: string;
+  binder: string;
+  application: string;
+}
+
+export interface EmulsionGradeItem {
+  grade: string;
+  title: string;
+  description: string;
+}
+
+export interface ColdMixGuideData {
+  intro: string;
+  equipmentTable: ColdMixEquipmentRow[];
+  productionSteps: string[];
+  productionNote: string;
+  gradesIntro: string;
+  typesTable: ColdMixTypeRow[];
+  emulsionGradesIntro: string;
+  emulsionGrades: EmulsionGradeItem[];
+  configurationNote: string;
+  advantages: string[];
+  ircCitation: string;
+  websiteSummary: string;
+}
+
 export interface Product {
   id: string;
   slug: string;
@@ -23,9 +208,16 @@ export interface Product {
   shortDescription: string;
   description: string;
   highlights: string[];
+  featuresTitle?: string;
   features: FeatureItem[];
   applications: string[];
   specifications: TechnicalSpec[];
+  productionProcess?: string[];
+  plantTypes?: FeatureItem[];
+  emulsionGuide?: EmulsionGuideData;
+  pmbCrmbGuide?: PmbCrmbGuideData;
+  oxidizationGuide?: OxidizationGuideData;
+  coldMixGuide?: ColdMixGuideData;
   heroImage: string;
   gallery: string[];
   isPlaceholder: boolean;
@@ -181,50 +373,143 @@ export const BITUMEN_PRODUCTS: Product[] = [
     categoryName: 'Bitumen Modify Equipment',
     name: 'BITUMEN EMULSION PLANT',
     code: 'ATL-BEP-01',
-    shortDescription: 'Facility designed to produce a stable, liquid mixture of bitumen, water, and an emulsifying agent for road construction and maintenance (Capacity: 1 TPH to 30 TPH).',
-    description: 'A BITUMEN EMULSION PLANT IS A FACILITY DESIGNED TO PRODUCE A STABLE, LIQUID MIXTURE OF BITUMEN, WATER, AND AN EMULSIFYING AGENT FOR USE IN ROAD CONSTRUCTION AND MAINTENANCE, PARTICULARLY IN COLD APPLICATIONS. THIS PROCESS IS SAFER AND MORE ENERGY-EFFICIENT THAN USING HOT BITUMEN.',
+    shortDescription: 'A facility designed to produce a stable, liquid mixture of bitumen, water, and an emulsifying agent for use in road construction and maintenance, particularly in cold applications.',
+    description: 'A Bitumen Emulsion Plant is an industrial manufacturing facility designed to produce a stable, liquid mixture of bitumen, water, and an emulsifying agent for use in road construction and pavement maintenance. The process utilizes a high-shear colloid mill to disperse hot bitumen into micro-fine droplets within a chemically stabilized water phase.',
     highlights: [
-      'Capacity: 1 TPH to 30 TPH',
       'High-Shear Colloid Mill dispersing heated bitumen into microscopic droplets (1–10 microns)',
       'Automated PLC-based system monitoring flow rates, temperatures, and dosing ratios',
-      'Produces Rapid-Setting (RS), Medium-Setting (MS), and Slow-Setting (SS) Emulsions',
       'Batch Type, Continuous Type, Stationary, or Mobile/Containerized configurations',
+      'Complies with IS 8887, ASTM D977/D2397, and AASHTO M140/M208 standards',
+      'Supports Rapid Setting (RS/CRS), Medium Setting (MS/CMS), Slow Setting (SS/CSS), and PMBE',
     ],
     features: [
       {
-        title: 'BITUMEN STORAGE TANKS',
-        description: 'Insulated and heated tanks that store raw bitumen at around 150–160°C to reduce its viscosity.',
+        title: 'Bitumen Storage & Heating Tanks',
+        description: 'Insulated tanks that store raw bitumen at around 150–160°C to reduce its viscosity.',
       },
       {
-        title: 'WATER TANKS',
-        description: 'Store water heated to an optimal temperature (typically 40–70°C).',
+        title: 'Water Phase Preparation Tank',
+        description: 'Stainless steel tank with precision dosing for water, emulsifiers, and pH-adjusting chemicals at optimal temperatures.',
       },
       {
-        title: 'EMULSIFIER DOSING SYSTEM & CHEMICAL TANKS',
-        description: 'Separate stainless steel tanks and precise dosing units for storing and adding emulsifiers, acids/alkalis (for pH control), and additives.',
+        title: 'High-Shear Colloid Mill',
+        description: 'The core dispersion unit creating a uniform 1–10 micron emulsion droplet distribution.',
       },
       {
-        title: 'COLLOID MILL',
-        description: 'The heart of the plant: high-shear mixer dispersing heated bitumen into microscopic droplets (1–10 microns) within the water phase.',
+        title: 'Automated PLC Control Panel',
+        description: 'Regulates flow rates, temperatures, and continuous dosing ratios with safety interlocks.',
       },
       {
-        title: 'CONTROL PANEL',
-        description: 'Automated PLC-based system that monitors and regulates flow rates, temperatures, and dosing ratios for consistent quality and safety.',
-      },
-      {
-        title: 'STORAGE TANKS & HEATING/COOLING SYSTEMS',
-        description: 'Finished emulsion storage equipped with agitators to prevent settling, plus thermal oil or electric heating/cooling systems.',
+        title: 'Finished Emulsion Storage Tanks',
+        description: 'Storage tanks equipped with slow-speed agitators to prevent settling prior to dispatch.',
       },
     ],
     applications: [
-      'Surface Dressing & Chip Sealing (CRS-1 / CRS-2)',
-      'Tack Coats (bonding layers of asphalt)',
-      'Prime Coats (sealing granular bases)',
-      'Cold Mix Asphalt Production (CMS-2 / CSS-2)',
-      'Pothole Repair and Crack Sealing',
-      'Microsurfacing & Slurry Seal Applications',
-      'Waterproofing Applications',
+      'Tack Coats & Prime Coats',
+      'Surface Dressing & Chip Sealing',
+      'Cold Mix Asphalt & Premix Carpet',
+      'Slurry Sealing & Micro Surfacing',
+      'Monsoon Pothole Patching & Soil Stabilization',
     ],
+    emulsionGuide: {
+      intro: 'Bitumen emulsions are generally classified by emulsion charge, setting rate, and viscosity. The exact grade names vary by standard (such as IS, ASTM/AASHTO), but the main practical grades are rapid-setting (RS), medium-setting (MS), and slow-setting (SS), plus special grades such as cationic rapid/medium/slow setting and CSS-1/CSS-2.',
+      sections: [
+        {
+          number: '1',
+          title: 'Rapid Setting (RS) Emulsion',
+          description: 'Designed to break quickly when it contacts aggregate.',
+          table: [
+            { grade: 'CRS-1 / CRS-2 (cationic rapid setting)', application: 'Surface dressing, chip sealing' },
+            { grade: 'RS-1 / RS-2', application: 'Tack coat and surface treatments, depending on specification' },
+          ],
+          bestApplications: [
+            'Chip seal / surface dressing',
+            'Surface dressing on highways',
+            'Spraying bitumen over prepared road surfaces',
+            'Sealing and waterproofing',
+            'Quick-setting surface treatments',
+          ],
+          note: 'CRS-2 is generally more viscous than CRS-1 and is useful where a heavier application is required.',
+        },
+        {
+          number: '2',
+          title: 'Medium Setting (MS) Emulsion',
+          description: 'Breaks at a moderate rate and is suitable where the emulsion needs to mix with relatively coarse aggregates.',
+          table: [
+            { grade: 'CMS-2 / CMS-2s', application: 'Premix, cold mix, aggregate mixing' },
+            { grade: 'MS-type', application: 'Cold mix construction and maintenance' },
+          ],
+          bestApplications: [
+            'Cold-mix asphalt',
+            'Premix bituminous macadam',
+            'Open-graded mixtures',
+            'Road maintenance',
+            'Aggregate treatment',
+            'Pothole repair mixtures',
+          ],
+          note: 'Medium-setting emulsions provide more working time than rapid-setting emulsions.',
+        },
+        {
+          number: '3',
+          title: 'Slow Setting (SS) Emulsion',
+          description: 'Remains workable for longer and is particularly suitable for mixing with fine aggregates and mineral fillers.',
+          table: [
+            { grade: 'CSS-1', application: 'Fog seal, tack coat, slurry seal' },
+            { grade: 'CSS-2', application: 'Slurry seal, soil stabilization and mixing' },
+            { grade: 'SS-1 / SS-1h', application: 'Tack coat, fog seal and maintenance' },
+          ],
+          bestApplications: [
+            'Slurry seal',
+            'Fog seal',
+            'Tack coat',
+            'Soil stabilization',
+            'Dust control',
+            'Mixing with fine aggregates',
+            'Road maintenance',
+          ],
+          note: 'CSS-1 is commonly used where a relatively low-viscosity emulsion is desirable, while CSS-2 is more viscous and suitable for heavier applications.',
+        },
+        {
+          number: '4',
+          title: 'Cationic vs. Anionic Emulsion',
+          description: 'This is another important classification. Cationic emulsions carry a positive charge and generally have good adhesion to many aggregates, particularly aggregates that are wet or negatively charged. They are widely used in modern road construction.',
+          examples: [
+            'CRS-1',
+            'CRS-2',
+            'CMS-2',
+            'CSS-1',
+            'CSS-2',
+          ],
+          note: 'Anionic emulsions carry a negative charge and are used with compatible aggregates and applications according to the applicable specification.',
+        },
+        {
+          number: '5',
+          title: 'Special-Purpose Emulsions',
+          description: 'There are also modified emulsions designed for specific road applications:',
+          bestApplications: [
+            'Polymer-modified bitumen emulsion (PMBE) — high-performance surface dressing, crack treatment and heavy-traffic roads.',
+            'Microsurfacing emulsion — polymer-modified emulsion designed specifically for microsurfacing.',
+            'Tack coat emulsion — bonding between existing pavement and a new asphalt layer.',
+            'Fog seal emulsion — sealing and rejuvenating an aged pavement surface.',
+            'Cold-mix emulsion — production of cold-mix asphalt without conventional hot mixing.',
+          ],
+        },
+      ],
+      selectionGuide: [
+        { application: 'Chip seal / surface dressing', recommended: 'CRS-1 / CRS-2' },
+        { application: 'Tack coat', recommended: 'CSS-1 / SS-1 / suitable tack-coat grade' },
+        { application: 'Fog seal', recommended: 'CSS-1 / SS-1' },
+        { application: 'Slurry seal', recommended: 'CSS-1 / CSS-2' },
+        { application: 'Microsurfacing', recommended: 'Polymer-modified CSS-type emulsion' },
+        { application: 'Cold mix asphalt', recommended: 'CMS-2 / CSS-2, depending on aggregate and mix design' },
+        { application: 'Premix', recommended: 'MS/CMS grades' },
+        { application: 'Pothole repair', recommended: 'MS/CMS or suitable cold-mix emulsion' },
+        { application: 'Soil stabilization', recommended: 'SS/CSS grades' },
+        { application: 'Heavy-traffic surface treatment', recommended: 'CRS-2 or polymer-modified emulsion' },
+      ],
+      importantNotice: 'Important: The correct grade should not be selected solely from the application name. Aggregate type, temperature, moisture, particle size, traffic level, spray rate, and the applicable IS/AASHTO/ASTM specification should be considered.',
+      commercialNote: 'If you are selecting grades for an emulsion manufacturing plant, the most commercially useful range is usually CRS-1, CRS-2, CMS-2, CSS-1 and CSS-2, with polymer-modified grades added for microsurfacing and premium applications.',
+    },
     specifications: [
       { parameter: 'Capacity', value: '1 TPH to 30 TPH' },
       { parameter: 'Dispersed Droplet Size', value: '1 to 10 microns' },
@@ -252,57 +537,295 @@ export const BITUMEN_PRODUCTS: Product[] = [
     categoryName: 'Bitumen Modify Equipment',
     name: 'PMB/CRMB BITUMEN MODIFY PLANT',
     code: 'ATL-PMB-02',
-    shortDescription: 'High-shear blending and dispersion plant used to modify paving bitumen with polymers or crumb rubber (Capacity: 10 TPH to 40 TPH).',
-    description: 'A PMB/CRMB Bitumen Modification Plant is a high-shear blending and dispersion plant used to modify paving bitumen with polymers or crumb rubber to improve rutting resistance, elasticity, fatigue resistance, temperature resistance and durability. In India, PMB is covered by IS 15462:2019, while rubber-modified bitumen is covered separately by IS 17079:2019.',
+    shortDescription: 'High-shear blending and dispersion plant used to modify paving bitumen with polymers or crumb rubber to improve rutting resistance, elasticity, fatigue resistance, temperature resistance and durability.',
+    description: `Yes. A PMB/CRMB Bitumen Modification Plant is a high-shear blending and dispersion plant used to modify paving bitumen with polymers or crumb rubber to improve rutting resistance, elasticity, fatigue resistance, temperature resistance and durability.\n\nIn India, PMB is covered by IS 15462:2019, while rubber-modified bitumen is covered separately by IS 17079:2019. BIS currently lists PMB grades PMB 64-10, 70-10, 76-10, 82-10 and 76-22 under IS 15462:2019.`,
     highlights: [
-      'Capacity: 10 TPH to 40 TPH',
-      'Dual capability: Polymer (SBS, SBR, EVA) and Crumb Rubber (waste tyre) modification',
-      'Complies with IS 15462:2019 (PMB 64-10 to 82-10, 76-22) and IS 17079:2019 (CRMB 55, CRMB 60)',
-      'High-shear homogenizer / colloid mill for complete dispersion and development',
+      'High-shear blending and dispersion plant modifying paving bitumen with polymers or crumb rubber',
+      'Complies with IS 15462:2019 (PMB 64-10, 70-10, 76-10, 82-10, 76-22)',
+      'Complies with IS 17079:2019 (CRMB 55, CRMB 60 under Type B CRMB)',
+      'Improves rutting resistance, elasticity, fatigue resistance, temperature resistance and durability',
+      'Configurations available from 5 TPH (Small), 10 TPH (Medium), 15 TPH (Large) to 20 TPH (High capacity)',
     ],
     features: [
       {
-        title: 'BASE BITUMEN STORAGE & PUMPS',
-        description: 'Stores VG-grade base bitumen with high-temperature transfer and recirculation pumps.',
+        title: 'Base Bitumen Storage Tank',
+        description: 'Stores VG-grade base bitumen',
       },
       {
-        title: 'POLYMER & CRUMB RUBBER FEEDING',
-        description: 'Independent precision dosing hoppers and feeding systems for polymer pellets and crumb rubber.',
+        title: 'Bitumen Transfer Pump',
+        description: 'Transfers hot bitumen',
       },
       {
-        title: 'HIGH-SHEAR COLLOID / HOMOGENIZER',
-        description: 'Extreme shear dispersion system ensuring homogeneous polymer distribution and crumb rubber swelling.',
+        title: 'Bitumen Heating System',
+        description: 'Maintains required processing temperature',
       },
       {
-        title: 'DIGESTION & REACTION TANKS',
-        description: 'Dedicated modification/reaction tank for polymer development and continuous digestion recirculation.',
+        title: 'Polymer Storage/Hopper',
+        description: 'Stores polymer',
       },
       {
-        title: 'THERMIC FLUID HEATING & INSULATION',
-        description: 'Thermic-fluid heater and hot-oil circulation with fully insulated and heated pipelines and valves.',
+        title: 'Polymer Feeding System',
+        description: 'Controlled polymer dosing',
       },
       {
-        title: 'PLC + HMI / SCADA CONTROL',
-        description: 'Automatic plant control with load cells, flow meters, temperature & pressure instrumentation, and sampling points.',
+        title: 'High-Shear Mixer / Colloid Mill',
+        description: 'Disperses polymer into bitumen',
+      },
+      {
+        title: 'Modification/Reaction Tank',
+        description: 'Polymer swelling and development',
+      },
+      {
+        title: 'Recirculation Pump',
+        description: 'Continuous circulation',
+      },
+      {
+        title: 'Finished Product Tank',
+        description: 'Stores finished PMB',
+      },
+      {
+        title: 'Thermic Fluid Heater',
+        description: 'Heating of tanks and pipelines',
+      },
+      {
+        title: 'Electrical/PLC Panel',
+        description: 'Automatic plant control',
+      },
+      {
+        title: 'Piping & Valves',
+        description: 'Bitumen/polymer circulation',
+      },
+      {
+        title: 'Sampling System',
+        description: 'Quality-control sampling',
+      },
+      {
+        title: 'Laboratory Equipment',
+        description: 'PMB quality testing',
       },
     ],
     applications: [
-      'National & State Highways (PMB 70-10, CRMB 55)',
-      'Expressways & High-Temperature Corridors (PMB 76-10, CRMB 60)',
-      'Extremely Heavy Traffic Corridors (PMB 82-10)',
-      'High-Altitude & Cold-Climate Pavements (PMB 76-22)',
-      'Heavy-Duty Rut-Resistant Flexible Pavements',
-      'Surface Dressing & Bituminous Mixes',
+      'General road construction & urban roads (PMB 64-10)',
+      'National & state highways with heavy traffic (PMB 70-10, CRMB 55)',
+      'Expressways & high-temperature pavement (PMB 76-10, CRMB 60)',
+      'Extremely heavy traffic & special high-performance pavements (PMB 82-10)',
+      'High-altitude areas & cold climatic conditions (PMB 76-22)',
+      'Flexible pavement, surface dressing & bituminous mixes (CRMB 55, CRMB 60)',
     ],
     specifications: [
-      { parameter: 'Capacity Range', value: '10 TPH to 40 TPH' },
-      { parameter: 'Standard Compliance', value: 'IS 15462:2019 (PMB) & IS 17079:2019 (CRMB)' },
-      { parameter: 'PMB Grades Supported', value: 'PMB 64-10, PMB 70-10, PMB 76-10, PMB 82-10, PMB 76-22' },
-      { parameter: 'CRMB Grades Supported', value: 'CRMB 55, CRMB 60' },
-      { parameter: 'Modifier Types', value: 'SBS, SBR, EVA, crumb rubber (from processed tyres)' },
-      { parameter: 'Heating System', value: 'Thermic fluid heater with hot-oil jacketed lines' },
-      { parameter: 'Automation', value: 'PLC + SCADA, load cells, digital flow meters' },
+      { parameter: 'Plant Configuration', value: 'Combined PMB + CRMB Modification Plant' },
+      { parameter: 'Capacity Options', value: '5 TPH (Small), 10 TPH (Medium), 15 TPH (Large), 20 TPH (High capacity)' },
+      { parameter: 'PMB Standard', value: 'IS 15462:2019' },
+      { parameter: 'CRMB Standard', value: 'IS 17079:2019 (Type B CRMB)' },
+      { parameter: 'PMB Grades', value: 'PMB 64-10, PMB 70-10, PMB 76-10, PMB 82-10, PMB 76-22' },
+      { parameter: 'CRMB Grades', value: 'CRMB 55 (min 55°C softening), CRMB 60 (min 60°C softening)' },
+      { parameter: 'Typical Polymers', value: 'SBS, SBR, EVA and compatible polymer modifiers' },
+      { parameter: 'Crumb Rubber Source', value: 'Processed waste tyres' },
+      { parameter: 'Mixing Mechanism', value: 'High-Shear Colloid Mill / Dispersion System' },
+      { parameter: 'Heating Medium', value: 'Thermic Fluid Heater with hot-oil jacketed lines' },
+      { parameter: 'Automation', value: 'Fully Automatic PLC with SCADA control interface' },
     ],
+    pmbCrmbGuide: {
+      intro: 'A PMB/CRMB Bitumen Modification Plant is a high-shear blending and dispersion plant used to modify paving bitumen with polymers or crumb rubber to improve rutting resistance, elasticity, fatigue resistance, temperature resistance and durability.\n\nIn India, PMB is covered by IS 15462:2019, while rubber-modified bitumen is covered separately by IS 17079:2019. BIS currently lists PMB grades PMB 64-10, 70-10, 76-10, 82-10 and 76-22 under IS 15462:2019.',
+      standardsNote: 'In India, PMB is covered by IS 15462:2019, while rubber-modified bitumen is covered separately by IS 17079:2019. BIS currently lists PMB grades PMB 64-10, 70-10, 76-10, 82-10 and 76-22 under IS 15462:2019.',
+      pmbPlant: {
+        title: '1. PMB Plant — Polymer Modified Bitumen',
+        processFlow: 'Base bitumen → Heating → Polymer dosing → High-shear mixing → Development/conditioning tank → Storage → Finished PMB',
+        polymersNote: 'Typical polymers include SBS, SBR, EVA and other compatible polymer modifiers. The selection depends on the required performance grade and application.',
+        shearNote: 'A proper PMB plant needs a high-shear dispersion system because homogeneous polymer dispersion is critical to the final binder performance. BIS testing requirements include homogeneity and separation/degradation-related checks.',
+        equipmentTable: [
+          { equipment: 'Base Bitumen Storage Tank', function: 'Stores VG-grade base bitumen' },
+          { equipment: 'Bitumen Transfer Pump', function: 'Transfers hot bitumen' },
+          { equipment: 'Bitumen Heating System', function: 'Maintains required processing temperature' },
+          { equipment: 'Polymer Storage/Hopper', function: 'Stores polymer' },
+          { equipment: 'Polymer Feeding System', function: 'Controlled polymer dosing' },
+          { equipment: 'High-Shear Mixer / Colloid Mill', function: 'Disperses polymer into bitumen' },
+          { equipment: 'Modification/Reaction Tank', function: 'Polymer swelling and development' },
+          { equipment: 'Recirculation Pump', function: 'Continuous circulation' },
+          { equipment: 'Finished Product Tank', function: 'Stores finished PMB' },
+          { equipment: 'Thermic Fluid Heater', function: 'Heating of tanks and pipelines' },
+          { equipment: 'Electrical/PLC Panel', function: 'Automatic plant control' },
+          { equipment: 'Piping & Valves', function: 'Bitumen/polymer circulation' },
+          { equipment: 'Sampling System', function: 'Quality-control sampling' },
+          { equipment: 'Laboratory Equipment', function: 'PMB quality testing' },
+        ],
+      },
+      pmbGrades: {
+        title: '2. PMB Grades under IS 15462:2019',
+        intro: 'The current Indian performance-based PMB specification includes five principal grades.',
+        table: [
+          { grade: 'PMB 64-10', tempBasis: 'Moderate-high pavement temperature', application: 'General highways, urban roads' },
+          { grade: 'PMB 70-10', tempBasis: 'Higher pavement temperature', application: 'High-temperature/high-traffic roads' },
+          { grade: 'PMB 76-10', tempBasis: 'Very high pavement temperature', application: 'Heavy traffic, expressways' },
+          { grade: 'PMB 82-10', tempBasis: 'Extremely high pavement temperature', application: 'Very heavy/extreme traffic and high-temperature locations' },
+          { grade: 'PMB 76-22', tempBasis: 'High maximum + very low minimum temperature', application: 'High-altitude/cold-climate areas' },
+        ],
+        designationNote: 'The numbers are performance-temperature designations, not penetration grades. For example, the first number relates to the upper pavement-temperature requirement and the second to the lower temperature requirement.',
+        ircNote: 'IRC guidance states that PMB selection for different service conditions should follow IS 15462:2019.',
+        applicationLogic: [
+          {
+            grade: 'PMB 64-10',
+            points: [
+              'General road construction',
+              'Urban roads',
+              'Moderate traffic',
+              'Conventional bituminous pavement',
+            ],
+          },
+          {
+            grade: 'PMB 70-10',
+            points: [
+              'National/state highways',
+              'Heavy traffic',
+              'Hotter pavement conditions',
+              'Bus/truck routes',
+            ],
+          },
+          {
+            grade: 'PMB 76-10',
+            points: [
+              'Expressways',
+              'Heavy and very heavy traffic',
+              'High-temperature pavement',
+              'Areas susceptible to rutting',
+            ],
+          },
+          {
+            grade: 'PMB 82-10',
+            points: [
+              'Extremely heavy traffic',
+              'Very high pavement temperatures',
+              'Special high-performance pavement applications',
+            ],
+          },
+          {
+            grade: 'PMB 76-22',
+            points: [
+              'High-altitude areas',
+              'Cold climatic conditions',
+              'Pavements requiring both high-temperature rut resistance and low-temperature cracking resistance',
+            ],
+          },
+        ],
+        selectionNote: 'The actual grade should be selected from the project\'s pavement-temperature and traffic requirements, rather than simply choosing the strongest grade.',
+      },
+      crmbPlant: {
+        title: '3. CRMB Plant — Crumb Rubber Modified Bitumen',
+        intro: 'CRMB is different from conventional PMB because the principal modifier is crumb rubber, normally obtained from processed waste tyres.',
+        standardNote: 'The Indian specification is IS 17079:2019 Rubber Modified Bitumen (RMB). BIS testing information identifies CRMB 55 and CRMB 60 under Type B CRMB.',
+        processFlow: 'Base bitumen → Heating → Crumb rubber dosing → High-shear mixing → Digestion/development → Recirculation → Storage → CRMB',
+        dispersionNote: 'The rubber must be adequately dispersed/swollen in the hot bitumen to obtain the required properties.',
+      },
+      crmbGrades: {
+        title: '4. CRMB Grades',
+        intro: 'Common Indian CRMB grades include:',
+        table: [
+          { grade: 'CRMB 55', softeningPoint: '55°C', application: 'Heavy-duty road applications, surface treatments' },
+          { grade: 'CRMB 60', softeningPoint: '60°C', application: 'Higher-temperature/heavier-duty applications' },
+        ],
+        classificationNote: 'Earlier/common specifications also refer to CRMB 50, CRMB 55 and CRMB 60 classifications, with the grade number corresponding to minimum softening point.',
+        gradesDetail: [
+          {
+            grade: 'CRMB 55',
+            heading: 'Suitable for:',
+            points: [
+              'Highway construction',
+              'Heavy traffic roads',
+              'Flexible pavement',
+              'Surface dressing',
+              'Bituminous mixes',
+              'Roads requiring improved resistance to rutting and cracking',
+            ],
+          },
+          {
+            grade: 'CRMB 60',
+            heading: 'Used where higher-temperature performance is required, particularly:',
+            points: [
+              'Heavy and very heavy traffic',
+              'Hot climatic conditions',
+              'Expressways/highways',
+              'Pavements requiring greater resistance to permanent deformation',
+            ],
+          },
+        ],
+      },
+      comparison: {
+        title: '5. PMB vs CRMB',
+        matrix: [
+          { parameter: 'Modifier', pmb: 'Polymer', crmb: 'Crumb rubber' },
+          { parameter: 'Common modifier', pmb: 'SBS/SBR/EVA etc.', crmb: 'Waste-tyre crumb rubber' },
+          { parameter: 'Main standard', pmb: 'IS 15462:2019', crmb: 'IS 17079:2019' },
+          { parameter: 'Typical grades', pmb: 'PMB 64-10 to PMB 82-10, PMB 76-22', crmb: 'CRMB 55, CRMB 60' },
+          { parameter: 'Main advantage', pmb: 'Controlled performance characteristics', crmb: 'Elasticity, durability and recycling benefit' },
+          { parameter: 'Equipment', pmb: 'High-shear polymer mixer', crmb: 'High-shear rubber mixing/digestion system' },
+          { parameter: 'Storage', pmb: 'Requires controlled temperature/recirculation', crmb: 'Generally requires stronger agitation/recirculation' },
+          { parameter: 'Typical market', pmb: 'Expressways, highways, high-performance pavements', crmb: 'Highways, heavy-duty roads, surface treatments' },
+        ],
+      },
+      configuration: {
+        title: '6. Recommended PMB/CRMB Plant Configuration',
+        recommendation: 'For a commercial plant, I would recommend designing a combined PMB + CRMB modification plant rather than two completely independent plants.',
+        diagramText: `                    BASE BITUMEN TANKS
+                           │
+                           ▼
+                    BITUMEN PUMP
+                           │
+                    ┌──────┴──────┐
+                    │             │
+                    ▼             ▼
+              PMB MODIFIER    CRUMB RUBBER
+                 SYSTEM          SYSTEM
+                    │             │
+                    ▼             ▼
+               HIGH-SHEAR MIXING SYSTEM
+                    │
+                    ▼
+             DEVELOPMENT / REACTION
+                    │
+                    ▼
+             RECIRCULATION SYSTEM
+                    │
+                    ▼
+             FINISHED PRODUCT TANK
+                    │
+                    ▼
+             LOADING / DISPATCH`,
+        processNote: 'For PMB production, I would provide separate polymer dosing and high-shear dispersion equipment. For CRMB, provide rubber feeding, digestion/development and recirculation equipment.',
+      },
+      capacities: {
+        title: '7. Example Plant Capacities',
+        intro: 'A practical commercial plant can be configured as:',
+        capacityTable: [
+          { capacity: 'Small', production: '5 TPH' },
+          { capacity: 'Medium', production: '10 TPH' },
+          { capacity: 'Large', production: '15 TPH' },
+          { capacity: 'High capacity', production: '20 TPH' },
+        ],
+        tenTphNote: 'For a 10 TPH PMB/CRMB plant, for example, the system can be designed around approximately 10 tonnes/hour finished modified bitumen production, subject to the required grade, polymer/rubber dosage, mixing time and development time.',
+        equipmentListTitle: 'Typical major equipment for a 10 TPH plant',
+        equipmentList: [
+          '2 × base bitumen storage tanks',
+          '1 × PMB premix/modification tank',
+          '1 × CRMB reaction/development tank',
+          '1 × finished-product tank',
+          '1 × high-shear colloid/homogenizer system',
+          'Bitumen transfer/recirculation pumps',
+          'Polymer dosing system',
+          'Crumb-rubber feeding system',
+          'Thermic-fluid heater',
+          'Hot-oil circulation system',
+          'Insulated/heated pipelines',
+          'Automatic valves',
+          'PLC + HMI/SCADA',
+          'Load cells/flow meters',
+          'Temperature and pressure instrumentation',
+          'Sampling points',
+          'Finished-product loading system',
+        ],
+        designPoint: 'Important design point: PMB and CRMB should not simply be treated as the same process with different additives. Their mixing, dispersion, development time, storage and quality-control requirements are different.',
+        commercialNote: 'If you are planning this for Atlas Engineering, I can also prepare a complete 10 TPH PMB + CRMB plant technical specification, including all tank capacities/dimensions, high-shear mixer size, thermic-fluid heater capacity, pumps, polymer/rubber dosing system, PLC/SCADA, PFD, P&ID, approximate power requirement, and a commercial quotation format.',
+      },
+    },
     heroImage: '/src/assets/images/products/p2_img1.jpg',
     gallery: [
       '/src/assets/images/products/p2_img1.jpg',
@@ -320,57 +843,179 @@ export const BITUMEN_PRODUCTS: Product[] = [
     categoryName: 'Bitumen Modify Equipment',
     name: 'BITUMEN AIR BLOWING OXIDIZATION PLANT',
     code: 'ATL-ABO-03',
-    shortDescription: 'Industrial plant to convert penetration-grade bitumen into oxidized/blown bitumen by passing controlled hot air through heated bitumen.',
-    description: 'A Bitumen Air Blowing Oxidization Plant is used to convert penetration-grade bitumen or suitable refinery bitumen feed into oxidized/blown bitumen by passing controlled hot air through heated bitumen. The oxidation process increases the softening point and generally reduces penetration, producing a harder, more heat-resistant industrial bitumen.',
+    shortDescription: 'A Bitumen Air Blowing Oxidization Plant is used to convert penetration-grade bitumen or suitable refinery bitumen feed into oxidized/blown bitumen by passing controlled hot air through heated bitumen.',
+    description: `A Bitumen Air Blowing Oxidization Plant is used to convert penetration-grade bitumen or suitable refinery bitumen feed into oxidized/blown bitumen by passing controlled hot air through heated bitumen. The oxidation process increases the softening point and generally reduces penetration, producing a harder, more heat-resistant industrial bitumen. (DRG Bitumen)`,
     highlights: [
+      'Converts penetration-grade bitumen into oxidized/blown bitumen via controlled hot air blowing',
       'Produces grades: 75/25, 85/25, 85/40, 90/15, 90/40, 95/25, 105/35, 115/15, 150/5',
-      'Air-blowing reactor with multi-nozzle air ring for uniform oxidation',
-      'Complete off-gas treatment: mist catcher, condenser, wet scrubber, and vent blower',
-      'Complies with ASTM D312/D312M and international specifications',
+      'Air-blowing reactor with uniform air ring/nozzle dispersion and mist separation',
+      'Full off-gas treatment: mist catcher, condenser, scrubber, and vent blower',
+      'Industrial applications: roofing, waterproofing, pipe coating, joint filling, and electrical insulation',
     ],
     features: [
       {
-        title: 'AIR-BLOWING REACTOR',
-        description: 'Main oxidation vessel where hot air is dispersed through bitumen to increase softening point.',
+        title: 'Bitumen Feed/Storage Tank',
+        description: 'Stores and maintains feed bitumen at required temperature',
       },
       {
-        title: 'AIR BLOWER & AIR RING NOZZLES',
-        description: 'Supplies and distributes controlled oxidation air uniformly inside the reactor bottom.',
+        title: 'Air-Blowing Reactor',
+        description: 'Main oxidation vessel where hot air is dispersed through bitumen',
       },
       {
-        title: 'MIST CATCHER & CONDENSER',
-        description: 'Separates entrained bitumen droplets from outgoing gases and condenses recoverable vapours.',
+        title: 'Air Blower/Compressor',
+        description: 'Supplies controlled oxidation air',
       },
       {
-        title: 'GAS SCRUBBER & VENT SYSTEM',
-        description: 'Cleans process off-gases before discharge, maintaining controlled gas flow and draft.',
+        title: 'Air Ring / Air Nozzles',
+        description: 'Distributes air uniformly inside the reactor',
       },
       {
-        title: 'HEATING & STORAGE TANKS',
-        description: 'Pre-heats feed bitumen and stores finished oxidized bitumen at dispatch temperature.',
+        title: 'Heating System',
+        description: 'Maintains required bitumen processing temperature',
       },
       {
-        title: 'PLC / AUTOMATION PANEL',
-        description: 'Controls temperature, airflow, level, pressure, and residence time for target grade specifications.',
+        title: 'Mist Catcher',
+        description: 'Removes entrained bitumen droplets from outgoing gases',
+      },
+      {
+        title: 'Condenser',
+        description: 'Condenses recoverable vapours',
+      },
+      {
+        title: 'Scrubber',
+        description: 'Treats/cleans process gases before discharge',
+      },
+      {
+        title: 'Vent Blower',
+        description: 'Maintains controlled gas flow and reactor draft',
+      },
+      {
+        title: 'Oxidized Bitumen Storage Tank',
+        description: 'Stores finished product',
+      },
+      {
+        title: 'Pumps & Valves',
+        description: 'Transfer feed and finished bitumen',
+      },
+      {
+        title: 'PLC/Control Panel',
+        description: 'Controls temperature, airflow, level, pressure and process operation',
       },
     ],
     applications: [
-      'Roofing Felt & Built-Up Roofing Compounds',
-      'Waterproofing Membranes & Mastics',
-      'Anti-Corrosion Underground Steel Pipeline Coating',
-      'Oil & Gas Pipeline Protective Coatings',
-      'Expansion Joint Fillers & Construction Sealants',
-      'Bituminous Paints, Adhesives & Sound-Damping Materials',
-      'Electrical Cable Insulation Compounds',
+      'Roofing & Waterproofing: Roofing felt, waterproofing membranes, built-up roofing, roof coatings (ASTM D312/D312M)',
+      'Pipe Coating: Anti-corrosion coating for underground steel pipelines, oil & gas pipeline protection',
+      'Joint Filling & Sealants: Expansion/joint-filling compounds, crack sealing, construction sealants',
+      'Industrial Applications: Bituminous paints, mastics, adhesives, sound-damping materials',
+      'Rubber/plastic processing, electrical cable and insulation applications (IARC Publications)',
     ],
     specifications: [
       { parameter: 'Process Principle', value: 'Controlled air blowing / oxidation' },
       { parameter: 'Output Grades', value: '75/25, 85/25, 85/40, 90/15, 90/40, 95/25, 105/35, 115/15, 150/5' },
-      { parameter: 'Standard Compliance', value: 'ASTM D312/D312M, IS & global standards' },
+      { parameter: 'Standard Compliance', value: 'ASTM D312/D312M, IARC & global industrial specifications' },
       { parameter: 'Off-Gas System', value: 'Mist Catcher + Condenser + Scrubber + Vent Blower' },
-      { parameter: 'Air Distribution', value: 'Bottom Air Ring with multi-nozzle dispersion' },
-      { parameter: 'Control System', value: 'PLC / Automation Panel with safety interlocks' },
+      { parameter: 'Air Distribution', value: 'Air Ring / Air Nozzles with uniform reactor dispersion' },
+      { parameter: 'Control System', value: 'PLC/Control Panel (Temperature, Airflow, Level, Pressure)' },
     ],
+    oxidizationGuide: {
+      intro: 'A Bitumen Air Blowing Oxidization Plant is used to convert penetration-grade bitumen or suitable refinery bitumen feed into oxidized/blown bitumen by passing controlled hot air through heated bitumen. The oxidation process increases the softening point and generally reduces penetration, producing a harder, more heat-resistant industrial bitumen. (DRG Bitumen)',
+      processFlow: 'Bitumen Feed Tank → Feed Pump → Air-Blowing Reactor → Mist Catcher → Condenser/Scrubber → Vent System → Oxidized Bitumen Storage Tank → Packing/Dispatch',
+      equipmentTable: [
+        { equipment: 'Bitumen Feed/Storage Tank', function: 'Stores and maintains feed bitumen at required temperature' },
+        { equipment: 'Air-Blowing Reactor', function: 'Main oxidation vessel where hot air is dispersed through bitumen' },
+        { equipment: 'Air Blower/Compressor', function: 'Supplies controlled oxidation air' },
+        { equipment: 'Air Ring / Air Nozzles', function: 'Distributes air uniformly inside the reactor' },
+        { equipment: 'Heating System', function: 'Maintains required bitumen processing temperature' },
+        { equipment: 'Mist Catcher', function: 'Removes entrained bitumen droplets from outgoing gases' },
+        { equipment: 'Condenser', function: 'Condenses recoverable vapours' },
+        { equipment: 'Scrubber', function: 'Treats/cleans process gases before discharge' },
+        { equipment: 'Vent Blower', function: 'Maintains controlled gas flow and reactor draft' },
+        { equipment: 'Oxidized Bitumen Storage Tank', function: 'Stores finished product' },
+        { equipment: 'Pumps & Valves', function: 'Transfer feed and finished bitumen' },
+        { equipment: 'PLC/Control Panel', function: 'Controls temperature, airflow, level, pressure and process operation' },
+      ],
+      operatingPrinciples: [
+        'Suitable penetration-grade bitumen is charged to the reactor.',
+        'The bitumen is heated to the required processing temperature.',
+        'Controlled air is introduced through an air ring/nozzle system near the reactor bottom.',
+        'Air reacts with the hot bitumen, increasing its oxidation level.',
+        'The product becomes harder, with higher softening point and lower penetration.',
+        'The desired grade is achieved by controlling temperature, airflow, residence time and feedstock properties.',
+        'Off-gases pass through mist separation and gas-treatment equipment.',
+        'Finished oxidized bitumen is transferred to storage or packing.',
+      ],
+      gradesIntro: 'The designation generally indicates softening point / penetration. For example, 85/25 refers approximately to a softening-point level around 85°C and penetration around 25 dmm, subject to the applicable standard/specification. (Alkenza)',
+      gradesTable: [
+        { grade: '75/25', characteristics: 'Softer oxidized grade', applications: 'Waterproofing, mastics, roofing compounds' },
+        { grade: '85/25', characteristics: 'Medium-hard, good heat stability', applications: 'Roofing felt, waterproofing membranes, joint fillers, pipe coatings' },
+        { grade: '85/40', characteristics: 'More flexible', applications: 'Roofing membranes, waterproofing and movement-related applications' },
+        { grade: '90/15', characteristics: 'Harder, higher heat resistance', applications: 'Pipe coating, joint filling, roofing, industrial coatings' },
+        { grade: '90/40', characteristics: 'Medium-hard/flexible', applications: 'Roofing membranes and waterproofing' },
+        { grade: '95/25', characteristics: 'High softening point', applications: 'Hot-climate roofing, waterproofing and industrial applications' },
+        { grade: '105/35', characteristics: 'High-temperature industrial grade', applications: 'Industrial roofing, mastics and heavy-duty coatings' },
+        { grade: '115/15', characteristics: 'Very hard, high-temperature resistant', applications: 'Industrial roofing, pipe/cable applications, electrical insulation and specialized coatings' },
+        { grade: '150/5', characteristics: 'Extremely hard specialty grade', applications: 'Special industrial coatings and high-temperature applications' },
+      ],
+      gradesCitation: 'Industry references commonly list grades such as 85/25, 90/15 and 115/15, while the wider oxidized-bitumen family includes grades such as 75/30, 85/40, 95/25, 105/35 and 115/15. (IARC Publications)',
+      majorApplications: [
+        {
+          title: '1. Roofing & Waterproofing',
+          points: [
+            'Roofing felt',
+            'Waterproofing membranes',
+            'Built-up roofing',
+            'Roof coatings',
+            'Waterproofing compounds',
+          ],
+          citation: 'ASTM D312/D312M covers asphalt used in built-up roofing, modified-bitumen systems, vapor retarders and insulation-board adhesion. (ASTM International Store)',
+        },
+        {
+          title: '2. Pipe Coating',
+          points: [
+            'Anti-corrosion coating for underground steel pipelines',
+            'Oil & gas pipeline protection',
+            'Protective industrial coatings',
+          ],
+        },
+        {
+          title: '3. Joint Filling & Sealants',
+          points: [
+            'Expansion/joint-filling compounds',
+            'Crack sealing',
+            'Construction sealants',
+            'Pavement repair compounds',
+          ],
+        },
+        {
+          title: '4. Industrial Applications',
+          points: [
+            'Bituminous paints',
+            'Mastics',
+            'Adhesives',
+            'Sound-damping materials',
+            'Rubber/plastic processing',
+            'Electrical cable and insulation applications',
+          ],
+          citation: 'These uses are consistent with documented applications of oxidized grades, including roofing, joint filling, pipe coating, electrical applications and industrial coatings. (IARC Publications)',
+        },
+      ],
+      plantConceptDiagram: `Feed Bitumen
+↓
+Heating & Storage
+↓
+Air-Blowing Reactor
+↑
+Controlled Air from Blower
+↓
+Mist Catcher
+↓
+Condenser / Scrubber
+↓
+Vent Gas Treatment
+Reactor Bottom → Finished Oxidized Bitumen Tank → Packing`,
+      importantNote: 'Important: Actual reactor temperature, air rate, reactor volume, residence time and grade production rate must be designed from the feedstock properties and target specification. A plant designed for 85/25, for example, should not simply use the same operating conditions as a plant producing 115/15.',
+      summaryNote: 'Bitumen Air Blowing Oxidization Plant – suitable for production of 85/25, 90/15, 95/25, 105/35, 115/15 and other customized oxidized bitumen grades for roofing, waterproofing, pipe coating, joint filling, industrial coatings and electrical applications.',
+    },
     heroImage: '/src/assets/images/products/p3_img1.jpg',
     gallery: [
       '/src/assets/images/products/p3_img1.jpg',
@@ -388,56 +1033,117 @@ export const BITUMEN_PRODUCTS: Product[] = [
     categoryName: 'Bitumen Modify Equipment',
     name: 'COLD MIX ASPHALT PLANT (FOR MONSOON POTHOLE REPAIR WORK)',
     code: 'ATL-CMA-04',
-    shortDescription: 'Plant designed for producing emulsion-based cold asphalt mixes without conventional aggregate heating, ideal for monsoon pothole repair and emergency road maintenance.',
-    description: 'A Cold Mix Asphalt Plant is used to produce asphalt mix without heating the aggregate to conventional hot-mix temperatures. The process normally uses bitumen emulsion, graded aggregates, water and, where required, additives/cement. It is particularly useful for road maintenance, pothole patching and monsoon repair work, because the material can be produced and laid without a conventional hot-mix plant.',
+    shortDescription: 'A Cold Mix Asphalt Plant is used to produce asphalt mix without heating the aggregate to conventional hot-mix temperatures. The process normally uses bitumen emulsion, graded aggregates, water and, where required, additives/cement.',
+    description: `A Cold Mix Asphalt Plant is used to produce asphalt mix without heating the aggregate to conventional hot-mix temperatures. The process normally uses bitumen emulsion, graded aggregates, water and, where required, additives/cement. It is particularly useful for road maintenance, pothole patching and monsoon repair work, because the material can be produced and laid without a conventional hot-mix plant. Indian road guidance specifically identifies cold-emulsion technology for pothole filling and patch repairs.`,
     highlights: [
-      'No conventional hot-mix heating required; workable in monsoon / wet conditions',
-      'Ideal for emergency road maintenance, pothole patching, and PMGSY rural roads',
-      'Accurate aggregate, water pre-wetting, and bitumen emulsion dosing',
-      'Mobile or stationary configurations for swift on-site deployment',
+      'No conventional hot-mix heating required; workable in monsoon and wet conditions',
+      'Ideal for monsoon pothole repair, emergency road maintenance, patch repair, and rural roads',
+      'Controlled aggregate proportioning, water pre-wetting, and bitumen emulsion dosing',
+      'Produces Pothole Repair Mix, Patch Repair Mix, Cold Mix BM, SDBC, MSS, and Stockpile Cold Mix',
+      'Mobile or stationary configurations for swift on-site deployment close to repair locations',
     ],
     features: [
       {
-        title: 'AGGREGATE FEEDER',
-        description: 'Controls aggregate proportioning and continuous feeding with variable speed drive.',
+        title: 'Aggregate Feeder',
+        description: 'Controls aggregate quantity',
       },
       {
-        title: 'BITUMEN EMULSION TANK & DOSING',
-        description: 'Dedicated tank for cationic/approved emulsion with positive-displacement precision dosing pump.',
+        title: 'Bitumen Emulsion Tank',
+        description: 'Stores cationic/other approved emulsion',
       },
       {
-        title: 'COLD MIXING UNIT',
-        description: 'Twin-shaft continuous mixer ensuring uniform aggregate pre-wetting and thorough emulsion coating.',
+        title: 'Emulsion Pump & Dosing System',
+        description: 'Precisely doses binder',
       },
       {
-        title: 'FINISHED MIX HOPPER & CONVEYOR',
-        description: 'Transfers finished cold mix directly to transport trucks or bagging packaging systems.',
+        title: 'Cold Mixing Unit',
+        description: 'Uniformly coats aggregate with emulsion',
       },
       {
-        title: 'CENTRALIZED CONTROL PANEL',
-        description: 'Regulates aggregate feed rate, water addition, and emulsion dosing ratio.',
+        title: 'Finished Mix Hopper',
+        description: 'Temporary storage of prepared cold mix',
       },
       {
-        title: 'MOBILE / STATIONARY OPTIONS',
-        description: 'Compact skid or trailer-mounted configuration for easy relocation across job sites.',
+        title: 'Control Panel',
+        description: 'Controls feeding, water and emulsion dosing',
+      },
+      {
+        title: 'Conveyor',
+        description: 'Transfers finished mix to truck/bagging system',
       },
     ],
     applications: [
-      'Monsoon Pothole Filling & Emergency Road Repairs',
-      'Localized Pavement Patching',
-      'Cold Mix Bituminous Macadam (BM)',
-      'Cold Mix Semi Dense Bituminous Concrete (SDBC) & MSS',
-      'Rural Road Construction & Maintenance (PMGSY)',
-      'Stockpile Cold Mix Asphalt Production',
+      'Pothole Repair Mix: Monsoon pothole filling, emergency road repairs (Medium-setting / cationic emulsion)',
+      'Patch Repair Mix: Localized pavement patching (Medium-setting emulsion)',
+      'Cold Mix BM: Bituminous Macadam/base and binder layers (Slow-setting emulsion)',
+      'Cold Mix SDBC: Surface/binder course applications (Suitable cationic emulsion)',
+      'Cold Mix MSS: Mix Seal Surfacing (Medium/slow-setting emulsion)',
+      'Slurry/Cold Slurry Mix: Surface maintenance and sealing (Slow-setting emulsion)',
+      'Cold Mix for Rural Roads: Rural-road construction and maintenance (PMGSY)',
+      'Stockpile Cold Mix: Formulated emulsion for stockpiling and later patch repair',
     ],
     specifications: [
-      { parameter: 'Plant Type', value: 'Cold Mix Asphalt Plant' },
+      { parameter: 'Plant Classification', value: 'Cold Mix Asphalt Plant (Monsoon Pothole Repair)' },
       { parameter: 'Operating Mode', value: 'Mobile / Trailer-Mounted or Stationary' },
-      { parameter: 'Emulsion Compatibility', value: 'Medium Setting (MS), Slow Setting (SS-1, SS-2), Cationic' },
-      { parameter: 'Mix Types Produced', value: 'Pothole Repair Mix, Patch Repair Mix, Cold Mix BM, Cold Mix SDBC, Cold Mix MSS' },
-      { parameter: 'Mixing Technology', value: 'Twin-Shaft Continuous Cold Mixer' },
-      { parameter: 'Control System', value: 'Electric / PLC console with variable speed drives' },
+      { parameter: 'Mixing Unit', value: 'Continuous twin-shaft cold mixer with uniform coating' },
+      { parameter: 'Emulsion Types', value: 'RS-1, RS-2, MS, SS-1, SS-2, Cationic/Formulated emulsions' },
+      { parameter: 'Mix Types Produced', value: 'Pothole Repair, Patch Repair, BM, SDBC, MSS, Slurry, Stockpile Mix' },
+      { parameter: 'Standard Compliance', value: 'IRC / PMGSY guidelines for cold-emulsion road repair' },
+      { parameter: 'Dosing Control', value: 'Centralized control panel for aggregate, water & emulsion' },
     ],
+    coldMixGuide: {
+      intro: 'A Cold Mix Asphalt Plant is used to produce asphalt mix without heating the aggregate to conventional hot-mix temperatures. The process normally uses bitumen emulsion, graded aggregates, water and, where required, additives/cement. It is particularly useful for road maintenance, pothole patching and monsoon repair work, because the material can be produced and laid without a conventional hot-mix plant. Indian road guidance specifically identifies cold-emulsion technology for pothole filling and patch repairs.',
+      equipmentTable: [
+        { equipment: 'Aggregate Feeder', function: 'Controls aggregate quantity' },
+        { equipment: 'Bitumen Emulsion Tank', function: 'Stores cationic/other approved emulsion' },
+        { equipment: 'Emulsion Pump & Dosing System', function: 'Precisely doses binder' },
+        { equipment: 'Cold Mixing Unit', function: 'Uniformly coats aggregate with emulsion' },
+        { equipment: 'Finished Mix Hopper', function: 'Temporary storage of prepared cold mix' },
+        { equipment: 'Control Panel', function: 'Controls feeding, water and emulsion dosing' },
+        { equipment: 'Conveyor', function: 'Transfers finished mix to truck/bagging system' },
+      ],
+      productionSteps: [
+        'Aggregate is screened and proportioned.',
+        'Controlled water is added for pre-wetting.',
+        'Bitumen emulsion is accurately dosed.',
+        'Aggregates and emulsion are mixed until uniform coating is achieved.',
+        'The finished material is transported to the repair location.',
+        'The pothole is cleaned and prepared, the cold mix is placed and compacted.',
+        'The emulsion breaks and the mix gains strength during curing.',
+      ],
+      productionNote: 'For emulsion-based cold mixes, aggregate gradation, emulsion type, moisture content and curing conditions are critical. PMGSY documentation notes that cold-mix production is preferably carried out close to the laying location because the mixed material can have limited transportability.',
+      gradesIntro: 'There is not one universal set of “cold asphalt grades” equivalent to VG-30/VG-40. The mix is normally selected according to aggregate gradation, emulsion grade, traffic, layer and application. Indian guidance describes different emulsion types for different cold-mix applications.',
+      typesTable: [
+        { type: 'Pothole Repair Mix', binder: 'Medium-setting / suitable cationic emulsion', application: 'Monsoon pothole filling, emergency road repairs' },
+        { type: 'Patch Repair Mix', binder: 'Medium-setting emulsion', application: 'Localized pavement patching' },
+        { type: 'Cold Mix BM', binder: 'Slow-setting emulsion', application: 'Bituminous Macadam/base and binder layers' },
+        { type: 'Cold Mix SDBC', binder: 'Suitable cationic emulsion', application: 'Surface/binder course applications' },
+        { type: 'Cold Mix MSS', binder: 'Medium/slow-setting emulsion', application: 'Mix Seal Surfacing' },
+        { type: 'Slurry/Cold Slurry Mix', binder: 'Slow-setting emulsion', application: 'Surface maintenance and sealing' },
+        { type: 'Cold Mix for Rural Roads', binder: 'Emulsion-based binder', application: 'Rural-road construction and maintenance' },
+        { type: 'Stockpile Cold Mix', binder: 'Formulated emulsion', application: 'Material that can be stored for later patch repair, subject to formulation' },
+      ],
+      emulsionGradesIntro: 'For a cold-mix plant, the emulsion grade should be selected according to the specific mix design and application, rather than treating RS/MS/SS grades as interchangeable.',
+      emulsionGrades: [
+        { grade: 'RS-1', title: 'Rapid Setting', description: 'commonly associated with tack-coat applications.' },
+        { grade: 'RS-2', title: 'Rapid Setting', description: 'commonly used for surface dressing.' },
+        { grade: 'MS', title: 'Medium Setting', description: 'commonly used for premix carpet and patch repair.' },
+        { grade: 'SS-1', title: 'Slow Setting', description: 'commonly used for priming.' },
+        { grade: 'SS-2', title: 'Slow Setting', description: 'used for several cold-mix applications including BM, SDAC, BC, MSS and slurry seal, depending on the approved specification/mix design.' },
+      ],
+      configurationNote: 'For a plant specifically intended for monsoon pothole repair, a practical configuration would include mobile or stationary operation, depending on whether repair teams need to move between multiple locations.',
+      advantages: [
+        'No conventional hot-mix heating required',
+        'Useful when hot-mix plants are unavailable',
+        'Suitable for monsoon/emergency pothole repair',
+        'Lower fuel consumption than conventional hot-mix production',
+        'Can be produced close to the repair location',
+        'Suitable for rural and remote roads',
+        'Lower-temperature production reduces heating-related emissions',
+      ],
+      ircCitation: 'IRC/PMGSY material specifically identifies cold-emulsion technology as advantageous where heating bitumen and aggregate to specified temperatures is difficult, particularly for maintenance work such as pothole filling and patch repairs.',
+      websiteSummary: 'Cold Mix Asphalt Plant – A compact and efficient plant designed for producing emulsion-based cold asphalt mixes without conventional aggregate heating. It is ideal for monsoon pothole repair, emergency road maintenance, patch repair, rural roads, premix carpet, bituminous macadam and other pavement maintenance applications. The plant provides controlled aggregate, water and bitumen-emulsion dosing with uniform mixing for reliable cold-mix production.',
+    },
     heroImage: '/src/assets/images/products/p4_img1.jpg',
     gallery: [
       '/src/assets/images/products/p4_img1.jpg',
@@ -780,17 +1486,411 @@ export const BITUMEN_PRODUCTS: Product[] = [
   },
 ];
 
+// 6 REAL ROAD CONSTRUCTION EQUIPMENT PRODUCTS
+export const ROAD_PRODUCTS: Product[] = [
+  {
+    id: 'asphalt-batch-mix-plant',
+    slug: 'asphalt-batch-mix-plant',
+    categoryId: 'road-construction-equipment',
+    categoryName: 'Road Construction Equipment',
+    name: 'ASPHALT BATCH MIX PLANT',
+    code: 'ATL-ABM-01',
+    shortDescription: 'Heavy-duty industrial facility used to manufacture high-quality asphalt concrete (hot mix asphalt) in precise batches (CAPACITY 80, 120, 160 TPH).',
+    description: `CAPACITY 80, 120, 160 TPH\n\nAn Asphalt Batch Mix Plant is a heavy-duty industrial facility used to manufacture high-quality asphalt concrete (hot mix asphalt) in precise batches. Unlike continuous drum plants, a batch plant measures, heats, and mixes aggregates, bitumen, and filler materials in distinct, separate cycles (batches). This provides the highest level of flexibility and accuracy, making it the preferred choice for major highway construction and airports.`,
+    highlights: [
+      'Capacity: 80, 120, 160 TPH',
+      'Batch Cycle Time: 45 to 60 seconds per batch',
+      'Batch Capacity: 1,000 kg to 5,000 kg per batch',
+      'Operating Temperature: 140°C to 180°C (Up to 200°C for modified bitumen)',
+      'Fully Automatic PLC with SCADA control interface',
+    ],
+    featuresTitle: '🛠️ Key Modules and System Flow',
+    specifications: [
+      { parameter: 'Capacity', value: '80, 120, 160 TPH' },
+      { parameter: 'Plant Capacity Range', value: '80 TPH (Tons Per Hour) to 400 TPH+' },
+      { parameter: 'Batch Cycle Time', value: '45 to 60 seconds per batch' },
+      { parameter: 'Batch Capacity', value: '1,000 kg to 5,000 kg per batch' },
+      { parameter: 'Operating Temperature', value: '140°C to 180°C (Up to 200°C for modified bitumen)' },
+      { parameter: 'Fuel Options for Burner', value: 'Diesel, Heavy Oil, Natural Gas, LPG, or Coal' },
+      { parameter: 'Control System', value: 'Fully Automatic PLC with SCADA control interface' },
+    ],
+    features: [
+      {
+        title: 'Cold Aggregate Feeder Bins',
+        description: 'Multiple hoppers feed different sizes of raw aggregate (sand, stone chips) onto a collecting conveyor belt using variable-speed drives.',
+      },
+      {
+        title: 'Drying Drum with Burner',
+        description: 'A tilted, rotating drum removes all moisture from the aggregates and heats them to the required processing temperature using a high-efficiency burner.',
+      },
+      {
+        title: 'Baghouse Filter (Pollution Control)',
+        description: 'A heavy-duty pulse-jet dust collector traps fine airborne particles from the drying drum to meet strict environmental emission standards.',
+      },
+      {
+        title: 'Vertical Bucket Elevator',
+        description: 'Lifts the hot, dry aggregates to the top of the mixing tower structure.',
+      },
+      {
+        title: 'Vibrating Screen Unit',
+        description: 'Separates the hot aggregates by size through multi-deck screens, dropping them into isolated "hot bins" below.',
+      },
+      {
+        title: 'Weighing Section',
+        description: 'Independent, high-precision load cell hoppers weigh the hot aggregates, liquid bitumen (supplied from a thermic fluid-heated tank), and filler material according to the recipe.',
+      },
+      {
+        title: 'Pugmill Mixer',
+        description: 'A twin-shaft jacketed mixer blends the ingredients thoroughly for 15–20 seconds before opening a pneumatic bottom gate to discharge the finished hot mix asphalt into trucks.',
+      },
+    ],
+    applications: [
+      'National Highways & Expressways: Where strict government specifications demand absolute material consistency',
+      'Airport Runway Construction: Demanding precise aggregate grading and uniform binder distribution',
+      'Urban Municipal Supply: Ideal for commercial suppliers who serve multiple contractors with different mix designs on the same day',
+    ],
+    heroImage: '/src/assets/images/products/road/road_p1_img1.jpg',
+    gallery: [
+      '/src/assets/images/products/road/road_p1_img1.jpg',
+      '/src/assets/images/products/road/road_p1_img2.jpg',
+      '/src/assets/images/products/road/road_p1_img3.jpg',
+    ],
+    isPlaceholder: false,
+    featured: true,
+  },
+  {
+    id: 'asphalt-drum-mix-plant',
+    slug: 'asphalt-drum-mix-plant',
+    categoryId: 'road-construction-equipment',
+    categoryName: 'Road Construction Equipment',
+    name: 'ASPHALT DRUM MIX PLANT',
+    code: 'ATL-ADM-02',
+    shortDescription: 'Continuous production system where aggregate drying and bitumen mixing occur simultaneously inside a single rotating drum (CAPACITY 35, 60, 90, 120, 160 TPH).',
+    description: `CAPACITY 35, 60, 90, 120, 160 TPH\n\nAn Asphalt Drum Mix Plant is a continuous production system where the drying of aggregates and the mixing of bitumen and filler materials take place simultaneously inside a single rotating drum. Unlike batch plants that process asphalt in individual cycles, drum mix plants operate continuously, making them highly efficient for large-scale, fast-paced road construction projects like highways and runways.`,
+    highlights: [
+      'Capacity: 35, 60, 90, 120, 160 TPH',
+      'Continuous simultaneous drying and mixing in single drum',
+      'Handles aggregate sizes 0 mm to 40 mm across 3 to 4 bins',
+      'Bitumen Operating Temp: 140°C to 160°C',
+      'Fully automatic panel with load cell integration',
+    ],
+    specifications: [
+      { parameter: 'Capacity', value: '35, 60, 90, 120, 160 TPH' },
+      { parameter: 'Production Capacity', value: '30 tons per hour (TPH) to 150+ TPH' },
+      { parameter: 'Aggregate Sizes Handled', value: '0 mm to 40 mm (typically split across 3 to 4 bins)' },
+      { parameter: 'Fuel Options', value: 'Diesel, LDO (Light Diesel Oil), FO (Furnace Oil), or Natural Gas' },
+      { parameter: 'Bitumen Operating Temp', value: '140°C to 160°C' },
+      { parameter: 'Exhaust Gas Temperature', value: '110°C to 130°C' },
+      { parameter: 'Control System', value: 'Fully automatic panel with load cell integration' },
+    ],
+    features: [
+      {
+        title: 'Cold Aggregate Feeder Bins',
+        description: 'Multiple bins feed different sizes of stone chips and sand onto a gathering conveyor belt. Each bin features a variable-speed drive to control the material ratio accurately.',
+      },
+      {
+        title: 'Slinger Conveyor',
+        description: 'A tilted belt conveyor that receives the blended aggregates from the feeder bins and drops them directly into the drying drum. It usually features a vibrating screen to remove oversized stones.',
+      },
+      {
+        title: 'The Dryer-cum-Mixer Drum',
+        description: 'The core of the plant. Divided into two functional zones: Drying Zone (Front) with high-capacity burner removing all moisture, and Mixing Zone (Rear) where liquid bitumen and mineral filler are injected to coat hot dry aggregates continuously.',
+      },
+      {
+        title: 'Bitumen Storage Tanks',
+        description: 'Heavily insulated tanks equipped with internal heating coils (powered by a Thermic Fluid Heater) that keep liquid bitumen at pumping temperatures.',
+      },
+      {
+        title: 'Pollution Control System',
+        description: 'Captures fine dust particles before exhaust gas exits the chimney (mid-tier Wet Dust Scrubber with cyclonic water spray).',
+      },
+      {
+        title: 'Load-out Conveyor & Silo',
+        description: 'A hot elevator or gob hopper conveyor transports the finished hot-mix asphalt from the drum into a storage silo or directly onto waiting dump trucks.',
+      },
+    ],
+    applications: [
+      'Highways & Expressways Paving',
+      'Airport Runways & Taxiways',
+      'Continuous Large-Scale Paving Contracts',
+      'Fast-Paced Road Development Works',
+    ],
+    heroImage: '/src/assets/images/products/road/road_p2_img1.jpg',
+    gallery: [
+      '/src/assets/images/products/road/road_p2_img1.jpg',
+      '/src/assets/images/products/road/road_p2_img2.jpg',
+      '/src/assets/images/products/road/road_p2_img3.jpg',
+      '/src/assets/images/products/road/road_p2_img4.jpg',
+    ],
+    isPlaceholder: false,
+    featured: false,
+  },
+  {
+    id: 'wet-mix-plant-wmm',
+    slug: 'wet-mix-plant-wmm',
+    categoryId: 'road-construction-equipment',
+    categoryName: 'Road Construction Equipment',
+    name: 'WET MIX PLANT (WMM PLANT)',
+    code: 'ATL-WMM-03',
+    shortDescription: 'Specialized continuous-flow production system producing a homogenous cold mix blend of aggregates, sand, and water for road base and sub-base layers.',
+    description: `A Wet Mix Macadam (WMM) Plant is a specialized, continuous-flow production system used to produce a homogenous blend of stone aggregates of various sizes, clean sand or stone dust, and a controlled amount of water. This processed cold mix forms the critical base and sub-base layers of modern highways and runways before asphalt or concrete layers are applied. Unlike asphalt plants, a WMM plant operates entirely cold without any heating elements or bitumen.`,
+    highlights: [
+      'Production Capacity: 100 Tons Per Hour (TPH) to 300+ TPH',
+      'Aggregate Sizes Handled: 0 mm to 40 mm (4 cold bins)',
+      'Mixing Unit: Heavy-duty twin-shaft pug mill',
+      'Digital flow meter for controlled water addition (4% to 7% by weight)',
+      'Fully automatic PLC-based panel with variable frequency drives (VFDs)',
+    ],
+    specifications: [
+      { parameter: 'Production Capacity', value: '100 Tons Per Hour (TPH) to 300+ TPH' },
+      { parameter: 'Aggregate Sizes Handled', value: '0 mm to 40 mm (typically split across 4 cold bins)' },
+      { parameter: 'Water Storage Capacity', value: '4,000 Litres to 10,000 Litres (optional)' },
+      { parameter: 'Mixing Unit Type', value: 'Twin-shaft pug mill' },
+      { parameter: 'Connected Power Load', value: '~60 HP to 120+ HP (depending on TPH capacity)' },
+      { parameter: 'Control System', value: 'Fully automatic PLC-based panel with variable frequency drives (VFDs)' },
+      { parameter: 'Control Cabin', value: 'Air-conditioned cabin housing centralized electric control panel (Optional)' },
+    ],
+    features: [
+      {
+        title: 'Cold Aggregate Feeder Bins',
+        description: 'Typically features 4 separate bins equipped with adjustable mechanical gates and variable-speed conveyor drives. This allows operators to meter specific ratios of coarse stones, gravel, and stone dust onto the gathering belt.',
+      },
+      {
+        title: 'Vibrating Screen',
+        description: 'Placed between the gathering conveyor and the main charging belt. It filters out oversized boulders and debris, ensuring only compliant aggregate sizes enter the mixing zone.',
+      },
+      {
+        title: 'Twin-Shaft Pugmill Mixer',
+        description: 'The heart of the plant. It features a heavy-duty steel trough lined with replaceable wear-resistant liners. Inside, two counter-rotating shafts equipped with paddle arms and tips rapidly blend the aggregates while water is injected.',
+      },
+      {
+        title: 'Water Tank & Metering System',
+        description: 'A centrifugal water pump draws from a storage tank and delivers water through a spray bar inside the pugmill. A digital flow meter precisely controls water addition (usually 4% to 7% by weight) based on the current aggregate feed rate.',
+      },
+      {
+        title: 'Control Cabin',
+        description: 'An air-conditioned cabin housing the centralized electric control panel. It features a PLC interface that auto-calculates and locks aggregate-to-water ratios.',
+      },
+    ],
+    applications: [
+      'Highway Base and Sub-Base Layers (Wet Mix Macadam)',
+      'Airport Runway & Taxiway Base Layer Preparation',
+      'Expressway Foundation and Heavy Pavement Support',
+      'Industrial Pavement Ground Layers',
+    ],
+    heroImage: '/src/assets/images/products/road/road_p3_img1.jpg',
+    gallery: [
+      '/src/assets/images/products/road/road_p3_img1.jpg',
+      '/src/assets/images/products/road/road_p3_img2.jpg',
+      '/src/assets/images/products/road/road_p3_img3.jpg',
+      '/src/assets/images/products/road/road_p3_img4.jpg',
+    ],
+    isPlaceholder: false,
+    featured: false,
+  },
+  {
+    id: 'asphalt-paver-finisher',
+    slug: 'asphalt-paver-finisher',
+    categoryId: 'road-construction-equipment',
+    categoryName: 'Road Construction Equipment',
+    name: 'ASPHALT PAVER FINISHER',
+    code: 'ATL-APF-04',
+    shortDescription: 'Indian Standard (IS:15808) & MORT&H mechanical paver finisher with 2.5m to 4.5m paving width for laying Hot Mix Asphalt and cold WMM.',
+    description: `An Indian-make Indian Standard (IS:15808) Mechanical Asphalt Paver Finisher with a 2.5m to 4.5m paving width is the workhorse of regional and rural road development across India. Built strictly in compliance with MORT&H specifications, this specific model is a wheel-mounted, dual-purpose machine engineered to lay both Hot Mix Asphalt (Bituminous Macadam) and cold Wet Mix Macadam (WMM).\n\nThe primary defining trait of a "Mechanical" paver is its transmission system, which utilizes a rugged automotive gearbox, clutch, and heavy-duty chain-drive mechanisms instead of complete hydrostatic tracking. This makes it highly cost-effective, straightforward to maintain, and extremely popular among Indian civil contractors.`,
+    highlights: [
+      'Paving Width: 2.5 Meters (Base) extendable up to 4.5 Meters (Hydraulic)',
+      'Material Laying Capacity: 125 to 150 Tons Per Hour (TPH)',
+      'Dual-purpose: lays both Hot Mix Asphalt and cold Wet Mix Macadam (WMM)',
+      'Engine: 74 HP to 105 HP (Kirloskar / Leyland / Cummins, BS-IV or CEV V)',
+      'Strictly compliant with MORT&H specifications and IS:15808 standards',
+    ],
+    specifications: [
+      { parameter: 'Paving Width', value: '2.5 Meters (Base) extendable up to 4.5 Meters' },
+      { parameter: 'Screed Extension', value: 'Hydraulic Extension (no bolt-on manual blocks required for 4.5m)' },
+      { parameter: 'Paving Thickness', value: '10 mm to 200 mm' },
+      { parameter: 'Material Laying Capacity', value: '125 to 150 Tons Per Hour (TPH)' },
+      { parameter: 'Engine Configuration', value: '74 HP to 105 HP (Kirloskar / Leyland / Cummins, BS-IV or CEV V compliant)' },
+      { parameter: 'Paving Speed', value: '1.25 to 24 meters per minute' },
+      { parameter: 'Travel Speed', value: '0 to 16 km/h (high-speed transport between adjacent road stretches)' },
+      { parameter: 'Hopper Capacity', value: 'Approx. 4.0 to 4.25 Cubic Meters (~6 to 8 Tons)' },
+    ],
+    features: [
+      {
+        title: 'Hydraulic Screed Extension',
+        description: 'The basic mechanical screed starts at 2.5 meters. With the touch of a hydraulic lever on the operator panel, it expands seamlessly on twin-sliding pipes up to 4.5 meters to match varying village or district road dimensions.',
+      },
+      {
+        title: 'Screed Heating & Compaction',
+        description: 'The screed plate is heated evenly via dual LPG burners or oil burners to prevent hot asphalt from sticking to the cold steel. A mechanical eccentric shaft provides structural vibration to pre-compact the asphalt layout before a road roller takes over.',
+      },
+      {
+        title: 'Traction & Chassis Drive (Rear & Front Axle)',
+        description: 'Rear Axle: Equipped with two heavy-duty pneumatic tyres (usually 10x20 16-Ply) driven by a robust chain and sprocket arrangement connected to a manual automotive gearbox. Front Axle: Supported by dual or quad solid-rubber steering tyres (558x405 mm) mounted on a pivoting equalizer beam to navigate uneven terrain smoothly.',
+      },
+      {
+        title: 'Material Conveyance',
+        description: 'Dual heavy-duty flat slat conveyors move material from the hopper to the rear. A set of independent, wear-resistant steel augers (screw flights) spreads the asphalt uniformly across the 4.5-meter width.',
+      },
+      {
+        title: 'Steering and Control',
+        description: 'Outfitted with hydraulic power steering and air-actuated brakes to allow the operator to align perfectly with the shoulder line of the road.',
+      },
+    ],
+    applications: [
+      'Regional & Rural Road Development (PMGSY, MDR, SH)',
+      'Hot Mix Bituminous Macadam (BM & DBM) Laying',
+      'Cold Wet Mix Macadam (WMM) Base Construction',
+      'District Road Widening & Village Connectivity Roadways',
+    ],
+    heroImage: '/src/assets/images/products/road/road_p4_img1.jpg',
+    gallery: [
+      '/src/assets/images/products/road/road_p4_img1.jpg',
+      '/src/assets/images/products/road/road_p4_img2.jpg',
+      '/src/assets/images/products/road/road_p4_img3.jpg',
+      '/src/assets/images/products/road/road_p4_img4.jpg',
+    ],
+    isPlaceholder: false,
+    featured: false,
+  },
+  {
+    id: 'bitumen-truck-mounted-sprayer',
+    slug: 'bitumen-truck-mounted-sprayer',
+    categoryId: 'road-construction-equipment',
+    categoryName: 'Road Construction Equipment',
+    name: 'BITUMEN TRUCK MOUNTED SPRAYER',
+    code: 'ATL-TMS-05',
+    shortDescription: 'Indian Standard truck-mounted bitumen pressure distributor / sprayer (Capacity: 4, 6, 8, 10 KL, 2.5m to 4.2m width) for metered tack coat and prime coat application.',
+    description: `CAPACITY 4, 6, 8, 10 KL\n\nAn Indian-make Indian Standard Truck-Mounted Bitumen Pressure Distributor / Sprayer (2.5m to 4.2m spray width) is a specialized road construction vehicle used to apply an even, metered layer of liquid bitumen or bitumen emulsion onto a road base before asphalt laying.\n\nManufactured under MORTH guidelines and IS:15808 standards, these machines are typically mounted on standard Indian commercial truck chassis (such as Tata Motors 1616 / 1512 or Ashok Leyland Ecomet / 1615). They are the industry standard for applying tack coats and prime coats on state highways and rural roads.`,
+    highlights: [
+      'Capacity: 4, 6, 8, 10 KL',
+      'Foldable Spray Bar: 2.5m base extendable up to 4.2m width',
+      'Heavy-duty positive displacement gear pump (300 to 450 L/min)',
+      'Auxiliary Engine: 25 HP to 45 HP diesel engine (Kirloskar / Simpson)',
+      'Anti-clogging multi-port valve with diesel flush & air purge system',
+    ],
+    specifications: [
+      { parameter: 'Capacity', value: '4, 6, 8, 10 KL' },
+      { parameter: 'Spray Bar Width', value: '2.5 Meters (Base) fold-extendable up to 4.2 Meters' },
+      { parameter: 'Tank Storage Capacity', value: '4,000 Litres to 6,000 Litres (Standard 5,000L is most common)' },
+      { parameter: 'Bitumen Pump Type', value: 'Heavy-duty positive displacement gear pump (2" to 3")' },
+      { parameter: 'Pump Capacity', value: '300 to 450 Litres per minute' },
+      { parameter: 'Air Compressor', value: 'Twin cylinder, 2 HP to 3 HP capacity' },
+      { parameter: 'Auxiliary Engine', value: '25 HP to 45 HP water/air-cooled diesel engine (Kirloskar / Simpson)' },
+      { parameter: 'Spray Output Control', value: 'Digital tachometer with fly-wheel speed tracking' },
+    ],
+    features: [
+      {
+        title: 'Foldable Spray Bar (2.5m to 4.2m)',
+        description: 'The central spray bar measures 2.5 meters for standard lane travel. Two mechanical or hydraulic wing-folding extensions unlock on both sides, bringing the total continuous spraying width to 4.2 meters. This covers a standard single-lane highway (3.75 meters) in a single run with room to spare for the shoulders.',
+      },
+      {
+        title: 'Insulated Bitumen Tank',
+        description: 'The tank body is heavily insulated with 50mm high-density glass wool wrapped in an outer stainless steel or aluminium sheet protective jacket. This layout prevents thermal loss during transport from the refinery or batching plant.',
+      },
+      {
+        title: 'Heating System & Pneumatic Nozzles',
+        description: 'Equipped with a high-capacity, automatic automatic-ignition diesel burner combined with a u-shaped return heating pipe running through the tank body. Safely elevates bitumen temperature up to 150°C–180°C. Brass/stainless steel atomizing nozzles spaced at 100mm intervals, selectively opened/shut via pneumatic cylinders.',
+      },
+      {
+        title: 'Dual Operation Controls',
+        description: "Driver's Cabin contains the main digital spraying controller, application rate lock system, and master valve switches. Rear Platform is outfitted with mechanical bypass valves, pressure gauges, temperature indicators, and a hand-spray lance attachment.",
+      },
+      {
+        title: 'Cleaning & Air Purge System',
+        description: 'Anti-clogging multi-port valve design: Bitumen Suction/Circulation, Diesel Flush Line (connects to 20–30L tank to wash residual nozzles), and Air Purge (integrated air compressor blasts high-pressure air through entire 4.2m bar so no asphalt solidifies).',
+      },
+    ],
+    applications: [
+      'Highway Tack Coat & Prime Coat Spraying',
+      'Surface Dressing & Chip Sealing Works',
+      'Liquid Bitumen and Emulsion Spray Application',
+      'State Highways & Rural PMGSY Road Surface Sealing',
+    ],
+    heroImage: '/src/assets/images/products/road/road_p5_img1.jpg',
+    gallery: [
+      '/src/assets/images/products/road/road_p5_img1.jpg',
+      '/src/assets/images/products/road/road_p5_img2.jpg',
+      '/src/assets/images/products/road/road_p5_img3.jpg',
+      '/src/assets/images/products/road/road_p5_img4.jpg',
+    ],
+    isPlaceholder: false,
+    featured: false,
+  },
+  {
+    id: 'bitumen-mini-tractor-linked-sprayer',
+    slug: 'bitumen-mini-tractor-linked-sprayer',
+    categoryId: 'road-construction-equipment',
+    categoryName: 'Road Construction Equipment',
+    name: 'BITUMEN MINI TRACTOR LINKED SPRAYER',
+    code: 'ATL-TLS-06',
+    shortDescription: 'Indian Standard tractor-linked bitumen sprayer (Capacity: 2, 3 KL, 2.5m to 3.8m spray width) towed by standard 35 HP to 50+ HP agricultural tractor.',
+    description: `CAPACITY 2, 3 KL\n\nAn Indian-make Indian Standard Tractor-Linked Bitumen Sprayer (often called a tractor-towable or tractor-mounted bitumen pressure distributor) is a highly cost-effective, compact road construction machine. Built in compliance with MORTH specifications and IS:15808 standards, this equipment is designed to be towed by a standard Indian agricultural tractor (typically 35 HP to 50+ HP).\n\nIt is the absolute standard for small-to-medium road projects across India, such as PMGSY rural roads, village link roads, trench repairs, and factory internal pavements, where investing in a dedicated truck-mounted sprayer is financially unviable.`,
+    highlights: [
+      'Capacity: 2, 3 KL (1,000L, 2,000L to 3,000L)',
+      'Towed by standard Indian agricultural tractor (35 HP to 50+ HP)',
+      'Spray Bar Width: 2.5 Meters standard up to 3.8 Meters maximum',
+      'Independent Power Pack: 5 HP to 6 HP Air-Cooled Diesel Engine',
+      'Multi-Port Cleaning System: Bitumen Spraying, Diesel Cleaning & Air Purging',
+    ],
+    specifications: [
+      { parameter: 'Capacity', value: '2, 3 KL' },
+      { parameter: 'Tank Storage Capacity', value: '1,000 Litres, 2,000 Litres, to 3,000 Litres (2,000L is most common)' },
+      { parameter: 'Tractor Requirement', value: 'Any standard Indian tractor with 35 HP, 45 HP, or 50 HP capacity' },
+      { parameter: 'Hitch Type', value: 'Heavy-duty tow bar eye hitch for tractor drawbar coupling' },
+      { parameter: 'Spray Bar Width', value: '2.5 Meters (Standard base) up to 3.8 Meters maximum' },
+      { parameter: 'Auxiliary Engine', value: '5 HP to 6 HP Air-Cooled Diesel Engine (Fieldstar, Greaves, or Kirloskar)' },
+      { parameter: 'Bitumen Pump Type', value: 'Heavy-duty positive displacement gear pump (1.5" or 2")' },
+    ],
+    features: [
+      {
+        title: 'Dual Heating System',
+        description: 'The storage tank features an inner U-shaped heating pipe. It uses a manual or automatic high-pressure oil/diesel burner system to heat the bitumen or emulsion to spraying temperature (140°C–160°C).',
+      },
+      {
+        title: 'Insulated Tank Body',
+        description: 'The tank is completely wrapped in 50mm high-density glass wool insulation and sheeted with a durable galvanized or stainless steel outer jacket to preserve heat during towing.',
+      },
+      {
+        title: 'Independent Power Pack',
+        description: 'Features its own auxiliary diesel engine mounted on the front chassis platform. This engine drives both the bitumen gear pump and the air compressor simultaneously.',
+      },
+      {
+        title: 'Hand Spray Lance & Spray Bar',
+        description: 'Main Spray Bar spans 2.5 meters fitted with brass atomizing nozzles. Hand Spray Attachment comes with a flexible high-temperature hose pipe (approx. 4 to 5 meters long) and hand-operated lance for manual edge-coating, patching, and tight corners.',
+      },
+      {
+        title: 'Heavy-Duty Chassis',
+        description: 'Fabricated on a robust structural steel channel chassis equipped with a single axle and two standard commercial truck tyres (e.g., 7.50x16 or 9.00x20).',
+      },
+      {
+        title: 'Multi-Port Cleaning System',
+        description: 'Standard three-way valve system: 1. Bitumen Spraying / Circulation (keeps material fluid), 2. Diesel Cleaning (10–15L auxiliary tank supplies diesel to dissolve residual asphalt), 3. Air Purging (compressor forces high-pressure air through nozzles).',
+      },
+    ],
+    applications: [
+      'PMGSY Rural Roads & Village Link Roads',
+      'Municipal Trench Repairs & Road Pothole Patching',
+      'Factory & Industrial Complex Internal Pavements',
+      'Sub-contractor Bitumen Tack Coat & Prime Coat Spraying',
+    ],
+    heroImage: '/src/assets/images/products/road/road_p6_img1.jpg',
+    gallery: [
+      '/src/assets/images/products/road/road_p6_img1.jpg',
+      '/src/assets/images/products/road/road_p6_img2.jpg',
+      '/src/assets/images/products/road/road_p6_img3.jpg',
+      '/src/assets/images/products/road/road_p6_img4.jpg',
+    ],
+    isPlaceholder: false,
+    featured: false,
+  },
+];
+
 export const ALL_PRODUCTS: Product[] = [
   // 9 Real Bitumen Modify Equipment Products
   ...BITUMEN_PRODUCTS,
 
-  // 6 Road Construction Equipment Products
-  createPlaceholderProduct('road-construction-equipment', 'Road Construction Equipment', 1, 'Road Construction', '/src/assets/images/cat_road_construction_1791042905316.jpg', true),
-  createPlaceholderProduct('road-construction-equipment', 'Road Construction Equipment', 2, 'Road Construction', '/src/assets/images/cat_road_construction_1791042905316.jpg'),
-  createPlaceholderProduct('road-construction-equipment', 'Road Construction Equipment', 3, 'Road Construction', '/src/assets/images/cat_road_construction_1791042905316.jpg'),
-  createPlaceholderProduct('road-construction-equipment', 'Road Construction Equipment', 4, 'Road Construction', '/src/assets/images/cat_road_construction_1791042905316.jpg'),
-  createPlaceholderProduct('road-construction-equipment', 'Road Construction Equipment', 5, 'Road Construction', '/src/assets/images/cat_road_construction_1791042905316.jpg'),
-  createPlaceholderProduct('road-construction-equipment', 'Road Construction Equipment', 6, 'Road Construction', '/src/assets/images/cat_road_construction_1791042905316.jpg'),
+  // 6 Real Road Construction Equipment Products
+  ...ROAD_PRODUCTS,
 
   // 2 Cement & Concrete Equipment Products
   createPlaceholderProduct('cement-concrete-equipment', 'Cement & Concrete Equipment', 1, 'Cement & Concrete', '/src/assets/images/cat_cement_concrete_1791042916344.jpg', true),

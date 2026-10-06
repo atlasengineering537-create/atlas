@@ -5,6 +5,7 @@ import { CategoryCard } from '../components/CategoryCard';
 import { ProductCard } from '../components/ProductCard';
 import { PRODUCT_CATEGORIES, ALL_PRODUCTS, COMPANY_INFO } from '../data/products';
 import aboutAtlasImg from '../assets/images/about_atlas_engineering.jpg';
+import heroSlideNew1 from '../assets/images/hero_slide_1_new.jpg';
 import heroSlide1 from '../assets/images/hero_machinery_road_1791042882943.jpg';
 import heroSlide2 from '../assets/images/hero_slide_2.jpg';
 import heroSlide3 from '../assets/images/hero_slide_3.jpg';
@@ -32,9 +33,14 @@ import {
 export const HomePage: React.FC = () => {
   const { navigate, openQuoteModal } = useRouter();
 
-  // Hero Carousel State & Slides (1 original + 2 from Google Drive)
+  // Hero Carousel State & Slides (4 slides, new Google Drive image placed FIRST)
   const [currentSlide, setCurrentSlide] = useState(0);
   const heroSlides = [
+    {
+      image: heroSlideNew1,
+      alt: 'Atlas Engineering Heavy Industrial Bitumen & Construction Plant',
+      tag: 'Heavy Engineering & Industrial Plant',
+    },
     {
       image: heroSlide1,
       alt: 'Atlas Engineering Road Machinery & Bitumen Plant',

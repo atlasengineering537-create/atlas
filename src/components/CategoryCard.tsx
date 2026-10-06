@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProductCategory } from '../data/products';
+import { ProductCategory, ALL_PRODUCTS } from '../data/products';
 import { useRouter } from '../context/RouterContext';
 import { ArrowRight, Layers } from 'lucide-react';
 
@@ -11,6 +11,7 @@ interface CategoryCardProps {
 export const CategoryCard: React.FC<CategoryCardProps> = ({ category, index }) => {
   const { navigate } = useRouter();
   const formattedIndex = (index + 1).toString().padStart(2, '0');
+  const categoryProducts = ALL_PRODUCTS.filter((p) => p.categoryId === category.id);
 
   return (
     <div
@@ -64,11 +65,11 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ category, index }) =
           </p>
 
           {/* Key Applications Quick List */}
-          <div className="mt-4 pt-4 border-t border-slate-100">
+          <div className="mt-4 pt-3.5 border-t border-slate-100">
             <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1.5">
-              Key Site Applications:
+              Key Applications:
             </span>
-            <ul className="space-y-1.5 text-sm text-slate-700">
+            <ul className="space-y-1 text-xs sm:text-sm text-slate-700">
               {category.keyApplications.slice(0, 2).map((app, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
@@ -76,6 +77,28 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ category, index }) =
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* Featured Machinery in Category */}
+          <div className="mt-3.5 pt-3.5 border-t border-slate-100">
+            <span className="text-xs font-bold text-slate-900 uppercase tracking-wider block mb-2">
+              Machinery in this Division:
+            </span>
+            <div className="flex flex-wrap gap-1.5">
+              {categoryProducts.slice(0, 4).map((p) => (
+                <span
+                  key={p.id}
+                  className="inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-100 group-hover:bg-red-50 group-hover:text-red-700 text-slate-800 transition-colors"
+                >
+                  {p.name.replace(/\(.*?\)/g, '').trim()}
+                </span>
+              ))}
+              {categoryProducts.length > 4 && (
+                <span className="inline-flex items-center text-xs font-bold px-2 py-1 rounded-md text-red-600">
+                  +{categoryProducts.length - 4} more
+                </span>
+              )}
+            </div>
           </div>
         </div>
       </div>

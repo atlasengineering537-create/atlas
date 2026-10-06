@@ -1,15 +1,41 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AtlasLogo } from './AtlasLogo';
 import { useRouter } from '../context/RouterContext';
-import { PRODUCT_CATEGORIES } from '../data/products';
-import { ChevronDown, Menu, X, ArrowRight, PhoneCall } from 'lucide-react';
+import { PRODUCT_CATEGORIES, ALL_PRODUCTS } from '../data/products';
+import { ChevronDown, Menu, X, ArrowRight, PhoneCall, Sparkles, CheckCircle2 } from 'lucide-react';
+
+interface ProductMenuMeta {
+  displayName: string;
+  badge?: string;
+}
+
+const PRODUCT_MENU_META: Record<string, ProductMenuMeta> = {
+  'bitumen-emulsion-plant': { displayName: 'Bitumen Emulsion Plant', badge: '1–30 TPH' },
+  'pmb-crmb-bitumen-modify-plant': { displayName: 'PMB / CRMB Modify Plant', badge: '10–40 TPH' },
+  'bitumen-air-blowing-oxidization-plant': { displayName: 'Air Blowing Oxidization Plant', badge: 'Blown Grades' },
+  'cold-mix-asphalt-plant': { displayName: 'Cold Mix Asphalt Plant', badge: 'Monsoon Patch' },
+  'bitumen-storage-tank': { displayName: 'Bitumen Storage Tank', badge: '20–100 KL' },
+  'bitumen-decanter': { displayName: 'Bitumen Decanter', badge: 'Drum Melter' },
+  'micro-surfacing-paver-slurry-seal-machine': { displayName: 'Micro Surfacing Paver', badge: 'Slurry Seal' },
+  'asphalt-cold-mix-material-bag-filling-machine': { displayName: 'Cold Mix Bag Filling Machine', badge: 'Packaging' },
+  'hot-thermic-fluid-heater': { displayName: 'Hot Thermic Fluid Heater', badge: 'Up to 350°C' },
+  'asphalt-batch-mix-plant': { displayName: 'Asphalt Batch Mix Plant', badge: '80–160 TPH' },
+  'asphalt-drum-mix-plant': { displayName: 'Asphalt Drum Mix Plant', badge: '40–120 TPH' },
+  'wet-mix-macadam-plant': { displayName: 'Wet Mix Macadam Plant', badge: '100–250 TPH' },
+  'bitumen-pressure-distributor': { displayName: 'Bitumen Pressure Distributor', badge: '3k–12k L' },
+  'hydraulic-broomer': { displayName: 'Hydraulic Road Broomer', badge: 'Tractor / Loader' },
+  'chip-spreader': { displayName: 'Chip Spreader Unit', badge: 'Surface Dressing' },
+  'cement-concrete-equipment-1': { displayName: 'Concrete Batching Plant', badge: 'Electronic PLC' },
+  'cement-concrete-equipment-2': { displayName: 'Concrete Mobile Mixer', badge: 'Self-Transit' },
+};
 
 export const Header: React.FC = () => {
   const { route, navigate, openQuoteModal } = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [mobileExpandedCat, setMobileExpandedCat] = useState<string | null>(null);
+  const [mobileSelectedCat, setMobileSelectedCat] = useState<string>('bitumen-modify-equipment');
+  const dropdownContainerRef = useRef<HTMLDivElement | null>(null);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -20,6 +46,29 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownContainerRef.current &&
+        !dropdownContainerRef.current.contains(event.target as Node)
+      ) {
+        setIsProductsDropdownOpen(false);
+      }
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsProductsDropdownOpen(false);
+        setIsMobileMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   const handleMouseEnter = () => {
     if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
     setIsProductsDropdownOpen(true);
@@ -28,7 +77,12 @@ export const Header: React.FC = () => {
   const handleMouseLeave = () => {
     dropdownTimeoutRef.current = setTimeout(() => {
       setIsProductsDropdownOpen(false);
-    }, 150);
+    }, 200);
+  };
+
+  const toggleDropdown = () => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    setIsProductsDropdownOpen((prev) => !prev);
   };
 
   const isCurrent = (pathType: string, extra?: string) => {
@@ -92,18 +146,20 @@ export const Header: React.FC = () => {
 
               {/* Products Dropdown Trigger */}
               <div
+                ref={dropdownContainerRef}
                 className="relative"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
                 <button
-                  onClick={() => navigate('/products')}
-                  className={`py-1 inline-flex items-center gap-1.5 text-sm font-semibold transition-colors relative ${
+                  type="button"
+                  onClick={toggleDropdown}
+                  className={`py-1 inline-flex items-center gap-1.5 text-sm font-semibold transition-colors relative cursor-pointer ${
                     isCurrent('products') ? 'text-red-600' : 'hover:text-slate-900'
                   }`}
                   aria-expanded={isProductsDropdownOpen}
                 >
-                  Products
+                  <span>Products</span>
                   <ChevronDown
                     className={`w-4 h-4 text-slate-500 transition-transform duration-200 ${
                       isProductsDropdownOpen ? 'rotate-180 text-red-600' : ''
@@ -114,16 +170,23 @@ export const Header: React.FC = () => {
                   )}
                 </button>
 
-                {/* Mega Menu Dropdown */}
+                {/* Mega Menu Dropdown with Full Product Directory */}
                 {isProductsDropdownOpen && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[720px] bg-white rounded-xl shadow-2xl border border-slate-200 p-6 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                    <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+                  <div className="absolute top-full left-1/2 -translate-x-[42%] xl:-translate-x-1/2 mt-2 w-[980px] max-w-[calc(100vw-32px)] bg-white rounded-2xl shadow-2xl border border-slate-200/90 p-6 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                    
+                    {/* Header */}
+                    <div className="flex items-center justify-between pb-3.5 mb-5 border-b border-slate-100">
                       <div>
-                        <span className="text-xs font-bold uppercase tracking-wider text-red-600">
-                          Machinery Portfolio
-                        </span>
-                        <h4 className="text-base font-bold text-slate-900">
-                          Engineered Construction Solutions
+                        <div className="flex items-center gap-2">
+                          <span className="text-[11px] font-black uppercase tracking-wider text-red-600 bg-red-50 px-2.5 py-0.5 rounded border border-red-200">
+                            MACHINERY PORTFOLIO
+                          </span>
+                          <span className="text-xs font-semibold text-slate-500">
+                            17 Heavy-Duty Construction & Bitumen Machines
+                          </span>
+                        </div>
+                        <h4 className="text-base font-bold text-slate-900 mt-1">
+                          Atlas Engineering Machinery Divisions
                         </h4>
                       </div>
                       <button
@@ -131,62 +194,234 @@ export const Header: React.FC = () => {
                           setIsProductsDropdownOpen(false);
                           navigate('/products');
                         }}
-                        className="text-xs font-semibold text-red-600 hover:text-red-700 inline-flex items-center gap-1"
+                        className="text-xs font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-red-50 transition-colors"
                       >
-                        View All Products <ArrowRight className="w-3.5 h-3.5" />
+                        View All 17 Products <ArrowRight className="w-3.5 h-3.5" />
                       </button>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-5">
-                      {PRODUCT_CATEGORIES.map((cat) => (
-                        <div
-                          key={cat.id}
-                          className={`p-3.5 rounded-lg border transition-all ${
-                            cat.featuredFocus
-                              ? 'border-red-200 bg-red-50/40 hover:border-red-300'
-                              : 'border-slate-100 hover:border-slate-200 bg-slate-50/50'
-                          }`}
-                        >
-                          <div className="flex items-center justify-between mb-1.5">
-                            <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                              {cat.productCount} Products
+                    {/* 3 Categories with their full product lists */}
+                    <div className="grid grid-cols-12 gap-5">
+                      
+                      {/* Column 1: Bitumen Modify Equipment (9 Products) */}
+                      <div className="col-span-5 flex flex-col justify-between p-4 rounded-xl border border-red-200/80 bg-red-50/20">
+                        <div>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-[10px] font-black uppercase tracking-wider text-red-700 bg-red-100 px-2 py-0.5 rounded">
+                              Flagship Focus • 9 Machines
                             </span>
-                            {cat.featuredFocus && (
-                              <span className="text-[10px] font-bold text-red-700 bg-red-100 px-1.5 py-0.5 rounded">
-                                Primary Focus
-                              </span>
-                            )}
                           </div>
-                          <h5 className="text-sm font-bold text-slate-900 leading-snug mb-1">
-                            {cat.name}
-                          </h5>
-                          <p className="text-xs text-slate-600 line-clamp-2 mb-3">
-                            {cat.description}
-                          </p>
-                          <button
+                          <h5
                             onClick={() => {
                               setIsProductsDropdownOpen(false);
-                              navigate(`/products/${cat.slug}`);
+                              navigate('/products/bitumen-modify-equipment');
                             }}
-                            className="text-xs font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-1"
+                            className="text-sm font-black text-slate-900 hover:text-red-600 cursor-pointer transition-colors leading-snug mb-1"
                           >
-                            Explore Category <ArrowRight className="w-3 h-3" />
-                          </button>
+                            Bitumen Modify Equipment
+                          </h5>
+                          <p className="text-[11px] text-slate-600 mb-3">
+                            Emulsion, PMB, decanting, oxidization & heating plants
+                          </p>
+
+                          {/* List of 9 Products */}
+                          <div className="space-y-0.5">
+                            {ALL_PRODUCTS.filter((p) => p.categoryId === 'bitumen-modify-equipment').map((prod) => {
+                              const meta = PRODUCT_MENU_META[prod.slug] || PRODUCT_MENU_META[prod.id] || { displayName: prod.name };
+                              return (
+                                <button
+                                  key={prod.id}
+                                  onClick={() => {
+                                    setIsProductsDropdownOpen(false);
+                                    navigate(`/products/${prod.categoryId}/${prod.slug}`);
+                                  }}
+                                  className="group/item w-full text-left py-1.5 px-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all flex items-center justify-between text-xs"
+                                >
+                                  <div className="flex items-center gap-2 min-w-0 pr-1">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-red-400 group-hover/item:bg-red-600 group-hover/item:scale-125 transition-all shrink-0" />
+                                    <span className="font-semibold text-slate-800 group-hover/item:text-red-600 truncate">
+                                      {meta.displayName}
+                                    </span>
+                                  </div>
+                                  {meta.badge && (
+                                    <span className="text-[10px] font-mono font-medium px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 group-hover/item:bg-red-100 group-hover/item:text-red-700 shrink-0">
+                                      {meta.badge}
+                                    </span>
+                                  )}
+                                </button>
+                              );
+                            })}
+                          </div>
                         </div>
-                      ))}
+
+                        <button
+                          onClick={() => {
+                            setIsProductsDropdownOpen(false);
+                            navigate('/products/bitumen-modify-equipment');
+                          }}
+                          className="mt-3 pt-2.5 border-t border-red-200/60 text-xs font-bold text-red-600 hover:text-red-700 flex items-center gap-1"
+                        >
+                          Explore All 9 Bitumen Plants <ArrowRight className="w-3 h-3" />
+                        </button>
+                      </div>
+
+                      {/* Column 2: Road Construction Equipment (6 Products) */}
+                      <div className="col-span-4 flex flex-col justify-between p-4 rounded-xl border border-slate-200 bg-slate-50/40">
+                        <div>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-200 px-2 py-0.5 rounded">
+                              Core Highway • 6 Machines
+                            </span>
+                          </div>
+                          <h5
+                            onClick={() => {
+                              setIsProductsDropdownOpen(false);
+                              navigate('/products/road-construction-equipment');
+                            }}
+                            className="text-sm font-black text-slate-900 hover:text-red-600 cursor-pointer transition-colors leading-snug mb-1"
+                          >
+                            Road Construction Equipment
+                          </h5>
+                          <p className="text-[11px] text-slate-600 mb-3">
+                            Asphalt batching, drum plants & macadam pavers
+                          </p>
+
+                          {/* List of 6 Products */}
+                          <div className="space-y-0.5">
+                            {ALL_PRODUCTS.filter((p) => p.categoryId === 'road-construction-equipment').map((prod) => {
+                              const meta = PRODUCT_MENU_META[prod.slug] || PRODUCT_MENU_META[prod.id] || { displayName: prod.name };
+                              return (
+                                <button
+                                  key={prod.id}
+                                  onClick={() => {
+                                    setIsProductsDropdownOpen(false);
+                                    navigate(`/products/${prod.categoryId}/${prod.slug}`);
+                                  }}
+                                  className="group/item w-full text-left py-1.5 px-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all flex items-center justify-between text-xs"
+                                >
+                                  <div className="flex items-center gap-2 min-w-0 pr-1">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400 group-hover/item:bg-red-600 group-hover/item:scale-125 transition-all shrink-0" />
+                                    <span className="font-semibold text-slate-800 group-hover/item:text-red-600 truncate">
+                                      {meta.displayName}
+                                    </span>
+                                  </div>
+                                  {meta.badge && (
+                                    <span className="text-[10px] font-mono font-medium px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 group-hover/item:bg-red-100 group-hover/item:text-red-700 shrink-0">
+                                      {meta.badge}
+                                    </span>
+                                  )}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        <button
+                          onClick={() => {
+                            setIsProductsDropdownOpen(false);
+                            navigate('/products/road-construction-equipment');
+                          }}
+                          className="mt-3 pt-2.5 border-t border-slate-200 text-xs font-bold text-red-600 hover:text-red-700 flex items-center gap-1"
+                        >
+                          Explore All 6 Road Machines <ArrowRight className="w-3 h-3" />
+                        </button>
+                      </div>
+
+                      {/* Column 3: Cement & Concrete Equipment (2 Products) + Custom Plant Card */}
+                      <div className="col-span-3 flex flex-col justify-between p-4 rounded-xl border border-slate-200 bg-slate-50/40">
+                        <div>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-200 px-2 py-0.5 rounded">
+                              Batching • 2 Machines
+                            </span>
+                          </div>
+                          <h5
+                            onClick={() => {
+                              setIsProductsDropdownOpen(false);
+                              navigate('/products/cement-concrete-equipment');
+                            }}
+                            className="text-sm font-black text-slate-900 hover:text-red-600 cursor-pointer transition-colors leading-snug mb-1"
+                          >
+                            Cement & Concrete
+                          </h5>
+                          <p className="text-[11px] text-slate-600 mb-3">
+                            Concrete batching & transit mixing solutions
+                          </p>
+
+                          {/* List of 2 Products */}
+                          <div className="space-y-0.5 mb-4">
+                            {ALL_PRODUCTS.filter((p) => p.categoryId === 'cement-concrete-equipment').map((prod) => {
+                              const meta = PRODUCT_MENU_META[prod.slug] || PRODUCT_MENU_META[prod.id] || { displayName: prod.name };
+                              return (
+                                <button
+                                  key={prod.id}
+                                  onClick={() => {
+                                    setIsProductsDropdownOpen(false);
+                                    navigate(`/products/${prod.categoryId}/${prod.slug}`);
+                                  }}
+                                  className="group/item w-full text-left py-1.5 px-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all flex items-center justify-between text-xs"
+                                >
+                                  <div className="flex items-center gap-2 min-w-0 pr-1">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400 group-hover/item:bg-red-600 group-hover/item:scale-125 transition-all shrink-0" />
+                                    <span className="font-semibold text-slate-800 group-hover/item:text-red-600 truncate">
+                                      {meta.displayName}
+                                    </span>
+                                  </div>
+                                  {meta.badge && (
+                                    <span className="text-[10px] font-mono font-medium px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 group-hover/item:bg-red-100 group-hover/item:text-red-700 shrink-0">
+                                      {meta.badge}
+                                    </span>
+                                  )}
+                                </button>
+                              );
+                            })}
+                          </div>
+
+                          {/* Custom Engineering Consultation Mini Card */}
+                          <div className="p-3 rounded-lg bg-gradient-to-br from-slate-900 to-slate-800 text-white space-y-2 shadow-xs">
+                            <div className="flex items-center gap-1 text-[11px] font-bold text-red-400 uppercase tracking-wider">
+                              <Sparkles className="w-3.5 h-3.5" /> Custom Engineering
+                            </div>
+                            <p className="text-[10.5px] text-slate-300 leading-relaxed">
+                              Need customized capacity or site layout engineering?
+                            </p>
+                            <button
+                              onClick={() => {
+                                setIsProductsDropdownOpen(false);
+                                openQuoteModal();
+                              }}
+                              className="w-full py-1.5 px-2 bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold rounded text-center transition-colors shadow-2xs"
+                            >
+                              Consult an Engineer
+                            </button>
+                          </div>
+                        </div>
+
+                        <button
+                          onClick={() => {
+                            setIsProductsDropdownOpen(false);
+                            navigate('/products/cement-concrete-equipment');
+                          }}
+                          className="mt-3 pt-2.5 border-t border-slate-200 text-xs font-bold text-red-600 hover:text-red-700 flex items-center gap-1"
+                        >
+                          Explore Concrete Equipment <ArrowRight className="w-3 h-3" />
+                        </button>
+                      </div>
+
                     </div>
 
-                    <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                      <span>Need engineering assistance selecting machinery?</span>
-                      <button
-                        onClick={() => {
-                          setIsProductsDropdownOpen(false);
-                          openQuoteModal();
-                        }}
-                        className="font-bold text-slate-900 hover:text-red-600"
+                    {/* Bottom strip */}
+                    <div className="mt-4 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                        <span>Certified to IRC, MORTH & IS specifications • 28+ Years Manufacturing Legacy</span>
+                      </div>
+                      <a
+                        href="tel:+919825073095"
+                        className="font-bold text-slate-900 hover:text-red-600 inline-flex items-center gap-1.5"
                       >
-                        Consult an Engineer
-                      </button>
+                        <PhoneCall className="w-3.5 h-3.5 text-red-600" /> +91 98250 73095
+                      </a>
                     </div>
                   </div>
                 )}
@@ -286,51 +521,100 @@ export const Header: React.FC = () => {
                 About Us
               </button>
 
-              {/* Products with accordion */}
-              <div className="border border-slate-200 rounded-lg overflow-hidden">
-                <button
-                  onClick={() => {
-                    navigate('/products');
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="w-full text-left px-3 py-2.5 bg-slate-50 text-base font-bold text-slate-900 border-b border-slate-200 flex items-center justify-between"
-                >
-                  <span>All Products</span>
-                  <span className="text-xs text-red-600 font-normal">View All</span>
-                </button>
+              {/* Products Directory Section for Mobile */}
+              <div className="border border-slate-200 rounded-xl overflow-hidden bg-slate-50/50 shadow-2xs">
+                {/* Header with All Products Link */}
+                <div className="px-3.5 py-3 bg-white border-b border-slate-200 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-red-600" />
+                    <span className="text-sm font-black text-slate-900 uppercase tracking-wider">
+                      Machinery Directory
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => {
+                      navigate('/products');
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="text-xs font-bold text-red-600 hover:text-red-700 flex items-center gap-1"
+                  >
+                    All 17 Models <ArrowRight className="w-3 h-3" />
+                  </button>
+                </div>
 
-                <div className="p-2 space-y-1">
+                {/* Category Switcher Tabs */}
+                <div className="p-2 bg-slate-100 border-b border-slate-200 flex gap-1.5 overflow-x-auto no-scrollbar">
                   {PRODUCT_CATEGORIES.map((cat) => (
-                    <div key={cat.id} className="border-b border-slate-100 last:border-0 pb-1">
-                      <button
-                        onClick={() =>
-                          setMobileExpandedCat(mobileExpandedCat === cat.id ? null : cat.id)
-                        }
-                        className="w-full text-left px-2 py-2 flex items-center justify-between text-sm font-semibold text-slate-800"
+                    <button
+                      key={cat.id}
+                      onClick={() => setMobileSelectedCat(cat.id)}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-colors flex items-center gap-1.5 ${
+                        mobileSelectedCat === cat.id
+                          ? 'bg-[#DE1F27] text-white shadow-xs'
+                          : 'bg-white text-slate-700 hover:text-slate-900 border border-slate-200'
+                      }`}
+                    >
+                      <span>{cat.shortName}</span>
+                      <span
+                        className={`text-[10px] font-mono px-1.5 py-0.2 rounded ${
+                          mobileSelectedCat === cat.id
+                            ? 'bg-red-800/60 text-white'
+                            : 'bg-slate-100 text-slate-600'
+                        }`}
                       >
-                        <span>{cat.name}</span>
-                        <ChevronDown
-                          className={`w-4 h-4 text-slate-400 transition-transform ${
-                            mobileExpandedCat === cat.id ? 'rotate-180' : ''
-                          }`}
-                        />
-                      </button>
-
-                      {mobileExpandedCat === cat.id && (
-                        <div className="pl-3 pr-2 py-1 space-y-1.5 text-xs">
-                          <button
-                            onClick={() => {
-                              navigate(`/products/${cat.slug}`);
-                              setIsMobileMenuOpen(false);
-                            }}
-                            className="block w-full text-left font-bold text-red-600 py-1"
-                          >
-                            Explore All {cat.productCount} Products →
-                          </button>
-                        </div>
-                      )}
-                    </div>
+                        {cat.productCount}
+                      </span>
+                    </button>
                   ))}
+                </div>
+
+                {/* Selected Category Products List */}
+                <div className="p-2 space-y-1 bg-white max-h-[340px] overflow-y-auto">
+                  {ALL_PRODUCTS.filter((p) => p.categoryId === mobileSelectedCat).map((prod) => {
+                    const meta = PRODUCT_MENU_META[prod.slug] || PRODUCT_MENU_META[prod.id] || { displayName: prod.name };
+                    return (
+                      <button
+                        key={prod.id}
+                        onClick={() => {
+                          navigate(`/products/${prod.categoryId}/${prod.slug}`);
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className="w-full text-left p-2.5 rounded-lg hover:bg-red-50/70 border border-slate-100 hover:border-red-200 transition-all flex items-center justify-between group"
+                      >
+                        <div className="min-w-0 pr-2">
+                          <div className="font-bold text-xs text-slate-900 group-hover:text-red-600 leading-tight">
+                            {meta.displayName}
+                          </div>
+                          <div className="text-[10.5px] font-mono text-slate-500 mt-0.5">
+                            {prod.code}
+                          </div>
+                        </div>
+                        {meta.badge && (
+                          <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-700 group-hover:bg-red-100 group-hover:text-red-700 shrink-0">
+                            {meta.badge}
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+
+                  {/* View Full Category Page Link */}
+                  {(() => {
+                    const currentCat = PRODUCT_CATEGORIES.find((c) => c.id === mobileSelectedCat);
+                    if (!currentCat) return null;
+                    return (
+                      <button
+                        onClick={() => {
+                          navigate(`/products/${currentCat.slug}`);
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className="w-full mt-2 pt-2 pb-1 text-center text-xs font-bold text-red-600 hover:text-red-700 flex items-center justify-center gap-1.5 border-t border-slate-100"
+                      >
+                        <span>View All {currentCat.productCount} in {currentCat.name}</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+                    );
+                  })()}
                 </div>
               </div>
 

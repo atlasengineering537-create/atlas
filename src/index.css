@@ -7,17 +7,38 @@
     --font-mono: 'JetBrains Mono', monospace;
   }
 
+  html {
+    /* 1 step bigger base font size across all pages for enhanced readability */
+    font-size: 17px;
+  }
+
   body {
     font-family: var(--font-sans);
     color: #1e293b;
     background-color: #ffffff;
     -webkit-font-smoothing: antialiased;
+    font-size: 1rem;
+    line-height: 1.6;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
+}
+
+/* Ensure small fonts across all pages are bumped up 1 step for effortless readability */
+.text-xs {
+  font-size: 0.8125rem !important; /* ~13.8px instead of 12px */
+  line-height: 1.35rem !important;
+}
+
+.text-2xs,
+.text-\[10px\],
+.text-\[10\.5px\],
+.text-\[11px\] {
+  font-size: 0.75rem !important; /* ~12.8px instead of 10px-11px */
+  line-height: 1.2rem !important;
 }
 
 /* Engineering blueprint & subtle industrial accents */

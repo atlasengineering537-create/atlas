@@ -14,26 +14,26 @@ export const Footer: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-red-50/70 via-slate-50 to-white border border-red-100">
             <div className="max-w-2xl">
-              <span className="text-xs font-bold uppercase tracking-wider text-red-600 block mb-1">
+              <span className="text-sm font-bold uppercase tracking-wider text-red-600 block mb-1">
                 Engineering Consultation & Machinery Quotes
               </span>
               <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
                 Planning an Infrastructure Project or Plant Upgrade?
               </h3>
-              <p className="text-sm text-slate-600 mt-1.5">
+              <p className="text-base text-slate-600 mt-1.5">
                 Our seasoned engineering team in Ahmedabad assists contractors and government infrastructure developers with custom machinery configurations.
               </p>
             </div>
             <div className="flex items-center gap-3 shrink-0">
               <button
                 onClick={() => openQuoteModal()}
-                className="px-6 py-3 text-sm font-bold text-white bg-[#DE1F27] hover:bg-[#B91C1C] rounded-lg shadow-sm hover:shadow transition-all"
+                className="px-6 py-3 text-base font-bold text-white bg-[#DE1F27] hover:bg-[#B91C1C] rounded-lg shadow-sm hover:shadow transition-all"
               >
                 Request a Quote
               </button>
               <button
                 onClick={() => navigate('/contact')}
-                className="px-5 py-3 text-sm font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 rounded-lg transition-all"
+                className="px-5 py-3 text-base font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 rounded-lg transition-all"
               >
                 Contact Factory
               </button>
@@ -51,10 +51,10 @@ export const Footer: React.FC = () => {
             <button onClick={() => navigate('/')} className="text-left focus:outline-none">
               <AtlasLogo className="h-10" variant="full" />
             </button>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-md pt-2">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-md pt-2">
               Since 1997, Atlas Engineering has been a trusted pioneer in manufacturing high-performance bitumen modification and road construction equipment. Driven by nearly three decades of industry expertise, we design and build cutting-edge machinery that powers critical infrastructure projects across India and around the globe.
             </p>
-            <div className="flex items-center gap-6 pt-2 text-xs text-slate-500 font-medium">
+            <div className="flex items-center gap-6 pt-2 text-sm text-slate-500 font-medium">
               <span className="inline-flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-red-600" /> Since 1997
               </span>
@@ -66,10 +66,10 @@ export const Footer: React.FC = () => {
 
           {/* Column 3: Quick Links */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+            <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
               Quick Links
             </h4>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2.5 text-base">
               <li>
                 <button
                   onClick={() => navigate('/')}
@@ -115,10 +115,10 @@ export const Footer: React.FC = () => {
 
           {/* Column 4: Product Categories */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+            <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
               Equipment Categories
             </h4>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2.5 text-base">
               {PRODUCT_CATEGORIES.map((cat) => (
                 <li key={cat.id}>
                   <button
@@ -126,7 +126,7 @@ export const Footer: React.FC = () => {
                     className="hover:text-red-600 transition-colors text-left group flex items-center justify-between w-full"
                   >
                     <span>{cat.name}</span>
-                    <span className="text-xs text-slate-400 group-hover:text-red-600 font-mono">
+                    <span className="text-sm text-slate-400 group-hover:text-red-600 font-mono">
                       ({cat.productCount})
                     </span>
                   </button>
@@ -134,8 +134,8 @@ export const Footer: React.FC = () => {
               ))}
             </ul>
             <div className="pt-2">
-              <span className="text-xs text-slate-400 block mb-1">Primary Focus:</span>
-              <span className="text-xs font-semibold text-slate-700">
+              <span className="text-sm text-slate-400 block mb-1">Primary Focus:</span>
+              <span className="text-sm font-semibold text-slate-700">
                 Bitumen Modify Equipment (10 Units)
               </span>
             </div>
@@ -143,10 +143,10 @@ export const Footer: React.FC = () => {
 
           {/* Column 5: Verified Contact Details */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+            <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
               Manufacturing Works
             </h4>
-            <div className="space-y-2.5 text-xs text-slate-600">
+            <div className="space-y-2.5 text-sm text-slate-600">
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
                 <span className="leading-relaxed">
@@ -179,7 +179,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar: Copyright & Compliance */}
-        <div className="mt-12 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div className="mt-12 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
           <p>
             © 1997–{new Date().getFullYear()} ATLAS ENGINEERING. All rights reserved.
           </p>

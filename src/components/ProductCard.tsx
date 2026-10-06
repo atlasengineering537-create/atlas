@@ -27,12 +27,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
           
           {/* Subtle model code chip */}
-          <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-xs font-mono font-semibold px-2 py-0.5 rounded text-slate-700 shadow-xs">
+          <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-sm font-mono font-semibold px-2 py-0.5 rounded text-slate-700 shadow-xs">
             {product.code}
           </div>
 
           {product.isPlaceholder && (
-            <div className="absolute top-3 right-3 bg-amber-500/90 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+            <div className="absolute top-3 right-3 bg-amber-500/90 text-white text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wider">
               Ready for Specs
             </div>
           )}
@@ -41,7 +41,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {/* Product Body */}
         <div className="p-4 sm:p-5">
           {/* Unboxed Metadata (Zero-Pill Discipline) */}
-          <div className="flex items-center gap-2 text-xs font-medium text-slate-500 mb-1.5">
+          <div className="flex items-center gap-2 text-sm font-medium text-slate-500 mb-1.5">
             <span className="text-red-600 font-bold">{product.categoryName}</span>
             <span aria-hidden="true">·</span>
             <span>Atlas Series</span>
@@ -54,7 +54,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             {product.name}
           </h4>
 
-          <p className="mt-2 text-sm text-slate-700 leading-relaxed line-clamp-2 font-normal">
+          <p className="mt-2 text-sm sm:text-base text-slate-700 leading-relaxed line-clamp-2 font-normal">
             {product.shortDescription}
           </p>
 
@@ -70,7 +70,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <div className="px-4 sm:px-5 pb-4 pt-2 flex items-center justify-between gap-2 border-t border-slate-100 bg-slate-50/50">
         <button
           onClick={() => navigate(`/products/${product.categoryId}/${product.slug}`)}
-          className="text-sm font-bold text-slate-800 hover:text-red-600 inline-flex items-center gap-1.5 py-1.5 cursor-pointer"
+          className="text-sm sm:text-base font-bold text-slate-800 hover:text-red-600 inline-flex items-center gap-1.5 py-1.5 cursor-pointer"
         >
           View Details <ArrowRight className="w-4 h-4" />
         </button>

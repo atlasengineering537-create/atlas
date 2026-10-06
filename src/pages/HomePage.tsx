@@ -241,13 +241,13 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="max-w-2xl mb-12">
-            <span className="text-xs font-bold text-red-600 uppercase tracking-wider block mb-1">
+            <span className="text-sm font-bold text-red-600 uppercase tracking-wider block mb-1">
               THE ATLAS ADVANTAGE
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
               Why Choose Atlas Engineering
             </h2>
-            <p className="mt-2 text-sm sm:text-base text-slate-600">
+            <p className="mt-2 text-base text-slate-600">
               Built on strong client relationships, verified engineering rigour, and dedicated after-sales commitment across every deployment.
             </p>
           </div>
@@ -262,21 +262,21 @@ export const HomePage: React.FC = () => {
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-xs font-mono font-bold text-slate-400 group-hover:text-red-600 transition-colors">
+                      <span className="text-sm font-mono font-bold text-slate-400 group-hover:text-red-600 transition-colors">
                         {item.index}
                       </span>
                       <div className="w-9 h-9 rounded-lg bg-slate-50 group-hover:bg-red-50 text-slate-700 group-hover:text-red-600 transition-colors flex items-center justify-center">
                         <Icon className="w-4 h-4" />
                       </div>
                     </div>
-                    <h3 className="text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors mb-2">
+                    <h3 className="text-lg font-bold text-slate-900 group-hover:text-red-600 transition-colors mb-2">
                       {item.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                       {item.description}
                     </p>
                   </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center text-[11px] font-bold text-slate-400 group-hover:text-red-600 transition-colors">
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center text-xs font-bold text-slate-400 group-hover:text-red-600 transition-colors">
                     <span>Engineering Principle</span>
                   </div>
                 </div>
@@ -286,23 +286,23 @@ export const HomePage: React.FC = () => {
             {/* 6th Card: Quote / Engineering Support Callout */}
             <div className="p-6 rounded-xl border border-red-200 bg-gradient-to-br from-red-50/60 to-white flex flex-col justify-between">
               <div>
-                <span className="text-[11px] font-bold text-red-600 uppercase tracking-wider block mb-1">
+                <span className="text-xs font-bold text-red-600 uppercase tracking-wider block mb-1">
                   Custom Engineering
                 </span>
-                <h3 className="text-base font-bold text-slate-900 mb-2">
+                <h3 className="text-lg font-bold text-slate-900 mb-2">
                   Tailored Project Solutions
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                   Have unique highway specifications or site footprint constraints? Consult directly with Sunil L. Mistry and our engineering team in Ahmedabad.
                 </p>
               </div>
               <div className="pt-4 border-t border-red-100">
                 <button
                   onClick={() => openQuoteModal()}
-                  className="w-full py-2.5 px-4 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-xs font-bold rounded-lg shadow-xs transition-colors flex items-center justify-center gap-1.5"
+                  className="w-full py-3 px-4 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm font-bold rounded-lg shadow-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                 >
                   <span>Talk to an Engineer</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
@@ -400,47 +400,47 @@ export const HomePage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
             <div className="lg:col-span-7 space-y-5">
-              <span className="text-xs font-bold tracking-widest uppercase text-red-400 block">
+              <span className="text-sm font-bold tracking-widest uppercase text-red-400 block">
                 FLAGSHIP ENGINEERING FOCUS
               </span>
               <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight">
                 Advanced Bitumen Modification Solutions
               </h2>
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+              <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
                 As pioneers in bitumen engineering, Atlas Engineering manufactures specialized equipment for polymer modified bitumen (PMB), crumb rubber modified bitumen (CRMB), bitumen decanting, and high-shear emulsion processing.
               </p>
 
               {/* 5 Core Principles Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div className="p-3.5 rounded-lg bg-white/10 backdrop-blur-xs border border-white/10">
-                  <div className="text-xs font-bold text-red-400 mb-1">Precision Engineering</div>
-                  <div className="text-xs text-slate-300">Continuous blending accuracy for required polymer dispersion.</div>
+                <div className="p-4 rounded-xl bg-white/10 backdrop-blur-xs border border-white/10">
+                  <div className="text-sm font-bold text-red-400 mb-1">Precision Engineering</div>
+                  <div className="text-sm text-slate-200">Continuous blending accuracy for required polymer dispersion.</div>
                 </div>
-                <div className="p-3.5 rounded-lg bg-white/10 backdrop-blur-xs border border-white/10">
-                  <div className="text-xs font-bold text-red-400 mb-1">Consistent Performance</div>
-                  <div className="text-xs text-slate-300">Uniform heating profiles preventing thermal degradation.</div>
+                <div className="p-4 rounded-xl bg-white/10 backdrop-blur-xs border border-white/10">
+                  <div className="text-sm font-bold text-red-400 mb-1">Consistent Performance</div>
+                  <div className="text-sm text-slate-200">Uniform heating profiles preventing thermal degradation.</div>
                 </div>
-                <div className="p-3.5 rounded-lg bg-white/10 backdrop-blur-xs border border-white/10">
-                  <div className="text-xs font-bold text-red-400 mb-1">Industrial Durability</div>
-                  <div className="text-xs text-slate-300">Heavy-gauge steel construction designed for non-stop processing.</div>
+                <div className="p-4 rounded-xl bg-white/10 backdrop-blur-xs border border-white/10">
+                  <div className="text-sm font-bold text-red-400 mb-1">Industrial Durability</div>
+                  <div className="text-sm text-slate-200">Heavy-gauge steel construction designed for non-stop processing.</div>
                 </div>
-                <div className="p-3.5 rounded-lg bg-white/10 backdrop-blur-xs border border-white/10">
-                  <div className="text-xs font-bold text-red-400 mb-1">Application-Focused Design</div>
-                  <div className="text-xs text-slate-300">Customized drum decanters, storage agitators, and dosing lines.</div>
+                <div className="p-4 rounded-xl bg-white/10 backdrop-blur-xs border border-white/10">
+                  <div className="text-sm font-bold text-red-400 mb-1">Application-Focused Design</div>
+                  <div className="text-sm text-slate-200">Customized drum decanters, storage agitators, and dosing lines.</div>
                 </div>
               </div>
 
               <div className="pt-3 flex flex-wrap items-center gap-4">
                 <button
                   onClick={() => navigate('/products/bitumen-modify-equipment')}
-                  className="px-6 py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold rounded-lg shadow-md transition-all flex items-center gap-2"
+                  className="px-6 py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm sm:text-base font-bold rounded-lg shadow-md transition-all flex items-center gap-2 cursor-pointer"
                 >
                   <span>Explore Bitumen Equipment (10 Models)</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => openQuoteModal('Bitumen Modification Plant')}
-                  className="px-5 py-3 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold rounded-lg border border-white/20 transition-colors"
+                  className="px-5 py-3 bg-white/10 hover:bg-white/20 text-white text-sm sm:text-base font-bold rounded-lg border border-white/20 transition-colors cursor-pointer"
                 >
                   Request Technical Proposal
                 </button>
@@ -521,13 +521,13 @@ export const HomePage: React.FC = () => {
                 key={idx}
                 className="group p-5 rounded-xl border border-slate-200 hover:border-red-300 hover:shadow-md bg-slate-50/50 hover:bg-white transition-all duration-200"
               >
-                <div className="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center font-mono font-bold text-xs mb-3 group-hover:bg-[#DE1F27] group-hover:text-white transition-colors">
+                <div className="w-9 h-9 rounded-lg bg-red-50 text-red-600 flex items-center justify-center font-mono font-bold text-sm mb-3 group-hover:bg-[#DE1F27] group-hover:text-white transition-colors">
                   {(idx + 1).toString().padStart(2, '0')}
                 </div>
-                <h3 className="text-sm font-bold text-slate-900 group-hover:text-red-600 transition-colors mb-1">
+                <h3 className="text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors mb-1.5">
                   {app.title}
                 </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <p className="text-sm text-slate-600 leading-relaxed">
                   {app.desc}
                 </p>
               </div>
@@ -536,21 +536,21 @@ export const HomePage: React.FC = () => {
             {/* Custom Engineering Application Block */}
             <div className="p-5 rounded-xl border border-red-200 bg-red-50/40 flex flex-col justify-between">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-red-600 block mb-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-red-600 block mb-1">
                   Custom Applications
                 </span>
-                <h3 className="text-sm font-bold text-slate-900 mb-1">
+                <h3 className="text-base font-bold text-slate-900 mb-1.5">
                   Project Specific Needs
                 </h3>
-                <p className="text-xs text-slate-600">
+                <p className="text-sm text-slate-600 leading-relaxed">
                   Custom engineering configurations built to exact site requirements and aggregate properties.
                 </p>
               </div>
               <button
                 onClick={() => openQuoteModal()}
-                className="mt-3 text-xs font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-1"
+                className="mt-3.5 text-sm font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-1 cursor-pointer"
               >
-                Consult Our Team <ArrowRight className="w-3 h-3" />
+                Consult Our Team <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
@@ -597,8 +597,8 @@ export const HomePage: React.FC = () => {
                     <div className="w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto">
                       <CheckCircle2 className="w-6 h-6" />
                     </div>
-                    <h3 className="text-lg font-bold text-slate-900">Enquiry Received</h3>
-                    <p className="text-xs text-slate-600 max-w-sm mx-auto">
+                    <h3 className="text-xl font-bold text-slate-900">Enquiry Received</h3>
+                    <p className="text-sm text-slate-600 max-w-sm mx-auto">
                       Thank you. We will contact you with equipment specifications and pricing shortly.
                     </p>
                   </div>
@@ -606,7 +606,7 @@ export const HomePage: React.FC = () => {
                   <form onSubmit={handleLeadSubmit} className="space-y-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                        <label className="block text-sm font-bold text-slate-700 mb-1.5">
                           Full Name *
                         </label>
                         <input
@@ -615,11 +615,11 @@ export const HomePage: React.FC = () => {
                           value={leadForm.name}
                           onChange={(e) => setLeadForm({ ...leadForm, name: e.target.value })}
                           placeholder="Your name"
-                          className="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
+                          className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                        <label className="block text-sm font-bold text-slate-700 mb-1.5">
                           Company Name *
                         </label>
                         <input
@@ -628,14 +628,14 @@ export const HomePage: React.FC = () => {
                           value={leadForm.company}
                           onChange={(e) => setLeadForm({ ...leadForm, company: e.target.value })}
                           placeholder="Company name"
-                          className="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
+                          className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
                         />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                        <label className="block text-sm font-bold text-slate-700 mb-1.5">
                           Phone Number *
                         </label>
                         <input
@@ -644,11 +644,11 @@ export const HomePage: React.FC = () => {
                           value={leadForm.phone}
                           onChange={(e) => setLeadForm({ ...leadForm, phone: e.target.value })}
                           placeholder="+91..."
-                          className="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
+                          className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                        <label className="block text-sm font-bold text-slate-700 mb-1.5">
                           Email Address *
                         </label>
                         <input
@@ -657,19 +657,19 @@ export const HomePage: React.FC = () => {
                           value={leadForm.email}
                           onChange={(e) => setLeadForm({ ...leadForm, email: e.target.value })}
                           placeholder="name@company.com"
-                          className="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
+                          className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">
+                      <label className="block text-sm font-bold text-slate-700 mb-1.5">
                         Equipment / Category Needed
                       </label>
                       <select
                         value={leadForm.product}
                         onChange={(e) => setLeadForm({ ...leadForm, product: e.target.value })}
-                        className="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none bg-white"
+                        className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none bg-white"
                       >
                         <option value="Bitumen Modify Equipment">Bitumen Modify Equipment (10 Models)</option>
                         <option value="Road Construction Equipment">Road Construction Equipment (6 Models)</option>
@@ -679,23 +679,23 @@ export const HomePage: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">
+                      <label className="block text-sm font-bold text-slate-700 mb-1.5">
                         Project / Capacity Requirements
                       </label>
                       <textarea
-                        rows={2}
+                        rows={3}
                         value={leadForm.message}
                         onChange={(e) => setLeadForm({ ...leadForm, message: e.target.value })}
                         placeholder="State your required capacity, site location or timeline..."
-                        className="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none resize-none"
+                        className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none resize-none"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full py-2.5 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-xs font-bold rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2"
+                      className="w-full py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm sm:text-base font-bold rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2 cursor-pointer"
                     >
-                      <Send className="w-3.5 h-3.5" /> Submit Technical Enquiry
+                      <Send className="w-4 h-4" /> Submit Technical Enquiry
                     </button>
                   </form>
                 )}

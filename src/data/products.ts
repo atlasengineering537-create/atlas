@@ -198,6 +198,142 @@ export interface ColdMixGuideData {
   websiteSummary: string;
 }
 
+export interface StorageTankComponentRow {
+  component: string;
+  function: string;
+}
+
+export interface HeatingArrangementSection {
+  title: string;
+  intro: string;
+  basicArrangement: string;
+  componentsTable: StorageTankComponentRow[];
+  advantages: string[];
+  disadvantages: string[];
+  note?: string;
+}
+
+export interface StorageTankGuideData {
+  intro: string;
+  arrangementsIntro: string;
+  arrangementsList: string[];
+  directHeating: HeatingArrangementSection;
+  indirectHeating: HeatingArrangementSection;
+}
+
+export interface EmulsionTankComponentRow {
+  component: string;
+  function: string;
+}
+
+export interface HorizontalEmulsionTankGuideData {
+  intro: string;
+  basicConstruction: {
+    intro: string;
+    componentsTable: EmulsionTankComponentRow[];
+  };
+  typicalSizes: {
+    capacities: string[];
+    example: string;
+  };
+  designConsiderations: {
+    intro: string;
+    points: string[];
+    importantNotice: string;
+  };
+  specifications: {
+    title: string;
+    specs: { parameter: string; value: string }[];
+  };
+  applications: {
+    title: string;
+    intro: string;
+    storedEmulsions: string[];
+    appliedUses: string;
+    plantSizingNote: string;
+  };
+}
+
+export interface DrumFillingSpecRow {
+  parameter: string;
+  emulsionSpec: string;
+  hotBitumenSpec: string;
+}
+
+export interface DrumFillingFeatureItem {
+  title: string;
+  description: string;
+}
+
+export interface DrumFillingOperationItem {
+  title: string;
+  description: string;
+}
+
+export interface DrumFillingApplicationItem {
+  sector: string;
+  description: string;
+}
+
+export interface DrumFillingGuideData {
+  intro: string;
+  specsTable: DrumFillingSpecRow[];
+  features: DrumFillingFeatureItem[];
+  operationModes: DrumFillingOperationItem[];
+  applications: DrumFillingApplicationItem[];
+}
+
+export interface BagFillingSpecRow {
+  parameter: string;
+  specification: string;
+}
+
+export interface BagFillingFeatureItem {
+  title: string;
+  description: string;
+}
+
+export interface BagFillingWorkflowStep {
+  stepNumber: number;
+  title: string;
+  description: string;
+}
+
+export interface BagFillingCompatibilityItem {
+  bagType: string;
+  description: string;
+}
+
+export interface BagFillingGuideData {
+  intro: string;
+  specsTable: BagFillingSpecRow[];
+  features: BagFillingFeatureItem[];
+  workflowSteps: BagFillingWorkflowStep[];
+  bagCompatibility: BagFillingCompatibilityItem[];
+}
+
+export interface ThermicHeaterSpecRow {
+  parameter: string;
+  specification: string;
+}
+
+export interface ThermicHeaterComponentItem {
+  title: string;
+  description: string;
+}
+
+export interface ThermicHeaterGuideData {
+  intro: string;
+  specsTable: ThermicHeaterSpecRow[];
+  components: ThermicHeaterComponentItem[];
+  systemLayout: {
+    intro: string;
+    flowArrangement: string;
+    description: string;
+  };
+  applications: string[];
+}
+
 export interface Product {
   id: string;
   slug: string;
@@ -218,6 +354,11 @@ export interface Product {
   pmbCrmbGuide?: PmbCrmbGuideData;
   oxidizationGuide?: OxidizationGuideData;
   coldMixGuide?: ColdMixGuideData;
+  storageTankGuide?: StorageTankGuideData;
+  horizontalTankGuide?: HorizontalEmulsionTankGuideData;
+  drumFillingGuide?: DrumFillingGuideData;
+  bagFillingGuide?: BagFillingGuideData;
+  thermicHeaterGuide?: ThermicHeaterGuideData;
   heroImage: string;
   gallery: string[];
   isPlaceholder: boolean;
@@ -374,42 +515,76 @@ export const BITUMEN_PRODUCTS: Product[] = [
     name: 'BITUMEN EMULSION PLANT',
     code: 'ATL-BEP-01',
     shortDescription: 'A facility designed to produce a stable, liquid mixture of bitumen, water, and an emulsifying agent for use in road construction and maintenance, particularly in cold applications.',
-    description: 'A Bitumen Emulsion Plant is an industrial manufacturing facility designed to produce a stable, liquid mixture of bitumen, water, and an emulsifying agent for use in road construction and pavement maintenance. The process utilizes a high-shear colloid mill to disperse hot bitumen into micro-fine droplets within a chemically stabilized water phase.',
+    description: 'A BITUMEN EMULSION PLANT IS A FACILITY DESIGNED TO PRODUCE A STABLE, LIQUID MIXTURE OF BITUMEN, WATER, AND AN EMULSIFYING AGENT FOR USE IN ROAD CONSTRUCTION AND MAINTENANCE, PARTICULARLY IN COLD APPLICATIONS. THIS PROCESS IS SAFER AND MORE ENERGY-EFFICIENT THAN USING HOT BITUMEN.',
     highlights: [
+      'Produces stable liquid mixture of bitumen, water, and emulsifying agent',
       'High-Shear Colloid Mill dispersing heated bitumen into microscopic droplets (1–10 microns)',
       'Automated PLC-based system monitoring flow rates, temperatures, and dosing ratios',
       'Batch Type, Continuous Type, Stationary, or Mobile/Containerized configurations',
-      'Complies with IS 8887, ASTM D977/D2397, and AASHTO M140/M208 standards',
-      'Supports Rapid Setting (RS/CRS), Medium Setting (MS/CMS), Slow Setting (SS/CSS), and PMBE',
+      'Supports Rapid-Setting (RS), Medium-Setting (MS), and Slow-Setting (SS) Emulsions',
     ],
     features: [
       {
-        title: 'Bitumen Storage & Heating Tanks',
-        description: 'Insulated tanks that store raw bitumen at around 150–160°C to reduce its viscosity.',
+        title: 'BITUMEN STORAGE TANKS',
+        description: 'INSULATED AND OFTEN HEATED TANKS THAT STORE RAW BITUMEN AT AROUND 150–160°C TO REDUCE ITS VISCOSITY.',
       },
       {
-        title: 'Water Phase Preparation Tank',
-        description: 'Stainless steel tank with precision dosing for water, emulsifiers, and pH-adjusting chemicals at optimal temperatures.',
+        title: 'WATER TANKS',
+        description: 'STORE WATER, WHICH IS HEATED TO AN OPTIMAL TEMPERATURE (TYPICALLY 40–70°C).',
       },
       {
-        title: 'High-Shear Colloid Mill',
-        description: 'The core dispersion unit creating a uniform 1–10 micron emulsion droplet distribution.',
+        title: 'EMULSIFIER DOSING SYSTEM & CHEMICAL TANKS',
+        description: 'SEPARATE TANKS (OFTEN STAINLESS STEEL FOR CORROSION RESISTANCE) AND PRECISE DOSING UNITS FOR STORING AND ADDING EMULSIFIERS, ACIDS/ALKALIS (FOR PH CONTROL), AND OTHER ADDITIVES TO THE WATER PHASE.',
       },
       {
-        title: 'Automated PLC Control Panel',
-        description: 'Regulates flow rates, temperatures, and continuous dosing ratios with safety interlocks.',
+        title: 'COLLOID MILL',
+        description: 'THE "HEART" OF THE PLANT, THIS HIGH-SHEAR MIXER DISPERSES THE HEATED BITUMEN INTO MICROSCOPIC DROPLETS (1–10 MICRONS) WITHIN THE WATER PHASE TO FORM A STABLE EMULSION.',
       },
       {
-        title: 'Finished Emulsion Storage Tanks',
-        description: 'Storage tanks equipped with slow-speed agitators to prevent settling prior to dispatch.',
+        title: 'CONTROL PANEL',
+        description: 'AN AUTOMATED (OFTEN PLC-BASED) SYSTEM THAT MONITORS AND REGULATES FLOW RATES, TEMPERATURES, AND DOSING RATIOS TO ENSURE CONSISTENT PRODUCT QUALITY AND SAFETY.',
+      },
+      {
+        title: 'STORAGE TANKS',
+        description: 'TANKS FOR THE FINISHED EMULSION, OFTEN EQUIPPED WITH AGITATORS TO PREVENT SETTLING.',
+      },
+      {
+        title: 'HEATING/COOLING SYSTEMS',
+        description: 'SYSTEMS (THERMAL OIL OR ELECTRIC) FOR HEATING THE BITUMEN/WATER AND, IN SOME CASES, COOLING THE FINAL EMULSION BEFORE STORAGE.',
+      },
+    ],
+    productionProcess: [
+      'HEATING THE RAW BITUMEN AND WATER SEPARATELY TO SPECIFIC TEMPERATURES.',
+      'PREPARING THE WATER PHASE BY MIXING WATER WITH PRECISE AMOUNTS OF EMULSIFIERS AND PH-ADJUSTING AGENTS IN A PREPARATION TANK.',
+      'MILLING BOTH HEATED STREAMS SIMULTANEOUSLY IN A COLLOID MILL UNDER HIGH SHEAR TO CREATE A FINE, STABLE DISPERSION OF BITUMEN DROPLETS IN THE WATER.',
+      'COOLING AND TRANSFERRING THE FINISHED EMULSION TO STORAGE TANKS.',
+      'QUALITY CONTROL TESTING TO ENSURE THE FINAL PRODUCT MEETS INDUSTRY STANDARDS (E.G., VISCOSITY, STABILITY, SETTING TIME).',
+    ],
+    plantTypes: [
+      {
+        title: 'BATCH TYPE',
+        description: 'SUITABLE FOR SMALLER VOLUMES AND SPECIFIC PROJECT DEMANDS.',
+      },
+      {
+        title: 'CONTINUOUS TYPE',
+        description: 'DESIGNED FOR HIGH-CAPACITY, LARGE-SCALE, UNINTERRUPTED PRODUCTION.',
+      },
+      {
+        title: 'STATIONARY',
+        description: 'INSTALLED IN A FIXED LOCATION FOR CENTRAL PRODUCTION.',
+      },
+      {
+        title: 'MOBILE/CONTAINERIZED',
+        description: 'BUILT INTO SHIPPING CONTAINERS OR TRAILER-MOUNTED FOR EASY TRANSPORT AND QUICK SETUP ACROSS MULTIPLE PROJECT SITES.',
       },
     ],
     applications: [
-      'Tack Coats & Prime Coats',
-      'Surface Dressing & Chip Sealing',
-      'Cold Mix Asphalt & Premix Carpet',
-      'Slurry Sealing & Micro Surfacing',
-      'Monsoon Pothole Patching & Soil Stabilization',
+      'SURFACE DRESSING',
+      'TACK COATS (BONDING LAYERS OF ASPHALT)',
+      'PRIME COATS (SEALING GRANULAR BASES)',
+      'COLD MIX ASPHALT PRODUCTION',
+      'POTHOLE REPAIR AND CRACK SEALING',
+      'WATERPROOFING APPLICATIONS',
     ],
     emulsionGuide: {
       intro: 'Bitumen emulsions are generally classified by emulsion charge, setting rate, and viscosity. The exact grade names vary by standard (such as IS, ASTM/AASHTO), but the main practical grades are rapid-setting (RS), medium-setting (MS), and slow-setting (SS), plus special grades such as cationic rapid/medium/slow setting and CSS-1/CSS-2.',
@@ -1161,55 +1336,87 @@ Reactor Bottom → Finished Oxidized Bitumen Tank → Packing`,
     categoryName: 'Bitumen Modify Equipment',
     name: 'BITUMEN STORAGE TANK',
     code: 'ATL-BST-05',
-    shortDescription: 'Industrial storage and heating tanks in direct or indirect heating arrangements (Capacity: 20, 30, 50, 75, 100 KL).',
-    description: 'A Bitumen Storage & Heating Tank is used to store bitumen and maintain it at a controlled temperature so that it remains sufficiently fluid for pumping, transfer, mixing, or further processing. Available in Direct Heating and Indirect Heating configurations.',
+    shortDescription: 'A Bitumen Storage & Heating Tank is used to store bitumen and maintain it at a controlled temperature so that it remains sufficiently fluid for pumping, transfer, mixing, or further processing.',
+    description: 'A Bitumen Storage & Heating Tank is used to store bitumen and maintain it at a controlled temperature so that it remains sufficiently fluid for pumping, transfer, mixing, or further processing.',
     highlights: [
-      'Capacities: 20 KL, 30 KL, 50 KL, 75 KL, 100 KL',
-      'Direct Heating (Burner-fired) & Indirect Heating (Thermic Fluid Coils) available',
-      'Heavy-gauge carbon steel shell with high-density mineral wool insulation',
-      'Equipped with level indicator, RTD temperature sensor, and bitumen transfer pump',
+      'Available in Direct Heating Type and Indirect Heating Type configurations',
+      'Direct Heating: Burner-fired arrangement with fast heating for temporary or specific installations',
+      'Indirect Heating: Thermic fluid coil system delivering uniform temperature without localized overheating',
+      'Heavy-gauge carbon steel tank shell with high-efficiency thermal insulation',
+      'Equipped with precision temperature sensors, level indicator, and heavy-duty bitumen transfer pump',
     ],
-    features: [
-      {
-        title: 'DIRECT HEATING TYPE',
-        description: 'Supplies heat directly through an engineered burner flame and internal heating tube for fast heating.',
+    features: [],
+    applications: [],
+    specifications: [],
+    storageTankGuide: {
+      intro: 'A Bitumen Storage & Heating Tank is used to store bitumen and maintain it at a controlled temperature so that it remains sufficiently fluid for pumping, transfer, mixing, or further processing',
+      arrangementsIntro: 'There are two main heating arrangements:',
+      arrangementsList: [
+        '1. Direct Heating Type',
+        '2. Indirect Heating Type',
+      ],
+      directHeating: {
+        title: '1. Direct Heating Type Bitumen Tank',
+        intro: 'In a direct-heating tank, heat is supplied directly to the bitumen through a burner/flame or a direct-fired heating arrangement.',
+        basicArrangement: 'Burner → Heating Zone → Bitumen Tank → Hot Bitumen Outlet',
+        componentsTable: [
+          { component: 'Storage Tank', function: 'Stores bitumen' },
+          { component: 'Burner', function: 'Generates heat' },
+          { component: 'Heating Chamber/Tube', function: 'Transfers heat directly to bitumen' },
+          { component: 'Temperature Sensor', function: 'Controls bitumen temperature' },
+          { component: 'Level Indicator', function: 'Indicates tank level' },
+          { component: 'Insulation', function: 'Reduces heat loss' },
+          { component: 'Pump', function: 'Transfers hot bitumen' },
+          { component: 'Control Panel', function: 'Controls burner and temperature' },
+          { component: 'Vent', function: 'Provides safe vapour/air outlet' },
+        ],
+        advantages: [
+          'Simple heating arrangement',
+          'Relatively low initial equipment cost',
+          'Fast heating can be achieved',
+          'Suitable for some small or temporary installations',
+        ],
+        disadvantages: [
+          'Greater possibility of localized overheating',
+          'More difficult to maintain uniform temperature',
+          'Risk of thermal degradation/coking if poorly designed',
+          'Burner/fire safety requirements are higher',
+          'Less suitable where precise temperature control is important',
+        ],
+        note: 'For higher-quality bitumen processing, direct flame contact with the product should generally be avoided unless the system is specifically engineered for that service.',
       },
-      {
-        title: 'INDIRECT HEATING TYPE',
-        description: 'Thermic fluid circulates through internal multi-pass coils for uniform heating without risk of coking or localized overheating.',
+      indirectHeating: {
+        title: '2. Indirect Heating Type Bitumen Tank',
+        intro: 'In an indirect-heating tank, the bitumen is heated through a heating medium such as thermic fluid or steam. The heating medium circulates through coils or a heat exchanger without directly contacting the bitumen.',
+        basicArrangement: 'Thermic Fluid Heater → Hot Thermic Fluid → Heating Coil → Bitumen → Return to Heater',
+        componentsTable: [
+          { component: 'Storage Tank', function: 'Stores bitumen' },
+          { component: 'Heating Coil', function: 'Transfers heat to bitumen' },
+          { component: 'Thermic Fluid Heater', function: 'Heats thermal oil' },
+          { component: 'Circulation Pump', function: 'Circulates thermic fluid' },
+          { component: 'Expansion Tank', function: 'Accommodates thermal-fluid expansion' },
+          { component: 'Temperature Sensors', function: 'Monitors and controls temperature' },
+          { component: 'Insulation', function: 'Minimizes heat loss' },
+          { component: 'Bitumen Pump', function: 'Transfers heated bitumen' },
+          { component: 'Level Instrument', function: 'Measures tank level' },
+          { component: 'Control Panel/PLC', function: 'Automatic temperature and pump control' },
+        ],
+        advantages: [
+          'Uniform heating',
+          'Better temperature control',
+          'Reduced risk of localized overheating',
+          'Suitable for continuous industrial operation',
+          'Good choice for bitumen storage and processing plants',
+          'Heating system can serve multiple tanks',
+        ],
+        disadvantages: [
+          'Higher initial investment',
+          'Requires thermic-fluid heater and circulation system',
+          'More equipment and piping',
+          'Requires proper thermal-fluid maintenance',
+        ],
       },
-      {
-        title: 'HIGH-DENSITY INSULATION',
-        description: 'Thick mineral wool / rockwool insulation with galvanized steel or aluminum sheet cladding to minimize heat loss.',
-      },
-      {
-        title: 'BITUMEN TRANSFER PUMP',
-        description: 'High-temperature positive displacement pump for efficient bitumen transfer and circulation.',
-      },
-      {
-        title: 'TEMPERATURE & LEVEL INSTRUMENTATION',
-        description: 'RTD temperature sensors and mechanical/electronic level indicators for continuous monitoring.',
-      },
-      {
-        title: 'VENT & SAFETY SYSTEMS',
-        description: 'Atmospheric vents, inspection manholes, and safety interlocks on burners and pumps.',
-      },
-    ],
-    applications: [
-      'Bitumen Modification & PMB Plants',
-      'Asphalt Batch Mix Plants',
-      'Bulk Bitumen Terminals & Refineries',
-      'Highway Project Base Camps & Storage Depots',
-    ],
-    specifications: [
-      { parameter: 'Capacity Range', value: '20, 30, 50, 75, 100 KL' },
-      { parameter: 'Heating Arrangements', value: 'Direct Heating (Burner) / Indirect Heating (Thermic Fluid)' },
-      { parameter: 'Operating Temperature', value: '140°C to 180°C' },
-      { parameter: 'Construction Material', value: 'Heavy Carbon Steel Shell' },
-      { parameter: 'Insulation', value: 'Rockwool with Sheet Metal Cladding' },
-      { parameter: 'Transfer Pump', value: 'Positive displacement gear/screw bitumen pump' },
-      { parameter: 'Instrumentation', value: 'RTD sensor, dial thermometer, level indicator' },
-    ],
+    },
     heroImage: '/src/assets/images/products/p5_img1.jpg',
     gallery: [
       '/src/assets/images/products/p5_img1.jpg',
@@ -1227,56 +1434,94 @@ Reactor Bottom → Finished Oxidized Bitumen Tank → Packing`,
     categoryName: 'Bitumen Modify Equipment',
     name: 'EMULSION STORAGE HORIZONTAL TYPE TANK',
     code: 'ATL-EST-06',
-    shortDescription: 'Horizontal cylindrical carbon-steel tank for storing bitumen emulsion after production (Capacity: 10 MT to 100 MT).',
+    shortDescription: 'A Horizontal Emulsion Storage Tank is used for storing bitumen emulsion after production and maintaining it at a suitable temperature for pumping, circulation and dispatch.',
     description: 'A Horizontal Emulsion Storage Tank is used for storing bitumen emulsion after production and maintaining it at a suitable temperature for pumping, circulation and dispatch. It is commonly used with Bitumen Emulsion Plants for grades such as RS, MS and SS emulsions.',
     highlights: [
       'Capacities: 10 MT, 20 MT, 30 MT, 40 MT, 50 MT, 60 MT, 100 MT',
-      'Horizontal cylindrical carbon-steel vessel with saddle supports',
+      'Horizontal cylindrical carbon-steel vessel with engineered saddle supports',
       'Gentle product circulation connection and heating coil preventing emulsion breakdown',
-      'Low-point drain for complete drainage and top inspection manhole',
+      'Low-point drain for complete drainage, sampling connection, and top inspection manhole',
     ],
-    features: [
-      {
-        title: 'TANK SHELL & SADDLE SUPPORTS',
-        description: 'Horizontal cylindrical carbon-steel vessel supported by engineered saddle supports.',
+    features: [],
+    applications: [],
+    specifications: [],
+    horizontalTankGuide: {
+      intro: 'A Horizontal Emulsion Storage Tank is used for storing bitumen emulsion after production and maintaining it at a suitable temperature for pumping, circulation and dispatch. It is commonly used with Bitumen Emulsion Plants for grades such as RS, MS and SS emulsions.',
+      basicConstruction: {
+        intro: 'A typical horizontal emulsion tank consists of:',
+        componentsTable: [
+          { component: 'Tank Shell', function: 'Horizontal cylindrical carbon-steel vessel' },
+          { component: 'Inlet Nozzle', function: 'Receives finished emulsion from the plant' },
+          { component: 'Outlet Nozzle', function: 'Transfers emulsion to filling/dispatch system' },
+          { component: 'Manhole', function: 'Inspection and cleaning' },
+          { component: 'Vent', function: 'Prevents pressure/vacuum buildup' },
+          { component: 'Level Indicator', function: 'Indicates tank level' },
+          { component: 'Temperature Indicator', function: 'Monitors product temperature' },
+          { component: 'Drain Connection', function: 'Complete tank draining' },
+          { component: 'Sampling Connection', function: 'Product quality sampling' },
+          { component: 'Circulation Connection', function: 'Allows gentle product circulation' },
+          { component: 'Support Saddles', function: 'Supports the horizontal tank' },
+          { component: 'Ladder/Platform', function: 'Access to top fittings where required' },
+          { component: 'Control Panel', function: 'Temperature and pump control' },
+        ],
       },
-      {
-        title: 'GENTLE CIRCULATION SYSTEM',
-        description: 'Circulation nozzles designed to avoid high-shear agitation, maintaining water-based emulsion stability.',
+      typicalSizes: {
+        capacities: [
+          '10 MT',
+          '20 MT',
+          '30 MT',
+          '40 MT',
+          '50 MT',
+          '60 MT',
+          '100 MT',
+        ],
+        example: 'For example, a 30 MT horizontal emulsion storage tank can be supplied with carbon-steel shell, heating coil, level indicator, temperature indicator, inlet/outlet nozzles, drain and circulation connections.',
       },
-      {
-        title: 'HEATING COIL & THERMAL MANAGEMENT',
-        description: 'Internal coil sized to avoid excessive heating while keeping emulsion at ideal pumpable temperature.',
+      designConsiderations: {
+        intro: 'The tank should be designed to:',
+        points: [
+          'Minimize heat loss',
+          'Avoid excessive heating',
+          'Prevent contamination',
+          'Provide complete or near-complete drainage',
+          'Allow easy cleaning and inspection',
+          'Avoid unnecessary high-shear agitation during storage',
+          'Provide accurate level and temperature monitoring',
+          'Maintain the emulsion in a stable condition during storage',
+        ],
+        importantNotice: 'Important: Bitumen emulsion is a water-based dispersion, so the storage tank should not be operated like a conventional hot-bitumen storage tank. Excessive temperature, prolonged storage, contamination or unsuitable circulation can cause instability or premature breaking.',
       },
-      {
-        title: 'LOW-POINT COMPLETE DRAIN',
-        description: 'Bottom drain nozzle ensuring complete or near-complete drainage without residue.',
+      specifications: {
+        title: '4. Typical Specification – Horizontal Emulsion Tank',
+        specs: [
+          { parameter: 'Type', value: 'Horizontal cylindrical' },
+          { parameter: 'Service', value: 'Bitumen Emulsion Storage' },
+          { parameter: 'Construction', value: 'Carbon Steel' },
+          { parameter: 'Capacity', value: '10–100 MT, as required' },
+          { parameter: 'Level', value: 'Local level gauge / transmitter' },
+          { parameter: 'Temperature', value: 'RTD/temperature indicator' },
+          { parameter: 'Inlet', value: 'Flanged nozzle' },
+          { parameter: 'Outlet', value: 'Flanged bottom/side outlet' },
+          { parameter: 'Drain', value: 'Provided at low point' },
+          { parameter: 'Vent', value: 'Atmospheric vent' },
+          { parameter: 'Support', value: 'Two or more saddle supports depending on size' },
+          { parameter: 'Access', value: 'Top manhole' },
+          { parameter: 'Finish', value: 'Internal/external coating as appropriate for the service' },
+        ],
       },
-      {
-        title: 'TEMPERATURE & LEVEL INDICATORS',
-        description: 'RTD temperature sensor and level gauge for real-time monitoring of stored emulsion.',
+      applications: {
+        title: 'Main Applications',
+        intro: 'The horizontal emulsion storage tank is used for storing:',
+        storedEmulsions: [
+          'RS – Rapid Setting emulsion',
+          'MS – Medium Setting emulsion',
+          'SS – Slow Setting emulsion',
+          'Other cationic/anionic bitumen emulsions, according to the plant formulation',
+        ],
+        appliedUses: 'Applications of stored emulsion: road surface dressing, tack coat, prime coat, pothole repair, cold mix asphalt, slurry/seal applications and road maintenance.',
+        plantSizingNote: 'For a Bitumen Emulsion Plant, the tank capacity, heating coil area, insulation thickness and pump size should ideally be calculated from the plant capacity (e.g., 5 TPH, 10 TPH, 20 TPH) and the required storage duration.',
       },
-      {
-        title: 'EXTERNAL WEATHER CLADDING',
-        description: 'Coated carbon steel with protective insulation minimizes environmental heat loss.',
-      },
-    ],
-    applications: [
-      'RS – Rapid Setting Emulsion Storage',
-      'MS – Medium Setting Emulsion Storage',
-      'SS – Slow Setting Emulsion Storage',
-      'Bitumen Emulsion Manufacturing Plant Dispatch Depots',
-      'Road Surface Dressing, Tack Coat, and Slurry Seal Projects',
-    ],
-    specifications: [
-      { parameter: 'Type', value: 'Horizontal cylindrical vessel' },
-      { parameter: 'Capacity', value: '10 MT, 20 MT, 30 MT, 40 MT, 50 MT, 60 MT, 100 MT' },
-      { parameter: 'Service', value: 'Bitumen Emulsion Storage (RS, MS, SS grades)' },
-      { parameter: 'Construction', value: 'Carbon Steel Shell with Saddle Supports' },
-      { parameter: 'Level Monitoring', value: 'Local level gauge / transmitter' },
-      { parameter: 'Temperature', value: 'RTD / dial temperature indicator' },
-      { parameter: 'Drainage', value: 'Complete low-point bottom drain' },
-    ],
+    },
     heroImage: '/src/assets/images/products/p6_img1.jpg',
     gallery: [
       '/src/assets/images/products/p6_img1.jpg',
@@ -1297,51 +1542,124 @@ Reactor Bottom → Finished Oxidized Bitumen Tank → Packing`,
     highlights: [
       'Gravimetric Net Weight Filling with advanced microprocessor weight controller (Accuracy: ±100 grams)',
       'Operating Temperature: 5°C to 90°C (Emulsion) / 90°C to 300°C (Hot Bitumen / PMB / CRMB)',
-      'Speed: 30–45 bph (Emulsion) / 40–60 bph (Bitumen)',
-      'Semi-Automatic and Fully Automatic conveyorized models available',
+      'Production Speed: 30 to 45 bph (Emulsion) / 40 to 60 bph (Bitumen)',
+      'Semi-Automatic pneumatic arm and Fully Automatic conveyorized models',
     ],
     features: [
       {
-        title: 'GRAVIMETRIC NET WEIGHT FILLING',
-        description: 'Microprocessor-controlled load cell system ensuring precision irrespective of liquid density shifts caused by temperature swings.',
+        title: 'Filling Principle',
+        description: 'Employs a Gravimetric Net Weight Filling system integrated with an advanced microprocessor weight controller. This ensures precision regardless of changes in liquid density due to temperature swings.',
       },
       {
-        title: 'SUB-SURFACE & TOP-FILL LANCES',
-        description: 'Sub-surface lances prevent foaming when dispensing chemical emulsions; top-fill lances for hot bitumen.',
+        title: 'Thermal Protection',
+        description: 'Features heavily insulated jackets and internal heating systems (hot oil or steam) to keep raw bitumen at high temperatures, preventing it from solidifying inside the pipes.',
       },
       {
-        title: 'THERMALLY JACKETED LINES',
-        description: 'Insulated jackets and internal hot oil or steam heating prevent bitumen solidification in pipes.',
+        title: 'Lance Mechanism',
+        description: 'Utilizes a "Top Fill" or "Sub-surface" filling lance. Sub-surface lances are crucial for anti-foaming when handling chemical emulsions.',
       },
       {
-        title: 'SAFETY & FLAMEPROOF INTEGRATION',
-        description: 'Flameproof electricals, safety interlocks, and drip-collection cups to safeguard operators against splashes.',
+        title: 'Safety Integration',
+        description: 'Includes flameproof/explosion-proof electrical components, integrated safety interlocks, and drip-collection cups to safeguard operators against high-temperature splashes.',
       },
       {
-        title: 'HEAVY-DUTY CONVEYOR PLATFORM',
-        description: 'Motorized square, U-type, or E-type platform scales optimized for pallet and forklift handling.',
-      },
-      {
-        title: 'AUTOMATION OPTIONS',
-        description: 'Semi-Automatic pneumatic arm alignment or Fully Automatic system with power conveyor and robotic cap torque station.',
+        title: 'Conveyor Interface',
+        description: 'Equipped with motorized square, U-type, or E-type heavy-duty platform scales optimized for pallet and forklift handling.',
       },
     ],
     applications: [
-      'Packaging Hot Bitumen into 200-Litre Drums',
-      'Bitumen Emulsion & Cold-Mix Material Drumming',
-      'PMB & CRMB Packaging for Long-Distance Transport',
-      'Waterproofing Tar and Protective Industrial Coatings Packaging',
-      'Refinery and Terminal Dispatch Facilities',
+      'Road Construction Facilities: For packaging asphalt materials and cold-mix emulsions.',
+      'Waterproofing Manufacturers: Packaging high-temperature industrial tar and protective coatings.',
+      'Refinery Dispatches: Mass bulk transport preparation for Polymer Modified Bitumen (PMB) and Crumb Rubber Modified Bitumen (CRMB).',
     ],
     specifications: [
-      { parameter: 'Emulsion Operating Temp', value: '5°C to 90°C' },
-      { parameter: 'Hot Bitumen Operating Temp', value: '90°C to 300°C' },
-      { parameter: 'Drum Filling Capacity', value: '100 kg to 250 kg (Emulsion) / Up to 300 kg (Bitumen)' },
-      { parameter: 'Production Speed', value: '30 to 45 bph (Emulsion) / 40 to 60 bph (Bitumen)' },
+      { parameter: 'Operating Temperature', value: '5°C to 90°C (Emulsion) / 90°C to 300°C (Bitumen/PMB/CRMB)' },
+      { parameter: 'Filling Capacity', value: '100 kg to 250 kg per drum (Emulsion) / Up to 300 kg max (Bitumen)' },
+      { parameter: 'Production Speed', value: '30 to 45 barrels/hr (Emulsion) / 40 to 60 barrels/hr (Bitumen)' },
       { parameter: 'Filling Accuracy', value: '±100 grams (Resolution: 50 grams)' },
       { parameter: 'Inlet Line Size', value: '50 NB (Emulsion) / 80 NB (Bitumen)' },
-      { parameter: 'Filling Principle', value: 'Gravimetric Net Weight Load Cell' },
     ],
+    drumFillingGuide: {
+      intro: 'An emulsion and bitumen drum filling machine is an industrial system designed to safely and accurately dispense high-viscosity, high-temperature liquids into standard 200-litre drums or barrels. These systems minimize human intervention, ensuring safe handling of volatile or hot road-construction materials like Bitumen, Polymer Modified Bitumen (PMB), and Bitumen Emulsions.',
+      specsTable: [
+        {
+          parameter: 'Operating Temperature',
+          emulsionSpec: '5°C to 90°C',
+          hotBitumenSpec: '90°C to 300°C',
+        },
+        {
+          parameter: 'Filling Capacity',
+          emulsionSpec: '100 kg to 250 kg per drum',
+          hotBitumenSpec: 'Up to 300 kg max',
+        },
+        {
+          parameter: 'Production Speed',
+          emulsionSpec: '30 to 45 barrels per hour',
+          hotBitumenSpec: '40 to 60 barrels per hour',
+        },
+        {
+          parameter: 'Filling Accuracy',
+          emulsionSpec: '±100 grams',
+          hotBitumenSpec: '±100 grams',
+        },
+        {
+          parameter: 'Resolution',
+          emulsionSpec: '50 grams',
+          hotBitumenSpec: '50 grams',
+        },
+        {
+          parameter: 'Inlet Line Size',
+          emulsionSpec: '50 NB',
+          hotBitumenSpec: '80 NB (larger for higher viscosity)',
+        },
+      ],
+      features: [
+        {
+          title: 'Filling Principle',
+          description: 'Employs a Gravimetric Net Weight Filling system integrated with an advanced microprocessor weight controller. This ensures precision regardless of changes in liquid density due to temperature swings.',
+        },
+        {
+          title: 'Thermal Protection',
+          description: 'Features heavily insulated jackets and internal heating systems (hot oil or steam) to keep raw bitumen at high temperatures, preventing it from solidifying inside the pipes.',
+        },
+        {
+          title: 'Lance Mechanism',
+          description: 'Utilizes a "Top Fill" or "Sub-surface" filling lance. Sub-surface lances are crucial for anti-foaming when handling chemical emulsions.',
+        },
+        {
+          title: 'Safety Integration',
+          description: 'Includes flameproof/explosion-proof electrical components, integrated safety interlocks, and drip-collection cups to safeguard operators against high-temperature splashes.',
+        },
+        {
+          title: 'Conveyor Interface',
+          description: 'Equipped with motorized square, U-type, or E-type heavy-duty platform scales optimized for pallet and forklift handling.',
+        },
+      ],
+      operationModes: [
+        {
+          title: 'Semi-Automatic System',
+          description: 'An operator manually aligns the drum bung under the nozzle using a pneumatic arm. The microprocessor fills the container to the pre-set net weight and automatically shuts off the valve.',
+        },
+        {
+          title: 'Fully Automatic System',
+          description: 'Includes a power-fed conveyor line, visual/mechanical bung pre-alignment sensors, automated lance insertion, auto-filling, and a robotic cap-tightening (torque) station.',
+        },
+      ],
+      applications: [
+        {
+          sector: 'Road Construction Facilities',
+          description: 'For packaging asphalt materials and cold-mix emulsions.',
+        },
+        {
+          sector: 'Waterproofing Manufacturers',
+          description: 'Packaging high-temperature industrial tar and protective coatings.',
+        },
+        {
+          sector: 'Refinery Dispatches',
+          description: 'Mass bulk transport preparation for Polymer Modified Bitumen (PMB) and Crumb Rubber Modified Bitumen (CRMB).',
+        },
+      ],
+    },
     heroImage: '/src/assets/images/products/p7_img1.jpg',
     gallery: [
       '/src/assets/images/products/p7_img1.jpg',
@@ -1360,35 +1678,27 @@ Reactor Bottom → Finished Oxidized Bitumen Tank → Packing`,
     shortDescription: 'Heavy-duty packaging system specifically designed to handle sticky, cohesive, and abrasive cold-mix asphalt materials into bags (10 kg to 50 kg).',
     description: 'An Asphalt Cold Mix Bag Filling Machine is a heavy-duty packaging system specifically designed to handle sticky, cohesive, and abrasive cold-mix asphalt materials. Unlike free-flowing materials, cold mix asphalt requires specialized feeding mechanisms to prevent clogging and to accurately pack the material into bags (typically 25 kg to 50 kg) for retail or road repair use.',
     highlights: [
-      'Anti-sticking screw feeder / vibratory tray prevents bridging and clogging',
+      'Anti-sticking screw feeder / wide-throat vibratory tray prevents bridging and clogging',
       'Filling Range: 10 kg to 50 kg per bag with ±0.5% to 1% accuracy',
-      'Pneumatic dust-tight bag clamping with automatic weight tare sensor',
-      'Compatible with Heavy-Duty PE Plastic and Laminated Woven PP bags',
+      'Gross/Net electronic load cell weighing with automatic sensor clamp & tare',
+      'Dual sealing compatibility: Industrial sewing stitching or heat sealing',
     ],
     features: [
       {
-        title: 'ANTI-STICKING FEED MECHANISM',
-        description: 'Heavy-duty screw feeder or wide-throat vibratory tray preventing sticky, oily aggregate from bridging or clogging.',
+        title: 'Anti-Sticking Feed Mechanism',
+        description: 'Uses a heavy-duty screw feeder or a wide-throat vibratory tray rather than a gravity drop. This prevents the sticky, oily aggregate from bridging or clogging the feed hopper.',
       },
       {
-        title: 'PNEUMATIC BAG CLAMPING',
-        description: 'Heavy-duty, dust-tight bag holders grip the bag tightly during filling to support heavy aggregate weights.',
+        title: 'Pneumatic Bag Clamping',
+        description: 'Heavy-duty, dust-tight bag holders grip the bag tightly during filling. This ensures no material spills and can support the heavy weight of the aggregate.',
       },
       {
-        title: 'WEAR-RESISTANT CONTACT PARTS',
-        description: 'Contact parts handling abrasive asphalt aggregates up to 15mm made of reinforced carbon steel or heavy-grade stainless steel.',
+        title: 'Wear-Resistant Contact Parts',
+        description: 'All parts in direct contact with the abrasive asphalt (aggregate sizes up to 10mm–15mm) are made of reinforced carbon steel or heavy-grade SUS304/316 stainless steel to prevent premature wear.',
       },
       {
-        title: 'TWO-STAGE BULK & FINE FEED',
-        description: 'Runs fast for bulk filling (90% weight), then slows down for precision fine feeding to target weight.',
-      },
-      {
-        title: 'MOTORIZED CONVEYOR & SEALER',
-        description: 'Automated release drops bag onto motorized conveyor transporting it through stitching or heat-sealing station.',
-      },
-      {
-        title: 'SIMPLE SEMI-AUTOMATIC WORKFLOW',
-        description: 'Single operator places bag; machine auto-clamps, weighs, feeds, releases, and conveys.',
+        title: 'Adjustable Bag Conveyor & Sealer',
+        description: 'Filled bags drop onto a motorized slat or heavy-duty belt conveyor. They move automatically toward a heavy-duty industrial sewing machine or a heat sealer (depending on whether woven PP or plastic bags are used).',
       },
     ],
     applications: [
@@ -1398,15 +1708,76 @@ Reactor Bottom → Finished Oxidized Bitumen Tank → Packing`,
       'Bituminous Cold Mix Bagging for Transit & Stockpiling',
     ],
     specifications: [
-      { parameter: 'Material Handled', value: 'Asphalt Cold Mix, Cold Patch, Bituminous Cold Mix (up to 15mm)' },
+      { parameter: 'Material Handled', value: 'Asphalt Cold Mix, Cold Patch, Bituminous Cold Mix' },
       { parameter: 'Filling Range', value: '10 kg to 50 kg per bag' },
       { parameter: 'Production Speed', value: '1 to 2 bags per minute (Semi-automatic)' },
       { parameter: 'Filling Accuracy', value: '± 0.5% to 1% of target weight' },
       { parameter: 'Weighing Principle', value: 'Gross/Net electronic load cell weighing' },
       { parameter: 'Power Supply', value: '3-Phase, 380V/415V, 50Hz/60Hz' },
       { parameter: 'Air Consumption', value: '5–6 bar (for pneumatic gates and clamps)' },
-      { parameter: 'Bag Compatibility', value: 'Heavy-Duty PE/Plastic Bags & Laminated Woven PP Bags' },
     ],
+    bagFillingGuide: {
+      intro: 'An Asphalt Cold Mix Bag Filling Machine is a heavy-duty packaging system specifically designed to handle sticky, cohesive, and abrasive cold-mix asphalt materials. Unlike free-flowing materials, cold mix asphalt requires specialized feeding mechanisms to prevent clogging and to accurately pack the material into bags (typically 25 kg to 50 kg) for retail or road repair use.',
+      specsTable: [
+        { parameter: 'Material Handled', specification: 'Asphalt Cold Mix, Cold Patch, Bituminous Cold Mix' },
+        { parameter: 'Filling Range', specification: '10 kg to 50 kg per bag' },
+        { parameter: 'Production Speed', specification: '1 to 2 bags per minute (Semi-automatic)' },
+        { parameter: 'Filling Accuracy', specification: '± 0.5% to 1% of target weight' },
+        { parameter: 'Weighing Principle', specification: 'Gross/Net electronic load cell weighing' },
+        { parameter: 'Power Supply', specification: '3-Phase, 380V/415V, 50Hz/60Hz' },
+        { parameter: 'Air Consumption', specification: '5–6 bar (for pneumatic gates and clamps)' },
+      ],
+      features: [
+        {
+          title: 'Anti-Sticking Feed Mechanism',
+          description: 'Uses a heavy-duty screw feeder or a wide-throat vibratory tray rather than a gravity drop. This prevents the sticky, oily aggregate from bridging or clogging the feed hopper.',
+        },
+        {
+          title: 'Pneumatic Bag Clamping',
+          description: 'Heavy-duty, dust-tight bag holders grip the bag tightly during filling. This ensures no material spills and can support the heavy weight of the aggregate.',
+        },
+        {
+          title: 'Wear-Resistant Contact Parts',
+          description: 'All parts in direct contact with the abrasive asphalt (aggregate sizes up to 10mm–15mm) are made of reinforced carbon steel or heavy-grade SUS304/316 stainless steel to prevent premature wear.',
+        },
+        {
+          title: 'Adjustable Bag Conveyor & Sealer',
+          description: 'Filled bags drop onto a motorized slat or heavy-duty belt conveyor. They move automatically toward a heavy-duty industrial sewing machine or a heat sealer (depending on whether woven PP or plastic bags are used).',
+        },
+      ],
+      workflowSteps: [
+        {
+          stepNumber: 1,
+          title: 'Bag Placement',
+          description: 'The operator manually places an empty bag onto the clamping mouth.',
+        },
+        {
+          stepNumber: 2,
+          title: 'Auto-Clamp & Weigh',
+          description: 'A sensor detects the bag, clamps it, and tares the weight.',
+        },
+        {
+          stepNumber: 3,
+          title: 'Bulk and Fine Feed',
+          description: 'The belt/vibratory feeder runs fast for bulk filling (90% weight), then slows down for precise fine feeding to reach the exact target weight.',
+        },
+        {
+          stepNumber: 4,
+          title: 'Release & Seal',
+          description: 'The clamp opens automatically, dropping the bag onto the conveyor, which transports it through the stitching or sealing station.',
+        },
+      ],
+      bagCompatibility: [
+        {
+          bagType: 'Heavy-Duty PE/Plastic Bags',
+          description: 'Best for long-term storage as they retain the moisture/solvent oils that keep the cold mix workable.',
+        },
+        {
+          bagType: 'Laminated Woven PP Bags',
+          description: 'Highly durable for rough handling and transit, though often paired with an inner plastic liner to prevent oil seepage.',
+        },
+      ],
+    },
     heroImage: '/src/assets/images/products/p8_img1.jpg',
     gallery: [
       '/src/assets/images/products/p8_img1.jpg',
@@ -1428,52 +1799,77 @@ Reactor Bottom → Finished Oxidized Bitumen Tank → Packing`,
     description: 'A Hot Thermic Fluid Heater (also known as a thermal oil heater) is an industrial heating system that circulates a specialized heat-transfer fluid at high temperatures under low operating pressures. Unlike steam boilers that require high pressure to reach high temperatures, thermic fluid heaters can operate up to 300°C to 350°C at near-atmospheric pressure, drastically reducing explosive risks and structural costs.',
     highlights: [
       'Heating Capacity: 100,000 kcal/hr to 15,000,000 kcal/hr+',
-      'Operating Temperature: 150°C to 320°C (standard mineral oils) / Up to 400°C (synthetic fluids)',
-      'Low Operating Pressure: 2 bar to 5 bar (eliminates high-pressure boiler hazards)',
-      'High Thermal Efficiency: 88% to 92% with air pre-heaters or economizers',
-      'Multi-fuel compatibility: Diesel, Heavy Oil, Natural Gas, LPG, Solid Fuels',
+      'Operating Temperature: 150°C to 320°C (Mineral Oils) / Up to 400°C (Synthetic Fluids)',
+      'Low Operating Pressure: 2 bar to 5 bar (Near-atmospheric pressure safety)',
+      'Thermal Efficiency: 88% to 92% (With air pre-heaters or economizers)',
+      'Fuel Compatibility: Diesel, Heavy Oil, Natural Gas, LPG, Solid Fuels (Coal, Wood, Biomass)',
     ],
     features: [
       {
-        title: 'DOUBLE JACKET CONCENTRIC COIL',
-        description: 'Multi-start helical coils absorbing radiant and convective heat from the burner flame.',
+        title: 'Double Jacket Concentric Coil',
+        description: 'The heater core consists of precisely wound multi-start helical coils. The thermic fluid flows through these coils, absorbing radiant and convective heat from the burner flame.',
       },
       {
-        title: 'HIGH-TEMPERATURE CIRCULATING PUMP',
-        description: 'Centrifugal pump maintaining turbulent flow inside coils to prevent oil overheating and cracking.',
+        title: 'Circulating Pump',
+        description: 'A high-temperature, centrifugal pump (often with a water-cooled or air-cooled mechanical seal) that maintains a turbulent flow inside the coils to prevent the oil from overheating and cracking.',
       },
       {
-        title: 'OVERHEAD EXPANSION & DEAERATOR TANK',
-        description: 'Accommodates thermal expansion (~7% per 100°C rise) and safely vents trapped gases and moisture.',
+        title: 'Expansion & Deaerator Tank',
+        description: 'An overhead tank that accommodates the thermal expansion of the oil (which expands by ~7% per 100°C rise) and vents out trapped gasses or moisture.',
       },
       {
-        title: 'DE-ASPHALTING / STRAINER SYSTEM',
-        description: 'Inline high-mesh filters trap carbon sludge and degraded fluid particles, preventing tube scale buildup.',
-      },
-      {
-        title: 'SAFETY & FLAME CONTROL SYSTEM',
-        description: 'Automatic burner sequencing, differential pressure switches, high-temperature interlocks, and alarm panel.',
-      },
-      {
-        title: 'HEAVY REFRACTORY & INSULATION',
-        description: 'Ceramic fiber blanket and refractory castable minimize shell surface temperature and heat loss.',
+        title: 'De-Asphalting / Strainer System',
+        description: 'Inline high-mesh filters that trap carbon sludge or degraded fluid particles, preventing scale buildup inside the heater tubes.',
       },
     ],
     applications: [
-      'Asphalt & Bitumen Plants: Keeping bitumen tanks and lines fluid at 160°C–180°C',
-      'PMB & CRMB Polymer Bitumen Modification Plants',
-      'Bitumen Emulsion Plants & Drum Decanters',
-      'Bulk Bitumen Terminals & Storage Installations',
+      'Asphalt & Bitumen Plants: Keeping bitumen tanks and lines fluid at 160°C–180°C.',
     ],
     specifications: [
       { parameter: 'Heating Capacity', value: '100,000 kcal/hr to 15,000,000 kcal/hr+' },
-      { parameter: 'Operating Temperature', value: '150°C to 320°C (mineral oils) / Up to 400°C (synthetic)' },
-      { parameter: 'Operating Pressure', value: '2 bar to 5 bar' },
-      { parameter: 'Thermal Efficiency', value: '88% to 92%' },
-      { parameter: 'Fuel Compatibility', value: 'Diesel, Heavy Oil (FO/LDO), Natural Gas, LPG, Solid Fuels' },
-      { parameter: 'Construction Standards', value: 'ASME Section VIII, EN 13445, or IBR codes' },
-      { parameter: 'Pump Type', value: 'Centrifugal hot oil circulation pump with mechanical seal' },
+      { parameter: 'Operating Temperature', value: '150°C to 320°C (Standard mineral oils) / Up to 400°C (Synthetic fluids)' },
+      { parameter: 'Operating Pressure', value: '2 bar to 5 bar (Just enough to overcome pipe friction)' },
+      { parameter: 'Thermal Efficiency', value: '88% to 92% (With air pre-heaters or economizers)' },
+      { parameter: 'Fuel Compatibility', value: 'Diesel, Heavy Oil, Natural Gas, LPG, Solid Fuels (Coal, Wood, Biomass)' },
+      { parameter: 'Construction Standards', value: 'ASME Section VIII, EN 13445, or local codes (like IBR in India)' },
     ],
+    thermicHeaterGuide: {
+      intro: 'A Hot Thermic Fluid Heater (also known as a thermal oil heater) is an industrial heating system that circulates a specialized heat-transfer fluid at high temperatures under low operating pressures. Unlike steam boilers that require high pressure to reach high temperatures, thermic fluid heaters can operate up to 300°C to 350°C at near-atmospheric pressure, drastically reducing explosive risks and structural costs.',
+      specsTable: [
+        { parameter: 'Heating Capacity', specification: '100,000 kcal/hr to 15,000,000 kcal/hr+' },
+        { parameter: 'Operating Temperature', specification: '150°C to 320°C (Standard standard mineral oils) / Up to 400°C (Synthetic fluids)' },
+        { parameter: 'Operating Pressure', specification: '2 bar to 5 bar (Just enough to overcome pipe friction)' },
+        { parameter: 'Thermal Efficiency', specification: '88% to 92% (With air pre-heaters or economizers)' },
+        { parameter: 'Fuel Compatibility', specification: 'Diesel, Heavy Oil, Natural Gas, LPG, Solid Fuels (Coal, Wood, Biomass)' },
+        { parameter: 'Construction Standards', specification: 'ASME Section VIII, EN 13445, or local codes (like IBR in India)' },
+      ],
+      components: [
+        {
+          title: 'Double Jacket Concentric Coil',
+          description: 'The heater core consists of precisely wound multi-start helical coils. The thermic fluid flows through these coils, absorbing radiant and convective heat from the burner flame.',
+        },
+        {
+          title: 'Circulating Pump',
+          description: 'A high-temperature, centrifugal pump (often with a water-cooled or air-cooled mechanical seal) that maintains a turbulent flow inside the coils to prevent the oil from overheating and cracking.',
+        },
+        {
+          title: 'Expansion & Deaerator Tank',
+          description: 'An overhead tank that accommodates the thermal expansion of the oil (which expands by ~7% per 100°C rise) and vents out trapped gasses or moisture.',
+        },
+        {
+          title: 'De-Asphalting / Strainer System',
+          description: 'Inline high-mesh filters that trap carbon sludge or degraded fluid particles, preventing scale buildup inside the heater tubes.',
+        },
+      ],
+      systemLayout: {
+        intro: 'The thermal fluid follows a closed-loop cycle. The visual schematic below outlines the core loop configuration from the expansion zone through the process layout:',
+        flowArrangement: 'Expansion & Deaerator Tank → Hot Oil Circulation Pump → Concentric Helical Coils (Burner Flame) → Plant Process Heat Exchanger / Bitumen Tanks → Inline Strainer & Filter → Return Loop to Heater',
+        description: 'Closed-loop cycle maintaining thermal stability and turbulent flow with zero vaporization losses and atmospheric pressure safety.',
+      },
+      applications: [
+        'Asphalt & Bitumen Plants: Keeping bitumen tanks and lines fluid at 160°C–180°C.',
+      ],
+    },
     heroImage: '/src/assets/images/products/p9_img1.jpg',
     gallery: [
       '/src/assets/images/products/p9_img1.jpg',

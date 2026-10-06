@@ -35,11 +35,11 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ category, index }) =
           
           {/* Category Number & Badge */}
           <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-            <span className="text-xs font-mono font-bold tracking-widest text-white/90 bg-black/40 backdrop-blur-xs px-2.5 py-1 rounded">
+            <span className="text-sm font-mono font-bold tracking-widest text-white/90 bg-black/40 backdrop-blur-xs px-2.5 py-1 rounded">
               {formattedIndex}
             </span>
             {category.featuredFocus && (
-              <span className="text-xs font-bold text-white bg-[#DE1F27] px-2.5 py-1 rounded shadow-xs uppercase tracking-wider">
+              <span className="text-sm font-bold text-white bg-[#DE1F27] px-2.5 py-1 rounded shadow-xs uppercase tracking-wider">
                 Primary Focus
               </span>
             )}
@@ -54,7 +54,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ category, index }) =
 
         {/* Card Body */}
         <div className="p-6">
-          <span className="text-xs font-bold text-red-600 uppercase tracking-wider block mb-1.5">
+          <span className="text-sm font-bold text-red-600 uppercase tracking-wider block mb-1.5">
             {category.subtitle}
           </span>
           <h3 className="text-xl sm:text-2xl font-bold text-slate-900 group-hover:text-red-600 transition-colors leading-snug">
@@ -66,10 +66,10 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ category, index }) =
 
           {/* Key Applications Quick List */}
           <div className="mt-4 pt-3.5 border-t border-slate-100">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1.5">
+            <span className="text-sm font-bold text-slate-500 uppercase tracking-wider block mb-1.5">
               Key Applications:
             </span>
-            <ul className="space-y-1 text-xs sm:text-sm text-slate-700">
+            <ul className="space-y-1.5 text-sm text-slate-700">
               {category.keyApplications.slice(0, 2).map((app, i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
@@ -81,7 +81,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ category, index }) =
 
           {/* Featured Machinery in Category */}
           <div className="mt-3.5 pt-3.5 border-t border-slate-100">
-            <span className="text-xs font-bold text-slate-900 uppercase tracking-wider block mb-2">
+            <span className="text-sm font-bold text-slate-900 uppercase tracking-wider block mb-2">
               Machinery in this Division:
             </span>
             <div className="flex flex-wrap gap-1.5">
@@ -105,7 +105,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ category, index }) =
 
       {/* Card Action Footer */}
       <div className="px-6 pb-6 pt-2">
-        <div className="flex items-center justify-between text-sm font-bold text-red-600 group-hover:text-red-700 pt-2 border-t border-slate-100">
+        <div className="flex items-center justify-between text-base font-bold text-red-600 group-hover:text-red-700 pt-2 border-t border-slate-100">
           <span>Explore Category</span>
           <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
         </div>

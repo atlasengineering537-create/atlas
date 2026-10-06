@@ -200,7 +200,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       </section>
 
       {/* 6. Product Description, Engineering Features, Applications & Technical Specifications */}
-      {!['pmb-crmb-bitumen-modify-plant', 'bitumen-air-blowing-oxidization-plant', 'cold-mix-asphalt-plant'].includes(product.id) && (
+      {!['pmb-crmb-bitumen-modify-plant', 'bitumen-air-blowing-oxidization-plant', 'cold-mix-asphalt-plant', 'bitumen-storage-tank', 'emulsion-storage-horizontal-type-tank', 'emulsion-and-bitumen-drum-filling-machine', 'asphalt-cold-mix-material-bag-filling-machine', 'hot-thermic-fluid-heater'].includes(product.id) && (
         <section className="py-14 sm:py-16 bg-slate-50/50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
@@ -251,7 +251,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   <h3 className="text-2xl font-black text-slate-900">
                     PRODUCTION PROCESS OVERVIEW
                   </h3>
-                  <p className="text-xs sm:text-sm font-bold text-slate-700 uppercase tracking-wide">
+                  <p className="text-sm sm:text-base font-bold text-slate-700 uppercase tracking-wide">
                     THE BASIC PRODUCTION PROCESS INVOLVES THE FOLLOWING STEPS:
                   </p>
                   <div className="space-y-3">
@@ -260,10 +260,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                         key={idx}
                         className="flex items-start gap-3.5 p-4 rounded-xl bg-white border border-slate-200 shadow-2xs"
                       >
-                        <div className="flex-shrink-0 w-7 h-7 rounded-full bg-red-600 text-white font-bold text-xs flex items-center justify-center">
+                        <div className="flex-shrink-0 w-7 h-7 rounded-full bg-red-600 text-white font-bold text-sm flex items-center justify-center">
                           {idx + 1}
                         </div>
-                        <p className="text-xs sm:text-sm text-slate-800 font-semibold leading-relaxed pt-0.5">
+                        <p className="text-sm sm:text-base text-slate-800 font-semibold leading-relaxed pt-0.5">
                           {step}
                         </p>
                       </div>
@@ -281,7 +281,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   <h3 className="text-2xl font-black text-slate-900">
                     TYPES OF PLANTS
                   </h3>
-                  <p className="text-xs sm:text-sm font-bold text-slate-700 uppercase tracking-wide">
+                  <p className="text-sm sm:text-base font-bold text-slate-700 uppercase tracking-wide">
                     PLANTS ARE AVAILABLE IN DIFFERENT CONFIGURATIONS TO SUIT VARIOUS NEEDS:
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
@@ -289,11 +289,11 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                       <div key={i} className="p-4 rounded-xl bg-white border border-slate-200 shadow-2xs space-y-1.5">
                         <div className="flex items-center gap-2">
                           <div className="w-2 h-2 rounded-full bg-red-600" />
-                          <h4 className="text-sm font-bold text-slate-900 uppercase">
+                          <h4 className="text-base font-bold text-slate-900 uppercase">
                             {pt.title}
                           </h4>
                         </div>
-                        <p className="text-xs sm:text-sm text-slate-700 leading-relaxed pl-4">
+                        <p className="text-sm sm:text-base text-slate-700 leading-relaxed pl-4">
                           {pt.description}
                         </p>
                       </div>
@@ -314,7 +314,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   {product.applications.map((app, i) => (
                     <span
                       key={i}
-                      className="px-3.5 py-2 rounded-lg bg-white border border-slate-200 text-sm font-medium text-slate-800 shadow-2xs"
+                      className="px-3.5 py-2 rounded-lg bg-white border border-slate-200 text-sm sm:text-base font-medium text-slate-800 shadow-2xs"
                     >
                       {app}
                     </span>
@@ -334,7 +334,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     Technical Specifications
                   </h3>
                 </div>
-                <span className="text-xs font-mono font-semibold text-slate-600 bg-white border border-slate-200 px-2.5 py-1 rounded">
+                <span className="text-sm font-mono font-semibold text-slate-600 bg-white border border-slate-200 px-2.5 py-1 rounded">
                   {product.code}
                 </span>
               </div>
@@ -342,11 +342,11 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               {/* Specifications Table (Mobile friendly scrollable container) */}
               <div className="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left text-sm border-collapse">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
                     <thead>
                       <tr className="bg-slate-50 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
-                        <th className="py-3.5 px-4 w-1/2 text-sm">Parameter</th>
-                        <th className="py-3.5 px-4 w-1/2 text-sm">Engineering Value</th>
+                        <th className="py-3.5 px-4 w-1/2 text-sm sm:text-base">Parameter</th>
+                        <th className="py-3.5 px-4 w-1/2 text-sm sm:text-base">Engineering Value</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
@@ -355,13 +355,13 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                           key={idx}
                           className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}
                         >
-                          <td className="py-3.5 px-4 font-semibold text-slate-900 text-sm">
+                          <td className="py-3.5 px-4 font-semibold text-slate-900 text-sm sm:text-base">
                             {spec.parameter}
                           </td>
-                          <td className="py-3.5 px-4 text-sm font-medium text-slate-800">
+                          <td className="py-3.5 px-4 text-sm sm:text-base font-medium text-slate-800">
                             {spec.value}
                             {spec.note && (
-                              <span className="block text-xs text-slate-500 font-sans mt-0.5">
+                              <span className="block text-xs sm:text-sm text-slate-500 font-sans mt-0.5">
                                 {spec.note}
                               </span>
                             )}
@@ -371,7 +371,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     </tbody>
                   </table>
                 </div>
-                <div className="p-3.5 bg-slate-50 border-t border-slate-200 text-xs sm:text-sm text-slate-600 flex items-center justify-between">
+                <div className="p-3.5 bg-slate-50 border-t border-slate-200 text-sm sm:text-base text-slate-600 flex items-center justify-between">
                   <span>Custom engineering dimensions available upon request</span>
                   <button
                     onClick={() => openQuoteModal(product.name)}
@@ -500,20 +500,20 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   {/* Grade / Type Table */}
                   {sec.table && sec.table.length > 0 && (
                     <div className="rounded-xl border border-slate-200 overflow-hidden bg-white">
-                      <table className="w-full text-left text-xs sm:text-sm border-collapse">
+                      <table className="w-full text-left text-sm sm:text-base border-collapse">
                         <thead>
                           <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
-                            <th className="py-2.5 px-3 w-1/2">Grade / Type</th>
-                            <th className="py-2.5 px-3 w-1/2">Typical application</th>
+                            <th className="py-3 px-3.5 w-1/2">Grade / Type</th>
+                            <th className="py-3 px-3.5 w-1/2">Typical application</th>
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100">
                           {sec.table.map((row, rIdx) => (
                             <tr key={rIdx} className={rIdx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
-                              <td className="py-2.5 px-3 font-bold text-slate-900 font-mono text-xs sm:text-sm">
+                              <td className="py-3 px-3.5 font-bold text-slate-900 font-mono text-sm sm:text-base">
                                 {row.grade}
                               </td>
-                              <td className="py-2.5 px-3 text-slate-700">
+                              <td className="py-3 px-3.5 text-slate-700">
                                 {row.application}
                               </td>
                             </tr>
@@ -526,12 +526,12 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   {/* Best Applications */}
                   {sec.bestApplications && sec.bestApplications.length > 0 && (
                     <div className="space-y-2">
-                      <div className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+                      <div className="text-sm font-bold text-slate-900 uppercase tracking-wider">
                         Best applications:
                       </div>
                       <ul className="space-y-1.5 pl-1">
                         {sec.bestApplications.map((app, aIdx) => (
-                          <li key={aIdx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-700">
+                          <li key={aIdx} className="flex items-start gap-2 text-sm sm:text-base text-slate-700">
                             <span className="text-red-600 font-bold">•</span>
                             <span>{app}</span>
                           </li>
@@ -543,14 +543,14 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   {/* Examples */}
                   {sec.examples && sec.examples.length > 0 && (
                     <div className="space-y-2">
-                      <div className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+                      <div className="text-sm font-bold text-slate-900 uppercase tracking-wider">
                         Examples:
                       </div>
                       <div className="flex flex-wrap gap-2">
                         {sec.examples.map((ex, eIdx) => (
                           <span
                             key={eIdx}
-                            className="px-2.5 py-1 rounded bg-white border border-slate-300 font-mono font-bold text-xs text-slate-900 shadow-2xs"
+                            className="px-3 py-1 rounded bg-white border border-slate-300 font-mono font-bold text-sm text-slate-900 shadow-2xs"
                           >
                             {ex}
                           </span>
@@ -561,7 +561,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
                   {/* Note */}
                   {sec.note && (
-                    <div className="p-3 rounded-lg bg-white border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
+                    <div className="p-3.5 rounded-lg bg-white border border-slate-200 text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
                       {sec.note}
                     </div>
                   )}
@@ -573,7 +573,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <span className="text-xs font-bold text-red-600 uppercase tracking-wider block">
+                  <span className="text-sm font-bold text-red-600 uppercase tracking-wider block">
                     ENGINEERING MATRIX
                   </span>
                   <h3 className="text-xl sm:text-2xl font-black text-slate-900">
@@ -584,11 +584,11 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
               <div className="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left text-sm border-collapse">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
                     <thead>
                       <tr className="bg-slate-50 border-b border-slate-200 text-slate-900 font-bold uppercase tracking-wider">
-                        <th className="py-3 px-4 w-1/2 text-sm">Application</th>
-                        <th className="py-3 px-4 w-1/2 text-sm">Recommended emulsion</th>
+                        <th className="py-3.5 px-4 w-1/2">Application</th>
+                        <th className="py-3.5 px-4 w-1/2">Recommended emulsion</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
@@ -597,10 +597,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                           key={idx}
                           className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}
                         >
-                          <td className="py-3 px-4 font-semibold text-slate-900">
+                          <td className="py-3.5 px-4 font-semibold text-slate-900">
                             {item.application}
                           </td>
-                          <td className="py-3 px-4 font-mono font-bold text-red-700">
+                          <td className="py-3.5 px-4 font-mono font-bold text-red-700">
                             {item.recommended}
                           </td>
                         </tr>
@@ -614,19 +614,19 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             {/* Important Notes & Commercial Advice Callouts */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="p-5 rounded-xl bg-amber-50/80 border border-amber-200 text-amber-950 space-y-2">
-                <div className="text-xs font-bold text-amber-800 uppercase tracking-wider flex items-center gap-1.5">
+                <div className="text-sm font-bold text-amber-800 uppercase tracking-wider flex items-center gap-1.5">
                   <Info className="w-4 h-4 text-amber-600" /> Important Selection Criterion
                 </div>
-                <p className="text-xs sm:text-sm leading-relaxed">
+                <p className="text-sm sm:text-base leading-relaxed">
                   {product.emulsionGuide.importantNotice}
                 </p>
               </div>
 
               <div className="p-5 rounded-xl bg-slate-900 text-white space-y-2">
-                <div className="text-xs font-bold text-red-400 uppercase tracking-wider flex items-center gap-1.5">
+                <div className="text-sm font-bold text-red-400 uppercase tracking-wider flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-red-400" /> Commercial Plant Recommendation
                 </div>
-                <p className="text-xs sm:text-sm leading-relaxed text-slate-300">
+                <p className="text-sm sm:text-base leading-relaxed text-slate-300">
                   {product.emulsionGuide.commercialNote}
                 </p>
               </div>
@@ -664,13 +664,13 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
               {/* Basic Process Breadcrumbs */}
               <div className="space-y-2">
-                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
+                <span className="text-sm font-bold text-slate-500 uppercase tracking-wider block">
                   Basic process
                 </span>
-                <div className="p-3.5 bg-white rounded-xl border border-slate-200 font-mono text-xs sm:text-sm font-bold text-slate-800 flex flex-wrap items-center gap-2">
+                <div className="p-4 bg-white rounded-xl border border-slate-200 font-mono text-sm sm:text-base font-bold text-slate-800 flex flex-wrap items-center gap-2">
                   {product.pmbCrmbGuide.pmbPlant.processFlow.split('→').map((step, sIdx, arr) => (
                     <React.Fragment key={sIdx}>
-                      <span className="bg-red-50 text-red-700 px-2.5 py-1 rounded border border-red-200">
+                      <span className="bg-red-50 text-red-700 px-3 py-1.5 rounded border border-red-200">
                         {step.trim()}
                       </span>
                       {sIdx < arr.length - 1 && <span className="text-slate-400 font-bold">→</span>}
@@ -679,7 +679,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
                 <div className="p-4 bg-white rounded-xl border border-slate-200">
                   {product.pmbCrmbGuide.pmbPlant.polymersNote}
                 </div>
@@ -690,24 +690,24 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
               {/* Equipment Table */}
               <div className="space-y-3">
-                <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
+                <h4 className="text-base font-bold text-slate-900 uppercase tracking-wider">
                   Main PMB plant equipment
                 </h4>
                 <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
-                  <table className="w-full text-left text-xs sm:text-sm border-collapse">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
                     <thead>
                       <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
-                        <th className="py-2.5 px-4 w-1/2">Equipment</th>
-                        <th className="py-2.5 px-4 w-1/2">Typical function</th>
+                        <th className="py-3 px-4 w-1/2">Equipment</th>
+                        <th className="py-3 px-4 w-1/2">Typical function</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
                       {product.pmbCrmbGuide.pmbPlant.equipmentTable.map((item, idx) => (
                         <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
-                          <td className="py-2.5 px-4 font-bold text-slate-900">
+                          <td className="py-3 px-4 font-bold text-slate-900">
                             {item.equipment}
                           </td>
-                          <td className="py-2.5 px-4 text-slate-700">
+                          <td className="py-3 px-4 text-slate-700">
                             {item.function}
                           </td>
                         </tr>
@@ -724,7 +724,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-2">
                   {product.pmbCrmbGuide.pmbGrades.title}
                 </h3>
-                <p className="text-sm text-slate-700">
+                <p className="text-base text-slate-700">
                   {product.pmbCrmbGuide.pmbGrades.intro}
                 </p>
               </div>
@@ -732,7 +732,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               {/* Grades Table */}
               <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left text-xs sm:text-sm border-collapse">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
                     <thead>
                       <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
                         <th className="py-3 px-4">PMB Grade</th>
@@ -759,7 +759,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
                 <div className="p-4 bg-white rounded-xl border border-slate-200">
                   {product.pmbCrmbGuide.pmbGrades.designationNote}
                 </div>
@@ -770,16 +770,16 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
               {/* Typical Application Logic */}
               <div className="space-y-3">
-                <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
+                <h4 className="text-base font-bold text-slate-900 uppercase tracking-wider">
                   Typical application logic
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {product.pmbCrmbGuide.pmbGrades.applicationLogic.map((logic, idx) => (
                     <div key={idx} className="p-4 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-2">
-                      <div className="font-mono font-bold text-sm text-red-600">
+                      <div className="font-mono font-bold text-base text-red-600">
                         {logic.grade}
                       </div>
-                      <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700">
+                      <ul className="space-y-1.5 text-sm sm:text-base text-slate-700">
                         {logic.points.map((pt, pIdx) => (
                           <li key={pIdx} className="flex items-start gap-1.5">
                             <span className="text-red-500 font-bold">•</span>
@@ -792,8 +792,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-amber-50/80 border border-amber-200 text-xs sm:text-sm text-amber-950 flex items-start gap-2">
-                <Info className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+              <div className="p-4 rounded-xl bg-amber-50/80 border border-amber-200 text-sm sm:text-base text-amber-950 flex items-start gap-2">
+                <Info className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
                 <span>{product.pmbCrmbGuide.pmbGrades.selectionNote}</span>
               </div>
             </div>
@@ -808,20 +808,20 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     {product.pmbCrmbGuide.crmbPlant.title}
                   </h3>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                   {product.pmbCrmbGuide.crmbPlant.intro}
                 </p>
-                <div className="p-3.5 bg-white rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-800 font-medium">
+                <div className="p-3.5 bg-white rounded-xl border border-slate-200 text-sm sm:text-base text-slate-800 font-medium">
                   {product.pmbCrmbGuide.crmbPlant.standardNote}
                 </div>
                 <div className="space-y-2">
-                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
+                  <span className="text-sm font-bold text-slate-500 uppercase tracking-wider block">
                     Basic CRMB process
                   </span>
-                  <div className="p-3 bg-white rounded-xl border border-slate-200 font-mono text-xs font-bold text-slate-800 flex flex-wrap items-center gap-1.5">
+                  <div className="p-4 bg-white rounded-xl border border-slate-200 font-mono text-sm sm:text-base font-bold text-slate-800 flex flex-wrap items-center gap-2">
                     {product.pmbCrmbGuide.crmbPlant.processFlow.split('→').map((step, sIdx, arr) => (
                       <React.Fragment key={sIdx}>
-                        <span className="bg-slate-100 text-slate-900 px-2 py-0.5 rounded border border-slate-200">
+                        <span className="bg-slate-100 text-slate-900 px-2.5 py-1 rounded border border-slate-200">
                           {step.trim()}
                         </span>
                         {sIdx < arr.length - 1 && <span className="text-slate-400">→</span>}
@@ -829,7 +829,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     ))}
                   </div>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 italic">
+                <p className="text-sm sm:text-base text-slate-600 italic">
                   {product.pmbCrmbGuide.crmbPlant.dispersionNote}
                 </p>
               </div>
@@ -841,28 +841,28 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     {product.pmbCrmbGuide.crmbGrades.title}
                   </h3>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-700">
+                <p className="text-sm sm:text-base text-slate-700">
                   {product.pmbCrmbGuide.crmbGrades.intro}
                 </p>
                 <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
-                  <table className="w-full text-left text-xs sm:text-sm border-collapse">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
                     <thead>
                       <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
-                        <th className="py-2.5 px-3">Grade</th>
-                        <th className="py-2.5 px-3">Min Softening Point</th>
-                        <th className="py-2.5 px-3">Typical application</th>
+                        <th className="py-3 px-3.5">Grade</th>
+                        <th className="py-3 px-3.5">Min Softening Point</th>
+                        <th className="py-3 px-3.5">Typical application</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
                       {product.pmbCrmbGuide.crmbGrades.table.map((row, idx) => (
                         <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
-                          <td className="py-2.5 px-3 font-mono font-bold text-red-600">
+                          <td className="py-3 px-3.5 font-mono font-bold text-red-600">
                             {row.grade}
                           </td>
-                          <td className="py-2.5 px-3 font-medium text-slate-800">
+                          <td className="py-3 px-3.5 font-medium text-slate-800">
                             {row.softeningPoint}
                           </td>
-                          <td className="py-2.5 px-3 text-slate-700">
+                          <td className="py-3 px-3.5 text-slate-700">
                             {row.application}
                           </td>
                         </tr>
@@ -870,13 +870,13 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     </tbody>
                   </table>
                 </div>
-                <p className="text-xs text-slate-600">
+                <p className="text-sm text-slate-600">
                   {product.pmbCrmbGuide.crmbGrades.classificationNote}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {product.pmbCrmbGuide.crmbGrades.gradesDetail.map((gd, idx) => (
-                    <div key={idx} className="p-3.5 bg-white rounded-xl border border-slate-200 text-xs space-y-1.5">
-                      <div className="font-bold text-slate-900 font-mono text-sm text-red-600">
+                    <div key={idx} className="p-3.5 bg-white rounded-xl border border-slate-200 text-sm space-y-1.5">
+                      <div className="font-bold text-slate-900 font-mono text-base text-red-600">
                         {gd.grade}
                       </div>
                       <div className="font-semibold text-slate-700">
@@ -906,12 +906,12 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               </div>
               <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left text-xs sm:text-sm border-collapse">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
                     <thead>
                       <tr className="bg-slate-100 border-b border-slate-200 text-slate-900 font-bold uppercase tracking-wider">
-                        <th className="py-3 px-4 w-1/4">Parameter</th>
-                        <th className="py-3 px-4 w-3/8 text-red-700">PMB</th>
-                        <th className="py-3 px-4 w-3/8 text-slate-800">CRMB</th>
+                        <th className="py-3.5 px-4 w-1/4">Parameter</th>
+                        <th className="py-3.5 px-4 w-3/8 text-red-700">PMB</th>
+                        <th className="py-3.5 px-4 w-3/8 text-slate-800">CRMB</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
@@ -940,22 +940,22 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-2">
                   {product.pmbCrmbGuide.configuration.title}
                 </h3>
-                <p className="text-sm text-slate-700 font-medium">
+                <p className="text-base text-slate-700 font-medium">
                   {product.pmbCrmbGuide.configuration.recommendation}
                 </p>
               </div>
 
               {/* Process Arrangement Diagram */}
               <div className="space-y-2">
-                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
+                <span className="text-sm font-bold text-slate-500 uppercase tracking-wider block">
                   Suggested process arrangement
                 </span>
-                <div className="p-6 bg-slate-950 text-emerald-400 rounded-xl font-mono text-xs sm:text-sm overflow-x-auto border border-slate-800 leading-tight">
+                <div className="p-6 bg-slate-950 text-emerald-400 rounded-xl font-mono text-sm sm:text-base overflow-x-auto border border-slate-800 leading-tight">
                   <pre className="whitespace-pre">{product.pmbCrmbGuide.configuration.diagramText}</pre>
                 </div>
               </div>
 
-              <div className="p-4 bg-white rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
+              <div className="p-4 bg-white rounded-xl border border-slate-200 text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
                 {product.pmbCrmbGuide.configuration.processNote}
               </div>
             </div>
@@ -966,27 +966,27 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-2">
                   {product.pmbCrmbGuide.capacities.title}
                 </h3>
-                <p className="text-sm text-slate-700">
+                <p className="text-base text-slate-700">
                   {product.pmbCrmbGuide.capacities.intro}
                 </p>
               </div>
 
               {/* Capacities Table */}
               <div className="max-w-md rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
-                <table className="w-full text-left text-xs sm:text-sm border-collapse">
+                <table className="w-full text-left text-sm sm:text-base border-collapse">
                   <thead>
                     <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
-                      <th className="py-2.5 px-4 w-1/2">Plant capacity</th>
-                      <th className="py-2.5 px-4 w-1/2">Approx. production</th>
+                      <th className="py-3 px-4 w-1/2">Plant capacity</th>
+                      <th className="py-3 px-4 w-1/2">Approx. production</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
                     {product.pmbCrmbGuide.capacities.capacityTable.map((cap, idx) => (
                       <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
-                        <td className="py-2.5 px-4 font-bold text-slate-900">
+                        <td className="py-3 px-4 font-bold text-slate-900">
                           {cap.capacity}
                         </td>
-                        <td className="py-2.5 px-4 font-mono font-bold text-red-600">
+                        <td className="py-3 px-4 font-mono font-bold text-red-600">
                           {cap.production}
                         </td>
                       </tr>
@@ -995,20 +995,20 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 </table>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                 {product.pmbCrmbGuide.capacities.tenTphNote}
               </p>
 
               {/* 10 TPH Equipment Checklist */}
               <div className="space-y-3 pt-2">
-                <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
+                <h4 className="text-base font-bold text-slate-900 uppercase tracking-wider">
                   {product.pmbCrmbGuide.capacities.equipmentListTitle}
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
                   {product.pmbCrmbGuide.capacities.equipmentList.map((item, idx) => (
                     <div
                       key={idx}
-                      className="p-3 bg-white rounded-lg border border-slate-200 text-xs sm:text-sm font-medium text-slate-800 flex items-center gap-2 shadow-2xs"
+                      className="p-3 bg-white rounded-lg border border-slate-200 text-sm font-medium text-slate-800 flex items-center gap-2 shadow-2xs"
                     >
                       <CheckCircle2 className="w-4 h-4 text-red-600 shrink-0" />
                       <span>{item}</span>
@@ -1020,19 +1020,19 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               {/* Design Point Warning & Atlas Engineering Commercial Consultation */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                 <div className="p-5 rounded-xl bg-amber-50/80 border border-amber-200 text-amber-950 space-y-2">
-                  <div className="text-xs font-bold text-amber-800 uppercase tracking-wider flex items-center gap-1.5">
-                    <Info className="w-4 h-4 text-amber-600" /> Engineering Design Consideration
+                  <div className="text-sm font-bold text-amber-800 uppercase tracking-wider flex items-center gap-1.5">
+                    <Info className="w-5 h-5 text-amber-600" /> Engineering Design Consideration
                   </div>
-                  <p className="text-xs sm:text-sm leading-relaxed">
+                  <p className="text-sm sm:text-base leading-relaxed">
                     {product.pmbCrmbGuide.capacities.designPoint}
                   </p>
                 </div>
 
                 <div className="p-5 rounded-xl bg-slate-900 text-white space-y-2">
-                  <div className="text-xs font-bold text-red-400 uppercase tracking-wider flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-red-400" /> Atlas Engineering Consultation
+                  <div className="text-sm font-bold text-red-400 uppercase tracking-wider flex items-center gap-1.5">
+                    <CheckCircle2 className="w-5 h-5 text-red-400" /> Atlas Engineering Consultation
                   </div>
-                  <p className="text-xs sm:text-sm leading-relaxed text-slate-300">
+                  <p className="text-sm sm:text-base leading-relaxed text-slate-300">
                     {product.pmbCrmbGuide.capacities.commercialNote}
                   </p>
                 </div>
@@ -1141,13 +1141,13 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
               {/* Process Flow Breadcrumb */}
               <div className="space-y-2">
-                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
+                <span className="text-sm font-bold text-slate-500 uppercase tracking-wider block">
                   Basic Process Flow
                 </span>
-                <div className="p-3.5 bg-white rounded-xl border border-slate-200 font-mono text-xs sm:text-sm font-bold text-slate-800 flex flex-wrap items-center gap-2">
+                <div className="p-4 bg-white rounded-xl border border-slate-200 font-mono text-sm sm:text-base font-bold text-slate-800 flex flex-wrap items-center gap-2">
                   {product.oxidizationGuide.processFlow.split('→').map((step, sIdx, arr) => (
                     <React.Fragment key={sIdx}>
-                      <span className="bg-red-50 text-red-700 px-2.5 py-1 rounded border border-red-200">
+                      <span className="bg-red-50 text-red-700 px-3 py-1.5 rounded border border-red-200">
                         {step.trim()}
                       </span>
                       {sIdx < arr.length - 1 && <span className="text-slate-400 font-bold">→</span>}
@@ -1158,24 +1158,24 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
               {/* Main Equipment Table */}
               <div className="space-y-3">
-                <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
+                <h4 className="text-base font-bold text-slate-900 uppercase tracking-wider">
                   Main Equipment
                 </h4>
                 <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
-                  <table className="w-full text-left text-xs sm:text-sm border-collapse">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
                     <thead>
                       <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
-                        <th className="py-2.5 px-4 w-1/2">Equipment</th>
-                        <th className="py-2.5 px-4 w-1/2">Basic Function</th>
+                        <th className="py-3 px-4 w-1/2">Equipment</th>
+                        <th className="py-3 px-4 w-1/2">Basic Function</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
                       {product.oxidizationGuide.equipmentTable.map((item, idx) => (
                         <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
-                          <td className="py-2.5 px-4 font-bold text-slate-900">
+                          <td className="py-3 px-4 font-bold text-slate-900">
                             {item.equipment}
                           </td>
-                          <td className="py-2.5 px-4 text-slate-700">
+                          <td className="py-3 px-4 text-slate-700">
                             {item.function}
                           </td>
                         </tr>
@@ -1196,10 +1196,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                 {product.oxidizationGuide.operatingPrinciples.map((step, idx) => (
                   <div key={idx} className="p-4 bg-white rounded-xl border border-slate-200 flex items-start gap-3 shadow-2xs">
-                    <span className="w-6 h-6 rounded-full bg-red-100 text-red-700 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="w-7 h-7 rounded-full bg-red-100 text-red-700 font-bold text-sm flex items-center justify-center shrink-0 mt-0.5">
                       {idx + 1}
                     </span>
-                    <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-medium">
                       {step}
                     </p>
                   </div>
@@ -1213,7 +1213,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-2">
                   Common Oxidized Bitumen Grades & Applications
                 </h3>
-                <p className="text-sm text-slate-700">
+                <p className="text-base text-slate-700">
                   {product.oxidizationGuide.gradesIntro}
                 </p>
               </div>
@@ -1221,7 +1221,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               {/* Grades Table */}
               <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left text-xs sm:text-sm border-collapse">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
                     <thead>
                       <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
                         <th className="py-3 px-4">Grade</th>
@@ -1248,7 +1248,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 </div>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-600 italic">
+              <p className="text-sm sm:text-base text-slate-600 italic">
                 {product.oxidizationGuide.gradesCitation}
               </p>
             </div>
@@ -1264,10 +1264,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 {product.oxidizationGuide.majorApplications.map((app, idx) => (
                   <div key={idx} className="p-5 bg-white rounded-xl border border-slate-200 shadow-2xs flex flex-col justify-between space-y-3">
                     <div className="space-y-2.5">
-                      <h4 className="font-bold text-sm sm:text-base text-slate-900 border-b border-slate-100 pb-2">
+                      <h4 className="font-bold text-base text-slate-900 border-b border-slate-100 pb-2">
                         {app.title}
                       </h4>
-                      <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700">
+                      <ul className="space-y-1.5 text-sm sm:text-base text-slate-700">
                         {app.points.map((pt, pIdx) => (
                           <li key={pIdx} className="flex items-start gap-1.5">
                             <span className="text-red-500 font-bold">•</span>
@@ -1277,7 +1277,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                       </ul>
                     </div>
                     {app.citation && (
-                      <p className="text-2xs text-slate-500 pt-2 border-t border-slate-100 italic">
+                      <p className="text-xs text-slate-500 pt-2 border-t border-slate-100 italic">
                         {app.citation}
                       </p>
                     )}
@@ -1296,10 +1296,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
               {/* Concept Diagram */}
               <div className="space-y-2">
-                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
+                <span className="text-sm font-bold text-slate-500 uppercase tracking-wider block">
                   Simple Plant Concept Flow
                 </span>
-                <div className="p-6 bg-slate-950 text-emerald-400 rounded-xl font-mono text-xs sm:text-sm overflow-x-auto border border-slate-800 leading-tight">
+                <div className="p-6 bg-slate-950 text-emerald-400 rounded-xl font-mono text-sm sm:text-base overflow-x-auto border border-slate-800 leading-tight">
                   <pre className="whitespace-pre">{product.oxidizationGuide.plantConceptDiagram}</pre>
                 </div>
               </div>
@@ -1307,19 +1307,19 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               {/* Design Point Warning & Atlas Engineering Commercial Consultation */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                 <div className="p-5 rounded-xl bg-amber-50/80 border border-amber-200 text-amber-950 space-y-2">
-                  <div className="text-xs font-bold text-amber-800 uppercase tracking-wider flex items-center gap-1.5">
-                    <Info className="w-4 h-4 text-amber-600" /> Operational Design Parameter
+                  <div className="text-sm font-bold text-amber-800 uppercase tracking-wider flex items-center gap-1.5">
+                    <Info className="w-5 h-5 text-amber-600" /> Operational Design Parameter
                   </div>
-                  <p className="text-xs sm:text-sm leading-relaxed">
+                  <p className="text-sm sm:text-base leading-relaxed">
                     {product.oxidizationGuide.importantNote}
                   </p>
                 </div>
 
                 <div className="p-5 rounded-xl bg-slate-900 text-white space-y-2">
-                  <div className="text-xs font-bold text-red-400 uppercase tracking-wider flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-red-400" /> Atlas Engineering Capability
+                  <div className="text-sm font-bold text-red-400 uppercase tracking-wider flex items-center gap-1.5">
+                    <CheckCircle2 className="w-5 h-5 text-red-400" /> Atlas Engineering Capability
                   </div>
-                  <p className="text-xs sm:text-sm leading-relaxed text-slate-300">
+                  <p className="text-sm sm:text-base leading-relaxed text-slate-300">
                     {product.oxidizationGuide.summaryNote}
                   </p>
                 </div>
@@ -1429,20 +1429,20 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   </h3>
                 </div>
                 <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
-                  <table className="w-full text-left text-xs sm:text-sm border-collapse">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
                     <thead>
                       <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
-                        <th className="py-2.5 px-3 w-1/2">Equipment</th>
-                        <th className="py-2.5 px-3 w-1/2">Function</th>
+                        <th className="py-3 px-4 w-1/2">Equipment</th>
+                        <th className="py-3 px-4 w-1/2">Function</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
                       {product.coldMixGuide.equipmentTable.map((item, idx) => (
                         <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
-                          <td className="py-2.5 px-3 font-bold text-slate-900">
+                          <td className="py-3 px-4 font-bold text-slate-900">
                             {item.equipment}
                           </td>
-                          <td className="py-2.5 px-3 text-slate-700">
+                          <td className="py-3 px-4 text-slate-700">
                             {item.function}
                           </td>
                         </tr>
@@ -1461,17 +1461,17 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 </div>
                 <div className="space-y-2.5">
                   {product.coldMixGuide.productionSteps.map((step, idx) => (
-                    <div key={idx} className="p-3 bg-white rounded-lg border border-slate-200 flex items-start gap-2.5 shadow-2xs">
-                      <span className="w-5 h-5 rounded-full bg-red-100 text-red-700 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                    <div key={idx} className="p-3.5 bg-white rounded-lg border border-slate-200 flex items-start gap-3 shadow-2xs">
+                      <span className="w-6 h-6 rounded-full bg-red-100 text-red-700 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
                         {idx + 1}
                       </span>
-                      <p className="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">
+                      <p className="text-sm sm:text-base text-slate-700 font-medium leading-relaxed">
                         {step}
                       </p>
                     </div>
                   ))}
                 </div>
-                <p className="text-xs text-slate-600 italic bg-amber-50/60 p-3 rounded-lg border border-amber-200">
+                <p className="text-sm sm:text-base text-slate-700 italic bg-amber-50/60 p-3.5 rounded-lg border border-amber-200">
                   {product.coldMixGuide.productionNote}
                 </p>
               </div>
@@ -1484,14 +1484,14 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-2">
                   Types of Cold Mix / Grades and Applications
                 </h3>
-                <p className="text-sm text-slate-700">
+                <p className="text-base text-slate-700">
                   {product.coldMixGuide.gradesIntro}
                 </p>
               </div>
 
               <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left text-xs sm:text-sm border-collapse">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
                     <thead>
                       <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
                         <th className="py-3 px-4">Cold Mix Type</th>
@@ -1525,7 +1525,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-2">
                   Emulsion Grades Commonly Used
                 </h3>
-                <p className="text-sm text-slate-700">
+                <p className="text-base text-slate-700">
                   {product.coldMixGuide.emulsionGradesIntro}
                 </p>
               </div>
@@ -1537,19 +1537,19 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                       <span className="font-mono font-bold text-base text-red-600 bg-red-50 px-2 py-0.5 rounded border border-red-200">
                         {eg.grade}
                       </span>
-                      <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                      <span className="text-sm font-bold text-slate-800 uppercase tracking-wider">
                         {eg.title}
                       </span>
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                       {eg.description}
                     </p>
                   </div>
                 ))}
               </div>
 
-              <div className="p-4 rounded-xl bg-blue-50/80 border border-blue-200 text-xs sm:text-sm text-blue-950 flex items-start gap-2">
-                <Info className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+              <div className="p-4 rounded-xl bg-blue-50/80 border border-blue-200 text-sm sm:text-base text-blue-950 flex items-start gap-2">
+                <Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
                 <div>
                   <span className="font-bold block mb-0.5">Best Configuration for Monsoon Pothole Repair</span>
                   <span>{product.coldMixGuide.configurationNote}</span>
@@ -1569,9 +1569,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 {product.coldMixGuide.advantages.map((adv, idx) => (
                   <div
                     key={idx}
-                    className="p-3.5 bg-white rounded-xl border border-slate-200 flex items-center gap-2.5 shadow-2xs text-xs sm:text-sm text-slate-800 font-medium"
+                    className="p-3.5 bg-white rounded-xl border border-slate-200 flex items-center gap-2.5 shadow-2xs text-sm sm:text-base text-slate-800 font-medium"
                   >
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
                     <span>{adv}</span>
                   </div>
                 ))}
@@ -1579,19 +1579,19 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                 <div className="p-5 rounded-xl bg-amber-50/80 border border-amber-200 text-amber-950 space-y-2">
-                  <div className="text-xs font-bold text-amber-800 uppercase tracking-wider flex items-center gap-1.5">
-                    <Info className="w-4 h-4 text-amber-600" /> IRC / PMGSY Guidance
+                  <div className="text-sm font-bold text-amber-800 uppercase tracking-wider flex items-center gap-1.5">
+                    <Info className="w-5 h-5 text-amber-600" /> IRC / PMGSY Guidance
                   </div>
-                  <p className="text-xs sm:text-sm leading-relaxed">
+                  <p className="text-sm sm:text-base leading-relaxed">
                     {product.coldMixGuide.ircCitation}
                   </p>
                 </div>
 
                 <div className="p-5 rounded-xl bg-slate-900 text-white space-y-2">
-                  <div className="text-xs font-bold text-red-400 uppercase tracking-wider flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-red-400" /> Atlas Engineering System
+                  <div className="text-sm font-bold text-red-400 uppercase tracking-wider flex items-center gap-1.5">
+                    <CheckCircle2 className="w-5 h-5 text-red-400" /> Atlas Engineering System
                   </div>
-                  <p className="text-xs sm:text-sm leading-relaxed text-slate-300">
+                  <p className="text-sm sm:text-base leading-relaxed text-slate-300">
                     {product.coldMixGuide.websiteSummary}
                   </p>
                 </div>
@@ -1672,13 +1672,1194 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
         </section>
       )}
 
+      {/* Bitumen Storage & Heating Tank Complete Technical Guide */}
+      {product.storageTankGuide && (
+        <section className="py-14 sm:py-16 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            {/* Header & Intro */}
+            <div>
+              <span className="text-sm font-bold text-red-600 uppercase tracking-wider block mb-2">
+                STORAGE &amp; HEATING TECHNOLOGY SPECIFICATION
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mb-4">
+                Bitumen Storage &amp; Heating Tank Guide
+              </h2>
+              <p className="text-base text-slate-700 max-w-4xl leading-relaxed whitespace-pre-line font-medium">
+                {product.storageTankGuide.intro}
+              </p>
+            </div>
+
+            {/* Two Main Heating Arrangements */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-4">
+              <h3 className="text-base sm:text-lg font-bold text-slate-900">
+                {product.storageTankGuide.arrangementsIntro}
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {product.storageTankGuide.arrangementsList.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="p-4 bg-white rounded-xl border border-slate-200 flex items-center gap-3 shadow-2xs font-bold text-slate-900 text-sm sm:text-base"
+                  >
+                    <span className="w-8 h-8 rounded-lg bg-red-100 text-red-700 font-bold text-sm flex items-center justify-center shrink-0">
+                      {idx + 1}
+                    </span>
+                    <span>{item.replace(/^\d+\.\s*/, '')}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 1. Direct Heating Type Bitumen Tank */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-6">
+              <div className="border-b border-slate-200 pb-3">
+                <span className="text-sm font-bold text-red-600 uppercase tracking-wider block mb-1">
+                  ARRANGEMENT 1
+                </span>
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-2">
+                  {product.storageTankGuide.directHeating.title}
+                </h3>
+                <p className="text-base text-slate-700 leading-relaxed font-medium">
+                  {product.storageTankGuide.directHeating.intro}
+                </p>
+              </div>
+
+              {/* Basic Arrangement Flow */}
+              <div className="space-y-2">
+                <span className="text-sm font-bold text-slate-500 uppercase tracking-wider block">
+                  Basic Arrangement
+                </span>
+                <div className="p-4 bg-white rounded-xl border border-slate-200 font-mono text-sm sm:text-base font-bold text-slate-800 flex flex-wrap items-center gap-2">
+                  {product.storageTankGuide.directHeating.basicArrangement.split('→').map((step, sIdx, arr) => (
+                    <React.Fragment key={sIdx}>
+                      <span className="bg-red-50 text-red-700 px-3 py-1.5 rounded border border-red-200">
+                        {step.trim()}
+                      </span>
+                      {sIdx < arr.length - 1 && <span className="text-slate-400 font-bold">→</span>}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+
+              {/* Main Components Table */}
+              <div className="space-y-3">
+                <h4 className="text-base font-bold text-slate-900 uppercase tracking-wider">
+                  Main Components
+                </h4>
+                <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
+                    <thead>
+                      <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
+                        <th className="py-3 px-4 w-1/2">Component</th>
+                        <th className="py-3 px-4 w-1/2">Function</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {product.storageTankGuide.directHeating.componentsTable.map((item, idx) => (
+                        <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
+                          <td className="py-3 px-4 font-bold text-slate-900">
+                            {item.component}
+                          </td>
+                          <td className="py-3 px-4 text-slate-700">
+                            {item.function}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Advantages & Disadvantages Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="p-5 bg-white rounded-xl border border-emerald-200 shadow-2xs space-y-3">
+                  <h4 className="text-base font-bold text-emerald-800 uppercase tracking-wider flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Advantages
+                  </h4>
+                  <ul className="space-y-2 text-sm sm:text-base text-slate-700">
+                    {product.storageTankGuide.directHeating.advantages.map((adv, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <span className="text-emerald-600 font-bold">•</span>
+                        <span>{adv}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="p-5 bg-white rounded-xl border border-rose-200 shadow-2xs space-y-3">
+                  <h4 className="text-base font-bold text-rose-800 uppercase tracking-wider flex items-center gap-2">
+                    <Info className="w-4 h-4 text-rose-600" /> Disadvantages
+                  </h4>
+                  <ul className="space-y-2 text-sm sm:text-base text-slate-700">
+                    {product.storageTankGuide.directHeating.disadvantages.map((dis, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <span className="text-rose-600 font-bold">•</span>
+                        <span>{dis}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Note */}
+              {product.storageTankGuide.directHeating.note && (
+                <div className="p-4 rounded-xl bg-amber-50/90 border border-amber-200 text-amber-950 text-sm sm:text-base flex items-start gap-2.5 leading-relaxed font-medium">
+                  <Info className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+                  <span>{product.storageTankGuide.directHeating.note}</span>
+                </div>
+              )}
+            </div>
+
+            {/* 2. Indirect Heating Type Bitumen Tank */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-6">
+              <div className="border-b border-slate-200 pb-3">
+                <span className="text-sm font-bold text-red-600 uppercase tracking-wider block mb-1">
+                  ARRANGEMENT 2
+                </span>
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-2">
+                  {product.storageTankGuide.indirectHeating.title}
+                </h3>
+                <p className="text-base text-slate-700 leading-relaxed font-medium">
+                  {product.storageTankGuide.indirectHeating.intro}
+                </p>
+              </div>
+
+              {/* Basic Arrangement Flow */}
+              <div className="space-y-2">
+                <span className="text-sm font-bold text-slate-500 uppercase tracking-wider block">
+                  Basic Arrangement
+                </span>
+                <div className="p-4 bg-white rounded-xl border border-slate-200 font-mono text-sm sm:text-base font-bold text-slate-800 flex flex-wrap items-center gap-2">
+                  {product.storageTankGuide.indirectHeating.basicArrangement.split('→').map((step, sIdx, arr) => (
+                    <React.Fragment key={sIdx}>
+                      <span className="bg-red-50 text-red-700 px-3 py-1.5 rounded border border-red-200">
+                        {step.trim()}
+                      </span>
+                      {sIdx < arr.length - 1 && <span className="text-slate-400 font-bold">→</span>}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+
+              {/* Main Components Table */}
+              <div className="space-y-3">
+                <h4 className="text-base font-bold text-slate-900 uppercase tracking-wider">
+                  Main Components
+                </h4>
+                <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
+                    <thead>
+                      <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
+                        <th className="py-3 px-4 w-1/2">Component</th>
+                        <th className="py-3 px-4 w-1/2">Function</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {product.storageTankGuide.indirectHeating.componentsTable.map((item, idx) => (
+                        <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
+                          <td className="py-3 px-4 font-bold text-slate-900">
+                            {item.component}
+                          </td>
+                          <td className="py-3 px-4 text-slate-700">
+                            {item.function}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Advantages & Disadvantages Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="p-5 bg-white rounded-xl border border-emerald-200 shadow-2xs space-y-3">
+                  <h4 className="text-base font-bold text-emerald-800 uppercase tracking-wider flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Advantages
+                  </h4>
+                  <ul className="space-y-2 text-sm sm:text-base text-slate-700">
+                    {product.storageTankGuide.indirectHeating.advantages.map((adv, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <span className="text-emerald-600 font-bold">•</span>
+                        <span>{adv}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="p-5 bg-white rounded-xl border border-rose-200 shadow-2xs space-y-3">
+                  <h4 className="text-base font-bold text-rose-800 uppercase tracking-wider flex items-center gap-2">
+                    <Info className="w-4 h-4 text-rose-600" /> Disadvantages
+                  </h4>
+                  <ul className="space-y-2 text-sm sm:text-base text-slate-700">
+                    {product.storageTankGuide.indirectHeating.disadvantages.map((dis, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <span className="text-rose-600 font-bold">•</span>
+                        <span>{dis}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Direct Enquiry Box for Bitumen Storage Tank */}
+              <div className="mt-8 p-6 sm:p-8 rounded-2xl bg-white border border-red-200 shadow-sm space-y-4 max-w-3xl">
+                <div>
+                  <h4 className="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                    Enquire About {product.name}
+                  </h4>
+                  <p className="text-sm text-slate-600">
+                    Send a fast message to our engineering team regarding Bitumen Storage &amp; Heating Tank (Direct / Indirect Heating) specifications and commercial quotation.
+                  </p>
+                </div>
+
+                {inquirySubmitted ? (
+                  <div className="py-4 text-center text-sm text-green-700 font-semibold bg-green-50 rounded-lg border border-green-200">
+                    Thank you. Your enquiry for {product.name} has been received.
+                  </div>
+                ) : (
+                  <form onSubmit={handleInquirySubmit} className="space-y-3.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        required
+                        value={inquiryName}
+                        onChange={(e) => setInquiryName(e.target.value)}
+                        placeholder="Your Name *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="tel"
+                        required
+                        value={inquiryPhone}
+                        onChange={(e) => setInquiryPhone(e.target.value)}
+                        placeholder="Phone / WhatsApp *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        value={inquiryCompany}
+                        onChange={(e) => setInquiryCompany(e.target.value)}
+                        placeholder="Company Name"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="email"
+                        required
+                        value={inquiryEmail}
+                        onChange={(e) => setInquiryEmail(e.target.value)}
+                        placeholder="Email Address *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <textarea
+                      rows={2}
+                      value={inquiryMsg}
+                      onChange={(e) => setInquiryMsg(e.target.value)}
+                      placeholder={`Tell us about your requirements for ${product.name}...`}
+                      className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600 resize-none"
+                    />
+                    <button
+                      type="submit"
+                      className="w-full py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                    >
+                      <Send className="w-4 h-4" /> Submit Fast Inquiry
+                    </button>
+                  </form>
+                )}
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      )}
+
+      {/* Horizontal Emulsion Storage Tank Complete Technical Guide */}
+      {product.horizontalTankGuide && (
+        <section className="py-14 sm:py-16 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            {/* Header & Intro */}
+            <div>
+              <span className="text-sm font-bold text-red-600 uppercase tracking-wider block mb-2">
+                EMULSION STORAGE &amp; THERMAL MANAGEMENT SPECIFICATION
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mb-4">
+                Horizontal Emulsion Storage Tank Guide
+              </h2>
+              <p className="text-base text-slate-700 max-w-4xl leading-relaxed whitespace-pre-line font-medium">
+                {product.horizontalTankGuide.intro}
+              </p>
+            </div>
+
+            {/* 1. Basic Construction */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-5">
+              <div className="border-b border-slate-200 pb-3">
+                <span className="text-sm font-bold text-red-600 uppercase tracking-wider block mb-1">
+                  SECTION 1
+                </span>
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  1. Basic Construction
+                </h3>
+                <p className="text-base text-slate-700 mt-1">
+                  {product.horizontalTankGuide.basicConstruction.intro}
+                </p>
+              </div>
+
+              {/* Table */}
+              <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
+                <table className="w-full text-left text-sm sm:text-base border-collapse">
+                  <thead>
+                    <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
+                      <th className="py-3 px-4 w-1/2">Component</th>
+                      <th className="py-3 px-4 w-1/2">Basic Details / Function</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {product.horizontalTankGuide.basicConstruction.componentsTable.map((item, idx) => (
+                      <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
+                        <td className="py-3 px-4 font-bold text-slate-900">
+                          {item.component}
+                        </td>
+                        <td className="py-3 px-4 text-slate-700">
+                          {item.function}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* 2. Typical Tank Sizes */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-5">
+              <div className="border-b border-slate-200 pb-3">
+                <span className="text-sm font-bold text-red-600 uppercase tracking-wider block mb-1">
+                  SECTION 2
+                </span>
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  2. Typical Tank Sizes
+                </h3>
+                <p className="text-base text-slate-700 mt-1">
+                  Common horizontal storage capacities include:
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+                {product.horizontalTankGuide.typicalSizes.capacities.map((cap, idx) => (
+                  <div
+                    key={idx}
+                    className="p-3.5 bg-white rounded-xl border border-slate-200 text-center shadow-2xs space-y-1"
+                  >
+                    <div className="text-xl font-black text-red-600 font-mono">
+                      {cap}
+                    </div>
+                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                      Capacity
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="p-4 bg-white rounded-xl border border-slate-200 text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+                {product.horizontalTankGuide.typicalSizes.example}
+              </div>
+            </div>
+
+            {/* 3. Important Design Considerations */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-5">
+              <div className="border-b border-slate-200 pb-3">
+                <span className="text-sm font-bold text-red-600 uppercase tracking-wider block mb-1">
+                  SECTION 3
+                </span>
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  3. Important Design Considerations
+                </h3>
+                <p className="text-base text-slate-700 mt-1">
+                  {product.horizontalTankGuide.designConsiderations.intro}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {product.horizontalTankGuide.designConsiderations.points.map((pt, idx) => (
+                  <div
+                    key={idx}
+                    className="p-3.5 bg-white rounded-xl border border-slate-200 flex items-center gap-2.5 shadow-2xs text-sm sm:text-base text-slate-800 font-medium"
+                  >
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                    <span>{pt}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="p-4 rounded-xl bg-amber-50/90 border border-amber-200 text-amber-950 text-sm sm:text-base flex items-start gap-2.5 leading-relaxed font-medium">
+                <Info className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+                <span>{product.horizontalTankGuide.designConsiderations.importantNotice}</span>
+              </div>
+            </div>
+
+            {/* 4. Typical Specification – Horizontal Emulsion Tank */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-5">
+              <div className="border-b border-slate-200 pb-3">
+                <span className="text-sm font-bold text-red-600 uppercase tracking-wider block mb-1">
+                  SECTION 4
+                </span>
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  {product.horizontalTankGuide.specifications.title}
+                </h3>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
+                    <thead>
+                      <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
+                        <th className="py-3 px-4 w-1/3">Parameter</th>
+                        <th className="py-3 px-4 w-2/3">Specification Detail</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {product.horizontalTankGuide.specifications.specs.map((item, idx) => (
+                        <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
+                          <td className="py-3 px-4 font-bold text-slate-900 whitespace-nowrap">
+                            {item.parameter}
+                          </td>
+                          <td className="py-3 px-4 text-slate-700 font-medium">
+                            {item.value}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            {/* Main Applications */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-5">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-1">
+                  {product.horizontalTankGuide.applications.title}
+                </h3>
+                <p className="text-base text-slate-700">
+                  {product.horizontalTankGuide.applications.intro}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                {product.horizontalTankGuide.applications.storedEmulsions.map((em, idx) => (
+                  <div
+                    key={idx}
+                    className="p-3.5 bg-white rounded-xl border border-slate-200 shadow-2xs flex items-center gap-2"
+                  >
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-600 shrink-0" />
+                    <span className="text-sm sm:text-base font-bold text-slate-900">{em}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="p-4 bg-white rounded-xl border border-slate-200 text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+                {product.horizontalTankGuide.applications.appliedUses}
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-900 text-white space-y-1.5 shadow-xs">
+                <div className="text-sm font-bold text-red-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-red-400" /> Engineering Sizing Guidance
+                </div>
+                <p className="text-sm sm:text-base leading-relaxed text-slate-300">
+                  {product.horizontalTankGuide.applications.plantSizingNote}
+                </p>
+              </div>
+
+              {/* Direct Enquiry Box for Horizontal Emulsion Storage Tank */}
+              <div className="mt-8 p-6 sm:p-8 rounded-2xl bg-white border border-red-200 shadow-sm space-y-4 max-w-3xl">
+                <div>
+                  <h4 className="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                    Enquire About {product.name}
+                  </h4>
+                  <p className="text-sm text-slate-600">
+                    Send a fast message to our engineering team regarding Horizontal Emulsion Storage Tank (10–100 MT) specifications and commercial quotation.
+                  </p>
+                </div>
+
+                {inquirySubmitted ? (
+                  <div className="py-4 text-center text-sm text-green-700 font-semibold bg-green-50 rounded-lg border border-green-200">
+                    Thank you. Your enquiry for {product.name} has been received.
+                  </div>
+                ) : (
+                  <form onSubmit={handleInquirySubmit} className="space-y-3.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        required
+                        value={inquiryName}
+                        onChange={(e) => setInquiryName(e.target.value)}
+                        placeholder="Your Name *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="tel"
+                        required
+                        value={inquiryPhone}
+                        onChange={(e) => setInquiryPhone(e.target.value)}
+                        placeholder="Phone / WhatsApp *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        value={inquiryCompany}
+                        onChange={(e) => setInquiryCompany(e.target.value)}
+                        placeholder="Company Name"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="email"
+                        required
+                        value={inquiryEmail}
+                        onChange={(e) => setInquiryEmail(e.target.value)}
+                        placeholder="Email Address *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <textarea
+                      rows={2}
+                      value={inquiryMsg}
+                      onChange={(e) => setInquiryMsg(e.target.value)}
+                      placeholder={`Tell us about your requirements for ${product.name}...`}
+                      className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600 resize-none"
+                    />
+                    <button
+                      type="submit"
+                      className="w-full py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                    >
+                      <Send className="w-4 h-4" /> Submit Fast Inquiry
+                    </button>
+                  </form>
+                )}
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      )}
+
+      {/* Emulsion and Bitumen Drum Filling Machine Complete Technical Guide */}
+      {product.drumFillingGuide && (
+        <section className="py-14 sm:py-16 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            {/* Header & Intro */}
+            <div>
+              <span className="text-sm font-bold text-red-600 uppercase tracking-wider block mb-2">
+                DRUM PACKAGING &amp; LIQUID DISPENSING SPECIFICATION
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mb-4">
+                {product.name}
+              </h2>
+              <p className="text-base text-slate-700 max-w-4xl leading-relaxed whitespace-pre-line font-medium">
+                {product.drumFillingGuide.intro}
+              </p>
+            </div>
+
+            {/* ⚙️ Core Technical Specifications */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-5">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  ⚙️ Core Technical Specifications
+                </h3>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
+                    <thead>
+                      <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
+                        <th className="py-3.5 px-4 font-bold">Parameter</th>
+                        <th className="py-3.5 px-4 font-bold text-red-700">Bitumen Emulsion Specifications</th>
+                        <th className="py-3.5 px-4 font-bold text-slate-900">Hot Bitumen / PMB / CRMB Specifications</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {product.drumFillingGuide.specsTable.map((row, idx) => (
+                        <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
+                          <td className="py-3.5 px-4 font-bold text-slate-900 whitespace-nowrap">
+                            {row.parameter}
+                          </td>
+                          <td className="py-3.5 px-4 text-slate-700 font-medium">
+                            {row.emulsionSpec}
+                          </td>
+                          <td className="py-3.5 px-4 text-slate-700 font-medium">
+                            {row.hotBitumenSpec}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            {/* 🛠️ Key Mechanical & Design Features */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-5">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  🛠️ Key Mechanical &amp; Design Features
+                </h3>
+              </div>
+
+              <div className="space-y-3">
+                {product.drumFillingGuide.features.map((feat, idx) => (
+                  <div key={idx} className="p-4 bg-white rounded-xl border border-slate-200 shadow-2xs flex items-start gap-3">
+                    <span className="w-2 h-2 rounded-full bg-red-600 shrink-0 mt-2" />
+                    <div className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                      <strong className="text-slate-900 font-bold">{feat.title}:</strong>{' '}
+                      {feat.description}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 🔄 Semi-Automatic vs. Fully Automatic Operation */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-6">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  🔄 Semi-Automatic vs. Fully Automatic Operation
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {product.drumFillingGuide.operationModes.map((op, idx) => (
+                  <div key={idx} className="p-5 sm:p-6 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-2.5">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-red-600" />
+                      <h4 className="text-base sm:text-lg font-black text-slate-900">
+                        {op.title}
+                      </h4>
+                    </div>
+                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
+                      {op.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 🏗️ Primary Applications */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-6">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  🏗️ Primary Applications
+                </h3>
+              </div>
+
+              <div className="space-y-3">
+                {product.drumFillingGuide.applications.map((app, idx) => (
+                  <div key={idx} className="p-4 bg-white rounded-xl border border-slate-200 shadow-2xs flex items-start gap-3">
+                    <span className="w-2 h-2 rounded-full bg-red-600 shrink-0 mt-2" />
+                    <div className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                      <strong className="text-slate-900 font-bold">{app.sector}:</strong>{' '}
+                      {app.description}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Direct Fast Enquiry Box for Emulsion and Bitumen Drum Filling Machine */}
+              <div className="mt-8 p-6 sm:p-8 rounded-2xl bg-white border border-red-200 shadow-sm space-y-4 max-w-3xl">
+                <div>
+                  <h4 className="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                    Enquire About {product.name}
+                  </h4>
+                  <p className="text-sm text-slate-600">
+                    Send a fast message to our engineering team regarding Drum Filling Machine technical specifications, automation levels (Semi-Automatic / Fully Automatic), and commercial quotation.
+                  </p>
+                </div>
+
+                {inquirySubmitted ? (
+                  <div className="py-4 text-center text-sm text-green-700 font-semibold bg-green-50 rounded-lg border border-green-200">
+                    Thank you. Your enquiry for {product.name} has been received.
+                  </div>
+                ) : (
+                  <form onSubmit={handleInquirySubmit} className="space-y-3.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        required
+                        value={inquiryName}
+                        onChange={(e) => setInquiryName(e.target.value)}
+                        placeholder="Your Name *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="tel"
+                        required
+                        value={inquiryPhone}
+                        onChange={(e) => setInquiryPhone(e.target.value)}
+                        placeholder="Phone / WhatsApp *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        value={inquiryCompany}
+                        onChange={(e) => setInquiryCompany(e.target.value)}
+                        placeholder="Company Name"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="email"
+                        required
+                        value={inquiryEmail}
+                        onChange={(e) => setInquiryEmail(e.target.value)}
+                        placeholder="Email Address *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <textarea
+                      rows={2}
+                      value={inquiryMsg}
+                      onChange={(e) => setInquiryMsg(e.target.value)}
+                      placeholder={`Tell us about your requirements for ${product.name}...`}
+                      className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600 resize-none"
+                    />
+                    <button
+                      type="submit"
+                      className="w-full py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                    >
+                      <Send className="w-4 h-4" /> Submit Fast Inquiry
+                    </button>
+                  </form>
+                )}
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      )}
+
+      {/* Asphalt Cold Mix Material Bag Filling Machine Complete Technical Guide */}
+      {product.bagFillingGuide && (
+        <section className="py-14 sm:py-16 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            {/* Header & Intro */}
+            <div>
+              <span className="text-sm font-bold text-red-600 uppercase tracking-wider block mb-2">
+                HEAVY-DUTY ASPHALT PACKAGING SPECIFICATION
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mb-4">
+                {product.name}
+              </h2>
+              <p className="text-base text-slate-700 max-w-4xl leading-relaxed whitespace-pre-line font-medium">
+                {product.bagFillingGuide.intro}
+              </p>
+            </div>
+
+            {/* ⚙️ Core Technical Specifications */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-5">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  ⚙️ Core Technical Specifications
+                </h3>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
+                    <thead>
+                      <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
+                        <th className="py-3.5 px-4 font-bold w-1/2">Parameter</th>
+                        <th className="py-3.5 px-4 font-bold text-red-700 w-1/2">Standard Specifications</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {product.bagFillingGuide.specsTable.map((row, idx) => (
+                        <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
+                          <td className="py-3.5 px-4 font-bold text-slate-900">
+                            {row.parameter}
+                          </td>
+                          <td className="py-3.5 px-4 text-slate-700 font-medium">
+                            {row.specification}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            {/* 🛠️ Key Mechanical & Design Features */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-5">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  🛠️ Key Mechanical &amp; Design Features
+                </h3>
+              </div>
+
+              <div className="space-y-3">
+                {product.bagFillingGuide.features.map((feat, idx) => (
+                  <div key={idx} className="p-4 bg-white rounded-xl border border-slate-200 shadow-2xs flex items-start gap-3">
+                    <span className="w-2 h-2 rounded-full bg-red-600 shrink-0 mt-2" />
+                    <div className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                      <strong className="text-slate-900 font-bold">{feat.title}:</strong>{' '}
+                      {feat.description}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 🔄 Operational Workflow (Semi-Automatic) */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-5">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  🔄 Operational Workflow (Semi-Automatic)
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {product.bagFillingGuide.workflowSteps.map((step) => (
+                  <div
+                    key={step.stepNumber}
+                    className="p-5 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-2.5 relative flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="w-7 h-7 rounded-full bg-red-100 text-red-700 font-bold text-sm flex items-center justify-center shrink-0">
+                          {step.stepNumber}
+                        </span>
+                        <h4 className="text-base font-bold text-slate-900">
+                          {step.title}
+                        </h4>
+                      </div>
+                      <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 💼 Bag Material Compatibility */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-6">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  💼 Bag Material Compatibility
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {product.bagFillingGuide.bagCompatibility.map((item, idx) => (
+                  <div key={idx} className="p-5 sm:p-6 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-2.5">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-red-600" />
+                      <h4 className="text-base sm:text-lg font-black text-slate-900">
+                        {item.bagType}
+                      </h4>
+                    </div>
+                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Direct Fast Enquiry Box for Asphalt Cold Mix Material Bag Filling Machine */}
+              <div className="mt-8 p-6 sm:p-8 rounded-2xl bg-white border border-red-200 shadow-sm space-y-4 max-w-3xl">
+                <div>
+                  <h4 className="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                    Enquire About {product.name}
+                  </h4>
+                  <p className="text-sm text-slate-600">
+                    Send a fast message to our engineering team regarding Cold Mix Asphalt Bag Filling Machine specifications, hopper feed mechanisms, and commercial quotation.
+                  </p>
+                </div>
+
+                {inquirySubmitted ? (
+                  <div className="py-4 text-center text-sm text-green-700 font-semibold bg-green-50 rounded-lg border border-green-200">
+                    Thank you. Your enquiry for {product.name} has been received.
+                  </div>
+                ) : (
+                  <form onSubmit={handleInquirySubmit} className="space-y-3.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        required
+                        value={inquiryName}
+                        onChange={(e) => setInquiryName(e.target.value)}
+                        placeholder="Your Name *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="tel"
+                        required
+                        value={inquiryPhone}
+                        onChange={(e) => setInquiryPhone(e.target.value)}
+                        placeholder="Phone / WhatsApp *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        value={inquiryCompany}
+                        onChange={(e) => setInquiryCompany(e.target.value)}
+                        placeholder="Company Name"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="email"
+                        required
+                        value={inquiryEmail}
+                        onChange={(e) => setInquiryEmail(e.target.value)}
+                        placeholder="Email Address *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <textarea
+                      rows={2}
+                      value={inquiryMsg}
+                      onChange={(e) => setInquiryMsg(e.target.value)}
+                      placeholder={`Tell us about your requirements for ${product.name}...`}
+                      className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600 resize-none"
+                    />
+                    <button
+                      type="submit"
+                      className="w-full py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                    >
+                      <Send className="w-4 h-4" /> Submit Fast Inquiry
+                    </button>
+                  </form>
+                )}
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      )}
+
+      {/* Hot Thermic Fluid Heater Complete Technical Guide */}
+      {product.thermicHeaterGuide && (
+        <section className="py-14 sm:py-16 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            {/* Header & Intro */}
+            <div>
+              <span className="text-sm font-bold text-red-600 uppercase tracking-wider block mb-2">
+                THERMAL OIL HEATING &amp; HEAT TRANSFER SPECIFICATION
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mb-4">
+                {product.name}
+              </h2>
+              <p className="text-base text-slate-700 max-w-4xl leading-relaxed whitespace-pre-line font-medium">
+                {product.thermicHeaterGuide.intro}
+              </p>
+            </div>
+
+            {/* ⚙️ Core Technical Specifications */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-5">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  ⚙️ Core Technical Specifications
+                </h3>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
+                    <thead>
+                      <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
+                        <th className="py-3.5 px-4 font-bold w-1/2">Parameter</th>
+                        <th className="py-3.5 px-4 font-bold text-red-700 w-1/2">Standard Industrial Specifications</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {product.thermicHeaterGuide.specsTable.map((row, idx) => (
+                        <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
+                          <td className="py-3.5 px-4 font-bold text-slate-900">
+                            {row.parameter}
+                          </td>
+                          <td className="py-3.5 px-4 text-slate-700 font-medium">
+                            {row.specification}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            {/* 🛠️ Key Components & Design Features */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-5">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  🛠️ Key Components &amp; Design Features
+                </h3>
+              </div>
+
+              <div className="space-y-3">
+                {product.thermicHeaterGuide.components.map((comp, idx) => (
+                  <div key={idx} className="p-4 bg-white rounded-xl border border-slate-200 shadow-2xs flex items-start gap-3">
+                    <span className="w-2 h-2 rounded-full bg-red-600 shrink-0 mt-2" />
+                    <div className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                      <strong className="text-slate-900 font-bold">{comp.title}:</strong>{' '}
+                      {comp.description}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 📈 System Layout and Flow Mechanics */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-5">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  📈 System Layout and Flow Mechanics
+                </h3>
+                <p className="text-sm sm:text-base text-slate-700 mt-1 font-medium">
+                  {product.thermicHeaterGuide.systemLayout.intro}
+                </p>
+              </div>
+
+              {/* Closed-loop visual flowchart breadcrumb */}
+              <div className="space-y-3">
+                <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-2xs">
+                  <div className="flex flex-wrap items-center gap-2">
+                    {product.thermicHeaterGuide.systemLayout.flowArrangement.split('→').map((step, sIdx, arr) => (
+                      <React.Fragment key={sIdx}>
+                        <span className="px-3.5 py-2 rounded-lg bg-red-50 text-red-700 border border-red-200 font-bold text-xs sm:text-sm">
+                          {step.trim()}
+                        </span>
+                        {sIdx < arr.length - 1 && (
+                          <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-xl bg-slate-900 text-white flex items-start gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                  <p className="text-sm sm:text-base text-slate-300">
+                    {product.thermicHeaterGuide.systemLayout.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* 🏗️ Primary Industry Applications */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-6">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  🏗️ Primary Industry Applications
+                </h3>
+              </div>
+
+              <div className="space-y-3">
+                {product.thermicHeaterGuide.applications.map((app, idx) => (
+                  <div key={idx} className="p-4 bg-white rounded-xl border border-slate-200 shadow-2xs flex items-start gap-3">
+                    <span className="w-2 h-2 rounded-full bg-red-600 shrink-0 mt-2" />
+                    <div className="text-sm sm:text-base text-slate-700 leading-relaxed font-medium">
+                      {app}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Direct Fast Enquiry Box for Hot Thermic Fluid Heater */}
+              <div className="mt-8 p-6 sm:p-8 rounded-2xl bg-white border border-red-200 shadow-sm space-y-4 max-w-3xl">
+                <div>
+                  <h4 className="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                    Enquire About {product.name}
+                  </h4>
+                  <p className="text-sm text-slate-600">
+                    Send a fast message to our engineering team regarding Thermic Fluid Heater capacity sizing, fuel options, and commercial quotation.
+                  </p>
+                </div>
+
+                {inquirySubmitted ? (
+                  <div className="py-4 text-center text-sm text-green-700 font-semibold bg-green-50 rounded-lg border border-green-200">
+                    Thank you. Your enquiry for {product.name} has been received.
+                  </div>
+                ) : (
+                  <form onSubmit={handleInquirySubmit} className="space-y-3.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        required
+                        value={inquiryName}
+                        onChange={(e) => setInquiryName(e.target.value)}
+                        placeholder="Your Name *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="tel"
+                        required
+                        value={inquiryPhone}
+                        onChange={(e) => setInquiryPhone(e.target.value)}
+                        placeholder="Phone / WhatsApp *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        value={inquiryCompany}
+                        onChange={(e) => setInquiryCompany(e.target.value)}
+                        placeholder="Company Name"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="email"
+                        required
+                        value={inquiryEmail}
+                        onChange={(e) => setInquiryEmail(e.target.value)}
+                        placeholder="Email Address *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <textarea
+                      rows={2}
+                      value={inquiryMsg}
+                      onChange={(e) => setInquiryMsg(e.target.value)}
+                      placeholder={`Tell us about your requirements for ${product.name}...`}
+                      className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600 resize-none"
+                    />
+                    <button
+                      type="submit"
+                      className="w-full py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                    >
+                      <Send className="w-4 h-4" /> Submit Fast Inquiry
+                    </button>
+                  </form>
+                )}
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      )}
+
       {/* 11. Related Products */}
       {relatedProducts.length > 0 && (
         <section className="py-14 sm:py-16 bg-white border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between mb-8">
               <div>
-                <span className="text-xs font-bold text-red-600 uppercase tracking-wider block mb-1">
+                <span className="text-sm font-bold text-red-600 uppercase tracking-wider block mb-1">
                   RELATED EQUIPMENT
                 </span>
                 <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
@@ -1687,7 +2868,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               </div>
               <button
                 onClick={() => navigate(`/products/${product.categoryId}`)}
-                className="text-xs font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-1"
+                className="text-sm font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-1"
               >
                 View All in Category <ArrowRight className="w-3.5 h-3.5" />
               </button>

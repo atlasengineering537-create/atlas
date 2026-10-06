@@ -178,10 +178,10 @@ export const Header: React.FC = () => {
                     <div className="flex items-center justify-between pb-3.5 mb-5 border-b border-slate-100">
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="text-[11px] font-black uppercase tracking-wider text-red-600 bg-red-50 px-2.5 py-0.5 rounded border border-red-200">
+                          <span className="text-xs font-black uppercase tracking-wider text-red-600 bg-red-50 px-2.5 py-0.5 rounded border border-red-200">
                             MACHINERY PORTFOLIO
                           </span>
-                          <span className="text-xs font-semibold text-slate-500">
+                          <span className="text-sm font-semibold text-slate-500">
                             17 Heavy-Duty Construction & Bitumen Machines
                           </span>
                         </div>
@@ -194,7 +194,7 @@ export const Header: React.FC = () => {
                           setIsProductsDropdownOpen(false);
                           navigate('/products');
                         }}
-                        className="text-xs font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-red-50 transition-colors"
+                        className="text-sm font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-red-50 transition-colors"
                       >
                         View All 17 Products <ArrowRight className="w-3.5 h-3.5" />
                       </button>
@@ -207,7 +207,7 @@ export const Header: React.FC = () => {
                       <div className="col-span-5 flex flex-col justify-between p-4 rounded-xl border border-red-200/80 bg-red-50/20">
                         <div>
                           <div className="flex items-center justify-between mb-2">
-                            <span className="text-[10px] font-black uppercase tracking-wider text-red-700 bg-red-100 px-2 py-0.5 rounded">
+                            <span className="text-xs font-black uppercase tracking-wider text-red-700 bg-red-100 px-2.5 py-0.5 rounded">
                               Flagship Focus • 9 Machines
                             </span>
                           </div>
@@ -220,7 +220,7 @@ export const Header: React.FC = () => {
                           >
                             Bitumen Modify Equipment
                           </h5>
-                          <p className="text-[11px] text-slate-600 mb-3">
+                          <p className="text-xs text-slate-600 mb-3">
                             Emulsion, PMB, decanting, oxidization & heating plants
                           </p>
 
@@ -235,7 +235,7 @@ export const Header: React.FC = () => {
                                     setIsProductsDropdownOpen(false);
                                     navigate(`/products/${prod.categoryId}/${prod.slug}`);
                                   }}
-                                  className="group/item w-full text-left py-1.5 px-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all flex items-center justify-between text-xs"
+                                  className="group/item w-full text-left py-1.5 px-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all flex items-center justify-between text-sm"
                                 >
                                   <div className="flex items-center gap-2 min-w-0 pr-1">
                                     <span className="w-1.5 h-1.5 rounded-full bg-red-400 group-hover/item:bg-red-600 group-hover/item:scale-125 transition-all shrink-0" />
@@ -244,7 +244,7 @@ export const Header: React.FC = () => {
                                     </span>
                                   </div>
                                   {meta.badge && (
-                                    <span className="text-[10px] font-mono font-medium px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 group-hover/item:bg-red-100 group-hover/item:text-red-700 shrink-0">
+                                    <span className="text-xs font-mono font-medium px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 group-hover/item:bg-red-100 group-hover/item:text-red-700 shrink-0">
                                       {meta.badge}
                                     </span>
                                   )}
@@ -259,9 +259,9 @@ export const Header: React.FC = () => {
                             setIsProductsDropdownOpen(false);
                             navigate('/products/bitumen-modify-equipment');
                           }}
-                          className="mt-3 pt-2.5 border-t border-red-200/60 text-xs font-bold text-red-600 hover:text-red-700 flex items-center gap-1"
+                          className="mt-3 pt-2.5 border-t border-red-200/60 text-sm font-bold text-red-600 hover:text-red-700 flex items-center gap-1"
                         >
-                          Explore All 9 Bitumen Plants <ArrowRight className="w-3 h-3" />
+                          Explore All 9 Bitumen Plants <ArrowRight className="w-3.5 h-3.5" />
                         </button>
                       </div>
 
@@ -269,7 +269,7 @@ export const Header: React.FC = () => {
                       <div className="col-span-4 flex flex-col justify-between p-4 rounded-xl border border-slate-200 bg-slate-50/40">
                         <div>
                           <div className="flex items-center justify-between mb-2">
-                            <span className="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-200 px-2 py-0.5 rounded">
+                            <span className="text-xs font-black uppercase tracking-wider text-slate-700 bg-slate-200 px-2.5 py-0.5 rounded">
                               Core Highway • 6 Machines
                             </span>
                           </div>
@@ -282,7 +282,7 @@ export const Header: React.FC = () => {
                           >
                             Road Construction Equipment
                           </h5>
-                          <p className="text-[11px] text-slate-600 mb-3">
+                          <p className="text-xs text-slate-600 mb-3">
                             Asphalt batching, drum plants & macadam pavers
                           </p>
 
@@ -297,7 +297,7 @@ export const Header: React.FC = () => {
                                     setIsProductsDropdownOpen(false);
                                     navigate(`/products/${prod.categoryId}/${prod.slug}`);
                                   }}
-                                  className="group/item w-full text-left py-1.5 px-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all flex items-center justify-between text-xs"
+                                  className="group/item w-full text-left py-1.5 px-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all flex items-center justify-between text-sm"
                                 >
                                   <div className="flex items-center gap-2 min-w-0 pr-1">
                                     <span className="w-1.5 h-1.5 rounded-full bg-slate-400 group-hover/item:bg-red-600 group-hover/item:scale-125 transition-all shrink-0" />
@@ -306,7 +306,7 @@ export const Header: React.FC = () => {
                                     </span>
                                   </div>
                                   {meta.badge && (
-                                    <span className="text-[10px] font-mono font-medium px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 group-hover/item:bg-red-100 group-hover/item:text-red-700 shrink-0">
+                                    <span className="text-xs font-mono font-medium px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 group-hover/item:bg-red-100 group-hover/item:text-red-700 shrink-0">
                                       {meta.badge}
                                     </span>
                                   )}
@@ -321,9 +321,9 @@ export const Header: React.FC = () => {
                             setIsProductsDropdownOpen(false);
                             navigate('/products/road-construction-equipment');
                           }}
-                          className="mt-3 pt-2.5 border-t border-slate-200 text-xs font-bold text-red-600 hover:text-red-700 flex items-center gap-1"
+                          className="mt-3 pt-2.5 border-t border-slate-200 text-sm font-bold text-red-600 hover:text-red-700 flex items-center gap-1"
                         >
-                          Explore All 6 Road Machines <ArrowRight className="w-3 h-3" />
+                          Explore All 6 Road Machines <ArrowRight className="w-3.5 h-3.5" />
                         </button>
                       </div>
 
@@ -331,7 +331,7 @@ export const Header: React.FC = () => {
                       <div className="col-span-3 flex flex-col justify-between p-4 rounded-xl border border-slate-200 bg-slate-50/40">
                         <div>
                           <div className="flex items-center justify-between mb-2">
-                            <span className="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-200 px-2 py-0.5 rounded">
+                            <span className="text-xs font-black uppercase tracking-wider text-slate-700 bg-slate-200 px-2.5 py-0.5 rounded">
                               Batching • 2 Machines
                             </span>
                           </div>
@@ -344,7 +344,7 @@ export const Header: React.FC = () => {
                           >
                             Cement & Concrete
                           </h5>
-                          <p className="text-[11px] text-slate-600 mb-3">
+                          <p className="text-xs text-slate-600 mb-3">
                             Concrete batching & transit mixing solutions
                           </p>
 
@@ -359,7 +359,7 @@ export const Header: React.FC = () => {
                                     setIsProductsDropdownOpen(false);
                                     navigate(`/products/${prod.categoryId}/${prod.slug}`);
                                   }}
-                                  className="group/item w-full text-left py-1.5 px-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all flex items-center justify-between text-xs"
+                                  className="group/item w-full text-left py-1.5 px-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all flex items-center justify-between text-sm"
                                 >
                                   <div className="flex items-center gap-2 min-w-0 pr-1">
                                     <span className="w-1.5 h-1.5 rounded-full bg-slate-400 group-hover/item:bg-red-600 group-hover/item:scale-125 transition-all shrink-0" />
@@ -368,7 +368,7 @@ export const Header: React.FC = () => {
                                     </span>
                                   </div>
                                   {meta.badge && (
-                                    <span className="text-[10px] font-mono font-medium px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 group-hover/item:bg-red-100 group-hover/item:text-red-700 shrink-0">
+                                    <span className="text-xs font-mono font-medium px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 group-hover/item:bg-red-100 group-hover/item:text-red-700 shrink-0">
                                       {meta.badge}
                                     </span>
                                   )}
@@ -379,10 +379,10 @@ export const Header: React.FC = () => {
 
                           {/* Custom Engineering Consultation Mini Card */}
                           <div className="p-3 rounded-lg bg-gradient-to-br from-slate-900 to-slate-800 text-white space-y-2 shadow-xs">
-                            <div className="flex items-center gap-1 text-[11px] font-bold text-red-400 uppercase tracking-wider">
+                            <div className="flex items-center gap-1 text-xs font-bold text-red-400 uppercase tracking-wider">
                               <Sparkles className="w-3.5 h-3.5" /> Custom Engineering
                             </div>
-                            <p className="text-[10.5px] text-slate-300 leading-relaxed">
+                            <p className="text-xs text-slate-300 leading-relaxed">
                               Need customized capacity or site layout engineering?
                             </p>
                             <button
@@ -390,7 +390,7 @@ export const Header: React.FC = () => {
                                 setIsProductsDropdownOpen(false);
                                 openQuoteModal();
                               }}
-                              className="w-full py-1.5 px-2 bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold rounded text-center transition-colors shadow-2xs"
+                              className="w-full py-1.5 px-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded text-center transition-colors shadow-2xs"
                             >
                               Consult an Engineer
                             </button>
@@ -402,16 +402,16 @@ export const Header: React.FC = () => {
                             setIsProductsDropdownOpen(false);
                             navigate('/products/cement-concrete-equipment');
                           }}
-                          className="mt-3 pt-2.5 border-t border-slate-200 text-xs font-bold text-red-600 hover:text-red-700 flex items-center gap-1"
+                          className="mt-3 pt-2.5 border-t border-slate-200 text-sm font-bold text-red-600 hover:text-red-700 flex items-center gap-1"
                         >
-                          Explore Concrete Equipment <ArrowRight className="w-3 h-3" />
+                          Explore Concrete Equipment <ArrowRight className="w-3.5 h-3.5" />
                         </button>
                       </div>
 
                     </div>
 
                     {/* Bottom strip */}
-                    <div className="mt-4 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                    <div className="mt-4 pt-3.5 border-t border-slate-100 flex items-center justify-between text-sm text-slate-500">
                       <div className="flex items-center gap-2">
                         <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                         <span>Certified to IRC, MORTH & IS specifications • 28+ Years Manufacturing Legacy</span>
@@ -536,9 +536,9 @@ export const Header: React.FC = () => {
                       navigate('/products');
                       setIsMobileMenuOpen(false);
                     }}
-                    className="text-xs font-bold text-red-600 hover:text-red-700 flex items-center gap-1"
+                    className="text-sm font-bold text-red-600 hover:text-red-700 flex items-center gap-1"
                   >
-                    All 17 Models <ArrowRight className="w-3 h-3" />
+                    All 17 Models <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
 
@@ -548,7 +548,7 @@ export const Header: React.FC = () => {
                     <button
                       key={cat.id}
                       onClick={() => setMobileSelectedCat(cat.id)}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-colors flex items-center gap-1.5 ${
+                      className={`px-3 py-1.5 rounded-lg text-sm font-bold whitespace-nowrap transition-colors flex items-center gap-1.5 ${
                         mobileSelectedCat === cat.id
                           ? 'bg-[#DE1F27] text-white shadow-xs'
                           : 'bg-white text-slate-700 hover:text-slate-900 border border-slate-200'
@@ -556,7 +556,7 @@ export const Header: React.FC = () => {
                     >
                       <span>{cat.shortName}</span>
                       <span
-                        className={`text-[10px] font-mono px-1.5 py-0.2 rounded ${
+                        className={`text-xs font-mono px-1.5 py-0.2 rounded ${
                           mobileSelectedCat === cat.id
                             ? 'bg-red-800/60 text-white'
                             : 'bg-slate-100 text-slate-600'
@@ -582,15 +582,15 @@ export const Header: React.FC = () => {
                         className="w-full text-left p-2.5 rounded-lg hover:bg-red-50/70 border border-slate-100 hover:border-red-200 transition-all flex items-center justify-between group"
                       >
                         <div className="min-w-0 pr-2">
-                          <div className="font-bold text-xs text-slate-900 group-hover:text-red-600 leading-tight">
+                          <div className="font-bold text-sm text-slate-900 group-hover:text-red-600 leading-tight">
                             {meta.displayName}
                           </div>
-                          <div className="text-[10.5px] font-mono text-slate-500 mt-0.5">
+                          <div className="text-xs font-mono text-slate-500 mt-0.5">
                             {prod.code}
                           </div>
                         </div>
                         {meta.badge && (
-                          <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-700 group-hover:bg-red-100 group-hover:text-red-700 shrink-0">
+                          <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-700 group-hover:bg-red-100 group-hover:text-red-700 shrink-0">
                             {meta.badge}
                           </span>
                         )}

@@ -334,6 +334,26 @@ export interface ThermicHeaterGuideData {
   applications: string[];
 }
 
+export interface DrumMixSpecRow {
+  parameter: string;
+  range: string;
+}
+
+export interface DrumMixZoneItem {
+  zoneNumber: number;
+  title: string;
+  description: string;
+  subZones?: { name: string; description: string }[];
+}
+
+export interface DrumMixGuideData {
+  capacityBadge: string;
+  intro: string;
+  specsTable: DrumMixSpecRow[];
+  systemLayoutIntro: string;
+  zones: DrumMixZoneItem[];
+}
+
 export interface Product {
   id: string;
   slug: string;
@@ -359,6 +379,7 @@ export interface Product {
   drumFillingGuide?: DrumFillingGuideData;
   bagFillingGuide?: BagFillingGuideData;
   thermicHeaterGuide?: ThermicHeaterGuideData;
+  drumMixGuide?: DrumMixGuideData;
   heroImage: string;
   gallery: string[];
   isPlaceholder: boolean;
@@ -2011,6 +2032,61 @@ export const ROAD_PRODUCTS: Product[] = [
       'Continuous Large-Scale Paving Contracts',
       'Fast-Paced Road Development Works',
     ],
+    drumMixGuide: {
+      capacityBadge: 'CAPACITY 35, 60, 90, 120, 160 TPH',
+      intro: 'An Asphalt Drum Mix Plant is a continuous production system where the drying of aggregates and the mixing of bitumen and filler materials take place simultaneously inside a single rotating drum. Unlike batch plants that process asphalt in individual cycles, drum mix plants operate continuously, making them highly efficient for large-scale, fast-paced road construction projects like highways and runways.',
+      specsTable: [
+        { parameter: 'Production Capacity', range: '30 tons per hour (TPH) to 150+ TPH (Models: 35, 60, 90, 120, 160 TPH)' },
+        { parameter: 'Aggregate Sizes Handled', range: '0 mm to 40 mm (typically split across 3 to 4 bins)' },
+        { parameter: 'Fuel Options', range: 'Diesel, LDO (Light Diesel Oil), FO (Furnace Oil), or Natural Gas' },
+        { parameter: 'Bitumen Operating Temp', range: '140°C to 160°C' },
+        { parameter: 'Exhaust Gas Temperature', range: '110°C to 130°C' },
+        { parameter: 'Control System', range: 'Fully automatic panel with load cell integration' },
+      ],
+      systemLayoutIntro: 'An asphalt drum mix plant relies on an uninterrupted, synchronized flow of materials. The system consists of these primary zones:',
+      zones: [
+        {
+          zoneNumber: 1,
+          title: 'Cold Aggregate Feeder Bins',
+          description: 'Multiple bins feed different sizes of stone chips and sand onto a gathering conveyor belt. Each bin features a variable-speed drive to control the material ratio accurately.',
+        },
+        {
+          zoneNumber: 2,
+          title: 'Slinger Conveyor',
+          description: 'A tilted belt conveyor that receives the blended aggregates from the feeder bins and drops them directly into the drying drum. It usually features a vibrating screen to remove oversized stones.',
+        },
+        {
+          zoneNumber: 3,
+          title: 'The Dryer-cum-Mixer Drum',
+          description: 'The core of the plant. The drum is divided into two functional zones:',
+          subZones: [
+            {
+              name: 'Drying Zone (Front)',
+              description: 'A high-capacity burner blasts a flame into the drum. Aggregates move through internal flights that lift and cascade the stones through the flame to remove all moisture.',
+            },
+            {
+              name: 'Mixing Zone (Rear)',
+              description: 'Located behind the burner flame. Liquid bitumen and mineral filler are injected here, coating the hot, dry aggregates continuously.',
+            },
+          ],
+        },
+        {
+          zoneNumber: 4,
+          title: 'Bitumen Storage Tanks',
+          description: 'Heavily insulated tanks equipped with internal heating coils (powered by a Thermic Fluid Heater) that keep liquid bitumen at pumping temperatures.',
+        },
+        {
+          zoneNumber: 5,
+          title: 'Pollution Control System',
+          description: 'Captures fine dust particles before the exhaust gas exits the chimney. This is either a mid-tier Wet Dust Scrubber (cyclonic water spray).',
+        },
+        {
+          zoneNumber: 6,
+          title: 'Load-out Conveyor & Silo',
+          description: 'A hot elevator or gob hopper conveyor transports the finished hot-mix asphalt from the drum into a storage silo or directly onto waiting dump trucks.',
+        },
+      ],
+    },
     heroImage: '/src/assets/images/products/road/road_p2_img1.jpg',
     gallery: [
       '/src/assets/images/products/road/road_p2_img1.jpg',

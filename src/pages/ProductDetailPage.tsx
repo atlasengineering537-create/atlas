@@ -200,7 +200,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       </section>
 
       {/* 6. Product Description, Engineering Features, Applications & Technical Specifications */}
-      {!['pmb-crmb-bitumen-modify-plant', 'bitumen-air-blowing-oxidization-plant', 'cold-mix-asphalt-plant', 'bitumen-storage-tank', 'emulsion-storage-horizontal-type-tank', 'emulsion-and-bitumen-drum-filling-machine', 'asphalt-cold-mix-material-bag-filling-machine', 'hot-thermic-fluid-heater'].includes(product.id) && (
+      {!['pmb-crmb-bitumen-modify-plant', 'bitumen-air-blowing-oxidization-plant', 'cold-mix-asphalt-plant', 'bitumen-storage-tank', 'emulsion-storage-horizontal-type-tank', 'emulsion-and-bitumen-drum-filling-machine', 'asphalt-cold-mix-material-bag-filling-machine', 'hot-thermic-fluid-heater', 'asphalt-drum-mix-plant'].includes(product.id) && (
         <section className="py-14 sm:py-16 bg-slate-50/50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
@@ -2786,6 +2786,182 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   </h4>
                   <p className="text-sm text-slate-600">
                     Send a fast message to our engineering team regarding Thermic Fluid Heater capacity sizing, fuel options, and commercial quotation.
+                  </p>
+                </div>
+
+                {inquirySubmitted ? (
+                  <div className="py-4 text-center text-sm text-green-700 font-semibold bg-green-50 rounded-lg border border-green-200">
+                    Thank you. Your enquiry for {product.name} has been received.
+                  </div>
+                ) : (
+                  <form onSubmit={handleInquirySubmit} className="space-y-3.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        required
+                        value={inquiryName}
+                        onChange={(e) => setInquiryName(e.target.value)}
+                        placeholder="Your Name *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="tel"
+                        required
+                        value={inquiryPhone}
+                        onChange={(e) => setInquiryPhone(e.target.value)}
+                        placeholder="Phone / WhatsApp *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        value={inquiryCompany}
+                        onChange={(e) => setInquiryCompany(e.target.value)}
+                        placeholder="Company Name"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="email"
+                        required
+                        value={inquiryEmail}
+                        onChange={(e) => setInquiryEmail(e.target.value)}
+                        placeholder="Email Address *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <textarea
+                      rows={2}
+                      value={inquiryMsg}
+                      onChange={(e) => setInquiryMsg(e.target.value)}
+                      placeholder={`Tell us about your requirements for ${product.name}...`}
+                      className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600 resize-none"
+                    />
+                    <button
+                      type="submit"
+                      className="w-full py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                    >
+                      <Send className="w-4 h-4" /> Submit Fast Inquiry
+                    </button>
+                  </form>
+                )}
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      )}
+
+      {/* Asphalt Drum Mix Plant Complete Technical Guide */}
+      {product.drumMixGuide && (
+        <section className="py-14 sm:py-16 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            {/* Header, Capacity Badge & Intro */}
+            <div>
+              <div className="inline-block px-3.5 py-1.5 rounded-lg bg-red-600 text-white font-mono font-bold text-sm tracking-wider uppercase mb-3 shadow-xs">
+                {product.drumMixGuide.capacityBadge}
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mb-4">
+                {product.name}
+              </h2>
+              <p className="text-base text-slate-700 max-w-4xl leading-relaxed whitespace-pre-line font-medium">
+                {product.drumMixGuide.intro}
+              </p>
+            </div>
+
+            {/* ⚙️ Core Technical Specifications */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-5">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  ⚙️ Core Technical Specifications
+                </h3>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
+                    <thead>
+                      <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
+                        <th className="py-3.5 px-4 font-bold w-1/2">Parameter</th>
+                        <th className="py-3.5 px-4 font-bold text-red-700 w-1/2">Standard Industrial Range</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {product.drumMixGuide.specsTable.map((row, idx) => (
+                        <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
+                          <td className="py-3.5 px-4 font-bold text-slate-900">
+                            {row.parameter}
+                          </td>
+                          <td className="py-3.5 px-4 text-slate-700 font-medium">
+                            {row.range}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            {/* 🏗️ Key Components & System Layout */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-6">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  🏗️ Key Components &amp; System Layout
+                </h3>
+                <p className="text-sm sm:text-base text-slate-700 mt-1 font-medium">
+                  {product.drumMixGuide.systemLayoutIntro}
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                {product.drumMixGuide.zones.map((zone) => (
+                  <div
+                    key={zone.zoneNumber}
+                    className="p-5 sm:p-6 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-3"
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="w-7 h-7 rounded-full bg-red-100 text-red-700 font-bold text-sm flex items-center justify-center shrink-0 mt-0.5">
+                        {zone.zoneNumber}
+                      </span>
+                      <div className="space-y-1">
+                        <h4 className="text-base sm:text-lg font-bold text-slate-900">
+                          {zone.title}
+                        </h4>
+                        <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                          {zone.description}
+                        </p>
+                      </div>
+                    </div>
+
+                    {zone.subZones && zone.subZones.length > 0 && (
+                      <div className="ml-10 grid grid-cols-1 md:grid-cols-2 gap-3 pt-2 border-t border-slate-100">
+                        {zone.subZones.map((sub, sIdx) => (
+                          <div key={sIdx} className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
+                            <span className="text-xs sm:text-sm font-bold text-red-700 block uppercase tracking-wider">
+                              {sub.name}
+                            </span>
+                            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                              {sub.description}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Direct Fast Enquiry Box for Asphalt Drum Mix Plant */}
+              <div className="mt-8 p-6 sm:p-8 rounded-2xl bg-white border border-red-200 shadow-sm space-y-4 max-w-3xl">
+                <div>
+                  <h4 className="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                    Enquire About {product.name}
+                  </h4>
+                  <p className="text-sm text-slate-600">
+                    Send a fast message to our engineering team regarding Asphalt Drum Mix Plant capacities (35 to 160 TPH), burner fuel options, and commercial quotation.
                   </p>
                 </div>
 

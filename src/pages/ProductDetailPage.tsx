@@ -30,7 +30,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
   const { navigate, openQuoteModal } = useRouter();
 
   // Find product by slug
-  const product = ALL_PRODUCTS.find((p) => p.slug === productSlug) || ALL_PRODUCTS[0];
+  const product = ALL_PRODUCTS.find((p) => p.slug === productSlug || (productSlug === 'cement-&-concrete-product-01' && p.id === 'cement-concrete-batching-plant')) || ALL_PRODUCTS[0];
   const category = PRODUCT_CATEGORIES.find((c) => c.slug === categorySlug) || PRODUCT_CATEGORIES[0];
 
   // Active gallery image
@@ -200,7 +200,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       </section>
 
       {/* 6. Product Description, Engineering Features, Applications & Technical Specifications */}
-      {!['pmb-crmb-bitumen-modify-plant', 'bitumen-air-blowing-oxidization-plant', 'cold-mix-asphalt-plant', 'bitumen-storage-tank', 'emulsion-storage-horizontal-type-tank', 'emulsion-and-bitumen-drum-filling-machine', 'asphalt-cold-mix-material-bag-filling-machine', 'hot-thermic-fluid-heater', 'asphalt-drum-mix-plant'].includes(product.id) && (
+      {!['pmb-crmb-bitumen-modify-plant', 'bitumen-air-blowing-oxidization-plant', 'cold-mix-asphalt-plant', 'bitumen-storage-tank', 'emulsion-storage-horizontal-type-tank', 'emulsion-and-bitumen-drum-filling-machine', 'asphalt-cold-mix-material-bag-filling-machine', 'hot-thermic-fluid-heater', 'asphalt-drum-mix-plant', 'wet-mix-plant-wmm', 'asphalt-paver-finisher', 'bitumen-truck-mounted-sprayer', 'bitumen-mini-tractor-linked-sprayer', 'cement-concrete-batching-plant'].includes(product.id) && (
         <section className="py-14 sm:py-16 bg-slate-50/50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
@@ -2962,6 +2962,947 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   </h4>
                   <p className="text-sm text-slate-600">
                     Send a fast message to our engineering team regarding Asphalt Drum Mix Plant capacities (35 to 160 TPH), burner fuel options, and commercial quotation.
+                  </p>
+                </div>
+
+                {inquirySubmitted ? (
+                  <div className="py-4 text-center text-sm text-green-700 font-semibold bg-green-50 rounded-lg border border-green-200">
+                    Thank you. Your enquiry for {product.name} has been received.
+                  </div>
+                ) : (
+                  <form onSubmit={handleInquirySubmit} className="space-y-3.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        required
+                        value={inquiryName}
+                        onChange={(e) => setInquiryName(e.target.value)}
+                        placeholder="Your Name *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="tel"
+                        required
+                        value={inquiryPhone}
+                        onChange={(e) => setInquiryPhone(e.target.value)}
+                        placeholder="Phone / WhatsApp *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        value={inquiryCompany}
+                        onChange={(e) => setInquiryCompany(e.target.value)}
+                        placeholder="Company Name"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="email"
+                        required
+                        value={inquiryEmail}
+                        onChange={(e) => setInquiryEmail(e.target.value)}
+                        placeholder="Email Address *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <textarea
+                      rows={2}
+                      value={inquiryMsg}
+                      onChange={(e) => setInquiryMsg(e.target.value)}
+                      placeholder={`Tell us about your requirements for ${product.name}...`}
+                      className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600 resize-none"
+                    />
+                    <button
+                      type="submit"
+                      className="w-full py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                    >
+                      <Send className="w-4 h-4" /> Submit Fast Inquiry
+                    </button>
+                  </form>
+                )}
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      )}
+
+      {/* Wet Mix Plant (WMM Plant) Complete Technical Guide */}
+      {product.wetMixGuide && (
+        <section className="py-14 sm:py-16 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            {/* Header & Intro */}
+            <div>
+              <div className="inline-block px-3.5 py-1.5 rounded-lg bg-red-600 text-white font-mono font-bold text-sm tracking-wider uppercase mb-3 shadow-xs">
+                CONTINUOUS COLD MIX PRODUCTION
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mb-4">
+                {product.name}
+              </h2>
+              <p className="text-base text-slate-700 max-w-4xl leading-relaxed whitespace-pre-line font-medium">
+                {product.wetMixGuide.intro}
+              </p>
+            </div>
+
+            {/* ⚙️ Core Technical Specifications */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-5">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  ⚙️ Core Technical Specifications
+                </h3>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
+                    <thead>
+                      <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
+                        <th className="py-3.5 px-4 font-bold w-1/2">Parameter</th>
+                        <th className="py-3.5 px-4 font-bold text-red-700 w-1/2">Standard Industrial Range</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {product.wetMixGuide.specsTable.map((row, idx) => (
+                        <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
+                          <td className="py-3.5 px-4 font-bold text-slate-900">
+                            {row.parameter}
+                          </td>
+                          <td className="py-3.5 px-4 text-slate-700 font-medium">
+                            {row.range}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            {/* 🏗️ Key Components & System Layout */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-6">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  🏗️ Key Components &amp; System Layout
+                </h3>
+                <p className="text-sm sm:text-base text-slate-700 mt-1 font-medium">
+                  {product.wetMixGuide.layoutIntro}
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                {product.wetMixGuide.assemblies.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="p-5 sm:p-6 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-2"
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="w-7 h-7 rounded-full bg-red-100 text-red-700 font-bold text-sm flex items-center justify-center shrink-0 mt-0.5">
+                        {idx + 1}
+                      </span>
+                      <div className="space-y-1">
+                        <h4 className="text-base sm:text-lg font-bold text-slate-900">
+                          {item.title}
+                        </h4>
+                        <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Direct Fast Enquiry Box for Wet Mix Plant */}
+              <div className="mt-8 p-6 sm:p-8 rounded-2xl bg-white border border-red-200 shadow-sm space-y-4 max-w-3xl">
+                <div>
+                  <h4 className="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                    Enquire About {product.name}
+                  </h4>
+                  <p className="text-sm text-slate-600">
+                    Send a fast message to our engineering team regarding Wet Mix Macadam (WMM) Plant capacities (100 to 300+ TPH), aggregate feeder options, and quotation.
+                  </p>
+                </div>
+
+                {inquirySubmitted ? (
+                  <div className="py-4 text-center text-sm text-green-700 font-semibold bg-green-50 rounded-lg border border-green-200">
+                    Thank you. Your enquiry for {product.name} has been received.
+                  </div>
+                ) : (
+                  <form onSubmit={handleInquirySubmit} className="space-y-3.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        required
+                        value={inquiryName}
+                        onChange={(e) => setInquiryName(e.target.value)}
+                        placeholder="Your Name *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="tel"
+                        required
+                        value={inquiryPhone}
+                        onChange={(e) => setInquiryPhone(e.target.value)}
+                        placeholder="Phone / WhatsApp *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        value={inquiryCompany}
+                        onChange={(e) => setInquiryCompany(e.target.value)}
+                        placeholder="Company Name"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="email"
+                        required
+                        value={inquiryEmail}
+                        onChange={(e) => setInquiryEmail(e.target.value)}
+                        placeholder="Email Address *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <textarea
+                      rows={2}
+                      value={inquiryMsg}
+                      onChange={(e) => setInquiryMsg(e.target.value)}
+                      placeholder={`Tell us about your requirements for ${product.name}...`}
+                      className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600 resize-none"
+                    />
+                    <button
+                      type="submit"
+                      className="w-full py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                    >
+                      <Send className="w-4 h-4" /> Submit Fast Inquiry
+                    </button>
+                  </form>
+                )}
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      )}
+
+      {/* Asphalt Paver Finisher Complete Technical Guide */}
+      {product.paverGuide && (
+        <section className="py-14 sm:py-16 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            {/* Header, Standards Badge & Intro */}
+            <div>
+              <div className="inline-block px-3.5 py-1.5 rounded-lg bg-red-600 text-white font-mono font-bold text-sm tracking-wider uppercase mb-3 shadow-xs">
+                IS:15808 &amp; MORT&amp;H COMPLIANT MECHANICAL PAVER
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mb-4">
+                {product.name} (2.5m – 4.5m)
+              </h2>
+              <p className="text-base text-slate-700 max-w-4xl leading-relaxed whitespace-pre-line font-medium">
+                {product.paverGuide.intro}
+              </p>
+            </div>
+
+            {/* ⚙️ Core Technical Specifications (2.5m - 4.5m Class) */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-5">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  ⚙️ Core Technical Specifications (2.5m - 4.5m Class)
+                </h3>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
+                    <thead>
+                      <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
+                        <th className="py-3.5 px-4 font-bold w-1/2">Parameter</th>
+                        <th className="py-3.5 px-4 font-bold text-red-700 w-1/2">Standard Operational Values</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {product.paverGuide.specsTable.map((row, idx) => (
+                        <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
+                          <td className="py-3.5 px-4 font-bold text-slate-900">
+                            {row.parameter}
+                          </td>
+                          <td className="py-3.5 px-4 text-slate-700 font-medium">
+                            {row.value}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            {/* 🛠️ Key Mechanical & Design Features */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-6">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  🛠️ Key Mechanical &amp; Design Features
+                </h3>
+              </div>
+
+              <div className="space-y-4">
+                {product.paverGuide.features.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="p-5 sm:p-6 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-3"
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="w-7 h-7 rounded-full bg-red-100 text-red-700 font-bold text-sm flex items-center justify-center shrink-0 mt-0.5">
+                        {idx + 1}
+                      </span>
+                      <div className="space-y-2 flex-1">
+                        <h4 className="text-base sm:text-lg font-bold text-slate-900">
+                          {item.title}
+                        </h4>
+                        {item.description && (
+                          <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                            {item.description}
+                          </p>
+                        )}
+                        {item.subPoints && item.subPoints.length > 0 && (
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+                            {item.subPoints.map((sub, sIdx) => (
+                              <div key={sIdx} className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
+                                <span className="text-xs sm:text-sm font-bold text-red-700 block uppercase tracking-wider">
+                                  {sub.label}
+                                </span>
+                                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                                  {sub.text}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Direct Fast Enquiry Box for Asphalt Paver Finisher */}
+              <div className="mt-8 p-6 sm:p-8 rounded-2xl bg-white border border-red-200 shadow-sm space-y-4 max-w-3xl">
+                <div>
+                  <h4 className="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                    Enquire About {product.name}
+                  </h4>
+                  <p className="text-sm text-slate-600">
+                    Send a fast message to our engineering team regarding Mechanical Asphalt Paver Finisher (2.5m - 4.5m), engine options, delivery schedule, and pricing.
+                  </p>
+                </div>
+
+                {inquirySubmitted ? (
+                  <div className="py-4 text-center text-sm text-green-700 font-semibold bg-green-50 rounded-lg border border-green-200">
+                    Thank you. Your enquiry for {product.name} has been received.
+                  </div>
+                ) : (
+                  <form onSubmit={handleInquirySubmit} className="space-y-3.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        required
+                        value={inquiryName}
+                        onChange={(e) => setInquiryName(e.target.value)}
+                        placeholder="Your Name *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="tel"
+                        required
+                        value={inquiryPhone}
+                        onChange={(e) => setInquiryPhone(e.target.value)}
+                        placeholder="Phone / WhatsApp *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        value={inquiryCompany}
+                        onChange={(e) => setInquiryCompany(e.target.value)}
+                        placeholder="Company Name"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="email"
+                        required
+                        value={inquiryEmail}
+                        onChange={(e) => setInquiryEmail(e.target.value)}
+                        placeholder="Email Address *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <textarea
+                      rows={2}
+                      value={inquiryMsg}
+                      onChange={(e) => setInquiryMsg(e.target.value)}
+                      placeholder={`Tell us about your requirements for ${product.name}...`}
+                      className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600 resize-none"
+                    />
+                    <button
+                      type="submit"
+                      className="w-full py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                    >
+                      <Send className="w-4 h-4" /> Submit Fast Inquiry
+                    </button>
+                  </form>
+                )}
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      )}
+
+      {/* Bitumen Truck Mounted Sprayer Complete Technical Guide */}
+      {product.truckSprayerGuide && (
+        <section className="py-14 sm:py-16 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            {/* Header, Capacity Badge & Intro */}
+            <div>
+              <div className="inline-block px-3.5 py-1.5 rounded-lg bg-red-600 text-white font-mono font-bold text-sm tracking-wider uppercase mb-3 shadow-xs">
+                {product.truckSprayerGuide.capacityBadge}
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mb-4">
+                {product.name} (2.5m – 4.2m)
+              </h2>
+              <p className="text-base text-slate-700 max-w-4xl leading-relaxed whitespace-pre-line font-medium">
+                {product.truckSprayerGuide.intro}
+              </p>
+            </div>
+
+            {/* ⚙️ Core Technical Specifications (2.5m - 4.2m Class) */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-5">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  ⚙️ Core Technical Specifications (2.5m - 4.2m Class)
+                </h3>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
+                    <thead>
+                      <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
+                        <th className="py-3.5 px-4 font-bold w-1/2">Parameter</th>
+                        <th className="py-3.5 px-4 font-bold text-red-700 w-1/2">Standard Operational Values</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {product.truckSprayerGuide.specsTable.map((row, idx) => (
+                        <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
+                          <td className="py-3.5 px-4 font-bold text-slate-900">
+                            {row.parameter}
+                          </td>
+                          <td className="py-3.5 px-4 text-slate-700 font-medium">
+                            {row.value}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            {/* 🛠️ Key Mechanical & Design Features */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-6">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  🛠️ Key Mechanical &amp; Design Features
+                </h3>
+              </div>
+
+              <div className="space-y-4">
+                {product.truckSprayerGuide.features.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="p-5 sm:p-6 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-3"
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="w-7 h-7 rounded-full bg-red-100 text-red-700 font-bold text-sm flex items-center justify-center shrink-0 mt-0.5">
+                        {idx + 1}
+                      </span>
+                      <div className="space-y-2 flex-1">
+                        <h4 className="text-base sm:text-lg font-bold text-slate-900">
+                          {item.title}
+                        </h4>
+                        {item.description && (
+                          <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                            {item.description}
+                          </p>
+                        )}
+                        {item.subPoints && item.subPoints.length > 0 && (
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+                            {item.subPoints.map((sub, sIdx) => (
+                              <div key={sIdx} className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
+                                <span className="text-xs sm:text-sm font-bold text-red-700 block uppercase tracking-wider">
+                                  {sub.label}
+                                </span>
+                                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                                  {sub.text}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 🔄 Cleaning & Air Purge System */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-6">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  🔄 Cleaning &amp; Air Purge System
+                </h3>
+                <p className="text-sm sm:text-base text-slate-700 mt-1 font-medium">
+                  {product.truckSprayerGuide.cleaningIntro}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {product.truckSprayerGuide.cleaningItems.map((cItem, idx) => (
+                  <div key={idx} className="p-5 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-2">
+                    <span className="text-sm font-bold text-red-700 block uppercase tracking-wider">
+                      {cItem.title}
+                    </span>
+                    <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                      {cItem.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Direct Fast Enquiry Box for Truck Mounted Sprayer */}
+              <div className="mt-8 p-6 sm:p-8 rounded-2xl bg-white border border-red-200 shadow-sm space-y-4 max-w-3xl">
+                <div>
+                  <h4 className="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                    Enquire About {product.name}
+                  </h4>
+                  <p className="text-sm text-slate-600">
+                    Send a fast message to our engineering team regarding Bitumen Truck Mounted Sprayers (4, 6, 8, 10 KL), chassis mounting options, and pricing quotation.
+                  </p>
+                </div>
+
+                {inquirySubmitted ? (
+                  <div className="py-4 text-center text-sm text-green-700 font-semibold bg-green-50 rounded-lg border border-green-200">
+                    Thank you. Your enquiry for {product.name} has been received.
+                  </div>
+                ) : (
+                  <form onSubmit={handleInquirySubmit} className="space-y-3.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        required
+                        value={inquiryName}
+                        onChange={(e) => setInquiryName(e.target.value)}
+                        placeholder="Your Name *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="tel"
+                        required
+                        value={inquiryPhone}
+                        onChange={(e) => setInquiryPhone(e.target.value)}
+                        placeholder="Phone / WhatsApp *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        value={inquiryCompany}
+                        onChange={(e) => setInquiryCompany(e.target.value)}
+                        placeholder="Company Name"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="email"
+                        required
+                        value={inquiryEmail}
+                        onChange={(e) => setInquiryEmail(e.target.value)}
+                        placeholder="Email Address *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <textarea
+                      rows={2}
+                      value={inquiryMsg}
+                      onChange={(e) => setInquiryMsg(e.target.value)}
+                      placeholder={`Tell us about your requirements for ${product.name}...`}
+                      className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600 resize-none"
+                    />
+                    <button
+                      type="submit"
+                      className="w-full py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                    >
+                      <Send className="w-4 h-4" /> Submit Fast Inquiry
+                    </button>
+                  </form>
+                )}
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      )}
+
+      {/* Bitumen Mini Tractor Linked Sprayer Complete Technical Guide */}
+      {product.tractorSprayerGuide && (
+        <section className="py-14 sm:py-16 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            {/* Header, Capacity Badge & Intro */}
+            <div>
+              <div className="inline-block px-3.5 py-1.5 rounded-lg bg-red-600 text-white font-mono font-bold text-sm tracking-wider uppercase mb-3 shadow-xs">
+                {product.tractorSprayerGuide.capacityBadge}
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mb-4">
+                {product.name} (Tractor-Towable)
+              </h2>
+              <p className="text-base text-slate-700 max-w-4xl leading-relaxed whitespace-pre-line font-medium">
+                {product.tractorSprayerGuide.intro}
+              </p>
+            </div>
+
+            {/* ⚙️ Core Technical Specifications */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-5">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  ⚙️ Core Technical Specifications
+                </h3>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
+                    <thead>
+                      <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
+                        <th className="py-3.5 px-4 font-bold w-1/2">Parameter</th>
+                        <th className="py-3.5 px-4 font-bold text-red-700 w-1/2">Standard Operational Values</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {product.tractorSprayerGuide.specsTable.map((row, idx) => (
+                        <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
+                          <td className="py-3.5 px-4 font-bold text-slate-900">
+                            {row.parameter}
+                          </td>
+                          <td className="py-3.5 px-4 text-slate-700 font-medium">
+                            {row.value}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            {/* 🛠️ Key Mechanical & Design Features */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-6">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  🛠️ Key Mechanical &amp; Design Features
+                </h3>
+              </div>
+
+              <div className="space-y-4">
+                {product.tractorSprayerGuide.features.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="p-5 sm:p-6 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-3"
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="w-7 h-7 rounded-full bg-red-100 text-red-700 font-bold text-sm flex items-center justify-center shrink-0 mt-0.5">
+                        {idx + 1}
+                      </span>
+                      <div className="space-y-2 flex-1">
+                        <h4 className="text-base sm:text-lg font-bold text-slate-900">
+                          {item.title}
+                        </h4>
+                        {item.description && (
+                          <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                            {item.description}
+                          </p>
+                        )}
+                        {item.subPoints && item.subPoints.length > 0 && (
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+                            {item.subPoints.map((sub, sIdx) => (
+                              <div key={sIdx} className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
+                                <span className="text-xs sm:text-sm font-bold text-red-700 block uppercase tracking-wider">
+                                  {sub.label}
+                                </span>
+                                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                                  {sub.text}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 🔄 Multi-Port Cleaning System */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-6">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  🔄 Multi-Port Cleaning System
+                </h3>
+                <p className="text-sm sm:text-base text-slate-700 mt-1 font-medium">
+                  {product.tractorSprayerGuide.cleaningIntro}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {product.tractorSprayerGuide.cleaningItems.map((cItem) => (
+                  <div key={cItem.number} className="p-5 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-2">
+                    <div className="flex items-center gap-2">
+                      <span className="w-6 h-6 rounded-full bg-red-100 text-red-700 font-bold text-xs flex items-center justify-center shrink-0">
+                        {cItem.number}
+                      </span>
+                      <span className="text-sm font-bold text-red-700 uppercase tracking-wider">
+                        {cItem.title}
+                      </span>
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                      {cItem.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Direct Fast Enquiry Box for Tractor Linked Sprayer */}
+              <div className="mt-8 p-6 sm:p-8 rounded-2xl bg-white border border-red-200 shadow-sm space-y-4 max-w-3xl">
+                <div>
+                  <h4 className="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                    Enquire About {product.name}
+                  </h4>
+                  <p className="text-sm text-slate-600">
+                    Send a fast message to our engineering team regarding Bitumen Mini Tractor Linked Sprayers (Capacity: 2, 3 KL), tractor hitch specs, and quotation.
+                  </p>
+                </div>
+
+                {inquirySubmitted ? (
+                  <div className="py-4 text-center text-sm text-green-700 font-semibold bg-green-50 rounded-lg border border-green-200">
+                    Thank you. Your enquiry for {product.name} has been received.
+                  </div>
+                ) : (
+                  <form onSubmit={handleInquirySubmit} className="space-y-3.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        required
+                        value={inquiryName}
+                        onChange={(e) => setInquiryName(e.target.value)}
+                        placeholder="Your Name *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="tel"
+                        required
+                        value={inquiryPhone}
+                        onChange={(e) => setInquiryPhone(e.target.value)}
+                        placeholder="Phone / WhatsApp *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="text"
+                        value={inquiryCompany}
+                        onChange={(e) => setInquiryCompany(e.target.value)}
+                        placeholder="Company Name"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                      <input
+                        type="email"
+                        required
+                        value={inquiryEmail}
+                        onChange={(e) => setInquiryEmail(e.target.value)}
+                        placeholder="Email Address *"
+                        className="px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600"
+                      />
+                    </div>
+                    <textarea
+                      rows={2}
+                      value={inquiryMsg}
+                      onChange={(e) => setInquiryMsg(e.target.value)}
+                      placeholder={`Tell us about your requirements for ${product.name}...`}
+                      className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg outline-none focus:ring-1 focus:ring-red-600 resize-none"
+                    />
+                    <button
+                      type="submit"
+                      className="w-full py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                    >
+                      <Send className="w-4 h-4" /> Submit Fast Inquiry
+                    </button>
+                  </form>
+                )}
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      )}
+
+      {/* Cement Concrete Batching Plant Complete Technical Guide */}
+      {product.concreteBatchingGuide && (
+        <section className="py-14 sm:py-16 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            {/* Header, Capacity Badge & Intro */}
+            <div>
+              <div className="inline-block px-3.5 py-1.5 rounded-lg bg-red-600 text-white font-mono font-bold text-sm tracking-wider uppercase mb-3 shadow-xs">
+                {product.concreteBatchingGuide.capacityBadge}
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mb-4">
+                {product.name}
+              </h2>
+              <p className="text-base text-slate-700 max-w-4xl leading-relaxed whitespace-pre-line font-medium">
+                {product.concreteBatchingGuide.intro}
+              </p>
+            </div>
+
+            {/* ⚙️ Core Technical Specifications (Indian Standard Range) */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-5">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  ⚙️ Core Technical Specifications (Indian Standard Range)
+                </h3>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm sm:text-base border-collapse">
+                    <thead>
+                      <tr className="bg-slate-100 border-b border-slate-200 text-slate-800 font-bold uppercase tracking-wider">
+                        <th className="py-3.5 px-4 font-bold w-1/3">Parameter</th>
+                        <th className="py-3.5 px-4 font-bold text-red-700 w-1/3">Compact / Inline Bin Series</th>
+                        <th className="py-3.5 px-4 font-bold text-slate-900 w-1/3">Tower / Large Commercial Series</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {product.concreteBatchingGuide.specsTable.map((row, idx) => (
+                        <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
+                          <td className="py-3.5 px-4 font-bold text-slate-900">
+                            {row.parameter}
+                          </td>
+                          <td className="py-3.5 px-4 text-slate-700 font-medium">
+                            {row.compactSeries}
+                          </td>
+                          <td className="py-3.5 px-4 text-slate-700 font-medium">
+                            {row.largeSeries}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            {/* 🏗️ Key Components & Design Anatomy */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-6">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  🏗️ Key Components &amp; Design Anatomy
+                </h3>
+                <p className="text-sm sm:text-base text-slate-700 mt-1 font-medium">
+                  {product.concreteBatchingGuide.anatomyIntro}
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                {product.concreteBatchingGuide.anatomyItems.map((item) => (
+                  <div
+                    key={item.number}
+                    className="p-5 sm:p-6 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-3"
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="w-7 h-7 rounded-full bg-red-100 text-red-700 font-bold text-sm flex items-center justify-center shrink-0 mt-0.5">
+                        {item.number}
+                      </span>
+                      <div className="space-y-2 flex-1">
+                        <h4 className="text-base sm:text-lg font-bold text-slate-900">
+                          {item.title}
+                        </h4>
+                        {item.description && (
+                          <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                            {item.description}
+                          </p>
+                        )}
+                        {item.subMixers && item.subMixers.length > 0 && (
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+                            {item.subMixers.map((sub, sIdx) => (
+                              <div key={sIdx} className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
+                                <span className="text-xs sm:text-sm font-bold text-red-700 block uppercase tracking-wider">
+                                  {sub.type}
+                                </span>
+                                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                                  {sub.details}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 🔄 Concrete Plant Configurations in India */}
+            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-slate-50/60 shadow-xs space-y-6">
+              <div className="border-b border-slate-200 pb-3">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  🔄 Concrete Plant Configurations in India
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {product.concreteBatchingGuide.configurations.map((config, idx) => (
+                  <div key={idx} className="p-5 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-2">
+                    <span className="text-sm sm:text-base font-bold text-red-700 block uppercase tracking-wider">
+                      {config.type}
+                    </span>
+                    <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                      {config.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Direct Fast Enquiry Box for Concrete Batching Plant */}
+              <div className="mt-8 p-6 sm:p-8 rounded-2xl bg-white border border-red-200 shadow-sm space-y-4 max-w-3xl">
+                <div>
+                  <h4 className="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                    Enquire About {product.name}
+                  </h4>
+                  <p className="text-sm text-slate-600">
+                    Send a fast message to our engineering team regarding Cement Concrete Batching Plant capacities (30 to 90 m³/hr), mixer configuration (Pan vs Twin-Shaft), silos, and quotation.
                   </p>
                 </div>
 

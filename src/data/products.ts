@@ -354,6 +354,119 @@ export interface DrumMixGuideData {
   zones: DrumMixZoneItem[];
 }
 
+export interface WetMixSpecRow {
+  parameter: string;
+  range: string;
+}
+
+export interface WetMixAssemblyItem {
+  title: string;
+  description: string;
+}
+
+export interface WetMixGuideData {
+  intro: string;
+  specsTable: WetMixSpecRow[];
+  layoutIntro: string;
+  assemblies: WetMixAssemblyItem[];
+}
+
+export interface PaverSpecRow {
+  parameter: string;
+  value: string;
+}
+
+export interface PaverFeatureItem {
+  title: string;
+  description?: string;
+  subPoints?: { label: string; text: string }[];
+}
+
+export interface PaverFinisherGuideData {
+  intro: string;
+  specsTable: PaverSpecRow[];
+  features: PaverFeatureItem[];
+}
+
+export interface TruckSprayerSpecRow {
+  parameter: string;
+  value: string;
+}
+
+export interface TruckSprayerFeatureItem {
+  title: string;
+  description?: string;
+  subPoints?: { label: string; text: string }[];
+}
+
+export interface TruckSprayerCleaningItem {
+  title: string;
+  description: string;
+}
+
+export interface TruckSprayerGuideData {
+  capacityBadge: string;
+  intro: string;
+  specsTable: TruckSprayerSpecRow[];
+  features: TruckSprayerFeatureItem[];
+  cleaningIntro: string;
+  cleaningItems: TruckSprayerCleaningItem[];
+}
+
+export interface TractorSprayerSpecRow {
+  parameter: string;
+  value: string;
+}
+
+export interface TractorSprayerFeatureItem {
+  title: string;
+  description?: string;
+  subPoints?: { label: string; text: string }[];
+}
+
+export interface TractorSprayerCleaningItem {
+  number: number;
+  title: string;
+  description: string;
+}
+
+export interface TractorSprayerGuideData {
+  capacityBadge: string;
+  intro: string;
+  specsTable: TractorSprayerSpecRow[];
+  features: TractorSprayerFeatureItem[];
+  cleaningIntro: string;
+  cleaningItems: TractorSprayerCleaningItem[];
+}
+
+export interface ConcreteBatchingSpecRow {
+  parameter: string;
+  compactSeries: string;
+  largeSeries: string;
+}
+
+export interface ConcreteBatchingAnatomyItem {
+  number: number;
+  title: string;
+  description?: string;
+  subMixers?: { type: string; details: string }[];
+}
+
+export interface ConcreteBatchingConfigItem {
+  type: string;
+  description: string;
+}
+
+export interface ConcreteBatchingPlantGuideData {
+  capacityBadge: string;
+  intro: string;
+  specsTable: ConcreteBatchingSpecRow[];
+  anatomyIntro: string;
+  anatomyItems: ConcreteBatchingAnatomyItem[];
+  configurationsIntro: string;
+  configurations: ConcreteBatchingConfigItem[];
+}
+
 export interface Product {
   id: string;
   slug: string;
@@ -380,6 +493,11 @@ export interface Product {
   bagFillingGuide?: BagFillingGuideData;
   thermicHeaterGuide?: ThermicHeaterGuideData;
   drumMixGuide?: DrumMixGuideData;
+  wetMixGuide?: WetMixGuideData;
+  paverGuide?: PaverFinisherGuideData;
+  truckSprayerGuide?: TruckSprayerGuideData;
+  tractorSprayerGuide?: TractorSprayerGuideData;
+  concreteBatchingGuide?: ConcreteBatchingPlantGuideData;
   heroImage: string;
   gallery: string[];
   isPlaceholder: boolean;
@@ -2150,6 +2268,41 @@ export const ROAD_PRODUCTS: Product[] = [
       'Expressway Foundation and Heavy Pavement Support',
       'Industrial Pavement Ground Layers',
     ],
+    wetMixGuide: {
+      intro: 'A Wet Mix Macadam (WMM) Plant is a specialized, continuous-flow production system used to produce a homogenous blend of stone aggregates of various sizes, clean sand or stone dust, and a controlled amount of water. This processed cold mix forms the critical base and sub-base layers of modern highways and runways before asphalt or concrete layers are applied. Unlike asphalt plants, a WMM plant operates entirely cold without any heating elements or bitumen.',
+      specsTable: [
+        { parameter: 'Production Capacity', range: '100 Tons Per Hour (TPH) to 300+ TPH' },
+        { parameter: 'Aggregate Sizes Handled', range: '0 mm to 40 mm (typically split across 4 cold bins)' },
+        { parameter: 'Water Storage Capacity', range: '4,000 Litres to 10,000 Litres (optional)' },
+        { parameter: 'Mixing Unit Type', range: 'Twin-shaft pug mill' },
+        { parameter: 'Connected Power Load', range: '~60 HP to 120+ HP (depending on TPH capacity)' },
+        { parameter: 'Control System', range: 'Fully automatic PLC-based panel with variable frequency drives (VFDs)' },
+        { parameter: 'Control Cabin', range: 'OPTIONAL' },
+      ],
+      layoutIntro: 'A WMM plant is engineered for high-volume output and precise aggregate blending. The layout consists of these core assemblies:',
+      assemblies: [
+        {
+          title: 'Cold Aggregate Feeder Bins',
+          description: 'Typically features 4 separate bins equipped with adjustable mechanical gates and variable-speed conveyor drives. This allows operators to meter specific ratios of coarse stones, gravel, and stone dust onto the gathering belt.',
+        },
+        {
+          title: 'Vibrating Screen',
+          description: 'Placed between the gathering conveyor and the main charging belt. It filters out oversized boulders and debris, ensuring only compliant aggregate sizes enter the mixing zone.',
+        },
+        {
+          title: 'Twin-Shaft Pugmill Mixer',
+          description: 'The heart of the plant. It features a heavy-duty steel trough lined with replaceable wear-resistant liners. Inside, two counter-rotating shafts equipped with paddle arms and tips rapidly blend the aggregates while water is injected.',
+        },
+        {
+          title: 'Water Tank & Metering System',
+          description: 'A centrifugal water pump draws from a storage tank and delivers water through a spray bar inside the pugmill. A digital flow meter precisely controls water addition (usually 4% to 7% by weight) based on the current aggregate feed rate.',
+        },
+        {
+          title: 'Control Cabin',
+          description: 'An air-conditioned cabin housing the centralized electric control panel. It features a PLC interface that auto-calculates and locks aggregate-to-water ratios.',
+        },
+      ],
+    },
     heroImage: '/src/assets/images/products/road/road_p3_img1.jpg',
     gallery: [
       '/src/assets/images/products/road/road_p3_img1.jpg',
@@ -2214,6 +2367,50 @@ export const ROAD_PRODUCTS: Product[] = [
       'Cold Wet Mix Macadam (WMM) Base Construction',
       'District Road Widening & Village Connectivity Roadways',
     ],
+    paverGuide: {
+      intro: `An Indian-make Indian Standard (IS:15808) Mechanical Asphalt Paver Finisher with a 2.5m to 4.5m paving width is the workhorse of regional and rural road development across India. Built strictly in compliance with MORT&H specifications, this specific model is a wheel-mounted, dual-purpose machine engineered to lay both Hot Mix Asphalt (Bituminous Macadam) and cold Wet Mix Macadam (WMM).\n\nThe primary defining trait of a "Mechanical" paver is its transmission system, which utilizes a rugged automotive gearbox, clutch, and heavy-duty chain-drive mechanisms instead of complete hydrostatic tracking. This makes it highly cost-effective, straightforward to maintain, and extremely popular among Indian civil contractors.`,
+      specsTable: [
+        { parameter: 'Paving Width', value: '2.5 Meters (Base) extendable up to 4.5 Meters' },
+        { parameter: 'Screed Extension', value: 'Hydraulic Extension (no bolt-on manual blocks required for 4.5m)' },
+        { parameter: 'Paving Thickness', value: '10 mm to 200 mm' },
+        { parameter: 'Material Laying Capacity', value: '125 to 150 Tons Per Hour (TPH)' },
+        { parameter: 'Engine Configuration', value: '74 HP to 105 HP (Kirloskar / Leyland / Cummins, BS-IV or CEV V compliant)' },
+        { parameter: 'Paving Speed', value: '1.25 to 24 meters per minute' },
+        { parameter: 'Travel Speed', value: '0 to 16 km/h (high-speed transport between adjacent road stretches)' },
+        { parameter: 'Hopper Capacity', value: 'Approx. 4.0 to 4.25 Cubic Meters (~6 to 8 Tons)' },
+      ],
+      features: [
+        {
+          title: 'Hydraulic Screed Extension',
+          description: 'The basic mechanical screed starts at 2.5 meters. With the touch of a hydraulic lever on the operator panel, it expands seamlessly on twin-sliding pipes up to 4.5 meters to match varying village or district road dimensions.',
+        },
+        {
+          title: 'Screed Heating & Compaction',
+          description: 'The screed plate is heated evenly via dual LPG burners or oil burners to prevent hot asphalt from sticking to the cold steel. A mechanical eccentric shaft provides structural vibration to pre-compact the asphalt layout before a road roller takes over.',
+        },
+        {
+          title: 'Traction & Chassis Drive',
+          subPoints: [
+            {
+              label: 'Rear Axle',
+              text: 'Equipped with two heavy-duty pneumatic tyres (usually 10x20 16-Ply) driven by a robust chain and sprocket arrangement connected to a manual automotive gearbox.',
+            },
+            {
+              label: 'Front Axle',
+              text: 'Supported by dual or quad solid-rubber steering tyres (558x405 mm) mounted on a pivoting equalizer beam to navigate uneven terrain smoothly.',
+            },
+          ],
+        },
+        {
+          title: 'Material Conveyance',
+          description: 'Dual heavy-duty flat slat conveyors move material from the hopper to the rear. A set of independent, wear-resistant steel augers (screw flights) spreads the asphalt uniformly across the 4.5-meter width.',
+        },
+        {
+          title: 'Steering and Control',
+          description: 'Outfitted with hydraulic power steering and air-actuated brakes to allow the operator to align perfectly with the shoulder line of the road.',
+        },
+      ],
+    },
     heroImage: '/src/assets/images/products/road/road_p4_img1.jpg',
     gallery: [
       '/src/assets/images/products/road/road_p4_img1.jpg',
@@ -2278,6 +2475,65 @@ export const ROAD_PRODUCTS: Product[] = [
       'Liquid Bitumen and Emulsion Spray Application',
       'State Highways & Rural PMGSY Road Surface Sealing',
     ],
+    truckSprayerGuide: {
+      capacityBadge: 'CAPACITY 4, 6, 8, 10 KL',
+      intro: `An Indian-make Indian Standard Truck-Mounted Bitumen Pressure Distributor / Sprayer (2.5m to 4.2m spray width) is a specialized road construction vehicle used to apply an even, metered layer of liquid bitumen or bitumen emulsion onto a road base before asphalt laying.\n\nManufactured under MORTH guidelines and IS:15808 standards, these machines are typically mounted on standard Indian commercial truck chassis (such as Tata Motors 1616 / 1512 or Ashok Leyland Ecomet / 1615). They are the industry standard for applying tack coats and prime coats on state highways and rural roads.`,
+      specsTable: [
+        { parameter: 'Spray Bar Width', value: '2.5 Meters (Base) fold-extendable up to 4.2 Meters' },
+        { parameter: 'Tank Storage Capacity', value: '4,000 Litres to 6,000 Litres (Standard 5,000L is most common)' },
+        { parameter: 'Bitumen Pump Type', value: 'Heavy-duty positive displacement gear pump (2" to 3")' },
+        { parameter: 'Pump Capacity', value: '300 to 450 Litres per minute' },
+        { parameter: 'Air Compressor', value: 'Twin cylinder, 2 HP to 3 HP capacity' },
+        { parameter: 'Auxiliary Engine', value: '25 HP to 45 HP water/air-cooled diesel engine (Kirloskar / Simpson)' },
+        { parameter: 'Spray Output Control', value: 'Digital tachometer with fly-wheel speed tracking' },
+      ],
+      features: [
+        {
+          title: 'Foldable Spray Bar (2.5m to 4.2m)',
+          description: 'The central spray bar measures 2.5 meters for standard lane travel. Two mechanical or hydraulic wing-folding extensions unlock on both sides, bringing the total continuous spraying width to 4.2 meters. This covers a standard single-lane highway (3.75 meters) in a single run with room to spare for the shoulders.',
+        },
+        {
+          title: 'Insulated Bitumen Tank',
+          description: 'The tank body is heavily insulated with 50mm high-density glass wool wrapped in an outer stainless steel or aluminium sheet protective jacket. This layout prevents thermal loss during transport from the refinery or batching plant.',
+        },
+        {
+          title: 'Heating System',
+          description: 'Equipped with a high-capacity, automatic automatic-ignition diesel burner combined with a u-shaped return heating pipe running through the tank body. It safely monitors and elevates the bitumen temperature up to 150°C–180°C.',
+        },
+        {
+          title: 'Pneumatically Controlled Nozzles',
+          description: "Features a line of brass or stainless steel atomizing nozzles spaced at uniform 100mm intervals. Every single nozzle can be selectively opened or shut from the operator's rear platform via pneumatic cylinders.",
+        },
+        {
+          title: 'Dual Operation Controls',
+          subPoints: [
+            {
+              label: "Driver's Cabin",
+              text: 'Contains the main digital spraying controller, application rate lock system, and master valve switches.',
+            },
+            {
+              label: 'Rear Platform',
+              text: 'Outfitted with mechanical bypass valves, pressure gauges, temperature indicators, and a hand-spray lance attachment for tight corners and manual touch-ups.',
+            },
+          ],
+        },
+      ],
+      cleaningIntro: 'One of the most vital features of Indian standard sprayers is the anti-clogging multi-port valve design:',
+      cleaningItems: [
+        {
+          title: 'Bitumen Suction',
+          description: 'Sucks hot bitumen into the tank or circulates it inside the bar to prevent premature cooling.',
+        },
+        {
+          title: 'Diesel Flush Line',
+          description: 'Connects to a dedicated 20–30 litre auxiliary diesel tank to wash out leftover residues from the nozzles.',
+        },
+        {
+          title: 'Air Purge',
+          description: 'Uses the integrated air compressor to blast high-pressure air through the entire 4.2-meter spray bar, ensuring no asphalt solidifies inside to block the next shift.',
+        },
+      ],
+    },
     heroImage: '/src/assets/images/products/road/road_p5_img1.jpg',
     gallery: [
       '/src/assets/images/products/road/road_p5_img1.jpg',
@@ -2345,6 +2601,67 @@ export const ROAD_PRODUCTS: Product[] = [
       'Factory & Industrial Complex Internal Pavements',
       'Sub-contractor Bitumen Tack Coat & Prime Coat Spraying',
     ],
+    tractorSprayerGuide: {
+      capacityBadge: 'CAPACITY 2, 3 KL',
+      intro: `An Indian-make Indian Standard Tractor-Linked Bitumen Sprayer (often called a tractor-towable or tractor-mounted bitumen pressure distributor) is a highly cost-effective, compact road construction machine. Built in compliance with MORTH specifications and IS:15808 standards, this equipment is designed to be towed by a standard Indian agricultural tractor (typically 35 HP to 50+ HP).\n\nIt is the absolute standard for small-to-medium road projects across India, such as PMGSY rural roads, village link roads, trench repairs, and factory internal pavements, where investing in a dedicated truck-mounted sprayer is financially unviable.`,
+      specsTable: [
+        { parameter: 'Tank Storage Capacity', value: '1,000 Litres, 2,000 Litres, to 3,000 Litres (2,000L is most common)' },
+        { parameter: 'Tractor Requirement', value: 'Any standard Indian tractor with 35 HP, 45 HP, or 50 HP capacity' },
+        { parameter: 'Hitch Type', value: 'Heavy-duty tow bar eye hitch for tractor drawbar coupling' },
+        { parameter: 'Spray Bar Width', value: '2.5 Meters (Standard base) up to 3.8 Meters maximum' },
+        { parameter: 'Auxiliary Engine', value: '5 HP to 6 HP Air-Cooled Diesel Engine (Fieldstar, Greaves, or Kirloskar)' },
+        { parameter: 'Bitumen Pump Type', value: 'Heavy-duty positive displacement gear pump (1.5" or 2")' },
+      ],
+      features: [
+        {
+          title: 'Dual Heating System',
+          description: 'The storage tank features an inner U-shaped heating pipe. It uses a manual or automatic high-pressure oil/diesel burner system to heat the bitumen or emulsion to spraying temperature (140°C–160°C).',
+        },
+        {
+          title: 'Insulated Tank Body',
+          description: 'The tank is completely wrapped in 50mm high-density glass wool insulation and sheeted with a durable galvanized or stainless steel outer jacket to preserve heat during towing.',
+        },
+        {
+          title: 'Independent Power Pack',
+          description: 'Its own auxiliary diesel engine mounted on the front chassis platform. This engine drives both the bitumen gear pump and the air compressor simultaneously.',
+        },
+        {
+          title: 'Hand Spray Lance & Spray Bar',
+          subPoints: [
+            {
+              label: 'Main Spray Bar',
+              text: 'Spans 2.5 meters and is fitted with brass atomizing nozzles spaced at uniform intervals.',
+            },
+            {
+              label: 'Hand Spray Attachment',
+              text: 'Comes with a flexible, high-temperature hose pipe (approx. 4 to 5 meters long) and a hand-operated spray lance for manual edge-coating, patching, and hard-to-reach corners.',
+            },
+          ],
+        },
+        {
+          title: 'Heavy-Duty Chassis',
+          description: 'The entire plant is fabricated on a robust structural steel channel chassis equipped with a single axle and two standard commercial truck tyres (e.g., 7.50x16 or 9.00x20).',
+        },
+      ],
+      cleaningIntro: 'To prevent the bitumen from solidifying and permanently ruining the pipeline or nozzles after a shift, Indian manufacturers integrate a standard three-way valve system:',
+      cleaningItems: [
+        {
+          number: 1,
+          title: 'Bitumen Spraying / Circulation',
+          description: 'Pumps hot material out to the spray bar or circulates it inside the tank to keep it fluid.',
+        },
+        {
+          number: 2,
+          title: 'Diesel Cleaning',
+          description: 'A small 10–15 litre auxiliary tank supplies diesel into the pump and lines to dissolve residual asphalt.',
+        },
+        {
+          number: 3,
+          title: 'Air Purging',
+          description: 'The air compressor forces high-pressure air through the nozzles, cleaning out the remaining residue completely.',
+        },
+      ],
+    },
     heroImage: '/src/assets/images/products/road/road_p6_img1.jpg',
     gallery: [
       '/src/assets/images/products/road/road_p6_img1.jpg',
@@ -2357,6 +2674,161 @@ export const ROAD_PRODUCTS: Product[] = [
   },
 ];
 
+export const CEMENT_PRODUCTS: Product[] = [
+  {
+    id: 'cement-concrete-batching-plant',
+    slug: 'cement-concrete-batching-plant',
+    categoryId: 'cement-concrete-equipment',
+    categoryName: 'Cement & Concrete Equipment',
+    name: 'CEMENT CONCRETE BATCHING PLANT',
+    code: 'ATL-CBP-01',
+    shortDescription: 'Indian Standard (IS:4925 & MORT&H) concrete batching plant (Capacity: 30, 45, 60, 75, 90 m³/hr) engineered for high-precision weighing, aggregate blending, and continuous mixing.',
+    description: `CAPACITY 30, 45, 60, 75, 90 CM3\n\nAn Indian-make Indian Standard Cement Concrete Batching Plant is a heavy-duty industrial assembly engineered to precisely weigh, blend, and mix aggregates, sand, cement, water, and chemical admixtures to produce high-quality concrete.\n\nManufactured strictly in compliance with Bureau of Indian Standards (BIS) codes (such as IS:4925 for concrete batching plants) and MORT&H specifications, these plants are widely used for national highways, bridges, metro rails, and high-rise commercial structures across India.`,
+    highlights: [
+      'Capacity: 30, 45, 60, 75, 90 m³/hr (CM3)',
+      'Mixer Options: Pan Mixer / Turbo Twin-Shaft Mixer or Heavy-duty Twin-Shaft',
+      'Aggregate Storage: 3 to 5 Bins (Inline or Compartment Pocket Bins)',
+      'High-precision S-type & compression electronic load cells',
+      'Advanced SCADA / PLC control with up to 99+ mix recipes & reporting',
+    ],
+    specifications: [
+      { parameter: 'Production Capacity', value: '30, 45, 60, 75, 90 m³/hr (Compact 20–45 m³/hr, Large 60–120+ m³/hr)' },
+      { parameter: 'Mixer Type Options', value: 'Pan Mixer / Turbo Twin-Shaft Mixer / Heavy-duty Twin-Shaft Mixer' },
+      { parameter: 'Aggregate Storage', value: '3 to 5 Bins (Inline horizontal or Compartment pocket layout)' },
+      { parameter: 'Weighing Sensors', value: 'High-precision S-type, shear beam, and compression electronic load cells' },
+      { parameter: 'Cement Silos', value: '1 to 2 Silos (30 to 150-ton) up to multiple Silos (200+ tons)' },
+      { parameter: 'Control System', value: 'Advanced SCADA / PLC with digital display and automated batch print-out' },
+      { parameter: 'Standards Compliance', value: 'IS:4925 (Bureau of Indian Standards) & MORT&H specifications' },
+    ],
+    features: [
+      {
+        title: 'Aggregate Feeding & Storage Bins',
+        description: 'Available in Inline layouts (horizontal arrangement for easy loading via backhoe loaders/JCBs) or Compartment layouts (pocket bins). Each bin features independent pneumatic discharge gates.',
+      },
+      {
+        title: 'Weighing & Inclined Conveyor',
+        description: 'High-accuracy weighing conveyor beneath aggregate bins, with inclined belt conveyor used in larger plants (60 m³/hr and above) to continuously transport material to the mixing unit.',
+      },
+      {
+        title: 'Concrete Mixing Unit (Pan / Twin-Shaft)',
+        description: 'Pan/Planetary mixers for standard concrete up to M35; Heavy-duty twin counter-rotating shaft mixer with specialized paddle arms for rapid homogenous mixing of high-strength concrete (M50+) within 30 seconds.',
+      },
+      {
+        title: 'Cement & Fly Ash Silos',
+        description: 'Vertical steel silos equipped with safety pressure relief valves, aeration/fluidization nozzles to prevent choking, and high-efficiency screw conveyors.',
+      },
+      {
+        title: 'Microprocessor PLC / SCADA Control Cabin',
+        description: 'Centralized cabin storing 99+ concrete recipes, auto tracking moisture percentages, printing batch reports, and logging quality audit data.',
+      },
+    ],
+    applications: [
+      'National Highways, Expressways & Concrete Paving',
+      'Bridge & Flyover Infrastructure Construction',
+      'Metro Rail Viaducts & Station Precast Casting',
+      'Ready-Mix Concrete (RMC) Commercial Batching Yards',
+      'High-Rise Commercial & Residential Foundations',
+    ],
+    concreteBatchingGuide: {
+      capacityBadge: 'CAPACITY 30, 45, 60, 75, 90 CM3',
+      intro: `An Indian-make Indian Standard Cement Concrete Batching Plant is a heavy-duty industrial assembly engineered to precisely weigh, blend, and mix aggregates, sand, cement, water, and chemical admixtures to produce high-quality concrete.\n\nManufactured strictly in compliance with Bureau of Indian Standards (BIS) codes (such as IS:4925 for concrete batching plants) and MORT&H specifications, these plants are widely used for national highways, bridges, metro rails, and high-rise commercial structures across India.`,
+      specsTable: [
+        {
+          parameter: 'Production Capacity',
+          compactSeries: '20 m³/hr, 30 m³/hr, to 45 m³/hr',
+          largeSeries: '60 m³/hr, 90 m³/hr, up to 120+ m³/hr',
+        },
+        {
+          parameter: 'Mixer Type Options',
+          compactSeries: 'Pan Mixer / Turbo Twin-Shaft Mixer',
+          largeSeries: 'Heavy-duty Twin-Shaft Mixer',
+        },
+        {
+          parameter: 'Aggregate Storage',
+          compactSeries: '3 to 4 Bins (Cross-bin or Inline design)',
+          largeSeries: '4 to 5 Large Compartment Bins',
+        },
+        {
+          parameter: 'Weighing Sensors',
+          compactSeries: 'High-precision S-type electronic load cells',
+          largeSeries: 'Shear beam and compression load cells',
+        },
+        {
+          parameter: 'Cement Silos',
+          compactSeries: '1 to 2 Silos (typically 30-ton to 150-ton)',
+          largeSeries: 'Multiple Silos up to 200+ tons',
+        },
+        {
+          parameter: 'Control System',
+          compactSeries: 'SCADA / PLC based with digital display',
+          largeSeries: 'Advanced SCADA with fully automated print-out',
+        },
+      ],
+      anatomyIntro: 'A high-performance concrete batching plant relies on synchronized aggregate batching, cement charging, and computerized mixing:',
+      anatomyItems: [
+        {
+          number: 1,
+          title: 'Aggregate Feeding & Storage Bins',
+          description: 'Available in Inline layouts (horizontal arrangement for easy loading via backhoe loaders/JCBs) or Compartment layouts (pocket bins). Each bin features independent pneumatic discharge gates.',
+        },
+        {
+          number: 2,
+          title: 'Weighing Conveyor & Transfer Belt',
+          description: 'Inclined Belt Conveyor: Used in larger plants (60 m³/hr and above) to continuously transport material up to the mixing unit.',
+        },
+        {
+          number: 3,
+          title: 'The Concrete Mixing Unit',
+          description: 'The heart of the plant.',
+          subMixers: [
+            {
+              type: 'Pan / Planetary Mixers',
+              details: 'Ideal for smaller capacities, offering low maintenance and excellent consistency for standard grade concrete (up to M35).',
+            },
+            {
+              type: 'Twin-Shaft Mixers',
+              details: 'Mandatory for high-capacity highway and infrastructure projects. Twin counter-rotating shafts with specialized paddle arms ensure a rapid, homogenous mix for high-strength concrete (M50 and above) within 30 seconds.',
+            },
+          ],
+        },
+        {
+          number: 4,
+          title: 'Cement & Fly Ash Storage Silos',
+          description: 'Vertical steel structures equipped with safety pressure relief valves, fluidization nozzles (to prevent cement choking), and screw conveyors to transport powder to the cement weigh hopper.',
+        },
+        {
+          number: 5,
+          title: 'Fluid Metering Systems',
+          description: 'Dedicated electronic weigh hoppers mounted on isolated load cells for water and chemical admixtures. Water is pumped via a pressurized spray bar for quick distribution across the mixer.',
+        },
+        {
+          number: 6,
+          title: 'Microprocessor PLC / SCADA Control Cabin',
+          description: 'Features a centralized control panel capable of saving up to 99+ distinct concrete mix recipes. It automatically tracks moisture percentages, prints out precise batch reports, and logs data for quality auditing.',
+        },
+      ],
+      configurationsIntro: 'Concrete Plant Configurations in India',
+      configurations: [
+        {
+          type: 'Mobile / Compact Batching Plants',
+          description: 'Built on a single-chassis layout with integrated wheels or a plug-and-play skid base. These can be fully commissioned within 2 to 3 days, making them highly popular for moving canal, bridge, or rural road projects.',
+        },
+        {
+          type: 'Stationary Batching Plants',
+          description: 'Installed on permanent concrete foundations. These are engineered for high-volume commercial concrete suppliers (RMC - Ready Mix Concrete plants) operating 24/7 near major urban metropolitan hubs.',
+        },
+      ],
+    },
+    heroImage: '/src/assets/images/cat_cement_concrete_1791042916344.jpg',
+    gallery: [
+      '/src/assets/images/cat_cement_concrete_1791042916344.jpg',
+      '/src/assets/images/category_cement_equipment.jpg',
+    ],
+    isPlaceholder: false,
+    featured: true,
+  },
+];
+
 export const ALL_PRODUCTS: Product[] = [
   // 9 Real Bitumen Modify Equipment Products
   ...BITUMEN_PRODUCTS,
@@ -2365,7 +2837,7 @@ export const ALL_PRODUCTS: Product[] = [
   ...ROAD_PRODUCTS,
 
   // 2 Cement & Concrete Equipment Products
-  createPlaceholderProduct('cement-concrete-equipment', 'Cement & Concrete Equipment', 1, 'Cement & Concrete', '/src/assets/images/cat_cement_concrete_1791042916344.jpg', true),
+  ...CEMENT_PRODUCTS,
   createPlaceholderProduct('cement-concrete-equipment', 'Cement & Concrete Equipment', 2, 'Cement & Concrete', '/src/assets/images/cat_cement_concrete_1791042916344.jpg'),
 ];
 

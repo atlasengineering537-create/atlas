@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { AtlasLogo } from './AtlasLogo';
 import { useRouter } from '../context/RouterContext';
 import { PRODUCT_CATEGORIES, ALL_PRODUCTS } from '../data/products';
-import { ChevronDown, Menu, X, ArrowRight, PhoneCall, Sparkles, CheckCircle2 } from 'lucide-react';
+import { ChevronDown, Menu, X, ArrowRight, PhoneCall } from 'lucide-react';
 
 interface ProductMenuMeta {
   displayName: string;
@@ -25,7 +25,9 @@ const PRODUCT_MENU_META: Record<string, ProductMenuMeta> = {
   'bitumen-pressure-distributor': { displayName: 'Bitumen Pressure Distributor', badge: '3k–12k L' },
   'hydraulic-broomer': { displayName: 'Hydraulic Road Broomer', badge: 'Tractor / Loader' },
   'chip-spreader': { displayName: 'Chip Spreader Unit', badge: 'Surface Dressing' },
-  'cement-concrete-equipment-1': { displayName: 'Concrete Batching Plant', badge: 'Electronic PLC' },
+  'cement-concrete-batching-plant': { displayName: 'Concrete Batching Plant', badge: '30–90 m³/hr' },
+  'cement-concrete-equipment-1': { displayName: 'Concrete Batching Plant', badge: '30–90 m³/hr' },
+  'cement-&-concrete-product-01': { displayName: 'Concrete Batching Plant', badge: '30–90 m³/hr' },
   'cement-concrete-equipment-2': { displayName: 'Concrete Mobile Mixer', badge: 'Self-Transit' },
 };
 
@@ -170,258 +172,66 @@ export const Header: React.FC = () => {
                   )}
                 </button>
 
-                {/* Mega Menu Dropdown with Full Product Directory */}
+                {/* Mega Menu Dropdown with Categories and Products Only */}
                 {isProductsDropdownOpen && (
                   <div className="absolute top-full left-1/2 -translate-x-[42%] xl:-translate-x-1/2 mt-2 w-[980px] max-w-[calc(100vw-32px)] bg-white rounded-2xl shadow-2xl border border-slate-200/90 p-6 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                    
-                    {/* Header */}
-                    <div className="flex items-center justify-between pb-3.5 mb-5 border-b border-slate-100">
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-xs font-black uppercase tracking-wider text-red-600 bg-red-50 px-2.5 py-0.5 rounded border border-red-200">
-                            MACHINERY PORTFOLIO
-                          </span>
-                          <span className="text-sm font-semibold text-slate-500">
-                            17 Heavy-Duty Construction & Bitumen Machines
-                          </span>
-                        </div>
-                        <h4 className="text-base font-bold text-slate-900 mt-1">
-                          Atlas Engineering Machinery Divisions
-                        </h4>
-                      </div>
-                      <button
-                        onClick={() => {
-                          setIsProductsDropdownOpen(false);
-                          navigate('/products');
-                        }}
-                        className="text-sm font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-red-50 transition-colors"
-                      >
-                        View All 17 Products <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-
-                    {/* 3 Categories with their full product lists */}
-                    <div className="grid grid-cols-12 gap-5">
-                      
-                      {/* Column 1: Bitumen Modify Equipment (9 Products) */}
-                      <div className="col-span-5 flex flex-col justify-between p-4 rounded-xl border border-red-200/80 bg-red-50/20">
-                        <div>
-                          <div className="flex items-center justify-between mb-2">
-                            <span className="text-xs font-black uppercase tracking-wider text-red-700 bg-red-100 px-2.5 py-0.5 rounded">
-                              Flagship Focus • 9 Machines
-                            </span>
-                          </div>
-                          <h5
-                            onClick={() => {
-                              setIsProductsDropdownOpen(false);
-                              navigate('/products/bitumen-modify-equipment');
-                            }}
-                            className="text-sm font-black text-slate-900 hover:text-red-600 cursor-pointer transition-colors leading-snug mb-1"
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      {PRODUCT_CATEGORIES.map((category) => {
+                        const catProducts = ALL_PRODUCTS.filter((p) => p.categoryId === category.id);
+                        return (
+                          <div
+                            key={category.id}
+                            className="p-4 rounded-xl border border-slate-200 bg-slate-50/40 flex flex-col justify-start"
                           >
-                            Bitumen Modify Equipment
-                          </h5>
-                          <p className="text-xs text-slate-600 mb-3">
-                            Emulsion, PMB, decanting, oxidization & heating plants
-                          </p>
-
-                          {/* List of 9 Products */}
-                          <div className="space-y-0.5">
-                            {ALL_PRODUCTS.filter((p) => p.categoryId === 'bitumen-modify-equipment').map((prod) => {
-                              const meta = PRODUCT_MENU_META[prod.slug] || PRODUCT_MENU_META[prod.id] || { displayName: prod.name };
-                              return (
-                                <button
-                                  key={prod.id}
-                                  onClick={() => {
-                                    setIsProductsDropdownOpen(false);
-                                    navigate(`/products/${prod.categoryId}/${prod.slug}`);
-                                  }}
-                                  className="group/item w-full text-left py-1.5 px-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all flex items-center justify-between text-sm"
-                                >
-                                  <div className="flex items-center gap-2 min-w-0 pr-1">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-red-400 group-hover/item:bg-red-600 group-hover/item:scale-125 transition-all shrink-0" />
-                                    <span className="font-semibold text-slate-800 group-hover/item:text-red-600 truncate">
-                                      {meta.displayName}
-                                    </span>
-                                  </div>
-                                  {meta.badge && (
-                                    <span className="text-xs font-mono font-medium px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 group-hover/item:bg-red-100 group-hover/item:text-red-700 shrink-0">
-                                      {meta.badge}
-                                    </span>
-                                  )}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </div>
-
-                        <button
-                          onClick={() => {
-                            setIsProductsDropdownOpen(false);
-                            navigate('/products/bitumen-modify-equipment');
-                          }}
-                          className="mt-3 pt-2.5 border-t border-red-200/60 text-sm font-bold text-red-600 hover:text-red-700 flex items-center gap-1"
-                        >
-                          Explore All 9 Bitumen Plants <ArrowRight className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-
-                      {/* Column 2: Road Construction Equipment (6 Products) */}
-                      <div className="col-span-4 flex flex-col justify-between p-4 rounded-xl border border-slate-200 bg-slate-50/40">
-                        <div>
-                          <div className="flex items-center justify-between mb-2">
-                            <span className="text-xs font-black uppercase tracking-wider text-slate-700 bg-slate-200 px-2.5 py-0.5 rounded">
-                              Core Highway • 6 Machines
-                            </span>
-                          </div>
-                          <h5
-                            onClick={() => {
-                              setIsProductsDropdownOpen(false);
-                              navigate('/products/road-construction-equipment');
-                            }}
-                            className="text-sm font-black text-slate-900 hover:text-red-600 cursor-pointer transition-colors leading-snug mb-1"
-                          >
-                            Road Construction Equipment
-                          </h5>
-                          <p className="text-xs text-slate-600 mb-3">
-                            Asphalt batching, drum plants & macadam pavers
-                          </p>
-
-                          {/* List of 6 Products */}
-                          <div className="space-y-0.5">
-                            {ALL_PRODUCTS.filter((p) => p.categoryId === 'road-construction-equipment').map((prod) => {
-                              const meta = PRODUCT_MENU_META[prod.slug] || PRODUCT_MENU_META[prod.id] || { displayName: prod.name };
-                              return (
-                                <button
-                                  key={prod.id}
-                                  onClick={() => {
-                                    setIsProductsDropdownOpen(false);
-                                    navigate(`/products/${prod.categoryId}/${prod.slug}`);
-                                  }}
-                                  className="group/item w-full text-left py-1.5 px-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all flex items-center justify-between text-sm"
-                                >
-                                  <div className="flex items-center gap-2 min-w-0 pr-1">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400 group-hover/item:bg-red-600 group-hover/item:scale-125 transition-all shrink-0" />
-                                    <span className="font-semibold text-slate-800 group-hover/item:text-red-600 truncate">
-                                      {meta.displayName}
-                                    </span>
-                                  </div>
-                                  {meta.badge && (
-                                    <span className="text-xs font-mono font-medium px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 group-hover/item:bg-red-100 group-hover/item:text-red-700 shrink-0">
-                                      {meta.badge}
-                                    </span>
-                                  )}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </div>
-
-                        <button
-                          onClick={() => {
-                            setIsProductsDropdownOpen(false);
-                            navigate('/products/road-construction-equipment');
-                          }}
-                          className="mt-3 pt-2.5 border-t border-slate-200 text-sm font-bold text-red-600 hover:text-red-700 flex items-center gap-1"
-                        >
-                          Explore All 6 Road Machines <ArrowRight className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-
-                      {/* Column 3: Cement & Concrete Equipment (2 Products) + Custom Plant Card */}
-                      <div className="col-span-3 flex flex-col justify-between p-4 rounded-xl border border-slate-200 bg-slate-50/40">
-                        <div>
-                          <div className="flex items-center justify-between mb-2">
-                            <span className="text-xs font-black uppercase tracking-wider text-slate-700 bg-slate-200 px-2.5 py-0.5 rounded">
-                              Batching • 2 Machines
-                            </span>
-                          </div>
-                          <h5
-                            onClick={() => {
-                              setIsProductsDropdownOpen(false);
-                              navigate('/products/cement-concrete-equipment');
-                            }}
-                            className="text-sm font-black text-slate-900 hover:text-red-600 cursor-pointer transition-colors leading-snug mb-1"
-                          >
-                            Cement & Concrete
-                          </h5>
-                          <p className="text-xs text-slate-600 mb-3">
-                            Concrete batching & transit mixing solutions
-                          </p>
-
-                          {/* List of 2 Products */}
-                          <div className="space-y-0.5 mb-4">
-                            {ALL_PRODUCTS.filter((p) => p.categoryId === 'cement-concrete-equipment').map((prod) => {
-                              const meta = PRODUCT_MENU_META[prod.slug] || PRODUCT_MENU_META[prod.id] || { displayName: prod.name };
-                              return (
-                                <button
-                                  key={prod.id}
-                                  onClick={() => {
-                                    setIsProductsDropdownOpen(false);
-                                    navigate(`/products/${prod.categoryId}/${prod.slug}`);
-                                  }}
-                                  className="group/item w-full text-left py-1.5 px-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all flex items-center justify-between text-sm"
-                                >
-                                  <div className="flex items-center gap-2 min-w-0 pr-1">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400 group-hover/item:bg-red-600 group-hover/item:scale-125 transition-all shrink-0" />
-                                    <span className="font-semibold text-slate-800 group-hover/item:text-red-600 truncate">
-                                      {meta.displayName}
-                                    </span>
-                                  </div>
-                                  {meta.badge && (
-                                    <span className="text-xs font-mono font-medium px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 group-hover/item:bg-red-100 group-hover/item:text-red-700 shrink-0">
-                                      {meta.badge}
-                                    </span>
-                                  )}
-                                </button>
-                              );
-                            })}
-                          </div>
-
-                          {/* Custom Engineering Consultation Mini Card */}
-                          <div className="p-3 rounded-lg bg-gradient-to-br from-slate-900 to-slate-800 text-white space-y-2 shadow-xs">
-                            <div className="flex items-center gap-1 text-xs font-bold text-red-400 uppercase tracking-wider">
-                              <Sparkles className="w-3.5 h-3.5" /> Custom Engineering
+                            <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setIsProductsDropdownOpen(false);
+                                  navigate(`/products/${category.slug}`);
+                                }}
+                                className="text-left group flex items-center gap-1.5"
+                              >
+                                <h5 className="text-sm font-black text-slate-900 group-hover:text-red-600 transition-colors uppercase tracking-wider">
+                                  {category.name}
+                                </h5>
+                                <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-red-600 shrink-0" />
+                              </button>
+                              <span className="text-xs font-mono font-bold text-slate-500 bg-slate-200/70 px-2 py-0.5 rounded-full shrink-0">
+                                {catProducts.length}
+                              </span>
                             </div>
-                            <p className="text-xs text-slate-300 leading-relaxed">
-                              Need customized capacity or site layout engineering?
-                            </p>
-                            <button
-                              onClick={() => {
-                                setIsProductsDropdownOpen(false);
-                                openQuoteModal();
-                              }}
-                              className="w-full py-1.5 px-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded text-center transition-colors shadow-2xs"
-                            >
-                              Consult an Engineer
-                            </button>
+
+                            <div className="space-y-0.5">
+                              {catProducts.map((prod) => {
+                                const meta = PRODUCT_MENU_META[prod.slug] || PRODUCT_MENU_META[prod.id] || { displayName: prod.name };
+                                return (
+                                  <button
+                                    key={prod.id}
+                                    onClick={() => {
+                                      setIsProductsDropdownOpen(false);
+                                      navigate(`/products/${prod.categoryId}/${prod.slug}`);
+                                    }}
+                                    className="group/item w-full text-left py-1.5 px-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all flex items-center justify-between text-sm"
+                                  >
+                                    <div className="flex items-center gap-2 min-w-0 pr-1">
+                                      <span className="w-1.5 h-1.5 rounded-full bg-slate-400 group-hover/item:bg-red-600 group-hover/item:scale-125 transition-all shrink-0" />
+                                      <span className="font-semibold text-slate-800 group-hover/item:text-red-600 truncate text-xs sm:text-sm">
+                                        {meta.displayName}
+                                      </span>
+                                    </div>
+                                    {meta.badge && (
+                                      <span className="text-xs font-mono font-medium px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 group-hover/item:bg-red-100 group-hover/item:text-red-700 shrink-0">
+                                        {meta.badge}
+                                      </span>
+                                    )}
+                                  </button>
+                                );
+                              })}
+                            </div>
                           </div>
-                        </div>
-
-                        <button
-                          onClick={() => {
-                            setIsProductsDropdownOpen(false);
-                            navigate('/products/cement-concrete-equipment');
-                          }}
-                          className="mt-3 pt-2.5 border-t border-slate-200 text-sm font-bold text-red-600 hover:text-red-700 flex items-center gap-1"
-                        >
-                          Explore Concrete Equipment <ArrowRight className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-
-                    </div>
-
-                    {/* Bottom strip */}
-                    <div className="mt-4 pt-3.5 border-t border-slate-100 flex items-center justify-between text-sm text-slate-500">
-                      <div className="flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                        <span>Certified to IRC, MORTH & IS specifications • 28+ Years Manufacturing Legacy</span>
-                      </div>
-                      <a
-                        href="tel:+919825073095"
-                        className="font-bold text-slate-900 hover:text-red-600 inline-flex items-center gap-1.5"
-                      >
-                        <PhoneCall className="w-3.5 h-3.5 text-red-600" /> +91 98250 73095
-                      </a>
+                        );
+                      })}
                     </div>
                   </div>
                 )}

@@ -2,6 +2,9 @@ import catBitumenImg from '../assets/images/category_bitumen_equipment.jpg';
 import catRoadImg from '../assets/images/category_road_equipment.jpg';
 import catCementImg from '../assets/images/category_cement_equipment.jpg';
 import cementFlyAshSiloImg from '../assets/images/products/cement_fly_ash_silo.jpg';
+import concreteBatchingPlant1Img from '../assets/images/products/concrete_batching_plant_1.jpg';
+import concreteBatchingPlant2Img from '../assets/images/products/concrete_batching_plant_2.jpg';
+import concreteBatchingPlant3Img from '../assets/images/products/concrete_batching_plant_3.jpg';
 
 export interface TechnicalSpec {
   parameter: string;
@@ -2956,10 +2959,11 @@ export const CEMENT_PRODUCTS: Product[] = [
         },
       ],
     },
-    heroImage: '/src/assets/images/cat_cement_concrete_1791042916344.jpg',
+    heroImage: concreteBatchingPlant1Img,
     gallery: [
-      '/src/assets/images/cat_cement_concrete_1791042916344.jpg',
-      '/src/assets/images/category_cement_equipment.jpg',
+      concreteBatchingPlant1Img,
+      concreteBatchingPlant2Img,
+      concreteBatchingPlant3Img,
     ],
     isPlaceholder: false,
     featured: true,

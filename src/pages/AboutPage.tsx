@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from '../context/RouterContext';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { COMPANY_INFO, PRODUCT_CATEGORIES } from '../data/products';
-import factoryFacilityImg from '../assets/images/factory_engineering_facility_1791042931571.jpg';
+import aboutLogoImg from '../assets/images/about_logo.png';
 import {
   ShieldCheck,
   Award,
@@ -54,14 +54,14 @@ export const AboutPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            {/* Visual Assembly Works */}
+            {/* Visual Assembly Works / Company Logo */}
             <div className="lg:col-span-6 relative">
-              <div className="rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-slate-100">
+              <div className="rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-white p-6 sm:p-10 flex items-center justify-center aspect-[4/3]">
                 <img
-                  src={factoryFacilityImg}
-                  alt="Atlas Engineering assembly bay in Kathwada GIDC"
+                  src={aboutLogoImg}
+                  alt="Atlas Engineering Logo"
                   referrerPolicy="no-referrer"
-                  className="w-full aspect-[4/3] object-cover"
+                  className="w-full h-full object-contain"
                 />
               </div>
 

@@ -3906,6 +3906,53 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 ))}
               </div>
 
+              {/* 📸 Plant Site & Assembly Visuals */}
+              <div className="mt-8 p-6 sm:p-8 rounded-2xl border border-slate-200 bg-white shadow-2xs space-y-6">
+                <div className="border-b border-slate-200 pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                      📸 Plant Gallery &amp; Heavy-Duty Site Views
+                    </h3>
+                    <p className="text-sm text-slate-600 mt-1 font-medium">
+                      High-capacity concrete batching plants engineered for Indian standard infrastructure projects.
+                    </p>
+                  </div>
+                  <span className="text-xs font-mono font-bold text-red-600 bg-red-50 border border-red-200 px-3 py-1 rounded-full w-fit">
+                    3 Real Plant Views
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                  {product.gallery.map((imgUrl, imgIdx) => (
+                    <div
+                      key={imgIdx}
+                      onClick={() => {
+                        setSelectedImage(imgUrl);
+                        window.scrollTo({ top: 120, behavior: 'smooth' });
+                      }}
+                      className="group relative rounded-xl overflow-hidden bg-white border border-slate-200 shadow-2xs hover:shadow-md transition-all cursor-pointer"
+                    >
+                      <div className="aspect-[4/3] overflow-hidden bg-slate-100">
+                        <img
+                          src={imgUrl}
+                          alt={`Concrete Batching Plant View ${imgIdx + 1}`}
+                          referrerPolicy="no-referrer"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                      <div className="p-3.5 bg-white border-t border-slate-100 flex items-center justify-between text-xs">
+                        <span className="font-bold text-slate-800">
+                          {imgIdx === 0 ? 'Plant Installation & Silo System' : imgIdx === 1 ? 'Mixer Tower & Aggregate Bins' : 'Operational Heavy-Duty Site View'}
+                        </span>
+                        <span className="text-red-600 font-semibold group-hover:underline flex items-center gap-1 shrink-0 ml-2">
+                          View <ArrowRight className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               {/* Direct Fast Enquiry Box for Concrete Batching Plant */}
               <div className="mt-8 p-6 sm:p-8 rounded-2xl bg-white border border-red-200 shadow-sm space-y-4 max-w-3xl">
                 <div>

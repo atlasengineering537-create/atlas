@@ -1,26 +1,21 @@
 import React from 'react';
 import { ProductCategory, ALL_PRODUCTS } from '../data/products';
 import { useRouter } from '../context/RouterContext';
-import { ArrowRight, Layers } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface CategoryCardProps {
   category: ProductCategory;
-  index: number;
+  index?: number;
 }
 
-export const CategoryCard: React.FC<CategoryCardProps> = ({ category, index }) => {
+export const CategoryCard: React.FC<CategoryCardProps> = ({ category }) => {
   const { navigate } = useRouter();
-  const formattedIndex = (index + 1).toString().padStart(2, '0');
   const categoryProducts = ALL_PRODUCTS.filter((p) => p.categoryId === category.id);
 
   return (
     <div
       onClick={() => navigate(`/products/${category.slug}`)}
-      className={`group cursor-pointer rounded-2xl overflow-hidden bg-white border transition-all duration-300 flex flex-col justify-between ${
-        category.featuredFocus
-          ? 'border-red-200 shadow-md hover:shadow-xl hover:border-red-400 ring-1 ring-red-100'
-          : 'border-slate-200 shadow-sm hover:shadow-lg hover:border-slate-300'
-      }`}
+      className="group cursor-pointer rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:border-slate-300 transition-all duration-300 flex flex-col justify-between"
     >
       <div>
         {/* Card Image Container */}
@@ -31,25 +26,6 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ category, index }) =
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-900/10 to-transparent" />
-          
-          {/* Category Number & Badge */}
-          <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-            <span className="text-sm font-mono font-bold tracking-widest text-white/90 bg-black/40 backdrop-blur-xs px-2.5 py-1 rounded">
-              {formattedIndex}
-            </span>
-            {category.featuredFocus && (
-              <span className="text-sm font-bold text-white bg-[#DE1F27] px-2.5 py-1 rounded shadow-xs uppercase tracking-wider">
-                Primary Focus
-              </span>
-            )}
-          </div>
-
-          {/* Product Count on image bottom */}
-          <div className="absolute bottom-3 left-4 text-sm font-semibold text-white/95 flex items-center gap-1.5">
-            <Layers className="w-4 h-4 text-red-400" />
-            <span>{category.productCount} Engineered Models</span>
-          </div>
         </div>
 
         {/* Card Body */}

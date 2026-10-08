@@ -31,6 +31,7 @@ function AppContent() {
       case 'product':
         return (
           <ProductDetailPage
+            key={`${route.categorySlug}-${route.productSlug}`}
             categorySlug={route.categorySlug}
             productSlug={route.productSlug}
           />

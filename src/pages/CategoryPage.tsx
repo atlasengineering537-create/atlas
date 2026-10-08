@@ -48,8 +48,8 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
                 Category Portfolio
               </span>
               <span className="text-xs text-slate-400">·</span>
-              <span className="text-xs font-mono text-slate-300">
-                {category.productCount} Engineered Units
+              <span className="text-xs font-semibold text-slate-300">
+                Machinery Division
               </span>
             </div>
 
@@ -94,7 +94,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
                     : 'text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200'
                 }`}
               >
-                {cat.name} ({cat.productCount})
+                {cat.name}
               </button>
             ))}
           </div>

@@ -70,7 +70,7 @@ export const ProductsPage: React.FC = () => {
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                All Equipment ({ALL_PRODUCTS.length})
+                All Equipment
               </button>
               {PRODUCT_CATEGORIES.map((cat) => (
                 <button
@@ -82,7 +82,7 @@ export const ProductsPage: React.FC = () => {
                       : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
-                  {cat.shortName} ({cat.productCount})
+                  {cat.shortName}
                 </button>
               ))}
             </div>

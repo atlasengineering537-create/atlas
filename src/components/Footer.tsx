@@ -126,19 +126,10 @@ export const Footer: React.FC = () => {
                     className="hover:text-red-600 transition-colors text-left group flex items-center justify-between w-full"
                   >
                     <span>{cat.name}</span>
-                    <span className="text-sm text-slate-400 group-hover:text-red-600 font-mono">
-                      ({cat.productCount})
-                    </span>
                   </button>
                 </li>
               ))}
             </ul>
-            <div className="pt-2">
-              <span className="text-sm text-slate-400 block mb-1">Primary Focus:</span>
-              <span className="text-sm font-semibold text-slate-700">
-                Bitumen Modify Equipment (10 Units)
-              </span>
-            </div>
           </div>
 
           {/* Column 5: Verified Contact Details */}
@@ -146,16 +137,16 @@ export const Footer: React.FC = () => {
             <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
               Manufacturing Works
             </h4>
-            <div className="space-y-2.5 text-sm text-slate-600">
-              <div className="flex items-start gap-2">
+            <div className="space-y-3 text-sm text-slate-800">
+              <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
-                <span className="leading-relaxed">
+                <span className="leading-relaxed font-semibold text-slate-800">
                   {COMPANY_INFO.address.line1}, {COMPANY_INFO.address.line2}, {COMPANY_INFO.address.city}-{COMPANY_INFO.address.pincode}, {COMPANY_INFO.address.state}, {COMPANY_INFO.address.country}
                 </span>
               </div>
-              <div className="flex items-start gap-2">
+              <div className="flex items-start gap-2.5">
                 <Phone className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
-                <div className="font-mono tabular-nums space-y-0.5">
+                <div className="font-mono tabular-nums space-y-1 font-semibold text-slate-800">
                   {COMPANY_INFO.phones.map((p) => (
                     <a key={p} href={`tel:${p.replace(/\s+/g, '')}`} className="block hover:text-red-600">
                       {p}
@@ -163,9 +154,9 @@ export const Footer: React.FC = () => {
                   ))}
                 </div>
               </div>
-              <div className="flex items-start gap-2">
+              <div className="flex items-start gap-2.5">
                 <Mail className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
-                <div className="space-y-0.5">
+                <div className="space-y-1 font-semibold text-slate-800">
                   {COMPANY_INFO.emails.map((e) => (
                     <a key={e} href={`mailto:${e}`} className="block hover:text-red-600">
                       {e}

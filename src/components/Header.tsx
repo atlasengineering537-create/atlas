@@ -21,14 +21,13 @@ const PRODUCT_MENU_META: Record<string, ProductMenuMeta> = {
   'hot-thermic-fluid-heater': { displayName: 'Hot Thermic Fluid Heater', badge: 'Up to 350°C' },
   'asphalt-batch-mix-plant': { displayName: 'Asphalt Batch Mix Plant', badge: '80–160 TPH' },
   'asphalt-drum-mix-plant': { displayName: 'Asphalt Drum Mix Plant', badge: '40–120 TPH' },
-  'wet-mix-macadam-plant': { displayName: 'Wet Mix Macadam Plant', badge: '100–250 TPH' },
+  'mobile-drum-mix-plant': { displayName: 'Mobile Drum Mix Plant', badge: '20–120 TPH' },
+  'wet-mix-plant-wmm': { displayName: 'Wet Mix Plant (WMM)', badge: '100–300 TPH' },
   'bitumen-pressure-distributor': { displayName: 'Bitumen Pressure Distributor', badge: '3k–12k L' },
   'hydraulic-broomer': { displayName: 'Hydraulic Road Broomer', badge: 'Tractor / Loader' },
   'chip-spreader': { displayName: 'Chip Spreader Unit', badge: 'Surface Dressing' },
   'cement-concrete-batching-plant': { displayName: 'Concrete Batching Plant', badge: '30–90 m³/hr' },
-  'cement-concrete-equipment-1': { displayName: 'Concrete Batching Plant', badge: '30–90 m³/hr' },
-  'cement-&-concrete-product-01': { displayName: 'Concrete Batching Plant', badge: '30–90 m³/hr' },
-  'cement-concrete-equipment-2': { displayName: 'Concrete Mobile Mixer', badge: 'Self-Transit' },
+  'cement-fly-ash-silo': { displayName: 'Cement & Fly Ash Silo', badge: '50–150+ Ton' },
 };
 
 export const Header: React.FC = () => {
@@ -365,15 +364,6 @@ export const Header: React.FC = () => {
                       }`}
                     >
                       <span>{cat.shortName}</span>
-                      <span
-                        className={`text-xs font-mono px-1.5 py-0.2 rounded ${
-                          mobileSelectedCat === cat.id
-                            ? 'bg-red-800/60 text-white'
-                            : 'bg-slate-100 text-slate-600'
-                        }`}
-                      >
-                        {cat.productCount}
-                      </span>
                     </button>
                   ))}
                 </div>
@@ -420,7 +410,7 @@ export const Header: React.FC = () => {
                         }}
                         className="w-full mt-2 pt-2 pb-1 text-center text-xs font-bold text-red-600 hover:text-red-700 flex items-center justify-center gap-1.5 border-t border-slate-100"
                       >
-                        <span>View All {currentCat.productCount} in {currentCat.name}</span>
+                        <span>View All in {currentCat.name}</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </button>
                     );

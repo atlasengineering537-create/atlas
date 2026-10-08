@@ -4,11 +4,10 @@ import { TrustStrip } from '../components/TrustStrip';
 import { CategoryCard } from '../components/CategoryCard';
 import { ProductCard } from '../components/ProductCard';
 import { PRODUCT_CATEGORIES, ALL_PRODUCTS, COMPANY_INFO } from '../data/products';
-import aboutAtlasImg from '../assets/images/about_atlas_engineering.jpg';
-import heroSlideNew1 from '../assets/images/hero_slide_1_new.jpg';
-import heroSlide1 from '../assets/images/hero_machinery_road_1791042882943.jpg';
-import heroSlide2 from '../assets/images/hero_slide_2.jpg';
-import heroSlide3 from '../assets/images/hero_slide_3.jpg';
+import aboutAtlasImg from '../assets/images/about_atlas_plant_drive.jpg';
+import heroBitumenModify from '../assets/images/hero_bitumen_modify.jpg';
+import heroRoadConstruction from '../assets/images/hero_road_construction.png';
+import heroCementConcrete from '../assets/images/hero_cement_concrete.jpg';
 import catBitumenImg from '../assets/images/category_bitumen_equipment.jpg';
 import {
   ArrowRight,
@@ -33,28 +32,35 @@ import {
 export const HomePage: React.FC = () => {
   const { navigate, openQuoteModal } = useRouter();
 
-  // Hero Carousel State & Slides (4 slides, new Google Drive image placed FIRST)
+  // Hero Carousel State & Slides (3 category slides with full category names)
   const [currentSlide, setCurrentSlide] = useState(0);
   const heroSlides = [
     {
-      image: heroSlideNew1,
-      alt: 'Atlas Engineering Heavy Industrial Bitumen & Construction Plant',
-      tag: 'Heavy Engineering & Industrial Plant',
+      image: heroBitumenModify,
+      alt: 'Atlas Engineering Bitumen Modify Equipment',
+      badge: 'Flagship Equipment',
+      title: 'Bitumen Modify Equipment',
+      description: 'High-Performance Bitumen Emulsion Plants, PMB/CRMB Units, Decanters, and Thermal Heating Systems.',
+      categoryLink: '/products/bitumen-modify-equipment',
+      buttonText: 'Explore Bitumen Modify Equipment',
     },
     {
-      image: heroSlide1,
-      alt: 'Atlas Engineering Road Machinery & Bitumen Plant',
-      tag: 'Bitumen & Asphalt Machinery',
+      image: heroRoadConstruction,
+      alt: 'Atlas Engineering Road Construction Equipment',
+      badge: 'Road Infrastructure',
+      title: 'Road Construction Equipment',
+      description: 'Asphalt Drum Mix Plants, Wet Mix Macadam (WMM) Systems, Paver Finishers & Bitumen Sprayers.',
+      categoryLink: '/products/road-construction-equipment',
+      buttonText: 'Explore Road Construction Equipment',
     },
     {
-      image: heroSlide2,
-      alt: 'Heavy Road Construction Machinery Site Deployment',
-      tag: 'Road Construction Equipment',
-    },
-    {
-      image: heroSlide3,
-      alt: 'Civil Infrastructure & Concrete Equipment',
-      tag: 'Civil Construction Engineering',
+      image: heroCementConcrete,
+      alt: 'Atlas Engineering Cement Concrete Equipment',
+      badge: 'Concrete Infrastructure',
+      title: 'Cement Concrete Equipment',
+      description: 'Heavy-Duty Cement Concrete Batching Plants and Mixing Solutions for Major Highway & Civil Projects.',
+      categoryLink: '/products/cement-concrete-equipment',
+      buttonText: 'Explore Cement Concrete Equipment',
     },
   ];
 
@@ -100,27 +106,72 @@ export const HomePage: React.FC = () => {
       
       {/* ==================================================
           SECTION 1 — HERO (ROTATING SLIDER / FARTU BANNER)
-          Full-bleed natural machinery images (no text card / no dark overlay)
+          Full-bleed natural machinery images with clean industrial title overlays
           ================================================== */}
-      <section className="relative w-full h-[380px] sm:h-[480px] md:h-[560px] lg:h-[640px] overflow-hidden border-b border-slate-200 bg-slate-900">
+      <section className="relative w-full h-[400px] sm:h-[480px] md:h-[560px] lg:h-[640px] overflow-hidden border-b border-slate-200 bg-slate-900">
         
-        {/* Sliding Background Images (Smooth Cross-Fade Transition) */}
+        {/* Sliding Background Images & Content */}
         <div className="absolute inset-0 z-0 overflow-hidden">
-          {heroSlides.map((slide, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105 pointer-events-none'
-              }`}
-            >
-              <img
-                src={slide.image}
-                alt={slide.alt}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover object-center"
-              />
-            </div>
-          ))}
+          {heroSlides.map((slide, index) => {
+            const isActive = index === currentSlide;
+            return (
+              <div
+                key={index}
+                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                  isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-105 pointer-events-none'
+                }`}
+              >
+                <img
+                  src={slide.image}
+                  alt={slide.alt}
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover object-center"
+                />
+
+                {/* Subtle gradient overlay to guarantee text legibility */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-slate-950/10 sm:bg-gradient-to-r sm:from-slate-950/85 sm:via-slate-950/40 sm:to-transparent" />
+
+                {/* Banner Caption / Heading */}
+                <div className="absolute inset-0 z-10 flex flex-col justify-end pb-20 sm:pb-24 lg:pb-28 px-4 sm:px-8 lg:px-16">
+                  <div className="max-w-7xl mx-auto w-full">
+                    <div
+                      className={`max-w-2xl text-white space-y-2 sm:space-y-3 transition-all duration-700 transform ${
+                        isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                      }`}
+                    >
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#DE1F27] text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow">
+                        <span>{slide.badge}</span>
+                      </div>
+
+                      <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white drop-shadow-md leading-tight">
+                        {slide.title}
+                      </h1>
+
+                      <p className="text-xs sm:text-base md:text-lg text-slate-200 line-clamp-2 max-w-xl font-medium drop-shadow">
+                        {slide.description}
+                      </p>
+
+                      <div className="pt-1 sm:pt-2 flex flex-wrap items-center gap-3">
+                        <button
+                          onClick={() => navigate(slide.categoryLink)}
+                          className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg bg-[#DE1F27] hover:bg-[#B91C1C] text-white font-bold text-xs sm:text-sm shadow transition-all cursor-pointer"
+                        >
+                          <span>{slide.buttonText}</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => openQuoteModal(slide.title)}
+                          className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg bg-white/95 hover:bg-white text-slate-900 font-bold text-xs sm:text-sm shadow backdrop-blur-xs transition-all cursor-pointer"
+                        >
+                          <span>Get a Quote</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         {/* Carousel Navigation Bar (Left/Right Arrows & Dots) */}
@@ -206,8 +257,8 @@ export const HomePage: React.FC = () => {
                 ABOUT ATLAS ENGINEERING
               </span>
               
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-                Nearly Three Decades of Road Machinery Innovation
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 tracking-tight leading-snug">
+                Nearly Three Decades of bitumen modify plants, Road Construction and Cement Concrete Equipment Manufacturer
               </h2>
 
               <p className="text-base text-slate-700 leading-relaxed font-medium">
@@ -435,7 +486,7 @@ export const HomePage: React.FC = () => {
                   onClick={() => navigate('/products/bitumen-modify-equipment')}
                   className="px-6 py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm sm:text-base font-bold rounded-lg shadow-md transition-all flex items-center gap-2 cursor-pointer"
                 >
-                  <span>Explore Bitumen Equipment (10 Models)</span>
+                  <span>Explore Bitumen Equipment</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
                 <button
@@ -459,8 +510,8 @@ export const HomePage: React.FC = () => {
                       Bitumen Modify Equipment
                     </h4>
                   </div>
-                  <span className="text-xs font-mono font-bold text-slate-700 bg-slate-100 px-2 py-1 rounded">
-                    10 Products
+                  <span className="text-xs font-semibold text-red-600 bg-red-50 px-2 py-1 rounded">
+                    Engineered Division
                   </span>
                 </div>
                 

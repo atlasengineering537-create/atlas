@@ -1,6 +1,7 @@
 import catBitumenImg from '../assets/images/category_bitumen_equipment.jpg';
 import catRoadImg from '../assets/images/category_road_equipment.jpg';
 import catCementImg from '../assets/images/category_cement_equipment.jpg';
+import cementFlyAshSiloImg from '../assets/images/products/cement_fly_ash_silo.jpg';
 
 export interface TechnicalSpec {
   parameter: string;
@@ -467,6 +468,31 @@ export interface ConcreteBatchingPlantGuideData {
   configurations: ConcreteBatchingConfigItem[];
 }
 
+export interface SiloTechnicalSpecRow {
+  parameter: string;
+  value: string;
+}
+
+export interface SiloLevelIndicatorItem {
+  type: string;
+  description: string;
+}
+
+export interface SiloAccessoryItem {
+  number: number;
+  title: string;
+  description: string;
+  levelIndicators?: SiloLevelIndicatorItem[];
+}
+
+export interface SiloGuideData {
+  capacityBadge: string;
+  intro: string;
+  specsTable: SiloTechnicalSpecRow[];
+  accessoriesIntro: string;
+  accessories: SiloAccessoryItem[];
+}
+
 export interface Product {
   id: string;
   slug: string;
@@ -498,6 +524,7 @@ export interface Product {
   truckSprayerGuide?: TruckSprayerGuideData;
   tractorSprayerGuide?: TractorSprayerGuideData;
   concreteBatchingGuide?: ConcreteBatchingPlantGuideData;
+  siloGuide?: SiloGuideData;
   heroImage: string;
   gallery: string[];
   isPlaceholder: boolean;
@@ -543,7 +570,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     shortName: 'Road Construction',
     subtitle: 'Heavy-Duty Highway & Civil Paving Machinery',
     description: 'Rugged and dependable asphalt batch mix components, wet mix macadam systems, road sweepers, and road building machinery engineered for reliable operation under demanding site conditions.',
-    productCount: 6,
+    productCount: 7,
     featuredFocus: false,
     image: catRoadImg,
     keyApplications: [
@@ -2021,7 +2048,7 @@ Reactor Bottom → Finished Oxidized Bitumen Tank → Packing`,
   },
 ];
 
-// 6 REAL ROAD CONSTRUCTION EQUIPMENT PRODUCTS
+// 7 REAL ROAD CONSTRUCTION EQUIPMENT PRODUCTS
 export const ROAD_PRODUCTS: Product[] = [
   {
     id: 'asphalt-batch-mix-plant',
@@ -2211,6 +2238,116 @@ export const ROAD_PRODUCTS: Product[] = [
       '/src/assets/images/products/road/road_p2_img2.jpg',
       '/src/assets/images/products/road/road_p2_img3.jpg',
       '/src/assets/images/products/road/road_p2_img4.jpg',
+    ],
+    isPlaceholder: false,
+    featured: false,
+  },
+  {
+    id: 'mobile-drum-mix-plant',
+    slug: 'mobile-drum-mix-plant',
+    categoryId: 'road-construction-equipment',
+    categoryName: 'Road Construction Equipment',
+    name: 'MOBILE DRUM MIX PLANT',
+    code: 'ATL-MDM-03',
+    shortDescription: 'Chassis-mounted portable asphalt drum mix plant engineered for rapid relocation, quick site setup, and continuous hot mix asphalt production (CAPACITY 20, 30, 40, 60, 90, 120 TPH).',
+    description: `CAPACITY 20, 30, 40, 60, 90, 120 TPH\n\nA Mobile Drum Mix Plant (Portable Asphalt Drum Mix Plant) is a wheel-mounted continuous asphalt production facility designed for contractors requiring swift mobilization between project sites. Built on heavy-duty chassis equipped with pneumatic axles, kingpin, and pneumatic air brakes, this plant eliminates the need for expensive permanent concrete foundations.\n\nIt features synchronized aggregate drying and bitumen mixing inside a single rotating drum, delivering rapid deployment, high fuel efficiency, and uniform asphalt coating for remote highways, state roadways, hilly terrains, and fast-paced road construction projects.`,
+    highlights: [
+      'Capacity: 20, 30, 40, 60, 90, 120 TPH',
+      'Chassis-Mounted Mobility: Heavy-duty pneumatic axles & kingpin for truck towing',
+      'Quick Site Commissioning: Pre-wired plug-and-play modular chassis units',
+      'Continuous simultaneous aggregate drying and bitumen coating in rotating drum',
+      'Mobile 3 or 4-bin cold aggregate feeder with variable speed belt drives',
+      'Fully automatic PLC control cabin with touch panel and load cell calibration',
+    ],
+    specifications: [
+      { parameter: 'Capacity', value: '20, 30, 40, 60, 90, 120 TPH' },
+      { parameter: 'Mobility Chassis', value: 'Wheel-mounted structural steel chassis with pneumatic axles & air brakes' },
+      { parameter: 'Feeder Bins', value: '3 or 4 compartment portable bins with variable speed calibrated drives' },
+      { parameter: 'Burner Fuel', value: 'Diesel / LDO / Furnace Oil / Natural Gas' },
+      { parameter: 'Bitumen Operating Temp', value: '140°C to 160°C' },
+      { parameter: 'Pollution Control', value: 'Chassis-mounted wet dust scrubber with cyclonic water spray' },
+      { parameter: 'Discharge Conveyor', value: 'Folding load-out conveyor with hydraulically operated gob hopper' },
+      { parameter: 'Control System', value: 'Centralized PLC automatic panel with load cell digital display' },
+    ],
+    features: [
+      {
+        title: 'Portable Cold Aggregate Feeder Unit',
+        description: 'Mounted on an independent heavy-duty wheeled chassis with fold-down hopper side partitions for standard highway clearance during transit. Variable-speed drives ensure accurate recipe metering onto the gathering belt.',
+      },
+      {
+        title: 'Mobile Dryer-cum-Mixer Drum',
+        description: 'Engineered with dual functional zones: a forward drying zone with a high-efficiency burner for complete moisture extraction, and a rear mixing zone where liquid bitumen and filler coat hot aggregates continuously.',
+      },
+      {
+        title: 'Mobile Bitumen Storage & Heating Tank',
+        description: 'Chassis-mounted insulated bitumen tank equipped with an internal U-tube burner heating system or thermic fluid coils, ensuring bitumen remains at optimal pumping viscosity.',
+      },
+      {
+        title: 'Mobile Wet Dust Scrubber System',
+        description: 'High-efficiency pollution control unit integrated on the chassis. Uses cyclonic spray nozzles to trap fine dust particles before releasing clean exhaust gas.',
+      },
+      {
+        title: 'Folding Load-Out Slinger Conveyor',
+        description: 'Tilted drag conveyor that directly loads finished hot-mix asphalt into dump trucks. Features a hydraulic folding mechanism for quick transport setup.',
+      },
+      {
+        title: 'Air-Conditioned Mobile Control Cabin',
+        description: 'Weatherproof mobile cabin housing the centralized electric control panel, computerized recipe storage, load-cell indicators, and emergency failsafe controls.',
+      },
+    ],
+    applications: [
+      'Remote & Rural Highway Construction (PMGSY & State PWD projects)',
+      'Hilly Terrain & Mountainous Road Projects where stationary plant civil work is difficult',
+      'Short-to-Medium Term Paving Contracts requiring frequent plant relocation',
+      'Airport Runway Repairs, Industrial Corridors & Defense Border Roads',
+    ],
+    drumMixGuide: {
+      capacityBadge: 'CAPACITY 20, 30, 40, 60, 90, 120 TPH',
+      intro: `A Mobile Asphalt Drum Mix Plant delivers complete mobility without compromising on production output. Built on rugged pneumatic-tyred chassis, each plant section is road-legal and towable by standard prime movers. It enables contractors to set up within hours, run continuous high-volume paving, and quickly move to the next site once the stretch is paved.`,
+      specsTable: [
+        { parameter: 'Production Capacity Range', range: '20, 30, 40, 60, 90, 120 TPH' },
+        { parameter: 'Chassis Configuration', range: 'Wheel-mounted with kingpin, leaf springs & pneumatic brakes' },
+        { parameter: 'Aggregate Bins Handled', range: '3 to 4 portable compartments with variable-speed drives' },
+        { parameter: 'Burner Fuel Compatibility', range: 'Diesel, LDO (Light Diesel Oil), FO (Furnace Oil), or Gas' },
+        { parameter: 'Bitumen Temperature Range', range: '140°C to 160°C' },
+        { parameter: 'Secondary Dust Collector', range: 'Chassis-mounted Venturi wet scrubber with water pump' },
+        { parameter: 'Control Interface', range: 'Fully automatic PLC panel with digital load cell tracking' },
+      ],
+      systemLayoutIntro: 'The mobile asphalt drum mix plant is configured across synchronized, transportable chassis units for rapid field setup:',
+      zones: [
+        {
+          zoneNumber: 1,
+          title: 'Chassis 1: Mobile Cold Aggregate Feeder Bins',
+          description: 'Portable hoppers equipped with foldable side walls and variable speed gathering belts. Includes a vibrating screen to discard oversized stones before feeding.',
+        },
+        {
+          zoneNumber: 2,
+          title: 'Chassis 2: Mobile Dryer-cum-Mixer Drum & Burner',
+          description: 'Wheel-mounted rotary drum featuring high-efficiency flame drying in the forward section and high-shear bitumen coating in the rear section.',
+        },
+        {
+          zoneNumber: 3,
+          title: 'Chassis 3: Mobile Bitumen Storage & Heating Unit',
+          description: 'Insulated storage tank with internal heating system and positive-displacement bitumen dosing pump mounted on the chassis.',
+        },
+        {
+          zoneNumber: 4,
+          title: 'Chassis 4: Mobile Wet Dust Collector (Pollution Control)',
+          description: 'Cyclonic wet scrubber with high-pressure water spray nozzles capturing exhaust dust particles to ensure clean air compliance.',
+        },
+        {
+          zoneNumber: 5,
+          title: 'Load-Out Slinger Conveyor & Control Cabin',
+          description: 'Folding hot mix load-out conveyor discharging directly into tippers, alongside the centralized air-conditioned operator control cabin.',
+        },
+      ],
+    },
+    heroImage: '/src/assets/images/products/road/road_mobile_drum_1.jpg',
+    gallery: [
+      '/src/assets/images/products/road/road_mobile_drum_1.jpg',
+      '/src/assets/images/products/road/road_mobile_drum_2.jpg',
+      '/src/assets/images/products/road/road_mobile_drum_3.jpg',
+      '/src/assets/images/products/road/road_mobile_drum_4.jpg',
     ],
     isPlaceholder: false,
     featured: false,
@@ -2827,18 +2964,130 @@ export const CEMENT_PRODUCTS: Product[] = [
     isPlaceholder: false,
     featured: true,
   },
+  {
+    id: 'cement-fly-ash-silo',
+    slug: 'cement-fly-ash-silo',
+    categoryId: 'cement-concrete-equipment',
+    categoryName: 'Cement & Concrete Equipment',
+    name: 'CEMENT / FLY ASH SILO',
+    code: 'ATL-CFS-02',
+    shortDescription: 'Heavy-duty vertical steel storage tank (IS:2825 & IS:2062 Grade, 50T, 100T to 150+ Ton) for bulk cement, fly ash, micro-silica, or slag powder at concrete batching plants.',
+    description: `An Indian-make Indian Standard Cement and Fly Ash Silo is a heavy-duty vertical steel storage tank designed to hold bulk cement, fly ash, micro-silica, or slag powder at concrete batching plants or brick manufacturing facilities.\n\nFabricated in compliance with Bureau of Indian Standards (BIS) codes (such as IS:2825 for pressure vessels/structural safety) and optimized for high-capacity batching plants, these silos protect moisture-sensitive powders from humidity, rain, and external contamination.`,
+    highlights: [
+      'Storage Capacity: 50 Ton, 100 Ton, to 150+ Ton (50T & 100T are standard defaults)',
+      'Material of Construction: Structural Grade Mild Steel (MS) Plates (IS:2062 Grade)',
+      'Shell Plate Thickness: 5 mm to 8 mm (thicker at the bottom cone to support the immense weight)',
+      'Silo Structure Type: Welded (Single-piece for up to 100T) or Bolted (Sectional for easy transport)',
+      'Discharge System: Cone bottom with a manual/pneumatic butterfly valve and screw conveyor',
+      'Supporting Legs: Heavy-duty structural H-beams / pipe legs with cross-bracing',
+    ],
+    specifications: [
+      { parameter: 'Storage Capacity', value: '50 Ton, 100 Ton, to 150+ Ton (50T & 100T are the standard defaults)' },
+      { parameter: 'Material of Construction', value: 'Structural Grade Mild Steel (MS) Plates (IS:2062 Grade)' },
+      { parameter: 'Shell Plate Thickness', value: '5 mm to 8 mm (thicker at the bottom cone to support the immense weight)' },
+      { parameter: 'Silo Structure Type', value: 'Welded (Single-piece for up to 100T) or Bolted (Sectional for easy transport)' },
+      { parameter: 'Discharge System', value: 'Cone bottom with a manual/pneumatic butterfly valve and screw conveyor' },
+      { parameter: 'Supporting Legs', value: 'Heavy-duty structural H-beams / pipe legs with cross-bracing' },
+    ],
+    featuresTitle: '🏗️ Essential Safety & Functional Accessories',
+    features: [
+      {
+        title: 'Top Dust Filter (Silo Vent Filter)',
+        description: 'A mandatory pneumatic or mechanical pulse-jet baghouse filter mounted on top of the silo roof. When bulk tanker trucks pump cement inside using high-pressure air, the filter traps the micro-powder while venting clean air to prevent the roof from rupturing.',
+      },
+      {
+        title: 'Pressure Relief Valve (PRV)',
+        description: 'A spring-loaded safety valve mounted on the silo roof. If a bulk truck over-pressurizes the tank during pneumatic filling, the PRV instantly opens to bleed off the excess pressure safely.',
+      },
+      {
+        title: 'Fluidization Nozzles / Aeration Pads',
+        description: 'Cement and fly ash pack down tightly over time and form a "bridge" or a vacuum "rathole" above the discharge mouth. Compressed air nozzles are installed along the bottom cone to fluidize the powder and maintain a smooth downward gravity flow.',
+      },
+      {
+        title: 'Level Indicators (Paddle / Tuning Fork Sensors)',
+        description: 'Max Level Indicator: Sounds an alarm to warn the tanker operator to stop pumping before the silo overflows.\nMin Level Indicator: Alerts the batching plant cabin operator that raw materials are running dangerously low.',
+      },
+      {
+        title: 'Screw Conveyor System',
+        description: 'A horizontal or inclined motorized auger pipe attached to the bottom hopper cone. It meters out the raw powder and feeds it cleanly up into the cement weigh hopper of the concrete batching plant.',
+      },
+    ],
+    applications: [
+      'Concrete Batching Plants (RMC & Major Infrastructure)',
+      'Fly Ash & Slag Powder Storage Facilities',
+      'Brick & AAC Block Manufacturing Facilities',
+      'Precast Concrete Element Fabrication Yards',
+      'Bulk Cement Terminal & Transshipment Depots',
+    ],
+    siloGuide: {
+      capacityBadge: 'CAPACITY 50T, 100T & 150+ TON',
+      intro: `An Indian-make Indian Standard Cement and Fly Ash Silo is a heavy-duty vertical steel storage tank designed to hold bulk cement, fly ash, micro-silica, or slag powder at concrete batching plants or brick manufacturing facilities.\n\nFabricated in compliance with Bureau of Indian Standards (BIS) codes (such as IS:2825 for pressure vessels/structural safety) and optimized for high-capacity batching plants, these silos protect moisture-sensitive powders from humidity, rain, and external contamination.`,
+      specsTable: [
+        { parameter: 'Storage Capacity', value: '50 Ton, 100 Ton, to 150+ Ton (50T & 100T are the standard defaults)' },
+        { parameter: 'Material of Construction', value: 'Structural Grade Mild Steel (MS) Plates (IS:2062 Grade)' },
+        { parameter: 'Shell Plate Thickness', value: '5 mm to 8 mm (thicker at the bottom cone to support the immense weight)' },
+        { parameter: 'Silo Structure Type', value: 'Welded (Single-piece for up to 100T) or Bolted (Sectional for easy transport)' },
+        { parameter: 'Discharge System', value: 'Cone bottom with a manual/pneumatic butterfly valve and screw conveyor' },
+        { parameter: 'Supporting Legs', value: 'Heavy-duty structural H-beams / pipe legs with cross-bracing' },
+      ],
+      accessoriesIntro: 'A standard Indian silo system relies on a suite of standardized accessories to ensure fluid material flow and safe high-pressure pneumatic filling:',
+      accessories: [
+        {
+          number: 1,
+          title: 'Top Dust Filter (Silo Vent Filter)',
+          description: 'A mandatory pneumatic or mechanical pulse-jet baghouse filter mounted on top of the silo roof. When bulk tanker trucks pump cement inside using high-pressure air, the filter traps the micro-powder while venting clean air to prevent the roof from rupturing.',
+        },
+        {
+          number: 2,
+          title: 'Pressure Relief Valve (PRV)',
+          description: 'A spring-loaded safety valve mounted on the silo roof. If a bulk truck over-pressurizes the tank during pneumatic filling, the PRV instantly opens to bleed off the excess pressure safely.',
+        },
+        {
+          number: 3,
+          title: 'Fluidization Nozzles / Aeration Pads',
+          description: 'Cement and fly ash pack down tightly over time and form a "bridge" or a vacuum "rathole" above the discharge mouth. Compressed air nozzles are installed along the bottom cone to fluidize the powder and maintain a smooth downward gravity flow.',
+        },
+        {
+          number: 4,
+          title: 'Level Indicators (Paddle / Tuning Fork Sensors)',
+          description: 'High and low raw powder level sensors ensuring continuous operational monitoring without overflows or batch starvation:',
+          levelIndicators: [
+            {
+              type: 'Max Level Indicator',
+              description: 'Sounds an alarm to warn the tanker operator to stop pumping before the silo overflows.',
+            },
+            {
+              type: 'Min Level Indicator',
+              description: 'Alerts the batching plant cabin operator that raw materials are running dangerously low.',
+            },
+          ],
+        },
+        {
+          number: 5,
+          title: 'Screw Conveyor System',
+          description: 'A horizontal or inclined motorized auger pipe attached to the bottom hopper cone. It meters out the raw powder and feeds it cleanly up into the cement weigh hopper of the concrete batching plant.',
+        },
+      ],
+    },
+    heroImage: cementFlyAshSiloImg,
+    gallery: [
+      cementFlyAshSiloImg,
+      '/src/assets/images/category_cement_equipment.jpg',
+    ],
+    isPlaceholder: false,
+    featured: true,
+  },
 ];
 
 export const ALL_PRODUCTS: Product[] = [
   // 9 Real Bitumen Modify Equipment Products
   ...BITUMEN_PRODUCTS,
 
-  // 6 Real Road Construction Equipment Products
+  // 7 Real Road Construction Equipment Products
   ...ROAD_PRODUCTS,
 
-  // 2 Cement & Concrete Equipment Products
+  // 2 Real Cement & Concrete Equipment Products
   ...CEMENT_PRODUCTS,
-  createPlaceholderProduct('cement-concrete-equipment', 'Cement & Concrete Equipment', 2, 'Cement & Concrete', '/src/assets/images/cat_cement_concrete_1791042916344.jpg'),
 ];
 
 export const COMPANY_INFO = {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from '../context/RouterContext';
 import { TrustStrip } from '../components/TrustStrip';
 import { CategoryCard } from '../components/CategoryCard';
@@ -65,14 +65,7 @@ export const HomePage: React.FC = () => {
     },
   ];
 
-  // Auto-rotate slides every 10 seconds ("fartu banner")
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 10000);
-    return () => clearInterval(timer);
-  }, [heroSlides.length]);
-
+  // Manual slide navigation (auto-rotation disabled as requested)
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
   };
@@ -174,6 +167,22 @@ export const HomePage: React.FC = () => {
             );
           })}
         </div>
+
+        {/* Side Navigation Arrows (Manual Control) */}
+        <button
+          onClick={prevSlide}
+          aria-label="Previous Slide"
+          className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 rounded-full bg-slate-900/40 hover:bg-slate-900/80 text-white border border-white/20 shadow-lg backdrop-blur-xs transition-all cursor-pointer hover:scale-105"
+        >
+          <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+        </button>
+        <button
+          onClick={nextSlide}
+          aria-label="Next Slide"
+          className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 rounded-full bg-slate-900/40 hover:bg-slate-900/80 text-white border border-white/20 shadow-lg backdrop-blur-xs transition-all cursor-pointer hover:scale-105"
+        >
+          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+        </button>
 
         {/* Carousel Navigation Bar (Left/Right Arrows & Dots) */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full border border-slate-200 shadow-lg">

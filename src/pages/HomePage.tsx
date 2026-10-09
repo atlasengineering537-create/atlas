@@ -56,12 +56,12 @@ export const HomePage: React.FC = () => {
     },
     {
       image: heroCementConcrete,
-      alt: 'Atlas Engineering Cement Concrete Equipment',
+      alt: 'Atlas Engineering Cement Concrete Batching Plant',
       badge: 'Concrete Infrastructure',
-      title: 'Cement Concrete Equipment',
+      title: 'Cement Concrete Batching Plant',
       description: 'Heavy-Duty Cement Concrete Batching Plants and Mixing Solutions for Major Highway & Civil Projects.',
-      categoryLink: '/products/cement-concrete-equipment',
-      buttonText: 'Explore Cement Concrete Equipment',
+      categoryLink: '/products/cement-concrete-equipment/cement-concrete-batching-plant',
+      buttonText: 'Explore Cement Concrete Batching Plant',
     },
   ];
 
@@ -140,10 +140,6 @@ export const HomePage: React.FC = () => {
                       <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white drop-shadow-md leading-tight">
                         {slide.title}
                       </h1>
-
-                      <p className="text-xs sm:text-base md:text-lg text-slate-200 line-clamp-2 max-w-xl font-medium drop-shadow">
-                        {slide.description}
-                      </p>
 
                       <div className="pt-1 sm:pt-2 flex flex-wrap items-center gap-3">
                         <button
@@ -264,19 +260,19 @@ export const HomePage: React.FC = () => {
             {/* Content Column */}
             <div className="lg:col-span-7 order-1 lg:order-2 space-y-4">
               <span className="text-xs font-bold text-red-600 uppercase tracking-widest block">
-                ABOUT ATLAS ENGINEERING
+                WELCOME TO ATLAS ENGINEERING
               </span>
               
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 tracking-tight leading-snug">
-                Nearly Three Decades of bitumen modify plants, Road Construction and Cement Concrete Equipment Manufacturer
+                Nearly Three Decades of bitumen modify plants, Road Construction and Cement Concrete Batching Plant Manufacturer
               </h2>
 
               <p className="text-base text-slate-700 leading-relaxed font-medium">
-                Since 1997, Atlas Engineering has been a trusted pioneer in manufacturing high-performance bitumen modification and road construction equipment. Driven by nearly three decades of industry expertise, we design and build cutting-edge machinery that powers critical infrastructure projects across India and around the globe.
+                Based in Ahmedabad, Gujarat, Atlas Engineering has been a trusted pioneer in manufacturing high-performance bitumen Modified Plant, road construction equipment and concrete batching solutions since 1997. With nearly three decades of engineering expertise, we deliver robust, precise, and heavy-duty machinery designed to empower infrastructure development across India and globally.
               </p>
 
               <p className="text-sm text-slate-600 leading-relaxed">
-                Operating from our manufacturing facility in Kathwada GIDC, Ahmedabad, our engineering focus encompasses complete bitumen modification plants, heavy-duty asphalt solutions, and precision concrete machinery crafted with seasoned engineering supervision.
+                Operating from our manufacturing facility in Kathwada GIDC, Ahmedabad, our engineering focus encompasses complete bitumen modification plants, heavy-duty asphalt plants, and precision concrete machinery crafted with seasoned engineering supervision.
               </p>
 
               <div className="pt-2">
@@ -296,7 +292,6 @@ export const HomePage: React.FC = () => {
 
       {/* ==================================================
           SECTION 4 — WHY CHOOSE ATLAS ENGINEERING
-          5 Feature Cards with Clean Editorial Style
           ================================================== */}
       <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -306,14 +301,14 @@ export const HomePage: React.FC = () => {
               THE ATLAS ADVANTAGE
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
-              Why Choose Atlas Engineering
+              Why Choose Atlas Engineering?
             </h2>
             <p className="mt-2 text-base text-slate-600">
               Built on strong client relationships, verified engineering rigour, and dedicated after-sales commitment across every deployment.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {COMPANY_INFO.whyChooseUs.map((item, idx) => {
               const Icon = whyChooseIcons[idx] || Shield;
               return (
@@ -343,30 +338,28 @@ export const HomePage: React.FC = () => {
                 </div>
               );
             })}
+          </div>
 
-            {/* 6th Card: Quote / Engineering Support Callout */}
-            <div className="p-6 rounded-xl border border-red-200 bg-gradient-to-br from-red-50/60 to-white flex flex-col justify-between">
-              <div>
-                <span className="text-xs font-bold text-red-600 uppercase tracking-wider block mb-1">
-                  Custom Engineering
-                </span>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">
-                  Tailored Project Solutions
-                </h3>
-                <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                  Have unique highway specifications or site footprint constraints? Consult directly with Sunil L. Mistry and our engineering team in Ahmedabad.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-red-100">
-                <button
-                  onClick={() => openQuoteModal()}
-                  className="w-full py-3 px-4 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm font-bold rounded-lg shadow-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
-                >
-                  <span>Talk to an Engineer</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
+          {/* Project Solutions Banner */}
+          <div className="mt-8 p-6 rounded-xl border border-red-200 bg-gradient-to-r from-red-50/80 via-white to-red-50/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <span className="text-xs font-bold text-red-600 uppercase tracking-wider block mb-1">
+                Custom Engineering
+              </span>
+              <h3 className="text-lg font-bold text-slate-900">
+                Tailored Project Solutions
+              </h3>
+              <p className="text-sm text-slate-600">
+                Have unique highway specifications or site footprint constraints? Consult directly with Sunil L. Mistry and our engineering team in Ahmedabad.
+              </p>
             </div>
+            <button
+              onClick={() => openQuoteModal()}
+              className="whitespace-nowrap py-3 px-6 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm font-bold rounded-lg shadow-xs transition-colors flex items-center gap-2 cursor-pointer"
+            >
+              <span>Talk to an Engineer</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
 
         </div>
@@ -384,7 +377,7 @@ export const HomePage: React.FC = () => {
                 EQUIPMENT ARCHITECTURE
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
-                Engineered Solutions for Modern Infrastructure
+                Our Core Product Categories
               </h2>
               <p className="mt-2 text-sm sm:text-base text-slate-600">
                 Explore our three dedicated machinery categories covering bitumen modification, road construction, and concrete engineering.
@@ -564,15 +557,15 @@ export const HomePage: React.FC = () => {
       <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="max-w-2xl mb-12">
+          <div className="max-w-3xl mb-12">
             <span className="text-xs font-bold text-red-600 uppercase tracking-wider block mb-1">
               FIELD TESTED & SITE PROVEN
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
-              Built for Critical Infrastructure
+              Powering Infrastructure Development
             </h2>
-            <p className="mt-2 text-sm sm:text-base text-slate-600">
-              Atlas machinery operates in the most demanding civil engineering conditions, providing continuous uptime on high-stakes infrastructure corridors.
+            <p className="mt-2 text-sm sm:text-base text-slate-600 leading-relaxed">
+              Whether you are executing highway projects, urban infrastructure, or heavy commercial construction, Atlas Engineering delivers the equipment reliability and technology you need to stay ahead of schedule.
             </p>
           </div>
 
@@ -634,10 +627,10 @@ export const HomePage: React.FC = () => {
                   FAST MACHINERY INQUIRY
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-                  Request Equipment Pricing & Technical Proposal
+                  Get in Touch with Us Today
                 </h2>
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  Submit your site requirements and our engineering department will provide technical specifications, layout drawings, and transparent pricing.
+                  Ready to upgrade your fleet or plan your next construction project? Contact our engineering specialists for custom specifications and quotations.
                 </p>
 
                 <div className="space-y-3 pt-3 text-xs text-slate-700">

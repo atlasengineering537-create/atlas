@@ -551,11 +551,11 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
   {
     id: 'bitumen-modify-equipment',
     slug: 'bitumen-modify-equipment',
-    name: 'Bitumen Modify Equipment',
+    name: 'Bitumen Modifier Plants',
     shortName: 'Bitumen Equipment',
     subtitle: 'Primary Engineering Focus & High-Performance Plants',
-    description: 'Precision-engineered bitumen decanters, polymer modified bitumen (PMB) plants, emulsion production systems, and heating units built for rigorous infrastructure specifications.',
-    productCount: 9,
+    description: 'Advanced systems engineered for efficient production of Modified Bitumen (CRMB & PMB), ensuring high durability, optimal viscosity, and superior road performance.',
+    productCount: 10,
     featuredFocus: true,
     image: catBitumenImg,
     keyApplications: [
@@ -572,7 +572,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     name: 'Road Construction Equipment',
     shortName: 'Road Construction',
     subtitle: 'Heavy-Duty Highway & Civil Paving Machinery',
-    description: 'Rugged and dependable asphalt batch mix components, wet mix macadam systems, road sweepers, and road building machinery engineered for reliable operation under demanding site conditions.',
+    description: 'A comprehensive range of heavy-duty road machinery—including Asphalt Batch Mix Plants, Drum Mix Plants, Wet Mix Macadam (WMM) Plants, and Bitumen Sprayers—built to withstand demanding site conditions.',
     productCount: 7,
     featuredFocus: false,
     image: catRoadImg,
@@ -586,10 +586,10 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
   {
     id: 'cement-concrete-equipment',
     slug: 'cement-concrete-equipment',
-    name: 'Cement & Concrete Equipment',
-    shortName: 'Cement & Concrete',
+    name: 'Cement Batching Plants',
+    shortName: 'Cement Batching',
     subtitle: 'High-Capacity Batching & Mixing Solutions',
-    description: 'Engineered concrete batching and mixing solutions designed for high structural integrity, consistent aggregate blending, and continuous site productivity.',
+    description: 'High-capacity stationary and mobile Concrete Batching Plants delivering precise mix accuracy, rapid operational setup, and minimal maintenance costs.',
     productCount: 2,
     featuredFocus: false,
     image: catCementImg,
@@ -674,7 +674,7 @@ function createPlaceholderProduct(
   };
 }
 
-// 9 REAL BITUMEN MODIFY EQUIPMENT PRODUCTS
+// 10 REAL BITUMEN MODIFY EQUIPMENT PRODUCTS
 export const BITUMEN_PRODUCTS: Product[] = [
   {
     id: 'bitumen-emulsion-plant',
@@ -2049,6 +2049,109 @@ Reactor Bottom → Finished Oxidized Bitumen Tank → Packing`,
     isPlaceholder: false,
     featured: false,
   },
+  {
+    id: 'turnkey-project',
+    slug: 'turnkey-project',
+    categoryId: 'bitumen-modify-equipment',
+    categoryName: 'Bitumen Modify Equipment',
+    name: 'TURNKEY PROJECT',
+    code: 'ATL-TKP-10',
+    shortDescription: 'Complete end-to-end turnkey project execution for bitumen modification, emulsion manufacturing, PMB/CRMB processing plants, and bulk bitumen storage terminals from concept to commissioning.',
+    description: `Atlas Engineering delivers complete Turnkey Project execution for industrial bitumen modification and handling installations. From initial process engineering, mechanical design, plant fabrication, and automated control systems to site erection, piping, thermal heating integration, trial runs, and operator training, we deliver fully integrated plants ready for continuous production.
+
+With over 28 years of dedicated engineering excellence in Kathwada GIDC, Ahmedabad, our turnkey solutions ensure seamless synchronization across bitumen decanters, high-shear polymer modification mills, emulsion reactors, bulk storage tanks, and automated boiler/thermic fluid heating networks.`,
+    highlights: [
+      'End-to-End Execution: Concept design, fabrication, supply, erection, piping & commissioning',
+      'Custom Tailored Capacity: From 5 TPH to 30+ TPH custom configurations',
+      'Integrated Systems: PMB/CRMB, Emulsion, Decanters, Heating, and Storage Terminals',
+      'Advanced Automation: Centralized SCADA / PLC control desks with real-time recipe management',
+      'Compliance & Safety: Fabricated to BIS, IRC, and ASME standards with fail-safe thermal interlocks',
+    ],
+    featuresTitle: '🏗️ Turnkey Scope of Supply & Engineering Modules',
+    features: [
+      {
+        title: 'Process Design & Plant Layout',
+        description: 'Comprehensive plant 3D layout, process flow diagram (PFD), piping & instrumentation diagram (P&ID), and foundation civil engineering guidance tailored to client site geography.',
+      },
+      {
+        title: 'Equipment Fabrication & Sourcing',
+        description: 'In-house manufacturing of reaction tanks, high-shear colloidal mills, multi-stage filtration systems, pumping skids, and heavy-duty structural platforms.',
+      },
+      {
+        title: 'Piping & Thermal Insulation',
+        description: 'Complete jacketted hot oil / bitumen interconnecting pipelines, pneumatic material transfer lines, expansion loops, and rockwool thermal insulation clad in aluminum/GI sheets.',
+      },
+      {
+        title: 'Central Automation & Electrical Control',
+        description: 'Integrated MCC panels, PLC automation, touch-screen HMI, variable frequency drives (VFD), and SCADA integration for centralized batch recipe control and data logging.',
+      },
+      {
+        title: 'Erection & Mechanical Commissioning',
+        description: 'Deployment of experienced project engineers to oversee on-site erection, alignment, hydrostatic pressure testing, and cold/hot trial production runs.',
+      },
+      {
+        title: 'Operator Training & After-Sales Support',
+        description: 'Comprehensive standard operating procedure (SOP) documentation, maintenance training for client technicians, and 24/7 technical assistance backed by warranty.',
+      },
+    ],
+    productionProcess: [
+      'Site Feasibility & Process Engineering (Design basis, capacity estimation, P&ID drafting)',
+      'Equipment Fabrication & Factory Acceptance Testing (FAT) at Kathwada manufacturing facility',
+      'Civil Foundation Guidance & Site Logistics Planning',
+      'Mechanical Erection, Structural Assembly & Equipment Positioning',
+      'Process Piping, Thermal Heating Coil Integration & Electrical Wiring',
+      'Cold Testing, Calibration & Hydrostatic Pressure Checks',
+      'Hot Trial Runs, Polymer Dispersion Verification & Recipe Optimization',
+      'Commercial Handover, SOP Delivery & Hands-on Staff Training',
+    ],
+    plantTypes: [
+      {
+        title: 'PMB / CRMB Turnkey Complexes',
+        description: 'Integrated polymer modified bitumen and crumb rubber modified bitumen manufacturing plants with high-shear mills, digestor tanks, and bulk storage.',
+      },
+      {
+        title: 'Bitumen Emulsion & Cold-Mix Terminals',
+        description: 'Turnkey installations combining emulsion plants, drum decanters, heated storage tanks, and automated drum/bag filling lines.',
+      },
+      {
+        title: 'Bulk Bitumen Storage & Heating Terminals',
+        description: 'Large-capacity vertical and horizontal tank farms equipped with thermic fluid heating coils, pumping skids, and road tanker loading gantries.',
+      },
+      {
+        title: 'Integrated Highway Machinery Hubs',
+        description: 'Combined processing setups housing asphalt drum mixing units, emulsion stations, and bitumen melting yards for major highway concessions.',
+      },
+    ],
+    applications: [
+      'Polymer Modified Bitumen (PMB) & CRMB Production Complexes',
+      'National Highway & Expressway Mega Projects',
+      'Bitumen Import Terminals & Port Bulk Handling',
+      'State PWD & Concessionaire Central Supply Hubs',
+      'Bitumen Emulsion Manufacturing & Cold-Mix Production Units',
+      'Airport Runway Pavement & High-Stiffness Asphalt Supply Yards',
+    ],
+    specifications: [
+      { parameter: 'Project Scope', value: 'Concept to Commissioning (EPC / Turnkey Solution)' },
+      { parameter: 'Processing Capacity', value: '5 TPH to 30+ TPH (Custom modular scalable designs)' },
+      { parameter: 'Core Systems Integrated', value: 'PMB/CRMB, Emulsion, Decanter, Thermic Heater, Storage Tanks' },
+      { parameter: 'Control Automation', value: 'Central PLC / SCADA with touchscreen HMI and remote telemetry' },
+      { parameter: 'Heating Medium', value: 'Thermic Fluid Heater (100,000 to 3,000,000+ kcal/hr)' },
+      { parameter: 'Storage Integration', value: 'Bulk Vertical / Horizontal tanks from 20 MT to 1,000+ MT' },
+      { parameter: 'Piping Standard', value: 'Seamless MS Class C with rockwool thermal insulation & GI cladding' },
+      { parameter: 'Manufacturing Standard', value: 'BIS (IS:2062 / IS:15462), IRC Guidelines & ASME Standards' },
+      { parameter: 'Testing & Commissioning', value: 'Cold water trial, hot oil circulation test & polymer dispersion FAT' },
+      { parameter: 'Warranty & Lifecycle', value: '12 Months standard warranty with lifetime technical support' },
+    ],
+    heroImage: '/src/assets/images/factory_engineering_facility_1791042931571.jpg',
+    gallery: [
+      '/src/assets/images/factory_engineering_facility_1791042931571.jpg',
+      '/src/assets/images/cat_bitumen_modify_1791042893480.jpg',
+      '/src/assets/images/hero_bitumen_modify.jpg',
+      '/src/assets/images/products/p1_img1.jpg',
+    ],
+    isPlaceholder: false,
+    featured: false,
+  },
 ];
 
 // 7 REAL ROAD CONSTRUCTION EQUIPMENT PRODUCTS
@@ -3084,7 +3187,7 @@ export const CEMENT_PRODUCTS: Product[] = [
 ];
 
 export const ALL_PRODUCTS: Product[] = [
-  // 9 Real Bitumen Modify Equipment Products
+  // 10 Real Bitumen Modify Equipment Products
   ...BITUMEN_PRODUCTS,
 
   // 7 Real Road Construction Equipment Products
@@ -3121,28 +3224,23 @@ export const COMPANY_INFO = {
   whyChooseUs: [
     {
       index: '01',
-      title: 'Proven Industry Leadership',
-      description: 'Over 28 years of continuous innovation, field experience, and deep domain knowledge.',
+      title: '25+ Years of Proven Expertise',
+      description: 'Manufacturing reliable industrial machinery since 1997.',
     },
     {
       index: '02',
-      title: 'Precision Engineering',
-      description: 'Advanced manufacturing technology coupled with strict quality control to deliver superior, high-efficiency equipment.',
+      title: 'Engineered for Durability',
+      description: 'Built using heavy-grade steel and top-tier components for maximum operational life.',
     },
     {
       index: '03',
-      title: 'Premium Quality & Reliability',
-      description: 'Built with top-grade components and supervised by seasoned engineers to ensure reliable operation under the toughest site conditions.',
+      title: 'Precision Engineering',
+      description: 'Designed to meet stringent international quality standards and high-efficiency output targets.',
     },
     {
       index: '04',
-      title: 'Global Footprint',
-      description: 'Proven track record of powering major national and international infrastructure developments.',
-    },
-    {
-      index: '05',
-      title: 'Dedicated After-Sales Support',
-      description: 'Outstanding customer service and technical assistance that turn first-time buyers into long-term partners.',
+      title: 'End-to-End Customer Support',
+      description: 'From custom manufacturing and installation to prompt technical service and spare parts availability.',
     },
   ],
   applications: [

@@ -36,7 +36,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ category }) => {
           <h3 className="text-xl sm:text-2xl font-bold text-slate-900 group-hover:text-red-600 transition-colors leading-snug">
             {category.name}
           </h3>
-          <p className="mt-2 text-sm sm:text-base text-slate-600 leading-relaxed line-clamp-3">
+          <p className="mt-2 text-sm sm:text-base text-slate-600 leading-relaxed line-clamp-4 min-h-[4.5rem]">
             {category.description}
           </p>
 

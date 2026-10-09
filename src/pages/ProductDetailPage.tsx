@@ -3,6 +3,7 @@ import { useRouter } from '../context/RouterContext';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { ProductCard } from '../components/ProductCard';
 import { ALL_PRODUCTS, PRODUCT_CATEGORIES, TechnicalSpec } from '../data/products';
+import defaultFallbackImg from '../assets/images/category_bitumen_equipment.jpg';
 import {
   ShieldCheck,
   CheckCircle2,
@@ -114,8 +115,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   referrerPolicy="no-referrer"
                   onError={(e) => {
                     const target = e.currentTarget;
-                    if (!target.src.includes('category_bitumen_equipment.jpg')) {
-                      target.src = '/src/assets/images/category_bitumen_equipment.jpg';
+                    if (target.src !== defaultFallbackImg) {
+                      target.src = defaultFallbackImg;
                     }
                   }}
                   className="w-full h-full object-cover transition-all duration-300"
@@ -145,8 +146,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                       referrerPolicy="no-referrer"
                       onError={(e) => {
                         const target = e.currentTarget;
-                        if (!target.src.includes('category_bitumen_equipment.jpg')) {
-                          target.src = '/src/assets/images/category_bitumen_equipment.jpg';
+                        if (target.src !== defaultFallbackImg) {
+                          target.src = defaultFallbackImg;
                         }
                       }}
                       className="w-full h-full object-cover"

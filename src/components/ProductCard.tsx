@@ -2,6 +2,7 @@ import React from 'react';
 import { Product } from '../data/products';
 import { useRouter } from '../context/RouterContext';
 import { ArrowRight, FileText } from 'lucide-react';
+import defaultFallbackImg from '../assets/images/category_bitumen_equipment.jpg';
 
 interface ProductCardProps {
   product: Product;
@@ -24,8 +25,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             referrerPolicy="no-referrer"
             onError={(e) => {
               const target = e.currentTarget;
-              if (!target.src.includes('category_bitumen_equipment.jpg')) {
-                target.src = '/src/assets/images/category_bitumen_equipment.jpg';
+              if (target.src !== defaultFallbackImg) {
+                target.src = defaultFallbackImg;
               }
             }}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"

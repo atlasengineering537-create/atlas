@@ -112,6 +112,12 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   src={selectedImage}
                   alt={product.name}
                   referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.src.includes('category_bitumen_equipment.jpg')) {
+                      target.src = '/src/assets/images/category_bitumen_equipment.jpg';
+                    }
+                  }}
                   className="w-full h-full object-cover transition-all duration-300"
                 />
                 
@@ -137,6 +143,12 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                       src={img}
                       alt={`${product.name} thumbnail ${idx + 1}`}
                       referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (!target.src.includes('category_bitumen_equipment.jpg')) {
+                          target.src = '/src/assets/images/category_bitumen_equipment.jpg';
+                        }
+                      }}
                       className="w-full h-full object-cover"
                     />
                   </button>

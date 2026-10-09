@@ -44,17 +44,17 @@ export const TrustStrip: React.FC = () => {
               >
                 <div className="flex items-center gap-2 mb-1.5">
                   <Icon className="w-4 h-4 text-red-600 shrink-0" />
-                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                  <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                     Atlas Benchmark
                   </span>
                 </div>
                 <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight font-display">
                   {item.stat}
                 </div>
-                <div className="text-xs sm:text-sm font-bold text-slate-800 mt-0.5">
+                <div className="text-sm sm:text-base font-bold text-slate-800 mt-0.5">
                   {item.label}
                 </div>
-                <p className="text-[11px] sm:text-xs text-slate-500 mt-1 leading-snug">
+                <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
                   {item.description}
                 </p>
               </div>

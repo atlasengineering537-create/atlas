@@ -44,24 +44,31 @@ export const AtlasLogo: React.FC<AtlasLogoProps> = ({
       <div className="flex flex-col justify-center leading-none">
         <div className="flex items-baseline gap-1.5 flex-wrap">
           <span 
-            className="text-2xl sm:text-[27px] font-black italic tracking-tighter text-[#DE1F27] leading-none"
-            style={{ fontFamily: "'Cabinet Grotesk', 'Plus Jakarta Sans', sans-serif" }}
+            className="text-2xl sm:text-[27px] font-black italic tracking-tighter text-[#DE1F27] leading-none [text-shadow:_0_0_0.75px_#DE1F27]"
+            style={{ 
+              fontFamily: "'Cabinet Grotesk', 'Plus Jakarta Sans', sans-serif",
+              fontWeight: 950,
+              letterSpacing: '-0.04em'
+            }}
           >
             ATLAS
           </span>
           <span 
-            className="text-xl sm:text-[23px] font-bold italic tracking-wide text-[#DE1F27] leading-none"
-            style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+            className="text-xl sm:text-[23px] font-black italic tracking-wide text-[#DE1F27] leading-none inline-block origin-bottom -skew-x-6"
+            style={{ 
+              fontFamily: "Georgia, 'Times New Roman', serif",
+              fontWeight: 800
+            }}
           >
             ENGINEERING
           </span>
         </div>
         {variant === 'full' && (
           <span 
-            className="text-[9.5px] sm:text-[10.5px] font-semibold tracking-normal text-[#8B181B] mt-1 hidden sm:block whitespace-nowrap"
+            className="text-[10px] sm:text-[11.5px] font-bold tracking-tight text-[#8B181B] mt-1 hidden sm:block whitespace-nowrap"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
-            Manufacturers of Road & Civil Construction Machinery.
+            Manufacturer of Bitumen Modify Plant, Road & Civil Construction Equipment
           </span>
         )}
       </div>

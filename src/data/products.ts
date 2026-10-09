@@ -3198,7 +3198,7 @@ export const ALL_PRODUCTS: Product[] = [
 
 export const COMPANY_INFO = {
   name: 'ATLAS ENGINEERING',
-  tagline: 'Manufacturers of Road & Civil Construction Machinery',
+  tagline: 'Manufacturer of Bitumen Modify Plant, Road & Civil Construction Equipment',
   foundedYear: 1997,
   yearsOfExperience: '28+',
   contactPerson: 'Sunil L. Mistry',

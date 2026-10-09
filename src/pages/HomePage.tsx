@@ -461,7 +461,7 @@ export const HomePage: React.FC = () => {
                 Advanced Bitumen Modification Solutions
               </h2>
               <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-                As pioneers in bitumen engineering, Atlas Engineering manufactures specialized equipment for polymer modified bitumen (PMB), crumb rubber modified bitumen (CRMB), bitumen decanting, and high-shear emulsion processing.
+                As pioneers in bitumen engineering, Atlas Engineering manufactures specialized equipment for bitumen emulsion plant , polymer modified bitumen (PMB) plant, crumb rubber modified bitumen (CRMB) plant.
               </p>
 
               {/* 5 Core Principles Grid */}

@@ -5,6 +5,7 @@ import { CategoryCard } from '../components/CategoryCard';
 import { ProductCard } from '../components/ProductCard';
 import { PRODUCT_CATEGORIES, ALL_PRODUCTS, COMPANY_INFO } from '../data/products';
 import aboutAtlasImg from '../assets/images/about_atlas_plant_drive.jpg';
+import heroBanner1 from '../assets/images/hero_banner_1.png';
 import heroBitumenModify from '../assets/images/hero_bitumen_modify.jpg';
 import heroRoadConstruction from '../assets/images/hero_road_construction.png';
 import heroCementConcrete from '../assets/images/hero_cement_concrete.jpg';
@@ -36,7 +37,7 @@ export const HomePage: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const heroSlides = [
     {
-      image: heroBitumenModify,
+      image: heroBanner1,
       alt: 'Atlas Engineering Bitumen Modify Equipment',
       badge: 'Flagship Equipment',
       title: 'Bitumen Modify Equipment',
@@ -64,11 +65,11 @@ export const HomePage: React.FC = () => {
     },
   ];
 
-  // Auto-rotate slides every 5 seconds ("fartu banner")
+  // Auto-rotate slides every 10 seconds ("fartu banner")
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 5000);
+    }, 10000);
     return () => clearInterval(timer);
   }, [heroSlides.length]);
 

@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { AtlasLogo } from './AtlasLogo';
 import { useRouter } from '../context/RouterContext';
 import { PRODUCT_CATEGORIES, ALL_PRODUCTS } from '../data/products';
-import { ChevronDown, Menu, X, ArrowRight, PhoneCall } from 'lucide-react';
+import makeInIndiaLogo from '../assets/images/make_in_india_logo.png';
+import msmeLogo from '../assets/images/msme_logo.png';
+import { ChevronDown, Menu, X, ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
 
 interface ProductMenuMeta {
   displayName: string;
@@ -100,11 +102,75 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      <header
-        className={`sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all duration-200 ${
-          isScrolled ? 'py-2.5 shadow-sm' : 'py-3.5'
-        }`}
-      >
+      <div className="sticky top-0 z-40 w-full shadow-xs">
+        {/* Top Utility Bar with Gmail ID & Mobile Number */}
+        <div className="bg-[#18181b] text-slate-200 border-b border-zinc-800 text-xs sm:text-sm">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 sm:py-2 flex flex-wrap items-center justify-between gap-x-6 gap-y-1.5">
+            {/* Left: Manufacturing Facility & MSME */}
+            <div className="hidden md:flex items-center gap-2 text-slate-300">
+              <MapPin className="w-3.5 h-3.5 text-red-500 shrink-0" />
+              <span className="truncate">Kathwada GIDC, Ahmedabad, Gujarat, India</span>
+              <span className="text-zinc-600">|</span>
+              <span className="text-zinc-400 font-medium">Govt. Registered MSME</span>
+              <span className="text-zinc-600">|</span>
+              <span className="text-zinc-400 font-medium">Mfg. Since 1997</span>
+            </div>
+
+            {/* Right: Direct Contact (Mobile Number & Gmail ID) */}
+            <div className="flex items-center flex-wrap gap-x-5 sm:gap-x-6 gap-y-1 ml-auto w-full md:w-auto justify-between md:justify-end">
+              {/* Mobile Numbers */}
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <Phone className="w-3.5 h-3.5 text-red-500 shrink-0" />
+                <span className="text-zinc-400 text-xs hidden sm:inline">Mobile:</span>
+                <a
+                  href="tel:+919825073095"
+                  className="font-mono tabular-nums font-semibold text-slate-100 hover:text-red-400 transition-colors"
+                  title="Direct Mobile"
+                >
+                  +91 98250 73095
+                </a>
+                <span className="text-zinc-600 hidden sm:inline">/</span>
+                <a
+                  href="tel:+919173672311"
+                  className="font-mono tabular-nums font-semibold text-slate-300 hover:text-red-400 transition-colors hidden sm:inline"
+                  title="Secondary Mobile"
+                >
+                  +91 91736 72311
+                </a>
+              </div>
+
+              <span className="text-zinc-700 hidden sm:inline">|</span>
+
+              {/* Gmail ID & Corporate Email */}
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <Mail className="w-3.5 h-3.5 text-red-500 shrink-0" />
+                <span className="text-zinc-400 text-xs hidden sm:inline">Gmail:</span>
+                <a
+                  href="mailto:atlasengineering@gmail.com"
+                  className="font-medium text-slate-100 hover:text-red-400 transition-colors"
+                  title="Official Gmail ID"
+                >
+                  atlasengineering@gmail.com
+                </a>
+                <span className="text-zinc-600 hidden lg:inline">/</span>
+                <a
+                  href="mailto:contact@atlas.in"
+                  className="font-medium text-slate-300 hover:text-red-400 transition-colors hidden lg:inline"
+                  title="Corporate Email"
+                >
+                  contact@atlas.in
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Navigation Header */}
+        <header
+          className={`w-full bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all duration-200 ${
+            isScrolled ? 'py-2 sm:py-2.5' : 'py-3 sm:py-3.5'
+          }`}
+        >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-4">
             
@@ -249,23 +315,31 @@ export const Header: React.FC = () => {
               </button>
             </nav>
 
-            {/* Zone 3: Primary Action & Quick Contact */}
-            <div className="flex items-center gap-3">
-              <a
-                href="tel:+919825073095"
-                className="hidden xl:inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 px-2.5 py-1.5"
-                title="Call Atlas Engineering"
+            {/* Zone 3: Government Accreditations (Make In India & MSME) & Mobile Menu */}
+            <div className="flex items-center gap-2 sm:gap-3">
+              {/* Make in India Lion Logo */}
+              <div 
+                className="flex items-center justify-center p-1.5 sm:p-2 rounded-xl bg-white border border-slate-200/90 shadow-2xs hover:border-slate-300 transition-colors"
+                title="Make In India - Proudly Manufactured in Kathwada GIDC, Ahmedabad"
               >
-                <PhoneCall className="w-3.5 h-3.5 text-red-600" />
-                <span className="whitespace-nowrap font-mono tabular-nums">+91 98250 73095</span>
-              </a>
+                <img
+                  src={makeInIndiaLogo}
+                  alt="Make In India Lion Logo"
+                  className="h-10 sm:h-12 md:h-14 w-auto object-contain shrink-0"
+                />
+              </div>
 
-              <button
-                onClick={() => openQuoteModal()}
-                className="px-4 py-2 text-xs sm:text-sm font-bold text-white bg-[#DE1F27] hover:bg-[#B91C1C] rounded-lg shadow-sm hover:shadow transition-all duration-150 whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
+              {/* MSME Registered Logo */}
+              <div 
+                className="flex items-center justify-center p-1.5 sm:p-2 rounded-xl bg-white border border-slate-200/90 shadow-2xs hover:border-slate-300 transition-colors"
+                title="MSME Registered Enterprise - Ministry of MSME, Govt. of India"
               >
-                Get a Quote
-              </button>
+                <img
+                  src={msmeLogo}
+                  alt="Ministry of MSME, Govt. of India"
+                  className="h-10 sm:h-12 md:h-14 w-auto object-contain shrink-0"
+                />
+              </div>
 
               {/* Mobile menu hamburger */}
               <button
@@ -280,6 +354,7 @@ export const Header: React.FC = () => {
           </div>
         </div>
       </header>
+    </div>
 
       {/* Mobile Drawer Navigation */}
       {isMobileMenuOpen && (
@@ -294,7 +369,21 @@ export const Header: React.FC = () => {
           <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl flex flex-col z-50">
             {/* Drawer Header */}
             <div className="flex items-center justify-between p-4 border-b border-slate-200">
-              <AtlasLogo className="h-8" variant="compact" />
+              <div className="flex items-center gap-2">
+                <AtlasLogo className="h-8" variant="compact" />
+                <div className="flex items-center gap-2 pl-2 border-l border-slate-200">
+                  <img
+                    src={makeInIndiaLogo}
+                    alt="Make In India"
+                    className="h-8 sm:h-9 w-auto object-contain"
+                  />
+                  <img
+                    src={msmeLogo}
+                    alt="MSME Registered"
+                    className="h-8 sm:h-9 w-auto object-contain"
+                  />
+                </div>
+              </div>
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="p-1.5 rounded-lg text-slate-500 hover:text-slate-800"
@@ -431,24 +520,30 @@ export const Header: React.FC = () => {
               </button>
 
               {/* Direct Info */}
-              <div className="pt-4 border-t border-slate-200 space-y-2 text-xs text-slate-600">
-                <p className="font-semibold text-slate-900">Kathwada GIDC, Ahmedabad</p>
-                <p>Phone: +91 98250 73095</p>
-                <p>Email: contact@atlas.in</p>
+              <div className="pt-4 border-t border-slate-200 space-y-2 text-xs sm:text-sm text-slate-600">
+                <p className="font-semibold text-slate-900">Kathwada GIDC, Ahmedabad, Gujarat</p>
+                <div className="flex flex-col gap-1 pt-1">
+                  <a href="tel:+919825073095" className="flex items-center gap-2 text-slate-800 font-semibold hover:text-red-600">
+                    <Phone className="w-3.5 h-3.5 text-red-600" /> +91 98250 73095 / +91 91736 72311
+                  </a>
+                  <a href="mailto:atlasengineering@gmail.com" className="flex items-center gap-2 text-slate-800 font-semibold hover:text-red-600">
+                    <Mail className="w-3.5 h-3.5 text-red-600" /> atlasengineering@gmail.com
+                  </a>
+                  <a href="mailto:contact@atlas.in" className="flex items-center gap-2 text-slate-600 hover:text-red-600 pl-5 text-xs">
+                    contact@atlas.in
+                  </a>
+                </div>
               </div>
             </div>
 
             {/* Drawer Footer CTA */}
-            <div className="p-4 border-t border-slate-200 bg-slate-50">
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  openQuoteModal();
-                }}
-                className="w-full py-3 text-center text-sm font-bold text-white bg-[#DE1F27] hover:bg-[#B91C1C] rounded-lg shadow-sm"
+            <div className="p-4 border-t border-slate-200 bg-slate-50 space-y-2">
+              <a
+                href="tel:+919825073095"
+                className="w-full py-3 text-center text-sm font-bold text-white bg-[#DE1F27] hover:bg-[#B91C1C] rounded-lg shadow-sm flex items-center justify-center gap-2"
               >
-                Request a Quote
-              </button>
+                <Phone className="w-4 h-4" /> Call: +91 98250 73095
+              </a>
             </div>
           </div>
         </div>

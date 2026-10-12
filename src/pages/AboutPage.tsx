@@ -3,6 +3,8 @@ import { useRouter } from '../context/RouterContext';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { COMPANY_INFO, PRODUCT_CATEGORIES } from '../data/products';
 import aboutLogoImg from '../assets/images/about_logo.png';
+import makeInIndiaLogo from '../assets/images/make_in_india_logo.png';
+import msmeLogo from '../assets/images/msme_logo.png';
 import {
   ShieldCheck,
   Award,
@@ -105,6 +107,25 @@ export const AboutPage: React.FC = () => {
                 <div>
                   <span className="font-bold text-slate-900 block text-sm font-mono tabular-nums">28+ Years</span>
                   <span>Continuous Operation</span>
+                </div>
+              </div>
+
+              {/* Official Government Accreditations */}
+              <div className="pt-2 flex flex-wrap items-center gap-3">
+                <div className="p-2 sm:p-2.5 rounded-xl bg-white border border-slate-200 shadow-2xs hover:border-slate-300 transition-colors" title="Make In India - Heavy Machinery">
+                  <img
+                    src={makeInIndiaLogo}
+                    alt="Make In India"
+                    className="h-10 sm:h-12 w-auto object-contain"
+                  />
+                </div>
+
+                <div className="p-2 sm:p-2.5 rounded-xl bg-white border border-slate-200 shadow-2xs hover:border-slate-300 transition-colors" title="MSME Registered Enterprise - Ministry of MSME, Govt. of India">
+                  <img
+                    src={msmeLogo}
+                    alt="MSME Registered Enterprise"
+                    className="h-10 sm:h-12 w-auto object-contain"
+                  />
                 </div>
               </div>
             </div>

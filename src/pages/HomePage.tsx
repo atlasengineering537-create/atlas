@@ -10,6 +10,8 @@ import heroBitumenModify from '../assets/images/hero_bitumen_modify.jpg';
 import heroRoadConstruction from '../assets/images/hero_road_construction.png';
 import heroCementConcrete from '../assets/images/hero_cement_concrete.jpg';
 import catBitumenImg from '../assets/images/category_bitumen_equipment.jpg';
+import makeInIndiaLogo from '../assets/images/make_in_india_logo.png';
+import msmeLogo from '../assets/images/msme_logo.png';
 import {
   ArrowRight,
   Shield,
@@ -275,7 +277,7 @@ export const HomePage: React.FC = () => {
                 Operating from our manufacturing facility in Kathwada GIDC, Ahmedabad, our engineering focus encompasses complete bitumen modification plants, heavy-duty asphalt plants, and precision concrete machinery crafted with seasoned engineering supervision.
               </p>
 
-              <div className="pt-2">
+              <div className="pt-2 flex flex-wrap items-center gap-4">
                 <button
                   onClick={() => navigate('/about')}
                   className="inline-flex items-center gap-2 text-sm font-bold text-red-600 hover:text-red-700 group cursor-pointer"
@@ -283,6 +285,15 @@ export const HomePage: React.FC = () => {
                   <span>Read More About Our Heritage</span>
                   <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                 </button>
+
+                <div className="flex items-center gap-2.5">
+                  <div className="flex items-center justify-center p-2 rounded-xl bg-white border border-slate-200 shadow-2xs hover:border-slate-300 transition-colors" title="Make In India">
+                    <img src={makeInIndiaLogo} alt="Make In India" className="h-9 sm:h-11 w-auto object-contain" />
+                  </div>
+                  <div className="flex items-center justify-center p-2 rounded-xl bg-white border border-slate-200 shadow-2xs hover:border-slate-300 transition-colors" title="Ministry of MSME, Govt. of India">
+                    <img src={msmeLogo} alt="MSME Registered Enterprise" className="h-9 sm:h-11 w-auto object-contain" />
+                  </div>
+                </div>
               </div>
             </div>
 

@@ -3203,13 +3203,13 @@ export const COMPANY_INFO = {
   yearsOfExperience: '28+',
   contactPerson: 'Sunil L. Mistry',
   address: {
-    line1: 'Plot No. 397-398, Road No. 9',
+    line1: 'Plot No. 397-398, Road No. 9 Corner',
     line2: 'Kathwada GIDC',
     city: 'Ahmedabad',
     pincode: '382430',
     state: 'Gujarat',
     country: 'India',
-    fullFormatted: 'Plot No. 397-398, Road No. 9, Kathwada GIDC, Ahmedabad-382430, Gujarat, India',
+    fullFormatted: 'Plot No. 397-398, Road No. 9 Corner, Kathwada GIDC, Ahmedabad-382430, Gujarat, India',
   },
   phones: [
     '+91 98250 73095',
@@ -3218,6 +3218,7 @@ export const COMPANY_INFO = {
   ],
   emails: [
     'contact@atlas.in',
+    'atlasengineering@gmail.com',
     'atlasengineering@ymail.com',
   ],
   whyChooseUs: [

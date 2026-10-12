@@ -323,81 +323,95 @@ export const ContactPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Google Maps / Location Visual Section */}
-      <section className="py-14 sm:py-16 bg-slate-50/50">
+      {/* Google Maps / Facility Location Section */}
+      <section className="py-14 sm:py-16 bg-slate-50/50 border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div>
-              <span className="text-xs font-bold text-red-600 uppercase tracking-wider block">
-                FACILITY LOCATION
+              <span className="text-xs font-bold text-red-600 uppercase tracking-wider block mb-1">
+                FACILITY LOCATION & FACTORY VISIT
               </span>
-              <h3 className="text-xl font-bold text-slate-900">
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
                 Manufacturing Works in Kathwada GIDC, Ahmedabad
               </h3>
+              <p className="text-xs sm:text-sm text-slate-600 mt-1">
+                Plot No. 397-398, Road No. 9 Corner, Kathwada GIDC Industrial Area, Ahmedabad-382430, Gujarat, India
+              </p>
             </div>
-            <a
-              href="https://maps.google.com/?q=Kathwada+GIDC+Ahmedabad+Gujarat"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-red-600 hover:text-red-700"
-            >
-              Open in Google Maps <ExternalLink className="w-3.5 h-3.5" />
-            </a>
+            <div className="flex items-center gap-3 shrink-0">
+              <a
+                href="https://www.google.com/maps?q=23.03368,72.68170"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold rounded-lg shadow-sm hover:shadow transition-all inline-flex items-center gap-2 cursor-pointer"
+              >
+                <span>Open in Google Maps</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
+              <a
+                href="tel:+919825073095"
+                className="px-4 py-2.5 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 text-xs sm:text-sm font-bold rounded-lg shadow-2xs inline-flex items-center gap-2 cursor-pointer"
+              >
+                <Phone className="w-4 h-4 text-red-600" />
+                <span>Call Works</span>
+              </a>
+            </div>
           </div>
 
-          {/* Interactive Styled Map View Placeholder */}
-          <div className="relative rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-sm p-6 sm:p-8">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-              
-              <div className="md:col-span-6 space-y-4">
-                <div className="inline-flex items-center gap-2 text-xs font-mono text-slate-500">
-                  <Navigation className="w-3.5 h-3.5 text-red-600" />
-                  <span>GPS: Kathwada GIDC Industrial Area, Ahmedabad (382430)</span>
-                </div>
-                <h4 className="text-lg font-bold text-slate-900">
-                  Plot No. 397-398, Road No. 9
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  Located in Ahmedabad's prime GIDC engineering zone with convenient connectivity to the Ahmedabad Ring Road, National Highway 48, and major freight corridors for heavy transport trailers.
-                </p>
-                
-                <div className="pt-2 flex flex-wrap items-center gap-3">
-                  <a
-                    href="https://maps.google.com/?q=Kathwada+GIDC+Ahmedabad+Gujarat"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-lg inline-flex items-center gap-1.5"
-                  >
-                    <span>Get Driving Directions</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                  <a
-                    href="tel:+919825073095"
-                    className="px-4 py-2 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 text-xs font-bold rounded-lg"
-                  >
-                    Call for Directions
-                  </a>
-                </div>
-              </div>
+          {/* Interactive Google Map Container */}
+          <div className="rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-md relative">
+            <div className="w-full h-[400px] sm:h-[480px] lg:h-[520px] relative bg-slate-100">
+              <iframe
+                title="Atlas Engineering Manufacturing Facility Location on Google Maps - Main Rd & Road No. 9 Corner, Kathwada GIDC"
+                src="https://maps.google.com/maps?q=23.03368,72.68170&hl=en&z=17&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+              />
+            </div>
 
-              <div className="md:col-span-6">
-                <div className="rounded-xl overflow-hidden border border-slate-200 bg-slate-100 p-6 text-center space-y-3">
-                  <div className="w-12 h-12 rounded-full bg-red-100 text-red-600 flex items-center justify-center mx-auto">
-                    <Building className="w-6 h-6" />
-                  </div>
-                  <div className="font-bold text-sm text-slate-900">
-                    Atlas Engineering Works
-                  </div>
-                  <p className="text-xs text-slate-500 max-w-xs mx-auto">
-                    Plot No. 397-398, Road No. 9, Kathwada GIDC, Ahmedabad-382430, Gujarat, India
-                  </p>
-                  <div className="pt-1 text-[11px] text-slate-400 font-mono">
-                    Working Hours: Mon – Sat (9:00 AM – 6:30 PM IST)
+            {/* Quick Information Bar under the Map */}
+            <div className="p-4 sm:p-6 bg-white border-t border-slate-200 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-xs sm:text-sm">
+              <div className="flex items-start gap-3">
+                <div className="w-9 h-9 rounded-lg bg-red-50 text-red-600 flex items-center justify-center shrink-0 mt-0.5">
+                  <MapPin className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-bold text-slate-900">Works Address</div>
+                  <div className="text-slate-600 mt-0.5 leading-relaxed">
+                    Plot No. 397-398, Main Rd & Road No. 9 Corner, Kathwada GIDC, Ahmedabad-382430
                   </div>
                 </div>
               </div>
 
+              <div className="flex items-start gap-3">
+                <div className="w-9 h-9 rounded-lg bg-red-50 text-red-600 flex items-center justify-center shrink-0 mt-0.5">
+                  <Navigation className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-bold text-slate-900">GPS Coordinates</div>
+                  <div className="text-slate-600 mt-0.5 font-mono">
+                    23.0337° N, 72.6817° E (Main Rd & Road No. 9 Corner, Kathwada GIDC)
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="w-9 h-9 rounded-lg bg-red-50 text-red-600 flex items-center justify-center shrink-0 mt-0.5">
+                  <Building className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-bold text-slate-900">Working Hours</div>
+                  <div className="text-slate-600 mt-0.5">
+                    Monday to Saturday: 9:00 AM – 6:30 PM IST
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 

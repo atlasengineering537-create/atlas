@@ -2,6 +2,8 @@ import React from 'react';
 import { AtlasLogo } from './AtlasLogo';
 import { useRouter } from '../context/RouterContext';
 import { PRODUCT_CATEGORIES, COMPANY_INFO } from '../data/products';
+import makeInIndiaLogo from '../assets/images/make_in_india_logo.png';
+import msmeLogo from '../assets/images/msme_logo.png';
 import { MapPin, Phone, Mail, ArrowUpRight, ShieldCheck, Factory } from 'lucide-react';
 
 export const Footer: React.FC = () => {
@@ -54,6 +56,32 @@ export const Footer: React.FC = () => {
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-md pt-2">
               Since 1997, Atlas Engineering has been a trusted pioneer in manufacturing high-performance bitumen modification and road construction equipment. Driven by nearly three decades of industry expertise, we design and build cutting-edge machinery that powers critical infrastructure projects across India and around the globe.
             </p>
+            {/* Government Accreditations */}
+            <div className="pt-2 flex flex-wrap items-center gap-3">
+              {/* Make in India Badge */}
+              <div 
+                className="inline-flex items-center justify-center p-2.5 sm:p-3 rounded-xl bg-white border border-slate-200/90 shadow-2xs hover:border-slate-300 transition-colors"
+                title="Make In India - Indigenous Heavy Engineering"
+              >
+                <img
+                  src={makeInIndiaLogo}
+                  alt="Make In India"
+                  className="h-12 sm:h-14 w-auto object-contain"
+                />
+              </div>
+
+              {/* MSME Registered Badge */}
+              <div 
+                className="inline-flex items-center justify-center p-2.5 sm:p-3 rounded-xl bg-white border border-slate-200/90 shadow-2xs hover:border-slate-300 transition-colors"
+                title="MSME Registered Enterprise - Ministry of MSME, Govt. of India"
+              >
+                <img
+                  src={msmeLogo}
+                  alt="MSME Registered Enterprise"
+                  className="h-12 sm:h-14 w-auto object-contain"
+                />
+              </div>
+            </div>
             <div className="flex items-center gap-6 pt-2 text-sm text-slate-500 font-medium">
               <span className="inline-flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-red-600" /> Since 1997

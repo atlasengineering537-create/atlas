@@ -5,7 +5,7 @@ import { CategoryCard } from '../components/CategoryCard';
 import { ProductCard } from '../components/ProductCard';
 import { PRODUCT_CATEGORIES, ALL_PRODUCTS, COMPANY_INFO } from '../data/products';
 import aboutAtlasImg from '../assets/images/about_atlas_plant_drive.jpg';
-import heroBanner1 from '../assets/images/hero_banner_1.png';
+import heroBanner1 from '../assets/images/hero_bitumen_modify_drive.png';
 import heroBitumenModify from '../assets/images/hero_bitumen_modify.jpg';
 import heroRoadConstruction from '../assets/images/hero_road_construction.png';
 import heroCementConcrete from '../assets/images/hero_cement_concrete.jpg';

@@ -181,7 +181,7 @@ export const Header: React.FC = () => {
                 className="text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600 rounded"
                 aria-label="Atlas Engineering Home"
               >
-                <AtlasLogo className={isScrolled ? 'h-9' : 'h-10'} variant="full" />
+                <AtlasLogo className={isScrolled ? 'py-0.5' : 'py-1'} variant="full" />
               </button>
             </div>
 

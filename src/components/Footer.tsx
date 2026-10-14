@@ -18,7 +18,7 @@ export const Footer: React.FC = () => {
           {/* Column 1 & 2: Brand Info */}
           <div className="lg:col-span-2 space-y-4">
             <button onClick={() => navigate('/')} className="text-left focus:outline-none">
-              <AtlasLogo className="h-10" variant="full" />
+              <AtlasLogo className="py-1" variant="full" />
             </button>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-md pt-2">
               Since 1997, Atlas Engineering has been a trusted pioneer in manufacturing high-performance bitumen modification and road construction equipment. Driven by nearly three decades of industry expertise, we design and build cutting-edge machinery that powers critical infrastructure projects across India and around the globe.
@@ -164,15 +164,26 @@ export const Footer: React.FC = () => {
 
         </div>
 
-        {/* Bottom Bar: Copyright & Compliance */}
-        <div className="mt-12 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
-          <p>
+        {/* Bottom Bar: Copyright, Compliance & Web Partner Credits */}
+        <div className="mt-12 pt-6 border-t border-slate-200 flex flex-col lg:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+          <p className="text-center lg:text-left">
             © 1997–{new Date().getFullYear()} ATLAS ENGINEERING. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            <span>Kathwada GIDC, Ahmedabad, Gujarat, India</span>
-            <span>·</span>
+          <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-2 text-xs sm:text-sm">
             <span>Contact Person: {COMPANY_INFO.contactPerson}</span>
+            <span className="hidden sm:inline">·</span>
+            <span className="inline-flex items-center gap-1 text-slate-600">
+              Website Designed &amp; Developed by{' '}
+              <a
+                href="https://www.vibratseo.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-slate-800 hover:text-red-600 underline underline-offset-2 transition-colors"
+                title="Vibrat SEO - Web Development & SEO Agency"
+              >
+                Vibrat SEO
+              </a>
+            </span>
           </div>
         </div>
       </div>

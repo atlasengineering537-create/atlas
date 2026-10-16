@@ -2548,9 +2548,9 @@ export const ROAD_PRODUCTS: Product[] = [
     heroImage: '/src/assets/images/products/road/road_p3_img1.jpg',
     gallery: [
       '/src/assets/images/products/road/road_p3_img1.jpg',
-      '/src/assets/images/products/road/road_p3_img2.jpg',
-      '/src/assets/images/products/road/road_p3_img3.jpg',
-      '/src/assets/images/products/road/road_p3_img4.jpg',
+      '/src/assets/images/products/road/road_p3_img2.jpg?v=wmm2',
+      '/src/assets/images/products/road/road_p3_img3.jpg?v=wmm3',
+      '/src/assets/images/products/road/road_p3_img4.jpg?v=wmm4',
     ],
     isPlaceholder: false,
     featured: false,

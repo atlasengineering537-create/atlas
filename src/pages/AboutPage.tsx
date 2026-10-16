@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from '../context/RouterContext';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { COMPANY_INFO, PRODUCT_CATEGORIES } from '../data/products';
-import aboutLogoImg from '../assets/images/about_logo.png';
+import { AtlasLogo } from '../components/AtlasLogo';
 import makeInIndiaLogo from '../assets/images/make_in_india_logo.png';
 import msmeLogo from '../assets/images/msme_logo.png';
 import {
@@ -59,19 +59,14 @@ export const AboutPage: React.FC = () => {
             {/* Visual Assembly Works / Company Logo */}
             <div className="lg:col-span-6 relative">
               <div className="rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-white p-6 sm:p-10 flex items-center justify-center aspect-[4/3]">
-                <img
-                  src={aboutLogoImg}
-                  alt="Atlas Engineering Logo"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-contain"
-                />
+                <AtlasLogo size="large" variant="full" />
               </div>
 
               {/* Verified Factory Card */}
               <div className="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs">
                 <div>
                   <div className="font-bold text-slate-900">Manufacturing Works</div>
-                  <div className="text-slate-500">Plot No. 397-398, Road No. 9, Kathwada GIDC, Ahmedabad</div>
+                  <div className="text-slate-500">Plot No. 397-398, Road No. 9 Corner, Kathwada GIDC, Ahmedabad</div>
                 </div>
                 <div className="font-mono text-red-600 font-bold">Gujarat, India</div>
               </div>

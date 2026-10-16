@@ -647,7 +647,7 @@ export const HomePage: React.FC = () => {
                 <div className="space-y-3 pt-3 text-xs text-slate-700">
                   <div className="flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-red-600 shrink-0" />
-                    <span>Plot No. 397-398, Road No. 9, Kathwada GIDC, Ahmedabad</span>
+                    <span>Plot No. 397-398, Road No. 9 Corner, Kathwada GIDC, Ahmedabad, Gujarat, India</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <PhoneCall className="w-4 h-4 text-red-600 shrink-0" />

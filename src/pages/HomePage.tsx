@@ -3,6 +3,7 @@ import { useRouter } from '../context/RouterContext';
 import { TrustStrip } from '../components/TrustStrip';
 import { CategoryCard } from '../components/CategoryCard';
 import { ProductCard } from '../components/ProductCard';
+import { GoogleReviews } from '../components/GoogleReviews';
 import { PRODUCT_CATEGORIES, ALL_PRODUCTS, COMPANY_INFO } from '../data/products';
 import aboutAtlasImg from '../assets/images/about_atlas_plant_drive.jpg';
 import heroBanner1 from '../assets/images/hero_bitumen_modify_drive.png';
@@ -624,6 +625,11 @@ export const HomePage: React.FC = () => {
       </section>
 
 
+
+      {/* ==================================================
+          SECTION 9 — CLIENT REVIEWS (GOOGLE BUSINESS PROFILE)
+          ================================================== */}
+      <GoogleReviews />
 
       {/* ==================================================
           SECTION 10 — INQUIRY & QUOTE FORM

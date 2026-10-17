@@ -3,6 +3,7 @@ import { useRouter } from '../context/RouterContext';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { COMPANY_INFO, PRODUCT_CATEGORIES } from '../data/products';
 import { AtlasLogo } from '../components/AtlasLogo';
+import { GoogleReviews } from '../components/GoogleReviews';
 import makeInIndiaLogo from '../assets/images/make_in_india_logo.png';
 import msmeLogo from '../assets/images/msme_logo.png';
 import {
@@ -293,6 +294,9 @@ export const AboutPage: React.FC = () => {
 
         </div>
       </section>
+
+      {/* Google Business Profile Reviews */}
+      <GoogleReviews />
 
       {/* CTA Section */}
       <section className="py-14 bg-slate-50">

@@ -89,7 +89,7 @@ export const QuoteModal: React.FC = () => {
               <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 max-w-md mx-auto text-xs text-slate-600 space-y-1 text-left">
                 <div className="font-semibold text-slate-900">Kathwada GIDC Sales & Technical Support:</div>
                 <div>Phone: +91 98250 73095 / +91 91736 72311</div>
-                <div>Email: contact@atlas.in</div>
+                <div>Email: atlasengineering@ymail.com</div>
               </div>
               <div className="pt-2">
                 <button

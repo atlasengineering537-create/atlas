@@ -141,24 +141,16 @@ export const Header: React.FC = () => {
 
               <span className="text-zinc-700 hidden sm:inline">|</span>
 
-              {/* Gmail ID & Corporate Email */}
+              {/* Email Address */}
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <Mail className="w-3.5 h-3.5 text-red-500 shrink-0" />
-                <span className="text-zinc-400 text-xs hidden sm:inline">Gmail:</span>
+                <span className="text-zinc-400 text-xs hidden sm:inline">Email:</span>
                 <a
-                  href="mailto:atlasengineering@gmail.com"
+                  href="mailto:atlasengineering@ymail.com"
                   className="font-medium text-slate-100 hover:text-red-400 transition-colors"
-                  title="Official Gmail ID"
+                  title="Official Email"
                 >
-                  atlasengineering@gmail.com
-                </a>
-                <span className="text-zinc-600 hidden lg:inline">/</span>
-                <a
-                  href="mailto:contact@atlas.in"
-                  className="font-medium text-slate-300 hover:text-red-400 transition-colors hidden lg:inline"
-                  title="Corporate Email"
-                >
-                  contact@atlas.in
+                  atlasengineering@ymail.com
                 </a>
               </div>
             </div>
@@ -526,11 +518,8 @@ export const Header: React.FC = () => {
                   <a href="tel:+919825073095" className="flex items-center gap-2 text-slate-800 font-semibold hover:text-red-600">
                     <Phone className="w-3.5 h-3.5 text-red-600" /> +91 98250 73095 / +91 91736 72311
                   </a>
-                  <a href="mailto:atlasengineering@gmail.com" className="flex items-center gap-2 text-slate-800 font-semibold hover:text-red-600">
-                    <Mail className="w-3.5 h-3.5 text-red-600" /> atlasengineering@gmail.com
-                  </a>
-                  <a href="mailto:contact@atlas.in" className="flex items-center gap-2 text-slate-600 hover:text-red-600 pl-5 text-xs">
-                    contact@atlas.in
+                  <a href="mailto:atlasengineering@ymail.com" className="flex items-center gap-2 text-slate-800 font-semibold hover:text-red-600">
+                    <Mail className="w-3.5 h-3.5 text-red-600" /> atlasengineering@ymail.com
                   </a>
                 </div>
               </div>

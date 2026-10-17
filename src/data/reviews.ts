@@ -40,18 +40,6 @@ export const GOOGLE_REVIEWS: GoogleReview[] = [
   },
   {
     id: 'review-3',
-    name: 'Tauseef Khan',
-    isLocalGuide: true,
-    reviewsCount: 56,
-    photosCount: 1,
-    rating: 5,
-    timeAgo: '6 years ago',
-    reviewText: 'Manufacturing High quality Hydraulic press machine, Hydraulic Shearing machine, Hydraulic bending machine. In Ahmedabad Gujarat',
-    initials: 'TK',
-    avatarBg: 'bg-zinc-800',
-  },
-  {
-    id: 'review-4',
     name: 'Vny Datniya',
     isLocalGuide: false,
     reviewsCount: 3,

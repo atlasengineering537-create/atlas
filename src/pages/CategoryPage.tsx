@@ -1,19 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from '../context/RouterContext';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { ProductCard } from '../components/ProductCard';
+import { Link } from '../components/Link';
 import { PRODUCT_CATEGORIES, ALL_PRODUCTS } from '../data/products';
-import { ArrowRight, Layers, CheckCircle2 } from 'lucide-react';
 
 interface CategoryPageProps {
   categorySlug: string;
 }
 
 export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
-  const { navigate, openQuoteModal } = useRouter();
+  const { openQuoteModal } = useRouter();
 
-  const category = PRODUCT_CATEGORIES.find((c) => c.slug === categorySlug) || PRODUCT_CATEGORIES[0];
+  const category = PRODUCT_CATEGORIES.find((c) => c.slug === categorySlug || c.id === categorySlug) || PRODUCT_CATEGORIES[0];
   const products = ALL_PRODUCTS.filter((p) => p.categoryId === category.id);
+
+  // Dynamic SEO metadata
+  useEffect(() => {
+    document.title = `${category.name} | Atlas Engineering`;
+
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = `https://www.atlasbitumenplant.com/categories/${category.slug}`;
+
+    let metaDesc = document.querySelector('meta[name="description"]') as HTMLMetaElement;
+    if (metaDesc) {
+      metaDesc.content = category.description;
+    }
+  }, [category]);
 
   return (
     <div className="bg-white">
@@ -85,17 +103,17 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
               Switch Category:
             </span>
             {PRODUCT_CATEGORIES.map((cat) => (
-              <button
+              <Link
                 key={cat.id}
-                onClick={() => navigate(`/products/${cat.slug}`)}
-                className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors ${
+                to={`/categories/${cat.slug}`}
+                className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors block ${
                   cat.id === category.id
                     ? 'bg-red-600 text-white'
                     : 'text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200'
                 }`}
               >
                 {cat.name}
-              </button>
+              </Link>
             ))}
           </div>
         </div>
@@ -116,7 +134,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
             </div>
             <button
               onClick={() => openQuoteModal(`${category.name} Enquiry`)}
-              className="px-4 py-2 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-xs font-bold rounded-lg shadow-xs transition-colors shrink-0"
+              className="px-4 py-2 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-xs font-bold rounded-lg shadow-xs transition-colors shrink-0 cursor-pointer"
             >
               Request Category Quote
             </button>
@@ -146,7 +164,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug }) => {
             </div>
             <button
               onClick={() => openQuoteModal(`Custom ${category.name}`)}
-              className="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-lg shrink-0 transition-colors"
+              className="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-lg shrink-0 transition-colors cursor-pointer"
             >
               Consult an Engineer
             </button>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { AtlasLogo } from './AtlasLogo';
+import { Link } from './Link';
 import { useRouter } from '../context/RouterContext';
 import { PRODUCT_CATEGORIES, COMPANY_INFO } from '../data/products';
 import makeInIndiaLogo from '../assets/images/make_in_india_logo.png';
@@ -17,9 +18,9 @@ export const Footer: React.FC = () => {
           
           {/* Column 1 & 2: Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <button onClick={() => navigate('/')} className="text-left focus:outline-none">
+            <Link to="/" className="text-left focus:outline-none inline-block">
               <AtlasLogo className="py-1" variant="full" />
-            </button>
+            </Link>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-md pt-2">
               Since 1997, Atlas Engineering has been a trusted pioneer in manufacturing high-performance bitumen modification and road construction equipment. Driven by nearly three decades of industry expertise, we design and build cutting-edge machinery that powers critical infrastructure projects across India and around the globe.
             </p>
@@ -66,41 +67,41 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2.5 text-base">
               <li>
-                <button
-                  onClick={() => navigate('/')}
-                  className="hover:text-red-600 transition-colors"
+                <Link
+                  to="/"
+                  className="hover:text-red-600 transition-colors block"
                 >
                   Home
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => navigate('/about')}
-                  className="hover:text-red-600 transition-colors"
+                <Link
+                  to="/about"
+                  className="hover:text-red-600 transition-colors block"
                 >
                   About Us
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => navigate('/products')}
-                  className="hover:text-red-600 transition-colors"
+                <Link
+                  to="/products"
+                  className="hover:text-red-600 transition-colors block"
                 >
                   All Products Portfolio
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => navigate('/contact')}
-                  className="hover:text-red-600 transition-colors"
+                <Link
+                  to="/contact"
+                  className="hover:text-red-600 transition-colors block"
                 >
                   Contact Us
-                </button>
+                </Link>
               </li>
               <li>
                 <button
                   onClick={() => openQuoteModal()}
-                  className="hover:text-red-600 transition-colors font-medium text-red-700"
+                  className="hover:text-red-600 transition-colors font-medium text-red-700 cursor-pointer text-left"
                 >
                   Request a Quote
                 </button>
@@ -116,12 +117,12 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2.5 text-base">
               {PRODUCT_CATEGORIES.map((cat) => (
                 <li key={cat.id}>
-                  <button
-                    onClick={() => navigate(`/products/${cat.slug}`)}
+                  <Link
+                    to={`/categories/${cat.slug}`}
                     className="hover:text-red-600 transition-colors text-left group flex items-center justify-between w-full"
                   >
                     <span>{cat.name}</span>
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>

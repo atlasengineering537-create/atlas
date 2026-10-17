@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouter } from '../context/RouterContext';
+import { Link } from './Link';
 
 export interface BreadcrumbItem {
   label: string;
@@ -11,18 +11,16 @@ interface BreadcrumbsProps {
 }
 
 export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
-  const { navigate } = useRouter();
-
   return (
     <nav aria-label="Breadcrumb" className="py-2.5">
       <ol className="flex items-center flex-wrap gap-1.5 text-xs text-slate-500 font-medium">
         <li>
-          <button
-            onClick={() => navigate('/')}
+          <Link
+            to="/"
             className="hover:text-red-600 transition-colors"
           >
             Home
-          </button>
+          </Link>
         </li>
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
@@ -33,12 +31,12 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
               </span>
               <li className={isLast ? 'text-slate-900 font-semibold' : ''}>
                 {item.path && !isLast ? (
-                  <button
-                    onClick={() => navigate(item.path!)}
+                  <Link
+                    to={item.path}
                     className="hover:text-red-600 transition-colors"
                   >
                     {item.label}
-                  </button>
+                  </Link>
                 ) : (
                   <span>{item.label}</span>
                 )}

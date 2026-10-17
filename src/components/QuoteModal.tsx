@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from '../context/RouterContext';
+import { X, CheckCircle2, Send, PhoneCall, ShieldCheck } from 'lucide-react';
 import { ALL_PRODUCTS, PRODUCT_CATEGORIES, COMPANY_INFO } from '../data/products';
-import { X, CheckCircle2, Phone, Mail, Send, ShieldAlert } from 'lucide-react';
 
 export const QuoteModal: React.FC = () => {
   const { isQuoteModalOpen, closeQuoteModal, selectedQuoteProduct } = useRouter();
 
   const [formData, setFormData] = useState({
     name: '',
-    companyName: '',
     phone: '',
     email: '',
-    country: 'India',
+    company: '',
     product: '',
+    capacity: '',
     message: '',
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (selectedQuoteProduct) {
@@ -29,65 +28,59 @@ export const QuoteModal: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 600);
+    setIsSubmitted(true);
   };
 
   const handleReset = () => {
     setIsSubmitted(false);
     setFormData({
       name: '',
-      companyName: '',
       phone: '',
       email: '',
-      country: 'India',
+      company: '',
       product: '',
+      capacity: '',
       message: '',
     });
     closeQuoteModal();
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden my-8 animate-in fade-in zoom-in-95 duration-200">
-        
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+      <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[90vh]">
         {/* Header */}
-        <div className="bg-slate-50 border-b border-slate-200 px-6 py-4 flex items-center justify-between">
+        <div className="px-6 py-4 bg-slate-900 text-white flex items-center justify-between shrink-0">
           <div>
-            <span className="text-[11px] font-bold text-red-600 uppercase tracking-wider block">
-              Machinery Enquiry & Quotation
+            <span className="text-[10px] font-bold tracking-widest text-red-500 uppercase block">
+              ATLAS ENGINEERING
             </span>
-            <h3 className="text-lg font-bold text-slate-900">
-              Request a Technical Quote
+            <h3 className="text-lg font-black tracking-tight">
+              Request Machinery Specification &amp; Quotation
             </h3>
           </div>
           <button
             onClick={closeQuoteModal}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors"
-            aria-label="Close dialog"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="p-6">
+        <div className="p-6 overflow-y-auto">
           {isSubmitted ? (
             <div className="py-8 text-center space-y-4">
-              <div className="w-14 h-14 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto">
-                <CheckCircle2 className="w-8 h-8" />
+              <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
+                <CheckCircle2 className="w-9 h-9" />
               </div>
-              <h4 className="text-xl font-bold text-slate-900">
-                Enquiry Received Successfully
+              <h4 className="text-2xl font-black text-slate-900">
+                Inquiry Successfully Transmitted
               </h4>
               <p className="text-sm text-slate-600 max-w-md mx-auto">
                 Thank you for contacting Atlas Engineering. Our engineering division will review your machinery requirements for <strong>{formData.product || 'your equipment request'}</strong> and respond with technical specifications and commercial terms promptly.
               </p>
               <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 max-w-md mx-auto text-xs text-slate-600 space-y-1 text-left">
-                <div className="font-semibold text-slate-900">Kathwada GIDC Sales & Technical Support:</div>
+                <div className="font-semibold text-slate-900">Kathwada GIDC Sales &amp; Technical Support:</div>
                 <div>Phone: +91 98250 73095 / +91 91736 72311</div>
                 <div>Email: atlasengineering@ymail.com</div>
               </div>
@@ -105,57 +98,28 @@ export const QuoteModal: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Your Full Name <span className="text-red-600">*</span>
+                    Your Name *
                   </label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="e.g. Ramesh Patel"
-                    className="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none"
+                    placeholder="Full name"
+                    className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
                   />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Company / Organization <span className="text-red-600">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.companyName}
-                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                    placeholder="e.g. National Infra Ltd."
-                    className="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Phone / Mobile Number <span className="text-red-600">*</span>
+                    Phone / Mobile *
                   </label>
                   <input
                     type="tel"
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder="e.g. +91 98765 43210"
-                    className="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Email Address <span className="text-red-600">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="e.g. engineer@company.com"
-                    className="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none"
+                    placeholder="+91 98765 43210"
+                    className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
                   />
                 </div>
               </div>
@@ -163,78 +127,104 @@ export const QuoteModal: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Country / Region <span className="text-red-600">*</span>
+                    Company / Organization *
                   </label>
                   <input
                     type="text"
                     required
-                    value={formData.country}
-                    onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                    placeholder="e.g. India, UAE, Kenya..."
-                    className="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none"
+                    value={formData.company}
+                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                    placeholder="Company or Contractor Name"
+                    className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
                   />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Product / Equipment of Interest
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="name@company.com"
+                    className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                    Machinery / Equipment
                   </label>
                   <select
                     value={formData.product}
                     onChange={(e) => setFormData({ ...formData, product: e.target.value })}
-                    className="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none bg-white"
+                    className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none bg-white font-medium"
                   >
-                    <option value="">-- Select Product or Category --</option>
-                    <optgroup label="Product Categories">
-                      {PRODUCT_CATEGORIES.map((c) => (
-                        <option key={c.id} value={c.name}>
-                          {c.name} (General Enquiry)
-                        </option>
-                      ))}
-                    </optgroup>
-                    <optgroup label="Specific Equipment Models">
-                      {ALL_PRODUCTS.map((p) => (
-                        <option key={p.id} value={p.name}>
-                          {p.name} ({p.code})
-                        </option>
-                      ))}
-                    </optgroup>
+                    <option value="">Select Equipment...</option>
+                    {PRODUCT_CATEGORIES.map((cat) => (
+                      <optgroup key={cat.id} label={`── ${cat.name.toUpperCase()} ──`}>
+                        {ALL_PRODUCTS.filter((p) => p.categoryId === cat.id).map((p) => (
+                          <option key={p.id} value={p.name}>
+                            {p.name}
+                          </option>
+                        ))}
+                      </optgroup>
+                    ))}
                   </select>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                    Target Capacity / Specification
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.capacity}
+                    onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
+                    placeholder="e.g. 15 TPH, 100 TPH, Custom"
+                    className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
+                  />
                 </div>
               </div>
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Message / Project Requirements
+                  Project Details / Requirements
                 </label>
                 <textarea
                   rows={3}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Provide any specific capacity, job-site conditions, delivery timeline or technical requirements..."
-                  className="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none resize-none"
+                  placeholder="Share site location, production timeline, or specific engineering requirements..."
+                  className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
                 />
               </div>
 
-              <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100">
-                <div className="text-xs text-slate-500">
-                  <span>Need help selecting equipment?</span>{' '}
-                  <a href="tel:+919825073095" className="font-bold text-slate-800 hover:text-red-600">
-                    Call: +91 98250 73095
-                  </a>
+              <div className="flex items-center justify-between pt-2">
+                <div className="flex items-center gap-1.5 text-xs text-slate-500">
+                  <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>Direct Factory Response from Ahmedabad</span>
                 </div>
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full sm:w-auto px-6 py-2.5 bg-[#DE1F27] hover:bg-[#B91C1C] text-white font-bold text-sm rounded-lg shadow-sm hover:shadow flex items-center justify-center gap-2 transition-all disabled:opacity-50"
-                >
-                  <Send className="w-4 h-4" />
-                  {isSubmitting ? 'Submitting...' : 'Submit Enquiry'}
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={closeQuoteModal}
+                    className="px-4 py-2 border border-slate-300 text-slate-700 rounded-lg text-xs font-bold hover:bg-slate-50"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-5 py-2 bg-[#DE1F27] hover:bg-[#B91C1C] text-white rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-sm"
+                  >
+                    <Send className="w-3.5 h-3.5" /> Submit Inquiry
+                  </button>
+                </div>
               </div>
             </form>
           )}
         </div>
-
       </div>
     </div>
   );

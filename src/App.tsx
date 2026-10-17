@@ -3,6 +3,7 @@ import { RouterProvider, useRouter } from './context/RouterContext';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { QuoteModal } from './components/QuoteModal';
+import { WhatsAppButton } from './components/WhatsAppButton';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ProductsPage } from './pages/ProductsPage';
@@ -53,6 +54,9 @@ function AppContent() {
 
       {/* Global Quotation Modal */}
       <QuoteModal />
+
+      {/* Floating WhatsApp Action Button */}
+      <WhatsAppButton />
 
       {/* Light Industrial Theme Footer */}
       <Footer />

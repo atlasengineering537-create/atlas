@@ -1,420 +1,295 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Breadcrumbs } from '../components/Breadcrumbs';
-import { COMPANY_INFO, PRODUCT_CATEGORIES, ALL_PRODUCTS } from '../data/products';
+import { COMPANY_INFO, ALL_PRODUCTS, PRODUCT_CATEGORIES } from '../data/products';
 import {
   MapPin,
   Phone,
   Mail,
-  User,
   Clock,
   Send,
   CheckCircle2,
-  ExternalLink,
-  Building,
-  Navigation,
+  Building2,
+  ShieldCheck,
+  User,
 } from 'lucide-react';
 
 export const ContactPage: React.FC = () => {
+  useEffect(() => {
+    document.title = 'Contact Us | Atlas Engineering - Kathwada GIDC, Ahmedabad';
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = 'https://www.atlasbitumenplant.com/contact';
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
-    company: '',
     phone: '',
     email: '',
-    country: 'India',
+    company: '',
     equipment: '',
     message: '',
   });
 
-  const [submitted, setSubmitted] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
-      setSubmitted(true);
-    }, 600);
+    setFormSubmitted(true);
   };
 
   return (
     <div className="bg-white">
-      {/* Breadcrumb Header Bar */}
+      {/* Breadcrumb Header */}
       <div className="bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Breadcrumbs items={[{ label: 'Contact Us' }]} />
+          <Breadcrumbs items={[{ label: 'Contact & Factory Location' }]} />
         </div>
       </div>
 
-      {/* Page Hero */}
-      <section className="py-12 sm:py-16 border-b border-slate-200 bg-gradient-to-b from-white to-slate-50/50">
+      {/* Hero Header */}
+      <section className="py-12 sm:py-16 bg-slate-900 text-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <span className="text-xs font-bold text-red-600 uppercase tracking-widest block mb-2">
-              CONNECT WITH ATLAS ENGINEERING
-            </span>
-            <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-              Contact Works & Engineering Sales
-            </h1>
-            <p className="mt-3 text-base text-slate-600 leading-relaxed">
-              Reach our manufacturing headquarters at Kathwada GIDC, Ahmedabad for machinery quotations, technical specifications, and factory visits.
-            </p>
-          </div>
+          <span className="text-xs font-bold text-red-500 uppercase tracking-widest block mb-2">
+            HEADQUARTERS &amp; WORKS
+          </span>
+          <h1 className="text-3xl sm:text-5xl font-black tracking-tight">
+            Contact Atlas Engineering
+          </h1>
+          <p className="mt-3 text-slate-300 max-w-2xl text-sm sm:text-base leading-relaxed">
+            Reach our manufacturing headquarters at Kathwada GIDC, Ahmedabad for machinery quotations, technical specifications, and factory visits.
+          </p>
         </div>
       </section>
 
-      {/* Contact Cards & Form Grid */}
-      <section className="py-14 sm:py-16 border-b border-slate-200">
+      {/* Main Content Grid */}
+      <section className="py-14 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             
-            {/* Left 5 cols: Verified Contact Information Cards */}
-            <div className="lg:col-span-5 space-y-6">
-              
-              {/* Works & Factory Address */}
-              <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center shrink-0">
+            {/* Left 5 cols: Contact Cards & Info */}
+            <div className="lg:col-span-5 space-y-8">
+              <div>
+                <span className="text-xs font-bold text-red-600 uppercase tracking-wider block mb-1">
+                  DIRECT FACTORY CONTACT
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                  Get in Touch Directly
+                </h2>
+                <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                  Our senior engineering and technical sales specialists are available to consult on your highway paving and plant setup requirements.
+                </p>
+              </div>
+
+              {/* Contact Information Cards */}
+              <div className="space-y-4">
+                {/* Factory Address */}
+                <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-red-100 text-red-600 flex items-center justify-center shrink-0">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-red-600 uppercase tracking-wider block">
-                      Works & Head Office
-                    </span>
-                    <h3 className="text-base font-bold text-slate-900">
-                      Kathwada GIDC Manufacturing Facility
-                    </h3>
+                    <h3 className="font-bold text-slate-900 text-sm">Manufacturing Works</h3>
+                    <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                      {COMPANY_INFO.address.fullFormatted}
+                    </p>
                   </div>
                 </div>
-                <div className="text-sm sm:text-base text-slate-600 leading-relaxed pl-13">
-                  <p className="font-semibold text-slate-900">{COMPANY_INFO.name}</p>
-                  <p>{COMPANY_INFO.address.line1}</p>
-                  <p>{COMPANY_INFO.address.line2}</p>
-                  <p>
-                    {COMPANY_INFO.address.city} - {COMPANY_INFO.address.pincode}
-                  </p>
-                  <p className="font-semibold text-slate-800">
-                    {COMPANY_INFO.address.state}, {COMPANY_INFO.address.country}
-                  </p>
-                </div>
-              </div>
 
-              {/* Direct Phone Lines */}
-              <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center shrink-0">
+                {/* Phone Numbers */}
+                <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-red-100 text-red-600 flex items-center justify-center shrink-0">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-red-600 uppercase tracking-wider block">
-                      Direct Sales & Support Lines
-                    </span>
-                    <h3 className="text-base font-bold text-slate-900">
-                      Telephone Numbers
-                    </h3>
+                    <h3 className="font-bold text-slate-900 text-sm">Direct Phone &amp; Sales</h3>
+                    <div className="mt-1 space-y-1 text-xs sm:text-sm font-semibold text-slate-800">
+                      {COMPANY_INFO.phones.map((p) => (
+                        <a key={p} href={`tel:${p.replace(/\s+/g, '')}`} className="block hover:text-red-600">
+                          {p}
+                        </a>
+                      ))}
+                    </div>
+                    <div className="mt-2 text-xs text-slate-500 flex items-center gap-1.5">
+                      <User className="w-3.5 h-3.5 text-slate-400" />
+                      <span>Contact Person: <strong>{COMPANY_INFO.contactPerson}</strong></span>
+                    </div>
                   </div>
                 </div>
-                <div className="pl-13 space-y-2 text-sm sm:text-base">
-                  {COMPANY_INFO.phones.map((phone, i) => (
-                    <div key={i} className="flex items-center justify-between">
-                      <a
-                        href={`tel:${phone.replace(/\s+/g, '')}`}
-                        className="font-mono tabular-nums font-semibold text-slate-800 hover:text-red-600"
-                      >
-                        {phone}
-                      </a>
-                      <span className="text-xs text-slate-400">
-                        {i === 0 ? 'Primary' : i === 1 ? 'Technical' : 'General'}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
 
-              {/* Official Emails & Leadership */}
-              <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center shrink-0">
+                {/* Official Email */}
+                <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-red-100 text-red-600 flex items-center justify-center shrink-0">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-red-600 uppercase tracking-wider block">
-                      Electronic Mail
-                    </span>
-                    <h3 className="text-base font-bold text-slate-900">
-                      Official Inquiries
-                    </h3>
+                    <h3 className="font-bold text-slate-900 text-sm">Official Inquiries</h3>
+                    <div className="mt-1 space-y-1 text-xs sm:text-sm font-semibold text-slate-800">
+                      {COMPANY_INFO.emails.map((e) => (
+                        <a key={e} href={`mailto:${e}`} className="block hover:text-red-600">
+                          {e}
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
-                <div className="pl-13 space-y-2 text-sm sm:text-base">
-                  {COMPANY_INFO.emails.map((email) => (
-                    <a
-                      key={email}
-                      href={`mailto:${email}`}
-                      className="block font-medium text-slate-800 hover:text-red-600"
-                    >
-                      {email}
-                    </a>
-                  ))}
-                  <div className="pt-2 text-sm text-slate-500">
-                    <strong>Contact Person:</strong> {COMPANY_INFO.contactPerson}
+
+                {/* Working Hours */}
+                <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-red-100 text-red-600 flex items-center justify-center shrink-0">
+                    <Clock className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-slate-900 text-sm">Factory Operational Hours</h3>
+                    <p className="text-xs sm:text-sm text-slate-600 mt-1">
+                      Monday – Saturday: 9:00 AM – 7:00 PM (IST)
+                    </p>
                   </div>
                 </div>
               </div>
-
             </div>
 
             {/* Right 7 cols: Interactive Machinery Inquiry Form */}
-            <div className="lg:col-span-7 bg-slate-50/70 p-6 sm:p-8 rounded-2xl border border-slate-200">
-              <span className="text-sm font-bold text-red-600 uppercase tracking-wider block mb-1">
+            <div className="lg:col-span-7 bg-slate-50/70 p-6 sm:p-10 rounded-2xl border border-slate-200">
+              <span className="text-xs font-bold text-red-600 uppercase tracking-wider block mb-1">
                 ONLINE INQUIRY
               </span>
-              <h2 className="text-2xl font-bold text-slate-900 mb-2">
-                Send a Message to Atlas Engineering
+              <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+                Send Equipment Inquiry
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 mb-6 leading-relaxed">
-                Provide your project requirements below. Our technical department will respond promptly with machinery proposals and technical data.
+              <p className="text-xs sm:text-sm text-slate-600 mt-1 mb-6">
+                Fill in your equipment requirements below and our engineering team will respond within 24 hours.
               </p>
 
-              {submitted ? (
-                <div className="py-12 text-center space-y-4 bg-white rounded-xl border border-slate-200 p-6">
-                  <div className="w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto">
-                    <CheckCircle2 className="w-6 h-6" />
+              {formSubmitted ? (
+                <div className="py-12 text-center space-y-3 bg-white rounded-xl border border-slate-200 p-6">
+                  <div className="w-14 h-14 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto">
+                    <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900">Message Submitted</h3>
-                  <p className="text-sm text-slate-600 max-w-md mx-auto">
-                    Thank you. We have received your inquiry and will connect with your engineering team shortly.
+                  <h3 className="text-xl font-bold text-slate-900">Inquiry Received</h3>
+                  <p className="text-sm text-slate-600 max-w-sm mx-auto">
+                    Thank you. We will contact you with equipment specifications and pricing shortly.
                   </p>
                   <button
-                    onClick={() => {
-                      setSubmitted(false);
-                      setFormData({
-                        name: '',
-                        company: '',
-                        phone: '',
-                        email: '',
-                        country: 'India',
-                        equipment: '',
-                        message: '',
-                      });
-                    }}
-                    className="px-5 py-2.5 bg-[#DE1F27] text-white text-sm font-bold rounded-lg cursor-pointer"
+                    onClick={() => setFormSubmitted(false)}
+                    className="mt-4 px-5 py-2 text-xs font-bold text-red-600 border border-red-200 hover:bg-red-50 rounded-lg"
                   >
                     Send Another Message
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 sm:p-7 rounded-xl border border-slate-200 shadow-xs">
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-bold text-slate-700 mb-1.5">
-                        Your Name <span className="text-red-600">*</span>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">
+                        Full Name *
                       </label>
                       <input
                         type="text"
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="e.g. Anil Kumar"
-                        className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
+                        placeholder="Your name"
+                        className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none bg-white"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-bold text-slate-700 mb-1.5">
-                        Company Name <span className="text-red-600">*</span>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">
+                        Company Name *
                       </label>
                       <input
                         type="text"
                         required
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        placeholder="e.g. Apex Infra Contractors"
-                        className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
+                        placeholder="Company or Contractor Name"
+                        className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none bg-white"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-bold text-slate-700 mb-1.5">
-                        Phone Number <span className="text-red-600">*</span>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">
+                        Phone Number *
                       </label>
                       <input
                         type="tel"
                         required
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="+91..."
-                        className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
+                        placeholder="+91 98765 43210"
+                        className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none bg-white"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-bold text-slate-700 mb-1.5">
-                        Email Address <span className="text-red-600">*</span>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">
+                        Email Address
                       </label>
                       <input
                         type="email"
-                        required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="engineer@company.com"
-                        className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
+                        placeholder="name@company.com"
+                        className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none bg-white"
                       />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-bold text-slate-700 mb-1.5">
-                        Country / Location
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.country}
-                        onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                        className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-bold text-slate-700 mb-1.5">
-                        Equipment Category / Model
-                      </label>
-                      <select
-                        value={formData.equipment}
-                        onChange={(e) => setFormData({ ...formData, equipment: e.target.value })}
-                        className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none bg-white"
-                      >
-                        <option value="">Select Equipment</option>
-                        {PRODUCT_CATEGORIES.map((c) => (
-                          <option key={c.id} value={c.name}>
-                            {c.name}
-                          </option>
-                        ))}
-                      </select>
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-bold text-slate-700 mb-1.5">
-                      Project Message & Requirements
+                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                      Machinery of Interest
+                    </label>
+                    <select
+                      value={formData.equipment}
+                      onChange={(e) => setFormData({ ...formData, equipment: e.target.value })}
+                      className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none bg-white font-medium"
+                    >
+                      <option value="">-- Select Machinery / Equipment --</option>
+                      {PRODUCT_CATEGORIES.map((cat) => (
+                        <optgroup key={cat.id} label={`── ${cat.name.toUpperCase()} ──`}>
+                          {ALL_PRODUCTS.filter((p) => p.categoryId === cat.id).map((p) => (
+                            <option key={p.id} value={p.name}>
+                              {p.name}
+                            </option>
+                          ))}
+                        </optgroup>
+                      ))}
+                      <optgroup label="── OTHER CONSULTATION ──">
+                        <option value="General Machinery Consultation">General Machinery Consultation</option>
+                        <option value="Complete Road Project Package">Complete Road Project Package</option>
+                      </optgroup>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                      Project Details / Requirement Message *
                     </label>
                     <textarea
-                      rows={3}
+                      required
+                      rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Specify your technical capacity, required throughput, delivery timeline or site conditions..."
-                      className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none resize-none"
+                      placeholder="Share your required capacity, project timeline, or specific customizations needed..."
+                      className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none bg-white"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    disabled={submitting}
-                    className="w-full py-3.5 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm sm:text-base font-bold rounded-lg shadow-sm hover:shadow transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
                   >
-                    <Send className="w-4 h-4" />
-                    {submitting ? 'Sending Enquiry...' : 'Submit Technical Enquiry'}
+                    <Send className="w-4 h-4" /> Submit Inquiry Directly to Factory
                   </button>
                 </form>
               )}
             </div>
 
           </div>
-        </div>
-      </section>
-
-      {/* Google Maps / Facility Location Section */}
-      <section className="py-14 sm:py-16 bg-slate-50/50 border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-            <div>
-              <span className="text-xs font-bold text-red-600 uppercase tracking-wider block mb-1">
-                FACILITY LOCATION & FACTORY VISIT
-              </span>
-              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-                Manufacturing Works in Kathwada GIDC, Ahmedabad
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-600 mt-1">
-                Plot No. 397-398, Road No. 9 Corner, Kathwada GIDC Industrial Area, Ahmedabad-382430, Gujarat, India
-              </p>
-            </div>
-            <div className="flex items-center gap-3 shrink-0">
-              <a
-                href="https://www.google.com/maps?q=23.03368,72.68170"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2.5 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold rounded-lg shadow-sm hover:shadow transition-all inline-flex items-center gap-2 cursor-pointer"
-              >
-                <span>Open in Google Maps</span>
-                <ExternalLink className="w-4 h-4" />
-              </a>
-              <a
-                href="tel:+919825073095"
-                className="px-4 py-2.5 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 text-xs sm:text-sm font-bold rounded-lg shadow-2xs inline-flex items-center gap-2 cursor-pointer"
-              >
-                <Phone className="w-4 h-4 text-red-600" />
-                <span>Call Works</span>
-              </a>
-            </div>
-          </div>
-
-          {/* Interactive Google Map Container */}
-          <div className="rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-md relative">
-            <div className="w-full h-[400px] sm:h-[480px] lg:h-[520px] relative bg-slate-100">
-              <iframe
-                title="Atlas Engineering Manufacturing Facility Location on Google Maps - Main Rd & Road No. 9 Corner, Kathwada GIDC"
-                src="https://maps.google.com/maps?q=23.03368,72.68170&hl=en&z=17&output=embed"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={true}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-full"
-              />
-            </div>
-
-            {/* Quick Information Bar under the Map */}
-            <div className="p-4 sm:p-6 bg-white border-t border-slate-200 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-xs sm:text-sm">
-              <div className="flex items-start gap-3">
-                <div className="w-9 h-9 rounded-lg bg-red-50 text-red-600 flex items-center justify-center shrink-0 mt-0.5">
-                  <MapPin className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="font-bold text-slate-900">Works Address</div>
-                  <div className="text-slate-600 mt-0.5 leading-relaxed">
-                    Plot No. 397-398, Main Rd & Road No. 9 Corner, Kathwada GIDC, Ahmedabad-382430
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="w-9 h-9 rounded-lg bg-red-50 text-red-600 flex items-center justify-center shrink-0 mt-0.5">
-                  <Navigation className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="font-bold text-slate-900">GPS Coordinates</div>
-                  <div className="text-slate-600 mt-0.5 font-mono">
-                    23.0337° N, 72.6817° E (Main Rd & Road No. 9 Corner, Kathwada GIDC)
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="w-9 h-9 rounded-lg bg-red-50 text-red-600 flex items-center justify-center shrink-0 mt-0.5">
-                  <Building className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="font-bold text-slate-900">Working Hours</div>
-                  <div className="text-slate-600 mt-0.5">
-                    Monday to Saturday: 9:00 AM – 6:30 PM IST
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
       </section>
     </div>

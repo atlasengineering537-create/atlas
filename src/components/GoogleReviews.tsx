@@ -1,13 +1,13 @@
 import React from 'react';
 import { GOOGLE_REVIEWS } from '../data/reviews';
-import { Star, ExternalLink, ThumbsUp } from 'lucide-react';
+import { Star } from 'lucide-react';
 
 export const GoogleReviews: React.FC<{ className?: string }> = ({ className = '' }) => {
   return (
     <section className={`py-14 sm:py-20 bg-slate-50 border-t border-b border-slate-200 ${className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
+        {/* Section Header (Without any external Google links) */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-2xs text-xs font-semibold text-slate-700 mb-3">
@@ -30,7 +30,7 @@ export const GoogleReviews: React.FC<{ className?: string }> = ({ className = ''
                   d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
                 />
               </svg>
-              <span>Verified Google Business Profile Reviews</span>
+              <span>Verified Client Reviews</span>
             </div>
 
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
@@ -41,7 +41,7 @@ export const GoogleReviews: React.FC<{ className?: string }> = ({ className = ''
             </p>
           </div>
 
-          {/* Aggregate Rating & Map Link */}
+          {/* Aggregate Rating (Clean badge, no external link) */}
           <div className="flex items-center gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-2xs shrink-0">
             <div className="text-center pr-4 border-r border-slate-200">
               <div className="text-2xl sm:text-3xl font-black text-slate-900 leading-none">5.0</div>
@@ -53,21 +53,13 @@ export const GoogleReviews: React.FC<{ className?: string }> = ({ className = ''
             </div>
             <div>
               <div className="text-xs font-bold text-slate-900">Google Rating</div>
-              <a
-                href="https://www.google.com/maps?q=23.03368,72.68170"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-semibold text-red-600 hover:text-red-700 inline-flex items-center gap-1 mt-0.5"
-              >
-                <span>View on Google Maps</span>
-                <ExternalLink className="w-3 h-3" />
-              </a>
+              <div className="text-xs text-slate-500 mt-0.5">Verified Client Feedback</div>
             </div>
           </div>
         </div>
 
-        {/* 4 Reviews Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* 3 Reviews Cards Grid (Tauseef Khan removed) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {GOOGLE_REVIEWS.map((review) => (
             <div
               key={review.id}
@@ -126,7 +118,7 @@ export const GoogleReviews: React.FC<{ className?: string }> = ({ className = ''
                 </p>
               </div>
 
-              {/* Card Footer with Google Icon and subtle reaction */}
+              {/* Card Footer */}
               <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
                 <span className="inline-flex items-center gap-1.5 text-[11px] text-slate-500 font-medium">
                   <svg className="w-3.5 h-3.5" viewBox="0 0 24 24">

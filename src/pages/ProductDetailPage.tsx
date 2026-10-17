@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from '../context/RouterContext';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { ProductCard } from '../components/ProductCard';
+import { Link } from '../components/Link';
 import { ALL_PRODUCTS, PRODUCT_CATEGORIES, TechnicalSpec } from '../data/products';
 import defaultFallbackImg from '../assets/images/category_bitumen_equipment.jpg';
 import {
@@ -20,7 +21,7 @@ import {
 } from 'lucide-react';
 
 interface ProductDetailPageProps {
-  categorySlug: string;
+  categorySlug?: string;
   productSlug: string;
 }
 
@@ -32,7 +33,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
   // Find product by slug
   const product = ALL_PRODUCTS.find((p) => p.slug === productSlug || (productSlug === 'cement-&-concrete-product-01' && p.id === 'cement-concrete-batching-plant')) || ALL_PRODUCTS[0];
-  const category = PRODUCT_CATEGORIES.find((c) => c.slug === categorySlug) || PRODUCT_CATEGORIES[0];
+  const category = PRODUCT_CATEGORIES.find((c) => c.slug === categorySlug || c.id === product.categoryId) || PRODUCT_CATEGORIES[0];
 
   // Active gallery image
   const [selectedImage, setSelectedImage] = useState(product.heroImage);
@@ -47,6 +48,64 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
     setInquiryMsg('');
     setInquirySubmitted(false);
   }, [product.id, product.heroImage]);
+
+  // SEO: Update Page Title, Canonical URL, Meta Description, and JSON-LD Structured Data
+  useEffect(() => {
+    document.title = `${product.name} | Atlas Engineering`;
+
+    // Canonical tag
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = `https://www.atlasbitumenplant.com/products/${product.slug}`;
+
+    // Meta description
+    let metaDesc = document.querySelector('meta[name="description"]') as HTMLMetaElement;
+    if (metaDesc) {
+      metaDesc.content = product.shortDescription;
+    }
+
+    // JSON-LD structured data for Product
+    const schemaScriptId = 'product-schema-jsonld';
+    let schemaScript = document.getElementById(schemaScriptId) as HTMLScriptElement;
+    if (!schemaScript) {
+      schemaScript = document.createElement('script');
+      schemaScript.id = schemaScriptId;
+      schemaScript.type = 'application/ld+json';
+      document.head.appendChild(schemaScript);
+    }
+    schemaScript.textContent = JSON.stringify({
+      '@context': 'https://schema.org/',
+      '@type': 'Product',
+      name: product.name,
+      image: `https://www.atlasbitumenplant.com${product.heroImage}`,
+      description: product.shortDescription,
+      brand: {
+        '@type': 'Brand',
+        name: 'Atlas Engineering',
+      },
+      offers: {
+        '@type': 'AggregateOffer',
+        priceCurrency: 'INR',
+        availability: 'https://schema.org/InStock',
+      },
+      manufacturer: {
+        '@type': 'Organization',
+        name: 'Atlas Engineering',
+        url: 'https://www.atlasbitumenplant.com',
+      },
+    });
+
+    return () => {
+      const scriptToRemove = document.getElementById(schemaScriptId);
+      if (scriptToRemove) {
+        scriptToRemove.remove();
+      }
+    };
+  }, [product]);
 
   // Related products from same category, excluding current
   const relatedProducts = ALL_PRODUCTS.filter(
@@ -74,7 +133,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           <Breadcrumbs
             items={[
               { label: 'Products', path: '/products' },
-              { label: product.categoryName, path: `/products/${product.categoryId}` },
+              { label: product.categoryName, path: `/categories/${category.slug}` },
               { label: product.name },
             ]}
           />
@@ -4231,12 +4290,12 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   More {product.categoryName}
                 </h3>
               </div>
-              <button
-                onClick={() => navigate(`/products/${product.categoryId}`)}
+              <Link
+                to={`/categories/${category.slug}`}
                 className="text-sm font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-1"
               >
                 View All in Category <ArrowRight className="w-3.5 h-3.5" />
-              </button>
+              </Link>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

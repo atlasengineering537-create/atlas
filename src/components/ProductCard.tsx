@@ -1,6 +1,7 @@
 import React from 'react';
 import { Product } from '../data/products';
 import { useRouter } from '../context/RouterContext';
+import { Link } from './Link';
 import { ArrowRight, FileText } from 'lucide-react';
 import defaultFallbackImg from '../assets/images/category_bitumen_equipment.jpg';
 
@@ -9,15 +10,16 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { navigate, openQuoteModal } = useRouter();
+  const { openQuoteModal } = useRouter();
+  const productUrl = `/products/${product.slug}`;
 
   return (
     <div className="group rounded-xl overflow-hidden bg-white border border-slate-200 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between hover:border-slate-300">
       <div>
-        {/* Product Image */}
-        <div
-          onClick={() => navigate(`/products/${product.categoryId}/${product.slug}`)}
-          className="relative aspect-[4/3] overflow-hidden bg-slate-100 cursor-pointer"
+        {/* Product Image Link */}
+        <Link
+          to={productUrl}
+          className="relative aspect-[4/3] overflow-hidden bg-slate-100 block"
         >
           <img
             src={product.heroImage}
@@ -43,7 +45,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               Ready for Specs
             </div>
           )}
-        </div>
+        </Link>
 
         {/* Product Body */}
         <div className="p-4 sm:p-5">
@@ -54,11 +56,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <span>Atlas Series</span>
           </div>
 
-          <h4
-            onClick={() => navigate(`/products/${product.categoryId}/${product.slug}`)}
-            className="text-lg font-bold text-slate-900 group-hover:text-red-600 transition-colors cursor-pointer leading-snug"
-          >
-            {product.name}
+          <h4>
+            <Link
+              to={productUrl}
+              className="text-lg font-bold text-slate-900 group-hover:text-red-600 transition-colors leading-snug block"
+            >
+              {product.name}
+            </Link>
           </h4>
 
           <p className="mt-2 text-sm sm:text-base text-slate-700 leading-relaxed line-clamp-2 font-normal">
@@ -75,12 +79,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
       {/* Product Footer Actions */}
       <div className="px-4 sm:px-5 pb-4 pt-2 flex items-center justify-between gap-2 border-t border-slate-100 bg-slate-50/50">
-        <button
-          onClick={() => navigate(`/products/${product.categoryId}/${product.slug}`)}
-          className="text-sm sm:text-base font-bold text-slate-800 hover:text-red-600 inline-flex items-center gap-1.5 py-1.5 cursor-pointer"
+        <Link
+          to={productUrl}
+          className="text-sm sm:text-base font-bold text-slate-800 hover:text-red-600 inline-flex items-center gap-1.5 py-1.5"
         >
           View Details <ArrowRight className="w-4 h-4" />
-        </button>
+        </Link>
 
         <button
           onClick={() => openQuoteModal(product.name)}

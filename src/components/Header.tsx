@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AtlasLogo } from './AtlasLogo';
+import { Link } from './Link';
 import { useRouter } from '../context/RouterContext';
 import { PRODUCT_CATEGORIES, ALL_PRODUCTS } from '../data/products';
 import makeInIndiaLogo from '../assets/images/make_in_india_logo.png';
@@ -168,20 +169,20 @@ export const Header: React.FC = () => {
             
             {/* Zone 1: Brand Wordmark / Logo */}
             <div className="flex items-center shrink-0">
-              <button
-                onClick={() => navigate('/')}
-                className="text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600 rounded"
+              <Link
+                to="/"
+                className="text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600 rounded inline-block"
                 aria-label="Atlas Engineering Home"
               >
                 <AtlasLogo className={isScrolled ? 'py-0.5' : 'py-1'} variant="full" />
-              </button>
+              </Link>
             </div>
 
             {/* Zone 2: Navigation Links (Desktop) */}
             <nav className="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-700">
-              <button
-                onClick={() => navigate('/')}
-                className={`py-1 text-sm font-semibold transition-colors relative ${
+              <Link
+                to="/"
+                className={`py-1 text-sm font-semibold transition-colors relative block ${
                   isCurrent('home') ? 'text-red-600' : 'hover:text-slate-900'
                 }`}
               >
@@ -189,11 +190,11 @@ export const Header: React.FC = () => {
                 {isCurrent('home') && (
                   <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600" />
                 )}
-              </button>
+              </Link>
 
-              <button
-                onClick={() => navigate('/about')}
-                className={`py-1 text-sm font-semibold transition-colors relative ${
+              <Link
+                to="/about"
+                className={`py-1 text-sm font-semibold transition-colors relative block ${
                   isCurrent('about') ? 'text-red-600' : 'hover:text-slate-900'
                 }`}
               >
@@ -201,7 +202,7 @@ export const Header: React.FC = () => {
                 {isCurrent('about') && (
                   <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600" />
                 )}
-              </button>
+              </Link>
 
               {/* Products Dropdown Trigger */}
               <div
@@ -241,19 +242,16 @@ export const Header: React.FC = () => {
                             className="p-4 rounded-xl border border-slate-200 bg-slate-50/40 flex flex-col justify-start"
                           >
                             <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  setIsProductsDropdownOpen(false);
-                                  navigate(`/products/${category.slug}`);
-                                }}
+                              <Link
+                                to={`/categories/${category.slug}`}
+                                onClick={() => setIsProductsDropdownOpen(false)}
                                 className="text-left group flex items-center gap-1.5"
                               >
                                 <h5 className="text-sm font-black text-slate-900 group-hover:text-red-600 transition-colors uppercase tracking-wider">
                                   {category.name}
                                 </h5>
                                 <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-red-600 shrink-0" />
-                              </button>
+                              </Link>
                               <span className="text-xs font-mono font-bold text-slate-500 bg-slate-200/70 px-2 py-0.5 rounded-full shrink-0">
                                 {catProducts.length}
                               </span>
@@ -263,13 +261,11 @@ export const Header: React.FC = () => {
                               {catProducts.map((prod) => {
                                 const meta = PRODUCT_MENU_META[prod.slug] || PRODUCT_MENU_META[prod.id] || { displayName: prod.name };
                                 return (
-                                  <button
+                                  <Link
                                     key={prod.id}
-                                    onClick={() => {
-                                      setIsProductsDropdownOpen(false);
-                                      navigate(`/products/${prod.categoryId}/${prod.slug}`);
-                                    }}
-                                    className="group/item w-full text-left py-1.5 px-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all flex items-center justify-between text-sm"
+                                    to={`/products/${prod.slug}`}
+                                    onClick={() => setIsProductsDropdownOpen(false)}
+                                    className="group/item w-full text-left py-1.5 px-2 rounded-lg hover:bg-white hover:shadow-2xs transition-all flex items-center justify-between text-sm block"
                                   >
                                     <div className="flex items-center gap-2 min-w-0 pr-1">
                                       <span className="w-1.5 h-1.5 rounded-full bg-slate-400 group-hover/item:bg-red-600 group-hover/item:scale-125 transition-all shrink-0" />
@@ -282,7 +278,7 @@ export const Header: React.FC = () => {
                                         {meta.badge}
                                       </span>
                                     )}
-                                  </button>
+                                  </Link>
                                 );
                               })}
                             </div>
@@ -294,9 +290,9 @@ export const Header: React.FC = () => {
                 )}
               </div>
 
-              <button
-                onClick={() => navigate('/contact')}
-                className={`py-1 text-sm font-semibold transition-colors relative ${
+              <Link
+                to="/contact"
+                className={`py-1 text-sm font-semibold transition-colors relative block ${
                   isCurrent('contact') ? 'text-red-600' : 'hover:text-slate-900'
                 }`}
               >
@@ -304,7 +300,7 @@ export const Header: React.FC = () => {
                 {isCurrent('contact') && (
                   <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600" />
                 )}
-              </button>
+              </Link>
             </nav>
 
             {/* Zone 3: Government Accreditations (Make In India & MSME) & Mobile Menu */}
@@ -387,29 +383,25 @@ export const Header: React.FC = () => {
 
             {/* Drawer Body */}
             <div className="flex-1 overflow-y-auto p-4 space-y-3">
-              <button
-                onClick={() => {
-                  navigate('/');
-                  setIsMobileMenuOpen(false);
-                }}
-                className={`w-full text-left px-3 py-2.5 rounded-lg text-base font-semibold ${
+              <Link
+                to="/"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`w-full text-left px-3 py-2.5 rounded-lg text-base font-semibold block ${
                   isCurrent('home') ? 'bg-red-50 text-red-600' : 'text-slate-800 hover:bg-slate-50'
                 }`}
               >
                 Home
-              </button>
+              </Link>
 
-              <button
-                onClick={() => {
-                  navigate('/about');
-                  setIsMobileMenuOpen(false);
-                }}
-                className={`w-full text-left px-3 py-2.5 rounded-lg text-base font-semibold ${
+              <Link
+                to="/about"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`w-full text-left px-3 py-2.5 rounded-lg text-base font-semibold block ${
                   isCurrent('about') ? 'bg-red-50 text-red-600' : 'text-slate-800 hover:bg-slate-50'
                 }`}
               >
                 About Us
-              </button>
+              </Link>
 
               {/* Products Directory Section for Mobile */}
               <div className="border border-slate-200 rounded-xl overflow-hidden bg-slate-50/50 shadow-2xs">
@@ -421,15 +413,13 @@ export const Header: React.FC = () => {
                       Machinery Directory
                     </span>
                   </div>
-                  <button
-                    onClick={() => {
-                      navigate('/products');
-                      setIsMobileMenuOpen(false);
-                    }}
+                  <Link
+                    to="/products"
+                    onClick={() => setIsMobileMenuOpen(false)}
                     className="text-sm font-bold text-red-600 hover:text-red-700 flex items-center gap-1"
                   >
                     All 17 Models <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
+                  </Link>
                 </div>
 
                 {/* Category Switcher Tabs */}
@@ -438,7 +428,7 @@ export const Header: React.FC = () => {
                     <button
                       key={cat.id}
                       onClick={() => setMobileSelectedCat(cat.id)}
-                      className={`px-3 py-1.5 rounded-lg text-sm font-bold whitespace-nowrap transition-colors flex items-center gap-1.5 ${
+                      className={`px-3 py-1.5 rounded-lg text-sm font-bold whitespace-nowrap transition-colors flex items-center gap-1.5 cursor-pointer ${
                         mobileSelectedCat === cat.id
                           ? 'bg-[#DE1F27] text-white shadow-xs'
                           : 'bg-white text-slate-700 hover:text-slate-900 border border-slate-200'
@@ -454,13 +444,11 @@ export const Header: React.FC = () => {
                   {ALL_PRODUCTS.filter((p) => p.categoryId === mobileSelectedCat).map((prod) => {
                     const meta = PRODUCT_MENU_META[prod.slug] || PRODUCT_MENU_META[prod.id] || { displayName: prod.name };
                     return (
-                      <button
+                      <Link
                         key={prod.id}
-                        onClick={() => {
-                          navigate(`/products/${prod.categoryId}/${prod.slug}`);
-                          setIsMobileMenuOpen(false);
-                        }}
-                        className="w-full text-left p-2.5 rounded-lg hover:bg-red-50/70 border border-slate-100 hover:border-red-200 transition-all flex items-center justify-between group"
+                        to={`/products/${prod.slug}`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="w-full text-left p-2.5 rounded-lg hover:bg-red-50/70 border border-slate-100 hover:border-red-200 transition-all flex items-center justify-between group block"
                       >
                         <div className="min-w-0 pr-2">
                           <div className="font-bold text-sm text-slate-900 group-hover:text-red-600 leading-tight">
@@ -475,7 +463,7 @@ export const Header: React.FC = () => {
                             {meta.badge}
                           </span>
                         )}
-                      </button>
+                      </Link>
                     );
                   })}
 
@@ -484,32 +472,28 @@ export const Header: React.FC = () => {
                     const currentCat = PRODUCT_CATEGORIES.find((c) => c.id === mobileSelectedCat);
                     if (!currentCat) return null;
                     return (
-                      <button
-                        onClick={() => {
-                          navigate(`/products/${currentCat.slug}`);
-                          setIsMobileMenuOpen(false);
-                        }}
-                        className="w-full mt-2 pt-2 pb-1 text-center text-xs font-bold text-red-600 hover:text-red-700 flex items-center justify-center gap-1.5 border-t border-slate-100"
+                      <Link
+                        to={`/categories/${currentCat.slug}`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="w-full mt-2 pt-2 pb-1 text-center text-xs font-bold text-red-600 hover:text-red-700 flex items-center justify-center gap-1.5 border-t border-slate-100 block"
                       >
                         <span>View All in {currentCat.name}</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
+                        <ArrowRight className="w-3.5 h-3.5 inline" />
+                      </Link>
                     );
                   })()}
                 </div>
               </div>
 
-              <button
-                onClick={() => {
-                  navigate('/contact');
-                  setIsMobileMenuOpen(false);
-                }}
-                className={`w-full text-left px-3 py-2.5 rounded-lg text-base font-semibold ${
+              <Link
+                to="/contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`w-full text-left px-3 py-2.5 rounded-lg text-base font-semibold block ${
                   isCurrent('contact') ? 'bg-red-50 text-red-600' : 'text-slate-800 hover:bg-slate-50'
                 }`}
               >
                 Contact Us
-              </button>
+              </Link>
 
               {/* Direct Info */}
               <div className="pt-4 border-t border-slate-200 space-y-2 text-xs sm:text-sm text-slate-600">

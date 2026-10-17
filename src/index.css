@@ -1,59 +1,7 @@
 @import "tailwindcss";
 
 @layer base {
-  :root {
-    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    --font-display: 'Cabinet Grotesk', 'Plus Jakarta Sans', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-  }
-
-  html {
-    /* 1 step bigger base font size across all pages for enhanced readability */
-    font-size: 17px;
-  }
-
   body {
-    font-family: var(--font-sans);
-    color: #1e293b;
-    background-color: #ffffff;
-    -webkit-font-smoothing: antialiased;
-    font-size: 1rem;
-    line-height: 1.6;
+    @apply antialiased text-slate-800 bg-white;
   }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-    letter-spacing: -0.02em;
-  }
-}
-
-/* Ensure small fonts across all pages are bumped up 1 step for effortless readability */
-.text-xs {
-  font-size: 0.8125rem !important; /* ~13.8px instead of 12px */
-  line-height: 1.35rem !important;
-}
-
-.text-2xs,
-.text-\[10px\],
-.text-\[10\.5px\],
-.text-\[11px\] {
-  font-size: 0.75rem !important; /* ~12.8px instead of 10px-11px */
-  line-height: 1.2rem !important;
-}
-
-/* Engineering blueprint & subtle industrial accents */
-.bg-grid-pattern {
-  background-size: 32px 32px;
-  background-image: 
-    linear-gradient(to right, rgba(220, 38, 38, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(220, 38, 38, 0.04) 1px, transparent 1px);
-}
-
-.bg-dot-pattern {
-  background-size: 24px 24px;
-  background-image: radial-gradient(circle, rgba(100, 116, 139, 0.15) 1px, transparent 1px);
-}
-
-.border-technical {
-  border-color: rgba(226, 232, 240, 0.8);
 }

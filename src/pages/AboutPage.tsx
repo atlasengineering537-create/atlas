@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from '../context/RouterContext';
 import { Breadcrumbs } from '../components/Breadcrumbs';
+import { Link } from '../components/Link';
 import { COMPANY_INFO, PRODUCT_CATEGORIES } from '../data/products';
 import { AtlasLogo } from '../components/AtlasLogo';
 import { GoogleReviews } from '../components/GoogleReviews';
@@ -22,7 +23,18 @@ import {
 } from 'lucide-react';
 
 export const AboutPage: React.FC = () => {
-  const { navigate, openQuoteModal } = useRouter();
+  const { openQuoteModal } = useRouter();
+
+  useEffect(() => {
+    document.title = 'About Us | Atlas Engineering - Ahmedabad, Gujarat';
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = 'https://www.atlasbitumenplant.com/about';
+  }, []);
 
   const whyChooseIcons = [Shield, Cog, Wrench, Globe2, Headphones];
 
@@ -314,12 +326,12 @@ export const AboutPage: React.FC = () => {
             >
               Request a Quote
             </button>
-            <button
-              onClick={() => navigate('/contact')}
-              className="px-6 py-3 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-bold text-xs sm:text-sm rounded-lg transition-all"
+            <Link
+              to="/contact"
+              className="px-6 py-3 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-bold text-xs sm:text-sm rounded-lg transition-all inline-block"
             >
               Contact Us
-            </button>
+            </Link>
           </div>
         </div>
       </section>

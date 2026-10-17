@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { ALL_PRODUCTS, PRODUCT_CATEGORIES } from '../data/products';
 
 export type PageRoute = 
   | { type: 'home' }
   | { type: 'about' }
   | { type: 'products' }
   | { type: 'category'; categorySlug: string }
-  | { type: 'product'; categorySlug: string; productSlug: string }
+  | { type: 'product'; productSlug: string; categorySlug?: string }
   | { type: 'contact' };
 
 interface RouterContextType {
@@ -36,10 +37,27 @@ function parsePath(pathname: string): PageRoute {
   }
 
   const parts = cleanPath.split('/').filter(Boolean);
+
+  // Support /categories/:categorySlug
+  if (parts[0] === 'categories' && parts[1]) {
+    return { type: 'category', categorySlug: parts[1] };
+  }
+
   if (parts[0] === 'products') {
+    // /products/:slug (clean SEO URL for products, or category if matching category slug)
     if (parts.length === 2) {
-      return { type: 'category', categorySlug: parts[1] };
+      const slug = parts[1];
+      const categoryMatch = PRODUCT_CATEGORIES.find((c) => c.slug === slug);
+      if (categoryMatch) {
+        return { type: 'category', categorySlug: slug };
+      }
+      const productMatch = ALL_PRODUCTS.find((p) => p.slug === slug);
+      if (productMatch) {
+        return { type: 'product', productSlug: slug, categorySlug: productMatch.categoryId };
+      }
+      return { type: 'product', productSlug: slug };
     }
+    // Backward compatibility for /products/:categorySlug/:productSlug
     if (parts.length >= 3) {
       return { type: 'product', categorySlug: parts[1], productSlug: parts[2] };
     }

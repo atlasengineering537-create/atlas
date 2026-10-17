@@ -4,6 +4,7 @@ import { TrustStrip } from '../components/TrustStrip';
 import { CategoryCard } from '../components/CategoryCard';
 import { ProductCard } from '../components/ProductCard';
 import { GoogleReviews } from '../components/GoogleReviews';
+import { Link } from '../components/Link';
 import { PRODUCT_CATEGORIES, ALL_PRODUCTS, COMPANY_INFO } from '../data/products';
 import aboutAtlasImg from '../assets/images/about_atlas_plant_drive.jpg';
 import heroBanner1 from '../assets/images/hero_bitumen_modify_drive.png';
@@ -45,7 +46,7 @@ export const HomePage: React.FC = () => {
       badge: 'Flagship Equipment',
       title: 'Bitumen Modify Equipment',
       description: 'High-Performance Bitumen Emulsion Plants, PMB/CRMB Units, Decanters, and Thermal Heating Systems.',
-      categoryLink: '/products/bitumen-modify-equipment',
+      categoryLink: '/categories/bitumen-modify-equipment',
       buttonText: 'Explore Bitumen Modify Equipment',
     },
     {
@@ -54,7 +55,7 @@ export const HomePage: React.FC = () => {
       badge: 'Road Infrastructure',
       title: 'Road Construction Equipment',
       description: 'Asphalt Drum Mix Plants, Wet Mix Macadam (WMM) Systems, Paver Finishers & Bitumen Sprayers.',
-      categoryLink: '/products/road-construction-equipment',
+      categoryLink: '/categories/road-construction-equipment',
       buttonText: 'Explore Road Construction Equipment',
     },
     {
@@ -63,7 +64,7 @@ export const HomePage: React.FC = () => {
       badge: 'Concrete Infrastructure',
       title: 'Cement Concrete Batching Plant',
       description: 'Heavy-Duty Cement Concrete Batching Plants and Mixing Solutions for Major Highway & Civil Projects.',
-      categoryLink: '/products/cement-concrete-equipment/cement-concrete-batching-plant',
+      categoryLink: '/products/cement-concrete-batching-plant',
       buttonText: 'Explore Cement Concrete Batching Plant',
     },
   ];
@@ -86,7 +87,7 @@ export const HomePage: React.FC = () => {
     company: '',
     phone: '',
     email: '',
-    product: 'Bitumen Modify Equipment',
+    product: '',
     message: '',
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -145,13 +146,13 @@ export const HomePage: React.FC = () => {
                       </h1>
 
                       <div className="pt-1 sm:pt-2 flex flex-wrap items-center gap-3">
-                        <button
-                          onClick={() => navigate(slide.categoryLink)}
-                          className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg bg-[#DE1F27] hover:bg-[#B91C1C] text-white font-bold text-xs sm:text-sm shadow transition-all cursor-pointer"
+                        <Link
+                          to={slide.categoryLink}
+                          className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg bg-[#DE1F27] hover:bg-[#B91C1C] text-white font-bold text-xs sm:text-sm shadow transition-all"
                         >
                           <span>{slide.buttonText}</span>
                           <ArrowRight className="w-4 h-4" />
-                        </button>
+                        </Link>
                         <button
                           onClick={() => openQuoteModal(slide.title)}
                           className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg bg-white/95 hover:bg-white text-slate-900 font-bold text-xs sm:text-sm shadow backdrop-blur-xs transition-all cursor-pointer"
@@ -279,13 +280,13 @@ export const HomePage: React.FC = () => {
               </p>
 
               <div className="pt-2 flex flex-wrap items-center gap-4">
-                <button
-                  onClick={() => navigate('/about')}
-                  className="inline-flex items-center gap-2 text-sm font-bold text-red-600 hover:text-red-700 group cursor-pointer"
+                <Link
+                  to="/about"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-red-600 hover:text-red-700 group"
                 >
                   <span>Read More About Our Heritage</span>
                   <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-                </button>
+                </Link>
 
                 <div className="flex items-center gap-2.5">
                   <div className="flex items-center justify-center p-2 rounded-xl bg-white border border-slate-200 shadow-2xs hover:border-slate-300 transition-colors" title="Make In India">
@@ -395,12 +396,12 @@ export const HomePage: React.FC = () => {
                 Explore our three dedicated machinery categories covering bitumen modification, road construction, and concrete engineering.
               </p>
             </div>
-            <button
-              onClick={() => navigate('/products')}
+            <Link
+              to="/products"
               className="text-xs font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-1 py-1"
             >
               View Full Machinery Portfolio <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -430,12 +431,12 @@ export const HomePage: React.FC = () => {
                 High-efficiency equipment ready for customization and project-specific commissioning.
               </p>
             </div>
-            <button
-              onClick={() => navigate('/products')}
+            <Link
+              to="/products"
               className="text-xs font-bold text-slate-800 hover:text-red-600 inline-flex items-center gap-1"
             >
               Browse All Equipment <ChevronRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -497,13 +498,13 @@ export const HomePage: React.FC = () => {
               </div>
 
               <div className="pt-3 flex flex-wrap items-center gap-4">
-                <button
-                  onClick={() => navigate('/products/bitumen-modify-equipment')}
-                  className="px-6 py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm sm:text-base font-bold rounded-lg shadow-md transition-all flex items-center gap-2 cursor-pointer"
+                <Link
+                  to="/categories/bitumen-modify-equipment"
+                  className="px-6 py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm sm:text-base font-bold rounded-lg shadow-md transition-all flex items-center gap-2"
                 >
                   <span>Explore Bitumen Equipment</span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </Link>
                 <button
                   onClick={() => openQuoteModal('Bitumen Modification Plant')}
                   className="px-5 py-3 bg-white/10 hover:bg-white/20 text-white text-sm sm:text-base font-bold rounded-lg border border-white/20 transition-colors cursor-pointer"
@@ -549,12 +550,12 @@ export const HomePage: React.FC = () => {
                   </div>
                 </div>
 
-                <button
-                  onClick={() => navigate('/products/bitumen-modify-equipment')}
-                  className="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-lg transition-colors"
+                <Link
+                  to="/categories/bitumen-modify-equipment"
+                  className="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-lg transition-colors block text-center"
                 >
                   View All 9 Bitumen Equipment Models
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -735,17 +736,28 @@ export const HomePage: React.FC = () => {
 
                     <div>
                       <label className="block text-sm font-bold text-slate-700 mb-1.5">
-                        Equipment / Category Needed
+                        Equipment / Machinery Needed *
                       </label>
                       <select
+                        required
                         value={leadForm.product}
                         onChange={(e) => setLeadForm({ ...leadForm, product: e.target.value })}
-                        className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none bg-white"
+                        className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-600 outline-none bg-white font-medium text-slate-800"
                       >
-                        <option value="Bitumen Modify Equipment">Bitumen Modify Equipment (10 Models)</option>
-                        <option value="Road Construction Equipment">Road Construction Equipment (6 Models)</option>
-                        <option value="Cement & Concrete Equipment">Cement & Concrete Equipment (2 Models)</option>
-                        <option value="General Machinery Consultation">General Machinery Consultation</option>
+                        <option value="">-- Select Machinery / Product --</option>
+                        {PRODUCT_CATEGORIES.map((cat) => (
+                          <optgroup key={cat.id} label={`── ${cat.name.toUpperCase()} ──`}>
+                            {ALL_PRODUCTS.filter((p) => p.categoryId === cat.id).map((p) => (
+                              <option key={p.id} value={p.name}>
+                                {p.name}
+                              </option>
+                            ))}
+                          </optgroup>
+                        ))}
+                        <optgroup label="── OTHER CONSULTATION ──">
+                          <option value="General Machinery Consultation">General Machinery Consultation</option>
+                          <option value="Complete Road Project Package">Complete Road Project Package</option>
+                        </optgroup>
                       </select>
                     </div>
 

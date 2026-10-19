@@ -3217,6 +3217,7 @@ export const COMPANY_INFO = {
     '+91 98240 99433',
   ],
   emails: [
+    'contact@atlasbitumenplant.com',
     'atlasengineering@ymail.com',
   ],
   whyChooseUs: [

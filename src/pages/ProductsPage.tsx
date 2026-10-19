@@ -54,73 +54,82 @@ export const ProductsPage: React.FC = () => {
       </section>
 
       {/* Filter and Search Bar */}
-      <section className="sticky top-16 z-20 bg-white border-b border-slate-200 shadow-2xs py-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            {/* Category Filter Pills */}
-            <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
+      <div className="border-b border-slate-200 bg-white sticky top-[69px] z-20 shadow-2xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+            {/* Category Tabs */}
+            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
               <button
                 onClick={() => setSelectedCategory('all')}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap cursor-pointer ${
                   selectedCategory === 'all'
-                    ? 'bg-slate-900 text-white shadow-xs'
-                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                    ? 'bg-slate-900 text-white'
+                    : 'bg-slate-100 text-slate-600 hover:text-slate-900'
                 }`}
               >
                 All Machinery ({ALL_PRODUCTS.length})
               </button>
-              {PRODUCT_CATEGORIES.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer ${
-                    selectedCategory === cat.id
-                      ? 'bg-red-600 text-white shadow-xs'
-                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                  }`}
-                >
-                  {cat.shortName}
-                </button>
-              ))}
+              {PRODUCT_CATEGORIES.map((cat) => {
+                const count = ALL_PRODUCTS.filter((p) => p.categoryId === cat.id).length;
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setSelectedCategory(cat.id)}
+                    className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap cursor-pointer ${
+                      selectedCategory === cat.id
+                        ? 'bg-[#DE1F27] text-white shadow-xs'
+                        : 'bg-slate-100 text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    <span>{cat.name}</span>
+                    <span className="ml-1.5 opacity-70">({count})</span>
+                  </button>
+                );
+              })}
             </div>
 
             {/* Search Input */}
-            <div className="relative w-full md:w-72 shrink-0">
-              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <div className="relative min-w-[240px]">
+              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search equipment or code..."
-                className="w-full pl-9 pr-4 py-2 text-xs border border-slate-300 rounded-xl focus:ring-2 focus:ring-red-600 outline-none"
+                placeholder="Search machinery or code..."
+                className="w-full pl-9 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
               />
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Products Grid */}
+      {/* Product Grid */}
       <section className="py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-6 flex items-center justify-between text-xs text-slate-500">
+            <span>
+              Showing <strong className="text-slate-900">{filteredProducts.length}</strong> of{' '}
+              {ALL_PRODUCTS.length} machines
+            </span>
+          </div>
+
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProducts.map((prod) => (
-                <ProductCard key={prod.id} product={prod} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filteredProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
               ))}
             </div>
           ) : (
-            <div className="py-20 text-center space-y-3">
-              <SlidersHorizontal className="w-12 h-12 text-slate-300 mx-auto" />
-              <h3 className="text-lg font-bold text-slate-800">No machinery matching your filter</h3>
-              <p className="text-sm text-slate-500">Try adjusting your search terms or selecting 'All Machinery'.</p>
+            <div className="text-center py-16 bg-slate-50 rounded-2xl border border-slate-200">
+              <p className="text-slate-600 font-medium">No machinery found matching your query.</p>
               <button
                 onClick={() => {
                   setSelectedCategory('all');
                   setSearchQuery('');
                 }}
-                className="mt-2 text-xs font-bold text-red-600 hover:underline"
+                className="mt-3 text-xs font-bold text-red-600 hover:underline cursor-pointer"
               >
-                Reset Filters
+                Clear all filters
               </button>
             </div>
           )}

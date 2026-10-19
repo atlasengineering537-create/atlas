@@ -202,7 +202,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               name: `What is the delivery time and customization for ${product.name}?`,
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: `Atlas Engineering provides customized configurations, capacities, and automation controls for ${product.name}. Delivery and commissioning timelines depend on specific project requirements and site logistics. Contact Sunil L. Mistry at +91 98250 73095 or atlasengineering@ymail.com.`,
+                text: `Atlas Engineering provides customized configurations, capacities, and automation controls for ${product.name}. Delivery and commissioning timelines depend on specific project requirements and site logistics. Contact Sunil L. Mistry at +91 98250 73095 or contact@atlasbitumenplant.com.`,
               },
             },
             {
@@ -240,10 +240,35 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
   const [inquiryCompany, setInquiryCompany] = useState('');
   const [inquiryMsg, setInquiryMsg] = useState('');
   const [inquirySubmitted, setInquirySubmitted] = useState(false);
+  const [isInquirySubmitting, setIsInquirySubmitting] = useState(false);
 
-  const handleInquirySubmit = (e: React.FormEvent) => {
+  const handleInquirySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setInquirySubmitted(true);
+    setIsInquirySubmitting(true);
+    try {
+      await fetch('https://formsubmit.co/ajax/contact@atlasbitumenplant.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: inquiryName,
+          phone: inquiryPhone,
+          email: inquiryEmail,
+          company: inquiryCompany,
+          equipment: product.name,
+          modelCode: product.code,
+          message: inquiryMsg,
+          _subject: `Product Inquiry: ${product.name} - ${inquiryName}`,
+        }),
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsInquirySubmitting(false);
+      setInquirySubmitted(true);
+    }
   };
 
   return (

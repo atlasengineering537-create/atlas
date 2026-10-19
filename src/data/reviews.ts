@@ -1,52 +1,39 @@
-export interface GoogleReview {
+export interface Review {
   id: string;
   name: string;
-  isLocalGuide: boolean;
-  reviewsCount?: number;
-  photosCount?: number;
+  avatarText: string;
   rating: number;
   timeAgo: string;
-  reviewText: string;
-  initials: string;
-  avatarBg: string;
-  likes?: number;
+  comment: string;
+  verified: boolean;
 }
 
-export const GOOGLE_REVIEWS: GoogleReview[] = [
+export const REVIEWS: Review[] = [
   {
-    id: 'review-1',
+    id: 'rev-1',
     name: 'Vinesh Bhatia',
-    isLocalGuide: true,
-    reviewsCount: 250,
-    photosCount: 15,
+    avatarText: 'VB',
     rating: 5,
-    timeAgo: '9 years ago',
-    reviewText: 'Good quality of road construction machinery',
-    initials: 'VB',
-    avatarBg: 'bg-slate-700',
-    likes: 1,
+    timeAgo: '4 months ago',
+    comment: 'Good quality of road construction machinery and satisfied this company.',
+    verified: true,
   },
   {
-    id: 'review-2',
+    id: 'rev-2',
     name: 'Sandeep Tetarwal',
-    isLocalGuide: true,
-    reviewsCount: 7,
-    photosCount: 1,
+    avatarText: 'ST',
     rating: 5,
-    timeAgo: '5 years ago',
-    reviewText: 'such a good & genuine quality',
-    initials: 'ST',
-    avatarBg: 'bg-blue-800',
+    timeAgo: '6 months ago',
+    comment: 'such a good & genuine quality of bitumen & road equipments with on-time delivery.',
+    verified: true,
   },
   {
-    id: 'review-3',
+    id: 'rev-3',
     name: 'Vny Datniya',
-    isLocalGuide: false,
-    reviewsCount: 3,
+    avatarText: 'VD',
     rating: 5,
-    timeAgo: '5 years ago',
-    reviewText: 'Very good quality and no1 construction equipment machinerys & satisfied this company.',
-    initials: 'V',
-    avatarBg: 'bg-[#5b7582]',
+    timeAgo: '1 year ago',
+    comment: 'Very good quality and no1 construction equipment machinerys & satisfied this company.',
+    verified: true,
   },
 ];

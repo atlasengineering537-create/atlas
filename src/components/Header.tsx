@@ -147,11 +147,11 @@ export const Header: React.FC = () => {
                 <Mail className="w-3.5 h-3.5 text-red-500 shrink-0" />
                 <span className="text-zinc-400 text-xs hidden sm:inline">Email:</span>
                 <a
-                  href="mailto:atlasengineering@ymail.com"
+                  href="mailto:contact@atlasbitumenplant.com"
                   className="font-medium text-slate-100 hover:text-red-400 transition-colors"
                   title="Official Email"
                 >
-                  atlasengineering@ymail.com
+                  contact@atlasbitumenplant.com
                 </a>
               </div>
             </div>
@@ -502,8 +502,11 @@ export const Header: React.FC = () => {
                   <a href="tel:+919825073095" className="flex items-center gap-2 text-slate-800 font-semibold hover:text-red-600">
                     <Phone className="w-3.5 h-3.5 text-red-600" /> +91 98250 73095 / +91 91736 72311
                   </a>
-                  <a href="mailto:atlasengineering@ymail.com" className="flex items-center gap-2 text-slate-800 font-semibold hover:text-red-600">
-                    <Mail className="w-3.5 h-3.5 text-red-600" /> atlasengineering@ymail.com
+                  <a href="mailto:contact@atlasbitumenplant.com" className="flex items-center gap-2 text-slate-800 font-semibold hover:text-red-600 text-xs sm:text-sm">
+                    <Mail className="w-3.5 h-3.5 text-red-600" /> contact@atlasbitumenplant.com
+                  </a>
+                  <a href="mailto:atlasengineering@ymail.com" className="flex items-center gap-2 text-slate-600 text-xs hover:text-red-600">
+                    <Mail className="w-3.5 h-3.5 text-slate-400" /> atlasengineering@ymail.com
                   </a>
                 </div>
               </div>

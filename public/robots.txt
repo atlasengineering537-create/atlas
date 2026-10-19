@@ -1,0 +1,40 @@
+# robots.txt for Atlas Engineering (https://www.atlasbitumenplant.com)
+# Established 1997 | Ahmedabad, Gujarat, India
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# AI, LLM & Answer Engine Crawlers (AEO / GEO Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Cohere-ai
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# Canonical XML Sitemap & LLMs Manifest
+Sitemap: https://www.atlasbitumenplant.com/sitemap.xml

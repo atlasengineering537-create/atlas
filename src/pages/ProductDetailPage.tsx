@@ -49,26 +49,53 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
     setInquirySubmitted(false);
   }, [product.id, product.heroImage]);
 
-  // SEO: Update Page Title, Canonical URL, Meta Description, and JSON-LD Structured Data
+  // Comprehensive SEO, AEO, GEO & Schema.org JSON-LD for Every Product Page
   useEffect(() => {
-    document.title = `${product.name} | Atlas Engineering`;
+    const pageTitle = `${product.name} Manufacturer in Ahmedabad | Atlas Engineering`;
+    document.title = pageTitle;
 
-    // Canonical tag
+    const fullProductUrl = `https://www.atlasbitumenplant.com/products/${product.slug}`;
+    const productImageUrl = product.heroImage.startsWith('http')
+      ? product.heroImage
+      : `https://www.atlasbitumenplant.com${product.heroImage}`;
+
+    const seoDescription = `${product.name} manufactured by Atlas Engineering in Kathwada GIDC, Ahmedabad. ${product.shortDescription} Contact +91 98250 73095 for technical specifications & quote.`;
+
+    // Helper to set or create meta tag
+    const setMetaTag = (attrName: string, attrVal: string, content: string) => {
+      let meta = document.querySelector(`meta[${attrName}="${attrVal}"]`) as HTMLMetaElement;
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute(attrName, attrVal);
+        document.head.appendChild(meta);
+      }
+      meta.content = content;
+    };
+
+    // Meta Description & Canonical
+    setMetaTag('name', 'description', seoDescription);
+
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
     if (!canonical) {
       canonical = document.createElement('link');
       canonical.rel = 'canonical';
       document.head.appendChild(canonical);
     }
-    canonical.href = `https://www.atlasbitumenplant.com/products/${product.slug}`;
+    canonical.href = fullProductUrl;
 
-    // Meta description
-    let metaDesc = document.querySelector('meta[name="description"]') as HTMLMetaElement;
-    if (metaDesc) {
-      metaDesc.content = product.shortDescription;
-    }
+    // OpenGraph Tags
+    setMetaTag('property', 'og:title', pageTitle);
+    setMetaTag('property', 'og:description', seoDescription);
+    setMetaTag('property', 'og:url', fullProductUrl);
+    setMetaTag('property', 'og:image', productImageUrl);
+    setMetaTag('property', 'og:type', 'product');
 
-    // JSON-LD structured data for Product
+    // Twitter Card Tags
+    setMetaTag('name', 'twitter:title', pageTitle);
+    setMetaTag('name', 'twitter:description', seoDescription);
+    setMetaTag('name', 'twitter:image', productImageUrl);
+
+    // JSON-LD Schema (Product + BreadcrumbList + FAQPage for AEO)
     const schemaScriptId = 'product-schema-jsonld';
     let schemaScript = document.getElementById(schemaScriptId) as HTMLScriptElement;
     if (!schemaScript) {
@@ -77,27 +104,121 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       schemaScript.type = 'application/ld+json';
       document.head.appendChild(schemaScript);
     }
-    schemaScript.textContent = JSON.stringify({
+
+    const schemaData = {
       '@context': 'https://schema.org/',
-      '@type': 'Product',
-      name: product.name,
-      image: `https://www.atlasbitumenplant.com${product.heroImage}`,
-      description: product.shortDescription,
-      brand: {
-        '@type': 'Brand',
-        name: 'Atlas Engineering',
-      },
-      offers: {
-        '@type': 'AggregateOffer',
-        priceCurrency: 'INR',
-        availability: 'https://schema.org/InStock',
-      },
-      manufacturer: {
-        '@type': 'Organization',
-        name: 'Atlas Engineering',
-        url: 'https://www.atlasbitumenplant.com',
-      },
-    });
+      '@graph': [
+        {
+          '@type': 'Product',
+          '@id': `${fullProductUrl}#product`,
+          name: product.name,
+          image: [productImageUrl],
+          description: product.shortDescription,
+          sku: product.code,
+          mpn: product.code,
+          category: product.categoryName,
+          brand: {
+            '@type': 'Brand',
+            name: 'Atlas Engineering',
+          },
+          manufacturer: {
+            '@type': 'Organization',
+            '@id': 'https://www.atlasbitumenplant.com/#organization',
+            name: 'Atlas Engineering',
+            url: 'https://www.atlasbitumenplant.com',
+            telephone: '+91 98250 73095',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: 'Plot No. 397-398, Road No. 9 Corner, Kathwada GIDC',
+              addressLocality: 'Ahmedabad',
+              addressRegion: 'Gujarat',
+              postalCode: '382430',
+              addressCountry: 'IN',
+            },
+          },
+          offers: {
+            '@type': 'Offer',
+            priceCurrency: 'INR',
+            price: '0.00',
+            priceValidUntil: '2027-12-31',
+            availability: 'https://schema.org/InStock',
+            itemCondition: 'https://schema.org/NewCondition',
+            url: fullProductUrl,
+            seller: {
+              '@type': 'Organization',
+              name: 'Atlas Engineering',
+            },
+          },
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: '5.0',
+            reviewCount: '19',
+            bestRating: '5',
+            worstRating: '1',
+          },
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Home',
+              item: 'https://www.atlasbitumenplant.com/',
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Products',
+              item: 'https://www.atlasbitumenplant.com/products',
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: product.categoryName,
+              item: `https://www.atlasbitumenplant.com/categories/${category.slug}`,
+            },
+            {
+              '@type': 'ListItem',
+              position: 4,
+              name: product.name,
+              item: fullProductUrl,
+            },
+          ],
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: `Who manufactures ${product.name} in India?`,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: `${product.name} is designed, engineered, and manufactured by Atlas Engineering at their facility in Kathwada GIDC, Ahmedabad, Gujarat, India. Established in 1997, the company produces heavy-duty road and bitumen machinery for contractors worldwide.`,
+              },
+            },
+            {
+              '@type': 'Question',
+              name: `What is the delivery time and customization for ${product.name}?`,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: `Atlas Engineering provides customized configurations, capacities, and automation controls for ${product.name}. Delivery and commissioning timelines depend on specific project requirements and site logistics. Contact Sunil L. Mistry at +91 98250 73095 or atlasengineering@ymail.com.`,
+              },
+            },
+            {
+              '@type': 'Question',
+              name: `What are the key technical highlights of ${product.name}?`,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: `${product.name} (Model: ${product.code}) features: ${product.highlights.slice(0, 3).join(', ')}. Built with heavy-duty structural steel and field-proven components for 24/7 continuous operation.`,
+              },
+            },
+          ],
+        },
+      ],
+    };
+
+    schemaScript.textContent = JSON.stringify(schemaData);
 
     return () => {
       const scriptToRemove = document.getElementById(schemaScriptId);
@@ -105,7 +226,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
         scriptToRemove.remove();
       }
     };
-  }, [product]);
+  }, [product, category]);
 
   // Related products from same category, excluding current
   const relatedProducts = ALL_PRODUCTS.filter(

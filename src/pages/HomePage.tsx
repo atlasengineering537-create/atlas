@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from '../context/RouterContext';
 import { TrustStrip } from '../components/TrustStrip';
 import { CategoryCard } from '../components/CategoryCard';
@@ -36,6 +36,17 @@ import {
 
 export const HomePage: React.FC = () => {
   const { navigate, openQuoteModal } = useRouter();
+
+  useEffect(() => {
+    document.title = 'Atlas Engineering | Manufacturers of Road & Civil Construction Machinery';
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = 'https://www.atlasbitumenplant.com/';
+  }, []);
 
   // Hero Carousel State & Slides (3 category slides with full category names)
   const [currentSlide, setCurrentSlide] = useState(0);

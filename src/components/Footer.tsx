@@ -99,6 +99,14 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
+                <Link
+                  to="/sitemap"
+                  className="hover:text-red-600 transition-colors block font-medium text-slate-800"
+                >
+                  HTML Sitemap &amp; Index
+                </Link>
+              </li>
+              <li>
                 <button
                   onClick={() => openQuoteModal()}
                   className="hover:text-red-600 transition-colors font-medium text-red-700 cursor-pointer text-left"
@@ -172,6 +180,10 @@ export const Footer: React.FC = () => {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-2 text-xs sm:text-sm">
             <span>Contact Person: {COMPANY_INFO.contactPerson}</span>
+            <span className="hidden sm:inline">·</span>
+            <Link to="/sitemap" className="font-semibold text-slate-700 hover:text-red-600 transition-colors">
+              HTML Sitemap
+            </Link>
             <span className="hidden sm:inline">·</span>
             <span className="inline-flex items-center gap-1 text-slate-600">
               Website Designed &amp; Developed by{' '}

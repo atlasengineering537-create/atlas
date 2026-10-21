@@ -10,6 +10,7 @@ import { ProductsPage } from './pages/ProductsPage';
 import { CategoryPage } from './pages/CategoryPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { ContactPage } from './pages/ContactPage';
+import { SitemapPage } from './pages/SitemapPage';
 
 function AppContent() {
   const { route } = useRouter();
@@ -39,6 +40,8 @@ function AppContent() {
         );
       case 'contact':
         return <ContactPage />;
+      case 'sitemap':
+        return <SitemapPage />;
       default:
         return <HomePage />;
     }

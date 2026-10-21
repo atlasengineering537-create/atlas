@@ -7,7 +7,8 @@ export type PageRoute =
   | { type: 'products' }
   | { type: 'category'; categorySlug: string }
   | { type: 'product'; productSlug: string; categorySlug?: string }
-  | { type: 'contact' };
+  | { type: 'contact' }
+  | { type: 'sitemap' };
 
 interface RouterContextType {
   route: PageRoute;
@@ -34,6 +35,9 @@ function parsePath(pathname: string): PageRoute {
   }
   if (cleanPath === '/contact') {
     return { type: 'contact' };
+  }
+  if (cleanPath === '/sitemap' || cleanPath === '/sitemap.html') {
+    return { type: 'sitemap' };
   }
 
   const parts = cleanPath.split('/').filter(Boolean);

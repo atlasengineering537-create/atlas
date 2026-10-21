@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Breadcrumbs } from '../components/Breadcrumbs';
 import { Link } from '../components/Link';
-import { ALL_PRODUCTS, PRODUCT_CATEGORIES, COMPANY_INFO } from '../data/products';
+import { ALL_PRODUCTS, PRODUCT_CATEGORIES } from '../data/products';
 import {
   Globe,
   Layers,
@@ -13,12 +12,9 @@ import {
   ExternalLink,
   ChevronRight,
   ShieldCheck,
-  CheckCircle2,
-  Sparkles,
   ArrowRight,
   Database,
   Cpu,
-  Wrench,
   Factory,
 } from 'lucide-react';
 
@@ -79,16 +75,6 @@ export const SitemapPage: React.FC = () => {
     };
   }, []);
 
-  const bitumenCategory = PRODUCT_CATEGORIES.find(
-    (c) => c.slug === 'bitumen-modify-equipment'
-  );
-  const roadCategory = PRODUCT_CATEGORIES.find(
-    (c) => c.slug === 'road-construction-equipment'
-  );
-  const cementCategory = PRODUCT_CATEGORIES.find(
-    (c) => c.slug === 'cement-concrete-equipment'
-  );
-
   const bitumenProducts = ALL_PRODUCTS.filter(
     (p) => p.categoryId === 'bitumen-modify-equipment'
   );
@@ -130,7 +116,7 @@ export const SitemapPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Hero Section styled exactly like the screenshot */}
+      {/* Hero Section styled clean and prominent */}
       <section className="pt-14 pb-12 sm:pt-20 sm:pb-16 text-center relative overflow-hidden">
         {/* Subtle radial glow background */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-red-600/10 rounded-full blur-[140px] pointer-events-none" />
@@ -194,133 +180,112 @@ export const SitemapPage: React.FC = () => {
                   </h2>
                 </div>
 
-                {/* Links List */}
+                {/* Links List - Clean titles without path suffixes */}
                 <ul className="space-y-3.5 text-xs sm:text-sm">
-                  {filterMatches('Homepage /') && (
+                  {filterMatches('Homepage') && (
                     <li>
                       <Link
                         to="/"
-                        className="group flex items-baseline gap-2 text-slate-300 hover:text-red-400 transition-colors"
+                        className="group flex items-center gap-2 text-slate-300 hover:text-red-400 transition-colors py-0.5"
                       >
-                        <ChevronRight className="w-3.5 h-3.5 text-red-500 shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                        <ChevronRight className="w-4 h-4 text-red-500 shrink-0 group-hover:translate-x-0.5 transition-transform" />
                         <span className="font-semibold text-slate-100 group-hover:text-red-400">
                           Homepage
                         </span>
-                        <span className="text-slate-500 font-mono text-[11px] sm:text-xs">
-                          (/)
-                        </span>
                       </Link>
                     </li>
                   )}
 
-                  {filterMatches('About Atlas Engineering /about') && (
+                  {filterMatches('About Atlas Engineering') && (
                     <li>
                       <Link
                         to="/about"
-                        className="group flex items-baseline gap-2 text-slate-300 hover:text-red-400 transition-colors"
+                        className="group flex items-center gap-2 text-slate-300 hover:text-red-400 transition-colors py-0.5"
                       >
-                        <ChevronRight className="w-3.5 h-3.5 text-red-500 shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                        <ChevronRight className="w-4 h-4 text-red-500 shrink-0 group-hover:translate-x-0.5 transition-transform" />
                         <span className="font-semibold text-slate-100 group-hover:text-red-400">
                           About Atlas Engineering
                         </span>
-                        <span className="text-slate-500 font-mono text-[11px] sm:text-xs">
-                          (/about)
-                        </span>
                       </Link>
                     </li>
                   )}
 
-                  {filterMatches('Machinery & Equipment Portfolio /products') && (
+                  {filterMatches('Machinery & Equipment Portfolio') && (
                     <li>
                       <Link
                         to="/products"
-                        className="group flex items-baseline gap-2 text-slate-300 hover:text-red-400 transition-colors"
+                        className="group flex items-center gap-2 text-slate-300 hover:text-red-400 transition-colors py-0.5"
                       >
-                        <ChevronRight className="w-3.5 h-3.5 text-red-500 shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                        <ChevronRight className="w-4 h-4 text-red-500 shrink-0 group-hover:translate-x-0.5 transition-transform" />
                         <span className="font-semibold text-slate-100 group-hover:text-red-400">
                           Machinery &amp; Equipment Portfolio
-                        </span>
-                        <span className="text-slate-500 font-mono text-[11px] sm:text-xs">
-                          (/products)
                         </span>
                       </Link>
                     </li>
                   )}
 
-                  {filterMatches('Contact Us & Factory Works /contact') && (
+                  {filterMatches('Contact Us & Factory Works') && (
                     <li>
                       <Link
                         to="/contact"
-                        className="group flex items-baseline gap-2 text-slate-300 hover:text-red-400 transition-colors"
+                        className="group flex items-center gap-2 text-slate-300 hover:text-red-400 transition-colors py-0.5"
                       >
-                        <ChevronRight className="w-3.5 h-3.5 text-red-500 shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                        <ChevronRight className="w-4 h-4 text-red-500 shrink-0 group-hover:translate-x-0.5 transition-transform" />
                         <span className="font-semibold text-slate-100 group-hover:text-red-400">
                           Contact Us &amp; Factory Works
-                        </span>
-                        <span className="text-slate-500 font-mono text-[11px] sm:text-xs">
-                          (/contact)
                         </span>
                       </Link>
                     </li>
                   )}
 
                   {/* Sub-items: Direct Technical Crawl Manifests */}
-                  <li className="pt-2 border-t border-slate-800/60 space-y-2.5">
-                    <span className="text-[10px] font-bold tracking-wider text-slate-500 uppercase block">
+                  <li className="pt-3 mt-1 border-t border-slate-800/60 space-y-2">
+                    <span className="text-[10px] font-bold tracking-wider text-slate-500 uppercase block mb-1">
                       Search Engines &amp; AI Crawl Manifests
                     </span>
 
-                    {filterMatches('XML Sitemap /sitemap.xml') && (
+                    {filterMatches('XML Sitemap') && (
                       <a
                         href="/sitemap.xml"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-center justify-between p-2 rounded-lg bg-slate-900/60 hover:bg-slate-900 border border-slate-800/80 text-xs text-slate-300 hover:text-white transition-colors"
+                        className="group flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-900 border border-slate-800/80 text-xs text-slate-300 hover:text-white transition-colors"
                       >
-                        <span className="flex items-center gap-2">
-                          <FileCode className="w-3.5 h-3.5 text-red-400" />
-                          <span className="font-medium">XML Sitemap</span>
-                          <span className="text-slate-500 font-mono text-[11px]">
-                            (/sitemap.xml)
-                          </span>
+                        <span className="flex items-center gap-2.5">
+                          <FileCode className="w-4 h-4 text-red-400" />
+                          <span className="font-medium">XML Sitemap (Google Search Console)</span>
                         </span>
-                        <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-red-400" />
+                        <ExternalLink className="w-3.5 h-3.5 text-slate-500 group-hover:text-red-400" />
                       </a>
                     )}
 
-                    {filterMatches('AI / LLM Context File /llms.txt') && (
+                    {filterMatches('AI LLM Context File') && (
                       <a
                         href="/llms.txt"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-center justify-between p-2 rounded-lg bg-slate-900/60 hover:bg-slate-900 border border-slate-800/80 text-xs text-slate-300 hover:text-white transition-colors"
+                        className="group flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-900 border border-slate-800/80 text-xs text-slate-300 hover:text-white transition-colors"
                       >
-                        <span className="flex items-center gap-2">
-                          <Cpu className="w-3.5 h-3.5 text-amber-400" />
-                          <span className="font-medium">AI / LLM Context File</span>
-                          <span className="text-slate-500 font-mono text-[11px]">
-                            (/llms.txt)
-                          </span>
+                        <span className="flex items-center gap-2.5">
+                          <Cpu className="w-4 h-4 text-amber-400" />
+                          <span className="font-medium">AI &amp; LLM Context Knowledge File</span>
                         </span>
-                        <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-amber-400" />
+                        <ExternalLink className="w-3.5 h-3.5 text-slate-500 group-hover:text-amber-400" />
                       </a>
                     )}
 
-                    {filterMatches('Search Engine Directives /robots.txt') && (
+                    {filterMatches('Crawler Directives robots') && (
                       <a
                         href="/robots.txt"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-center justify-between p-2 rounded-lg bg-slate-900/60 hover:bg-slate-900 border border-slate-800/80 text-xs text-slate-300 hover:text-white transition-colors"
+                        className="group flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-900 border border-slate-800/80 text-xs text-slate-300 hover:text-white transition-colors"
                       >
-                        <span className="flex items-center gap-2">
-                          <FileText className="w-3.5 h-3.5 text-cyan-400" />
-                          <span className="font-medium">Crawler Directives</span>
-                          <span className="text-slate-500 font-mono text-[11px]">
-                            (/robots.txt)
-                          </span>
+                        <span className="flex items-center gap-2.5">
+                          <FileText className="w-4 h-4 text-cyan-400" />
+                          <span className="font-medium">Search Crawler Directives</span>
                         </span>
-                        <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-cyan-400" />
+                        <ExternalLink className="w-3.5 h-3.5 text-slate-500 group-hover:text-cyan-400" />
                       </a>
                     )}
                   </li>
@@ -355,39 +320,33 @@ export const SitemapPage: React.FC = () => {
                   </span>
                 </div>
 
-                {/* Category Overview Link */}
+                {/* Category Overview Link - Clean */}
                 <div className="mb-4">
                   <Link
                     to="/categories/bitumen-modify-equipment"
-                    className="group inline-flex items-baseline gap-2 text-xs sm:text-sm font-bold text-red-400 hover:text-red-300 transition-colors"
+                    className="group inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-red-400 hover:text-red-300 transition-colors"
                   >
-                    <ChevronRight className="w-3.5 h-3.5 text-red-500 shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                    <ChevronRight className="w-4 h-4 text-red-500 shrink-0 group-hover:translate-x-0.5 transition-transform" />
                     <span>Overview: Bitumen Modify Equipment</span>
-                    <span className="text-slate-500 font-mono text-[11px] font-normal">
-                      (/categories/bitumen-modify-equipment)
-                    </span>
                   </Link>
                 </div>
 
-                {/* Sub-items (Indented) */}
+                {/* Sub-items (Indented) - Clean product names */}
                 <div className="pl-3 sm:pl-4 border-l border-slate-800/90 space-y-2.5">
                   {bitumenProducts.map((p) => {
-                    const match = filterMatches(`${p.name} ${p.code} ${p.slug}`);
+                    const match = filterMatches(`${p.name} ${p.code}`);
                     if (!match) return null;
                     return (
                       <div key={p.id}>
                         <Link
                           to={`/products/${p.slug}`}
-                          className="group flex items-baseline gap-2 text-xs text-slate-300 hover:text-white transition-colors"
+                          className="group flex items-center gap-2 text-xs text-slate-300 hover:text-white transition-colors py-0.5"
                         >
-                          <span className="text-slate-600 group-hover:text-red-500 select-none">
+                          <span className="text-slate-600 group-hover:text-red-500 select-none text-sm leading-none">
                             ›
                           </span>
                           <span className="font-medium text-slate-200 group-hover:text-red-400">
                             {p.name}
-                          </span>
-                          <span className="text-slate-500 font-mono text-[10px] hidden sm:inline">
-                            (/products/{p.slug})
                           </span>
                         </Link>
                       </div>
@@ -426,39 +385,33 @@ export const SitemapPage: React.FC = () => {
                   </span>
                 </div>
 
-                {/* Category Overview Link */}
+                {/* Category Overview Link - Clean */}
                 <div className="mb-4">
                   <Link
                     to="/categories/road-construction-equipment"
-                    className="group inline-flex items-baseline gap-2 text-xs sm:text-sm font-bold text-red-400 hover:text-red-300 transition-colors"
+                    className="group inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-red-400 hover:text-red-300 transition-colors"
                   >
-                    <ChevronRight className="w-3.5 h-3.5 text-red-500 shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                    <ChevronRight className="w-4 h-4 text-red-500 shrink-0 group-hover:translate-x-0.5 transition-transform" />
                     <span>Overview: Road Construction Equipment</span>
-                    <span className="text-slate-500 font-mono text-[11px] font-normal">
-                      (/categories/road-construction-equipment)
-                    </span>
                   </Link>
                 </div>
 
-                {/* Sub-items (Indented) */}
+                {/* Sub-items (Indented) - Clean product names */}
                 <div className="pl-3 sm:pl-4 border-l border-slate-800/90 space-y-2.5">
                   {roadProducts.map((p) => {
-                    const match = filterMatches(`${p.name} ${p.code} ${p.slug}`);
+                    const match = filterMatches(`${p.name} ${p.code}`);
                     if (!match) return null;
                     return (
                       <div key={p.id}>
                         <Link
                           to={`/products/${p.slug}`}
-                          className="group flex items-baseline gap-2 text-xs text-slate-300 hover:text-white transition-colors"
+                          className="group flex items-center gap-2 text-xs text-slate-300 hover:text-white transition-colors py-0.5"
                         >
-                          <span className="text-slate-600 group-hover:text-red-500 select-none">
+                          <span className="text-slate-600 group-hover:text-red-500 select-none text-sm leading-none">
                             ›
                           </span>
                           <span className="font-medium text-slate-200 group-hover:text-red-400">
                             {p.name}
-                          </span>
-                          <span className="text-slate-500 font-mono text-[10px] hidden sm:inline">
-                            (/products/{p.slug})
                           </span>
                         </Link>
                       </div>
@@ -497,39 +450,33 @@ export const SitemapPage: React.FC = () => {
                   </span>
                 </div>
 
-                {/* Category Overview Link */}
+                {/* Category Overview Link - Clean */}
                 <div className="mb-4">
                   <Link
                     to="/categories/cement-concrete-equipment"
-                    className="group inline-flex items-baseline gap-2 text-xs sm:text-sm font-bold text-red-400 hover:text-red-300 transition-colors"
+                    className="group inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-red-400 hover:text-red-300 transition-colors"
                   >
-                    <ChevronRight className="w-3.5 h-3.5 text-red-500 shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                    <ChevronRight className="w-4 h-4 text-red-500 shrink-0 group-hover:translate-x-0.5 transition-transform" />
                     <span>Overview: Cement Concrete Equipment</span>
-                    <span className="text-slate-500 font-mono text-[11px] font-normal">
-                      (/categories/cement-concrete-equipment)
-                    </span>
                   </Link>
                 </div>
 
-                {/* Sub-items (Indented) */}
+                {/* Sub-items (Indented) - Clean product names */}
                 <div className="pl-3 sm:pl-4 border-l border-slate-800/90 space-y-2.5">
                   {cementProducts.map((p) => {
-                    const match = filterMatches(`${p.name} ${p.code} ${p.slug}`);
+                    const match = filterMatches(`${p.name} ${p.code}`);
                     if (!match) return null;
                     return (
                       <div key={p.id}>
                         <Link
                           to={`/products/${p.slug}`}
-                          className="group flex items-baseline gap-2 text-xs text-slate-300 hover:text-white transition-colors"
+                          className="group flex items-center gap-2 text-xs text-slate-300 hover:text-white transition-colors py-0.5"
                         >
-                          <span className="text-slate-600 group-hover:text-red-500 select-none">
+                          <span className="text-slate-600 group-hover:text-red-500 select-none text-sm leading-none">
                             ›
                           </span>
                           <span className="font-medium text-slate-200 group-hover:text-red-400">
                             {p.name}
-                          </span>
-                          <span className="text-slate-500 font-mono text-[10px] hidden sm:inline">
-                            (/products/{p.slug})
                           </span>
                         </Link>
                       </div>

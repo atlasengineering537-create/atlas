@@ -102,10 +102,41 @@ export const HomePage: React.FC = () => {
     message: '',
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmittingLead, setIsSubmittingLead] = useState(false);
 
-  const handleLeadSubmit = (e: React.FormEvent) => {
+  const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
+    setIsSubmittingLead(true);
+    try {
+      await fetch('https://formsubmit.co/ajax/contact@atlasbitumenplant.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: leadForm.name,
+          company: leadForm.company,
+          phone: leadForm.phone,
+          email: leadForm.email,
+          equipment: leadForm.product || 'Machinery Enquiry',
+          message: leadForm.message || 'Homepage Lead Form Inquiry',
+          _subject: `New Homepage Lead: ${leadForm.product || 'Machinery'} - ${leadForm.name} (${leadForm.company})`,
+        }),
+      });
+    } catch (err) {
+      console.error('Lead submission error:', err);
+    } finally {
+      setIsSubmittingLead(false);
+      setFormSubmitted(true);
+    }
+  };
+
+  const handleWhatsAppLead = () => {
+    const text = encodeURIComponent(
+      `Hello Atlas Engineering, I submitted an enquiry on your homepage:\nName: ${leadForm.name || 'Not provided'}\nCompany: ${leadForm.company || 'Not provided'}\nPhone: ${leadForm.phone || 'Not provided'}\nProduct: ${leadForm.product || 'Machinery'}\nMessage: ${leadForm.message || 'Please send technical quotation.'}`
+    );
+    window.open(`https://wa.me/919825073095?text=${text}`, '_blank');
   };
 
   const whyChooseIcons = [Shield, Cog, Wrench, Globe, Headphones];
@@ -676,14 +707,31 @@ export const HomePage: React.FC = () => {
 
               <div className="lg:col-span-7 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs">
                 {formSubmitted ? (
-                  <div className="py-10 text-center space-y-3">
-                    <div className="w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto">
-                      <CheckCircle2 className="w-6 h-6" />
+                  <div className="py-10 text-center space-y-4">
+                    <div className="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-xs">
+                      <CheckCircle2 className="w-8 h-8" />
                     </div>
-                    <h3 className="text-xl font-bold text-slate-900">Enquiry Received</h3>
-                    <p className="text-sm text-slate-600 max-w-sm mx-auto">
-                      Thank you. We will contact you with equipment specifications and pricing shortly.
+                    <h3 className="text-xl font-bold text-slate-900">Enquiry Received Successfully!</h3>
+                    <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                      Thank you. Your requirements have been delivered to our engineering desk at <strong className="text-slate-800">contact@atlasbitumenplant.com</strong>. Sunil L. Mistry or our technical team will contact you shortly.
                     </p>
+                    <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                      <button
+                        onClick={handleWhatsAppLead}
+                        className="w-full sm:w-auto px-5 py-2.5 bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold rounded-lg shadow inline-flex items-center justify-center gap-2 cursor-pointer transition-colors"
+                      >
+                        <span>Follow up on WhatsApp</span>
+                      </button>
+                      <button
+                        onClick={() => {
+                          setFormSubmitted(false);
+                          setLeadForm({ name: '', company: '', phone: '', email: '', product: '', message: '' });
+                        }}
+                        className="w-full sm:w-auto px-4 py-2 text-xs font-bold text-slate-600 hover:text-slate-900 cursor-pointer"
+                      >
+                        Submit another enquiry
+                      </button>
+                    </div>
                   </div>
                 ) : (
                   <form onSubmit={handleLeadSubmit} className="space-y-4">
@@ -787,9 +835,11 @@ export const HomePage: React.FC = () => {
 
                     <button
                       type="submit"
-                      className="w-full py-3 bg-[#DE1F27] hover:bg-[#B91C1C] text-white text-sm sm:text-base font-bold rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                      disabled={isSubmittingLead}
+                      className="w-full py-3 bg-[#DE1F27] hover:bg-[#B91C1C] disabled:bg-slate-400 text-white text-sm sm:text-base font-bold rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2 cursor-pointer"
                     >
-                      <Send className="w-4 h-4" /> Submit Technical Enquiry
+                      <Send className="w-4 h-4" />
+                      <span>{isSubmittingLead ? 'Sending to contact@atlasbitumenplant.com...' : 'Submit Technical Enquiry'}</span>
                     </button>
                   </form>
                 )}
